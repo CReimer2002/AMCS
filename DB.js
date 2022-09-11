@@ -5240,4 +5240,190 @@ const SAMSystemComps={
         */
     },
 };
-export default {components,uComps,largeUComps,BTGComps,testItems,SAMSystemComps,vComponents,tComponents};
+const MOSCodes=[
+    /*
+    11B: Infantryman
+    11C: Mines, Nav, Comms
+    11Z: Infantry squad leadership
+
+    12A: Combat engineer squad leader
+    12B: Sapper
+    12C: Bridge builder
+    12D: Diver
+    12H: Construction engineering supervisor
+    12M: Firefighter
+    12N: Horiz construction engineer, most prominently a roadbuilder
+    12P: Power plant engineer
+    12Q: Power line distribution specialist
+    12T: Surveyor and mapmaker
+    12W: Carpentry and masonry
+    12Y:    Geospatial engineer (map analyst, intel)
+    12Z: CE SL
+
+    13B: Cannon crewmember
+    13D: Field Artillery Automated Tactical Data System Specialist
+    13F: Fire Support Specialist, analyzes and process target data
+    13M: MRL crewmember
+    13P: MRL FDC man
+    13R: Arty counterbattery radar operator
+    13T: Field artillery surveyor/meteorological crewmember
+    13Z: Field artillery SL
+
+    14E: Fire Control Operator for SAM
+    14G: Plans and manages air defense ops
+    14H: EWR operator
+    14J: EWR operator/maintainer
+    14S: SAM crewmember
+    14T: TEL operator
+    14Z: SAM SL
+
+    15B: Aircraft powerplant repair
+    15D: A/C Powertrain repair
+    15E: UAV repair
+    15F: A/C electrician
+    15G: A/C Structural repair
+    15H: A/C pneumatics/hydraulics repair
+    15P: Planner for non-combat airborne ops
+    15W: UAV operator
+    15Z: Av Maint SL
+
+    18B: SF heavy weapons/ CE
+    18C: SF CE
+    18D: SF Medic
+    18E: SFComms
+    18F: SF Intel and Ops
+    18Z: SF SL
+
+    19D: Cav scout, operates and maintains scout vehicles
+    19K: Armor crewman
+    19Z: Armor SL
+
+    25B: General IT specialist
+    25C: Radio operator/maintainer
+    25Q: Radio operator, maintainer, setterupper,etc.
+    25S: Satcom specialist
+    25U: comms specialist/commint
+    25X: Chief signal NCO
+    25Z: Visual Information Ops Chief
+
+    29E: EW specialist
+
+    35F: Intel analyst
+    35G: Imagry analyst
+    35L: Counterintelligence
+    35M: HUMINT
+    35N: SIGINT
+    35P: Crypto linguist
+    35Q: Cyberwarfare
+    35S: SIGINT collector
+    35T: intel system maintainer
+    35V: SIGINT PL
+    35X: Intel SL
+    35Y: Counterintelligence, HUMINT SL
+    35Z: SIGINT PL
+
+    42A: HR
+
+    56M: Chaplain
+
+    68B: Orthopedic
+    68C: Nursing
+    68D OR specialist
+    68E: Dental
+    68F: Physical therapy
+    68G: Patient admin
+    68H: Optical Lab specialist
+    68J: Medical equipment and supply
+    68M: Nutrition
+    68N: Cardio
+    68P: Radiology
+    68U: Ear, nose, throat
+    68V: Resperatory
+    68W: MEDIC
+
+    88H: Management and inventory of supply
+    88M: Truck driver and manager
+    88N: Logistics coordinator
+    88P: Railway equipment repair
+    88T: Road and trail repair
+    88U: Train guy
+    88Z: Transportation leader and coordinator
+
+    89A: Ammo stock control and accounting
+    89B: Ammo management, prep, storage
+    89D: EOD
+
+    91A: Tank repair
+    91B: Wheeled vehicle repair
+    91C: Utility equipment repair
+    91D: Generator type equipment repair
+    91E: Trades specialist
+    91F: Small arms and artillery repair
+    91G: Fire controlrepair
+    91H: Tracked vehicle repair
+    91J: QM and Chem equip rpr
+    91K: Armament repair
+    91L: Construction equip repair
+    91M: IFV repair
+    91P: Arty repair
+    91S: APC repair
+    91X: Maint supervisor
+    91Z: Maint PL
+
+    92A: Warehouse inventory management
+    92F: Fuel supply specialist
+    92G: Cook
+    92M: Dead people handler
+    92R: Para rigger
+    92S: Sewer and clothes washer
+    92W: Water specialist
+    92Y: Supply coordinator
+    92Z: Supply boss
+
+    94A: ATGM repair
+    94D: ATC repair
+    94E: comms repair
+    94L: Avionics comms repair
+    94M: Radar repair
+    94P: MLRS repair
+    94S: Heavy SAM repair
+    94T: Light SAM repair
+    94X: Senior SAM maintanier
+    94Z: Electronic maint boss
+
+
+    AFSCS
+    1A151: Flight engineer 
+    1A241: Loadmaster
+
+    1C051: Airfield management
+    1C052: Aviation resource management
+    1C151: ATC
+    1C351: C2 ops
+    1C551: C2 BM
+    1C751: Airfield management
+    1C853: Radar, airfield and weather
+    1N851: Targeting analyst
+
+    1Z151: Pararescue
+    1Z2X1: Combat control
+    1Z351: TACP
+    1Z451: Special recon
+
+    11BX: Bomber pilot
+    11FX: Fighter pilot
+    11GX: Generalist pilot
+    11HX: Rescue pilot
+    11KX: Trainer pilot
+    11MX: Mobility pilot
+    12UX: RPA pilot
+    13BX: Air Battle Manager
+    13MX: Airfield ops
+    14FX: Information ops
+    14NX: Intel
+    15AX: Op Research
+    15WX: Weather officer
+
+    */
+];
+export default {components,uComps,largeUComps,BTGComps,testItems,SAMSystemComps,vComponents,tComponents,MOSCodes};
