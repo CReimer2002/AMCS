@@ -578,6 +578,11 @@ function vc_rocketLauncher(){
 };
 
 function vc_individual(individual){
+    effectiveness=1;
+    if(individual.hCExperience>0){
+        effectiveness+=(individual.hCExperience*cfg.multipliers.personnel.experience.buffPerHourCombatExperience);        
+    }
+    effectiveness+=(individual.hRIL48*cfg.multipliers.personnel.health.hoursSleepInPast48Buff);
     
 }
 function vc_tank(company,squad){//WIP, before continuing I should really quantify the value of an individual soldier.

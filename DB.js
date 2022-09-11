@@ -3607,8 +3607,8 @@ V : Vehicle driver
                 comms:tComponents.pRadios.pr_R187P1E,//new, buffs morale, reduces casualty rates depending on type along with the presence of enemy commint and ew assets. 
                 uniform:tComponents.uniforms.u_ratnik,//new, affects casualty rates and morale
                 IFAK:tComponents.iFAKs.iFAK_Generic_1,//new, affects all casualty rates to widely varying levels, along with a slight buff to morale. 
-                morale:100,//getting rid of morale cost as that will be calculated in runtime. With this as a stat it can be modified on an individual level and potentially impact casualty chances. 
-                specialty:[19,"Z"],//MOS, yes I am using that and not AFSC. The USAF doesn't have tank crews. 
+                morale:1,//getting rid of morale cost as that will be calculated in runtime. With this as a stat it can be modified on an individual level and potentially impact casualty chances. 
+                specialty:"19Z",//MOS, yes I am using that and not AFSC. The USAF doesn't have tank crews. 
                 hCExperience:0,//adding this, with veterancy soldiers can become battlehardened and this will increase lethality while decreasing casualty rates. 
                 hSLMeal:0,//adding this, this can impact other things in the dataset. May only become a factor if the soldier has no food.
                 hSLDrink:0,//adding this for the same reason as above.

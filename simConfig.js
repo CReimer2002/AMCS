@@ -138,6 +138,12 @@ let multipliers = {
                 }
             }
 
+        },
+        experience:{
+            buffPerHourCombatExperience:.05,
+        },
+        health:{
+            hoursSleepInPast48Buff:.075,
         }
     },
 };
