@@ -3082,28 +3082,6 @@ V : Vehicle driver
 
 */
     personnel:{
-        /*
-
-        weaponStats are ordered rounds used in combat, on front, in reserve, policing
-
-        */
-        troopTypes:{
-            fieldTroop:{
-
-            },
-            frontLine:{
-
-            },
-            mechanized:{
-
-            },
-            motorized:{
-
-            },
-            crewMan:{
-
-            },
-        },
         T_Rifleman:{
             1:{
                 value:2.8,
