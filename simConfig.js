@@ -141,9 +141,19 @@ let multipliers = {
         },
         experience:{
             buffPerHourCombatExperience:.05,
+            combatExperiencePerHourInCombat:1,
+            combatExperiencePerHourOnFront:.25,
+            combatExperiencePerHourPolicing:.1,
+            nonCombatJobExperiencePerHourActive:.025,
         },
         health:{
             hoursSleepInPast48Buff:.075,
+            hoursSinceLastRestDebuff:.1,//how much every hour over 14 since last rest will deduct from a soldier's morale, effectiveness and energy.
+            recentShowerBuff:1,
+            recentLaundryBuff:1,
+            recentReserveBuff:1,
+            recentMealBuff:4,
+            recentWaterBuff:5
         }
     },
 };

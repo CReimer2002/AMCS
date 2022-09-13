@@ -24846,7 +24846,7 @@ let GroundForcesTest = {
                                 vehicleGas:DB.uComps.squads.SQ_T72C2.vehicle.fuelcap,
                                 sTemplate:DB.uComps.squads.SQ_T72C2,
                                 personnelProfiles:[
-                                    [DB.components.personnel.T_Crewman[4],DB.components.personnel.T_Crewman[4].supplies,0,0],
+                                    [DB.components.personnel.T_Crewman.AGF_Tank_Cmdr_Green,DB.components.personnel.T_Crewman[4].supplies,0,0],
                                     [0,0,0,0],
                                     [0,0,0,0],
                                     [0,0,0,0],
@@ -24906,7 +24906,7 @@ let GroundForcesTest = {
                                 vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
                                 vicTimeTillBack:0,
                                 personnelProfiles:[
-                                    [DB.components.personnel.T_Crewman.AA_Tank_Cmdr_Trained_Green,DB.components.personnel.T_Crewman[4],DB.components.personnel.T_Crewman[4],0],
+                                    [DB.components.personnel.T_Crewman.AGF_Tank_Cmdr_Green,DB.components.personnel.T_Crewman.AA_Tank_Cmdr_Trained_Green,DB.components.personnel.T_Crewman[4],0],
                                     [0,0,0,0],
                                     [0,0,0,0],
                                     [0,0,0,0],
@@ -38234,6 +38234,7900 @@ let GroundForcesTest = {
                             },
                         }
                     }
+                },
+            }
+        }
+    },
+}
+let GroundForcesTestV2 = {
+    commander:"Army General Irakli Jeladze",
+    name:"Abkhazian Ground Forces",
+    easternDistrict:{
+        name:"Eastern Military District",
+        commander:"Colonel General Dima Qaldani",
+        HQ:{
+            name:"AA Eastern Military District HQ",
+            lat:[42,7,13],
+            long:[41,21,37],
+            damageState:0,
+        },
+        army1:{
+            name:"2nd Combined Arms Army",
+            commander:"Major General Merab Tsulaio",
+            depot:{
+                name:"Tamishi Supply Depot",
+                lat:[42,47,15],
+                long:[41,21,38],
+                damageState:0,
+                supplies:[150000,50000,10000,2000,2000,2000,3000],
+                vSupplies:[1000,1500,500,600,250,20000,15000,10000],
+                artilleryRds:[2000,1000,200],//2S3,BM21,BM30 
+                SAMRds:[100,150,50],//SA8,SA15,SA11
+                fuel:60000 //gallons
+            },
+            brigade1:{
+                name:"112th Motor Rifle Brigade",
+                commander:"Colonel Sergei Elkin",
+                BTG1:{
+                    name:"3rd Mechanized Battalion Tactical Group ",
+                    commander:"Lieutenant Colonel Temur Sajaio",
+                    deputyCommander:"Major Gela Maisuradze",
+                    type:3,
+                    forwardDepot:{
+                        name:"FOB Babushara",
+                        lat:[42,35,56],
+                        long:[41,32,43],
+                        damageState:0,
+                        supplies:[15000,5000,1000,200,200,200,300],
+                        vSupplies:[100,150,50,60,25,200,1500,1000],
+                        artilleryRds:[200,100,20],
+                        SAMRds:[200,100,20],
+                        fuel:6000,
+                    },
+                    HQ:{
+                        uCata:0,//0 is HQ, 1 is frontline combat, 2 is additional combat unit,3 is support, 4  is fire support
+                        uType:0,//0 is standard BTG HQ. This stat is added for the sake of future proofing the code for future factions. 
+                        long:[42,52,26],
+                        lat:[41,7,24],
+                        status:3,
+                        type:1,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"1st BTG Headquarters",  
+                        platoon1:{
+                            name:"command platoon",
+                            statusText:"",
+                            squad1:{
+                                name:"1st squad: Lieutenant Colonel Temur Sajaio's command vehicle",
+                                members:DB.uComps.squads.SQ_C2_R142.members,
+                                vehicle:DB.uComps.squads.SQ_C2_R142.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_C2_R142,
+                                supplies:DB.uComps.squads.SQ_C2_R142.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_C2_R142.vehicleCarriedSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_C2_R142.
+                                vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_C2_R142.vehicle.vSupplies,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0,0],
+                                    [DB.components.personnel.S_Officer[1].supplies,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                vicTimeTillBack:0,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,           
+                            },
+                            squad2:{
+                                name:"2nd squad:Major Gela Maisuradze's assistant command vehicle",
+                                members:DB.uComps.squads.SQ_C2_R149BM4A.members,
+                                vehicle:DB.uComps.squads.SQ_C2_R149BM4A.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_C2_R149BM4A,
+                                supplies:DB.uComps.squads.SQ_C2_R149BM4A.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_C2_R149BM4A.vehicleCarriedSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_C2_R149BM4A.
+                                vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_C2_R149BM4A.vehicle.vSupplies,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0,0],
+                                    [DB.components.personnel.S_Officer[1].supplies,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                vicTimeTillBack:0,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }           
+                        }
+                    },
+                    company1:{
+                        uCata:1,
+                        uType:3,//0 is truck, 1 is BTR-80, 2 is enhanced BTR-80, 3 is BTR-82, 4 is BMP-1, 5 is BMP-2, 6 is T-72, 7 is T-72B3
+                        y:42.588,
+                        x:41.551,//used as the location of the company HQ/supply dump, which is replenished from the BTG supply dump.
+                        locString:"unknown",
+                        status:2,//0 is in combat, 1 is on a front, 2 is in reserve,3 is policing 
+                        type:1,//1 is truck, 2 is motorized, 3 is mechanized
+                        AoD:1,//1 is defending, 2 is attacking
+                        hasArtillerySupport:2,//0 is no artillery support, 1 is an MRL battery, 2 is an SPG battery, 3 is both
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,//Location or area type: 0: grassland with very little cover, 1: rural with few buildings, 2: rural area with buildings, 3: vineyards/tall fields/farmland, 4: forest, dense, 5: industrial facility, 6: airfield, 7: military base, 8: urban area with many houses, 9: highly developed city
+                        name:"12th Motorized Infantry Company",
+                        commander:"Senior Lieutenant Giorgi Ratyan",
+                        HQ:{
+                            squad1:{
+                                name:"Company Commander's squad",
+                                members:DB.uComps.squads.SQ_BTR82InfantryCompanyC2.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82InfantryCompanyC2.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82InfantryCompanyC2.vehicle.fuelcap,
+                                sTemplate:DB.uComps.squads.SQ_BTR82InfantryCompanyC2,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[2].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[2].supplies,0,0,0],
+                                    [DB.components.personnel.S_Officer[2].supplies,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82InfantryCompanyC2.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82InfantryCompanyC2.vehicleCarriedSupplies,
+                                vicTimeTillBack:0,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon1:{
+                            name:"1st Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceInjDeaDesMutTurbyPersonnel:[
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],                                
+                                ],
+                                moraleByPerson:[
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]                                  
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                              
+                            },
+                            squad3:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon2:{
+                            name:"2nd Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                              
+                            },
+                            squad3:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon3:{
+                            name:"3rd Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                              
+                            },
+                            squad3:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BTR82Infantry,
+                                members:DB.uComps.squads.SQ_BTR82Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BTR82Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,DB.components.personnel.T_Rifleman[2].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR82Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                    },
+                    company2:{
+                        uCata:1,
+                        uType:5,//0 is truck, 1 is BTR-80, 2 is enhanced BTR-80, 3 is BTR-82, 4 is BMP-1, 5 is BMP-2, 6 is T-72, 7 is T-72B3
+                        y:42.647,
+                        x:41.555,//used as the location of the company HQ/supply dump, which is replenished from the BTG supply dump.
+                        locString:"unknown",
+                        status:2,//0 is in combat, 1 is on a front, 2 is in reserve,3 is policing 
+                        type:1,//1 is truck, 2 is motorized, 3 is mechanized
+                        AoD:1,//1 is defending, 2 is attacking
+                        hasArtillerySupport:2,//0 is no artillery support, 1 is an MRL battery, 2 is an SPG battery, 3 is both
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,//Location or area type: 0: grassland with very little cover, 1: rural with few buildings, 2: rural area with buildings, 3: vineyards/tall fields/farmland, 4: forest, dense, 5: industrial facility, 6: airfield, 7: military base, 8: urban area with many houses, 9: highly developed city
+                        name:"13th Mechanized Company",
+                        commander:"Senior Lieutenant Giorgi Ratyan",
+                        HQ:{
+                            squad1:{
+                                name:"Company Commander's squad",
+                                members:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.vehicle.fuelcap,
+                                sTemplate:DB.uComps.squads.SQ_BMP2InfantryCompanyC2,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,0,0,0],
+                                    [DB.components.personnel.S_Officer[3].supplies,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.vehicleCarriedSupplies,
+                                vicTimeTillBack:0,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon1:{
+                            name:"1st Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                             
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon2:{
+                            name:"2nd Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                             
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon3:{
+                            name:"3rd Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                             
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                    },
+                    company3:{
+                        uCata:1,
+                        uType:5,//0 is truck, 1 is BTR-80, 2 is enhanced BTR-80, 3 is BTR-82, 4 is BMP-1, 5 is BMP-2, 6 is T-72, 7 is T-72B3
+                        y:42.654,
+                        x:41.555,//used as the location of the company HQ/supply dump, which is replenished from the BTG supply dump.
+                        locString:"unknown",
+                        status:2,//0 is in combat, 1 is on a front, 2 is in reserve,3 is policing 
+                        type:1,//1 is truck, 2 is motorized, 3 is mechanized
+                        AoD:1,//1 is defending, 2 is attacking
+                        hasArtillerySupport:2,//0 is no artillery support, 1 is an MRL battery, 2 is an SPG battery, 3 is both
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,//Location or area type: 0: grassland with very little cover, 1: rural with few buildings, 2: rural area with buildings, 3: vineyards/tall fields/farmland, 4: forest, dense, 5: industrial facility, 6: airfield, 7: military base, 8: urban area with many houses, 9: highly developed city
+                        name:"14th Mechanized Company",
+                        commander:"Senior Lieutenant Giorgi Ratyan",
+                        HQ:{
+                            squad1:{
+                                name:"Company Commander's squad",
+                                members:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.vehicle.fuelcap,
+                                sTemplate:DB.uComps.squads.SQ_BMP2InfantryCompanyC2,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,0,0,0],
+                                    [DB.components.personnel.S_Officer[3].supplies,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2InfantryCompanyC2.vehicleCarriedSupplies,
+                                vicTimeTillBack:0,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon1:{
+                            name:"1st Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                             
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon2:{
+                            name:"2nd Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                             
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon3:{
+                            name:"3rd Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,                             
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_BMP2Infantry,
+                                members:DB.uComps.squads.SQ_BMP2Infantry.members,
+                                vehicle:DB.uComps.squads.SQ_BMP2Infantry.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_BMP2Infantry.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [DB.components.personnel.T_SL[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_MG[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[3].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BMP2Infantry.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BMP2Infantry.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                    },
+                    company4:{
+                        uCata:1,
+                        uType:6,//0 is truck, 1 is BTR-80, 2 is enhanced BTR-80, 3 is BTR-82, 4 is BMP-1, 5 is BMP-2, 6 is T-72, 7 is T-72B3
+                        y:42.655,
+                        x:41.575,
+                        locString:"unknown",
+                        status:2,
+                        type:1,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"15th Tank Company",
+                        commander:"Senior Lieutenant Giorgi Ratyan",
+                        HQ:{
+                            squad1:{
+                                name:"Company Commander's squad",
+                                members:DB.uComps.squads.SQ_T72C2.members,
+                                vehicle:DB.uComps.squads.SQ_T72C2.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72C2.vehicle.fuelcap,
+                                sTemplate:DB.uComps.squads.SQ_T72C2,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman.AGF_Tank_Cmdr_Green,DB.components.personnel.T_Crewman[4].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Officer[3].supplies,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72C2.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72C2.vehicleCarriedSupplies,
+                                vicTimeTillBack:0,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon1:{
+                            name:"1st Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.components.vehicles.MBT_T72B3TestUpdate,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman.AGF_Tank_Cmdr_Green,DB.components.personnel.T_Crewman.AA_Tank_Cmdr_Trained_Green,DB.components.personnel.T_Crewman[4],0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.uComps.squads.SQ_T72.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,           
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.uComps.squads.SQ_T72.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon2:{
+                            name:"2nd Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.uComps.squads.SQ_T72.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.uComps.squads.SQ_T72.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,           
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.uComps.squads.SQ_T72.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                        platoon3:{
+                            name:"3rd Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.uComps.squads.SQ_T72.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.uComps.squads.SQ_T72.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,           
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                sTemplate:DB.uComps.squads.SQ_T72,
+                                members:DB.uComps.squads.SQ_T72.members,
+                                vehicle:DB.uComps.squads.SQ_T72.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_T72.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_T72.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_T72.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_T72.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                            }
+                        },
+                    },
+                    additionalCombatUnit1:{
+                        uType:1,//0: Truck MANPADS, 1: BTR MANPADS, 3: is Sniper, 4: Recon, 5: ATGM, 6: Engineering.    Determines the expected structure and contents of each unit in the additionalCombatUnit section.
+                        uCata:2,
+                        y:42.541,
+                        x:41.579,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"16th Motorized Light Air Defense Unit",
+                        platoon1:{
+                            name:"1st Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                members:DB.uComps.squads.SQ_BTR80MANPADS.members,
+                                vehicle:DB.uComps.squads.SQ_BTR80MANPADS.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BTR80MANPADS,
+                                vehicleGas:DB.uComps.squads.SQ_BTR80MANPADS.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR80MANPADS.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR80MANPADS.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR80MANPADS.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0],
+                                    [DB.components.personnel.T_SL[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MG[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[2].supplies,DB.components.personnel.T_MANPADS[2].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                members:DB.uComps.squads.SQ_BTR80MANPADS.members,
+                                vehicle:DB.uComps.squads.SQ_BTR80MANPADS.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BTR80MANPADS,
+                                vehicleGas:DB.uComps.squads.SQ_BTR80MANPADS.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR80MANPADS.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR80MANPADS.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR80MANPADS.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0],
+                                    [DB.components.personnel.T_SL[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MG[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[2].supplies,DB.components.personnel.T_MANPADS[2].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                members:DB.uComps.squads.SQ_BTR80MANPADS.members,
+                                vehicle:DB.uComps.squads.SQ_BTR80MANPADS.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BTR80MANPADS,
+                                vehicleGas:DB.uComps.squads.SQ_BTR80MANPADS.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR80MANPADS.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR80MANPADS.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR80MANPADS.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0],
+                                    [DB.components.personnel.T_SL[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MG[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[2].supplies,DB.components.personnel.T_MANPADS[2].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                    },
+                    additionalCombatUnit2:{
+                        uType:3,//0: Truck MANPADS, 1: BTR MANPADS, 3: is Sniper, 4: Recon, 5: ATGM, 6: Engineering.    Determines the expected structure and contents of each unit in the additionalCombatUnit section.
+                        uCata:2,
+                        y:42.458,
+                        x:41.545,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"17th Sniper Platoon",
+                        platoon1:{
+                            name:"1st Platoon",
+                            squad1:{
+                                name:"1st squad",
+                                members:DB.uComps.squads.SQ_Sniper.members,
+                                vehicle:DB.uComps.squads.SQ_Sniper.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_Sniper,
+                                vehicleGas:DB.uComps.squads.SQ_Sniper.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_Sniper.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_Sniper.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_Sniper.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SL[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[1].supplies,DB.components.personnel.T_Rifleman[1].supplies,0,0],
+                                    [DB.components.personnel.T_MANPADS[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                members:DB.uComps.squads.SQ_Sniper.members,
+                                vehicle:DB.uComps.squads.SQ_Sniper.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_Sniper,
+                                vehicleGas:DB.uComps.squads.SQ_Sniper.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_Sniper.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_Sniper.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_Sniper.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SL[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[1].supplies,DB.components.personnel.T_Rifleman[1].supplies,0,0],
+                                    [DB.components.personnel.T_MANPADS[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                members:DB.uComps.squads.SQ_Sniper.members,
+                                vehicle:DB.uComps.squads.SQ_Sniper.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_Sniper,
+                                vehicleGas:DB.uComps.squads.SQ_Sniper.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_Sniper.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_Sniper.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_Sniper.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SL[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_SR_Rifleman[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_Rifleman[1].supplies,DB.components.personnel.T_Rifleman[1].supplies,0,0],
+                                    [DB.components.personnel.T_MANPADS[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies,DB.components.personnel.T_SVD[1].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },    
+                    },
+                    additionalCombatUnit3:{
+                        uType:4,//0: Truck MANPADS, 1: BTR MANPADS, 3: is Sniper, 4: Recon, 5: ATGM, 6: Engineering.    Determines the expected structure and contents of each unit in the additionalCombatUnit section.
+                        uCata:2,
+                        y:42.481,
+                        x:41.552,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"18th Recon Platoon",
+                        platoon1:{
+                            name:"1st Platoon",
+                            squad1:{
+                                name:"Squad 1",
+                                members:DB.uComps.squads.SQ_BTR80Recon.members,
+                                vehicle:DB.uComps.squads.SQ_BTR80Recon.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BTR80Recon,
+                                vehicleGas:DB.uComps.squads.SQ_BTR80Recon.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR80Recon.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR80Recon.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR80Recon.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,DB.components.personnel.T_Grenadier[2].supplies,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SVD[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                members:DB.uComps.squads.SQ_Sniper.members,
+                                vehicle:DB.uComps.squads.SQ_Sniper.vehicle,
+                                members:DB.uComps.squads.SQ_BTR80Recon.members,
+                                vehicle:DB.uComps.squads.SQ_BTR80Recon.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BTR80Recon,
+                                vehicleGas:DB.uComps.squads.SQ_BTR80Recon.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR80Recon.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR80Recon.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR80Recon.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,DB.components.personnel.T_Grenadier[2].supplies,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SVD[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                members:DB.uComps.squads.SQ_BTR80Recon.members,
+                                vehicle:DB.uComps.squads.SQ_BTR80Recon.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BTR80Recon,
+                                vehicleGas:DB.uComps.squads.SQ_BTR80Recon.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_BTR80Recon.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BTR80Recon.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BTR80Recon.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                vicTimeTillBack:0,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,DB.components.personnel.T_Crewman[2].supplies,0],
+                                    [DB.components.personnel.T_SL[2].supplies,0,0,0],
+                                    [DB.components.personnel.T_Grenadier[2].supplies,DB.components.personnel.T_Grenadier[2].supplies,0,0],
+                                    [DB.components.personnel.T_Asst_Grenadier[2].supplies,DB.components.personnel.T_Asst_Grenadier[2].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.T_MANPADS[1].supplies,0,0,0],
+                                    [DB.components.personnel.T_SVD[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },    
+                    },
+                    supportUnit1:{
+                        uType:0,//0: Comms, 1: Medical, 2: Logistics 3:Heavy logistics
+                        uCata:3,
+                        y:42.562,
+                        x:41.677,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"19th Communications, Drone recon, SIGINT, Counterbattery And Electronic Warfare Platoon",  
+                        platoon1:{
+                            name:"1st Group: Electronic Warfare",
+                            squad1:{
+                                name:"1st squad: ELINT and weapons datalink disruptor",
+                                members:DB.uComps.squads.SQ_EW_1L222.members,
+                                vehicle:DB.uComps.squads.SQ_EW_1L222.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_EW_1L222,
+                                vehicleGas:DB.uComps.squads.SQ_EW_1L222.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_EW_1L222.vehicle.vSupplies,
+                                hasVehicle:1,
+                                vicTimeTillBack:0,
+                                supplies:DB.uComps.squads.SQ_EW_1L222.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_EW_1L222.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },    
+                            squad2:{
+                                name:"2nd squad: ELINT for sat and cell phones+GPS jamming",
+                                members:DB.uComps.squads.SQ_EW_R330ZH.members,
+                                vehicle:DB.uComps.squads.SQ_EW_R330ZH.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_EW_R330ZH,
+                                vSupplies:DB.uComps.squads.SQ_EW_R330ZH.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_EW_R330ZH.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_EW_R330ZH.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_EW_R330ZH.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },    
+                            squad3:{
+                                name:"3rd squad: VHF/UHF jammer",
+                                members:DB.uComps.squads.SQ_EW_RP377L.members,
+                                vehicle:DB.uComps.squads.SQ_EW_RP377L.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_EW_RP377L,
+                                vehicleGas:DB.uComps.squads.SQ_EW_RP377L.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_EW_RP377L.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_EW_RP377L.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_EW_RP377L.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad4:{
+                                name:"4th squad: Zoopark-1 Counterbattery radar",
+                                members:DB.uComps.squads.SQ_CB_1L219.members,
+                                vehicle:DB.uComps.squads.SQ_CB_1L219.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_CB_1L219,
+                                vehicleGas:DB.uComps.squads.SQ_CB_1L219.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_CB_1L219.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_CB_1L219.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_CB_1L219.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            }, 
+                        },
+                        platoon2:{
+                            squad1:{
+                                name:"1st squad: Communications Vehicle",
+                                sTemplate:DB.uComps.squads.SQ_R142,
+                                members:DB.uComps.squads.SQ_R142.members,
+                                vehicle:DB.uComps.squads.SQ_R142.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_R142.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_R142.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_R142.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_R142.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad: Communications",
+                                sTemplate:DB.uComps.squads.SQ_R142,
+                                members:DB.uComps.squads.SQ_R142.members,
+                                vehicle:DB.uComps.squads.SQ_R142.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_R142.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_R142.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_R142.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_R142.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon3:{
+                            name:"3rd Group: Orlan-10 Drone System",
+                            squad1:{
+                                name:"1st squad: C2 vehicle",
+                                members:DB.uComps.squads.SQ_EW_MP32M1.members,
+                                vehicle:DB.uComps.squads.SQ_EW_MP32M1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_EW_MP32M1,
+                                vehicleGas:DB.uComps.squads.SQ_EW_MP32M1.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_EW_MP32M1.vehicle.vSupplies,
+                                hasVehicle:1,
+                                vicTimeTillBack:0,
+                                supplies:DB.uComps.squads.SQ_EW_MP32M1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_EW_MP32M1.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },    
+                            squad2:{
+                                name:"2nd squad: Drone launch, recovery and transport vehicle",
+                                members:DB.uComps.squads.SQ_EW_Orln10Ln.members,
+                                vehicle:DB.uComps.squads.SQ_EW_Orln10Ln.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_EW_Orln10Ln,
+                                vSupplies:DB.uComps.squads.SQ_EW_Orln10Ln.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_EW_Orln10Ln.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_EW_Orln10Ln.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_EW_Orln10Ln.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, //sph for the crewmen as an array in the standard supply format
+                                    .1, //sph for the SL
+                                    .1, //sph for the Gren
+                                    .1, //sph for the ass. gren
+                                    .1, //sph for mg
+                                    .1, //sph for sr riflemen
+                                    .1, //sph for riflemen
+                                    .1, //sph for manpads
+                                    .1, //sph for snipers
+                                    .1, //sph for staffers
+                                    .1  //sph for the officers
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            }
+                        }
+                    },
+                    supportUnit2:{
+                        uType:4,//0: Comms, 1: Medical, 2: Logistics 3:Heavy logistics,4:Engineering
+                        uCata:3,
+                        y:42.650,
+                        x:41.567,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"20th Engineering Platoon",  
+                        platoon1:{
+                            name:"1st platoon, minelayers",
+                            squad1:{
+                                name:"1st squad",
+                                members:DB.uComps.squads.SQ_ENG_GMZ_3.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_GMZ_3,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_ENG_GMZ_3.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_GMZ_3.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                members:DB.uComps.squads.SQ_ENG_GMZ_3.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_GMZ_3,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle.
+                                fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle.vSupplies,
+                                hasVehicle:1,
+                                vicTimeTillBack:0,
+                                supplies:DB.uComps.squads.SQ_ENG_GMZ_3.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_GMZ_3.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"1st squad",
+                                members:DB.uComps.squads.SQ_ENG_GMZ_3.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_GMZ_3,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_ENG_GMZ_3.vehicle.vSupplies,
+                                hasVehicle:1,
+                                vicTimeTillBack:0,
+                                supplies:DB.uComps.squads.SQ_ENG_GMZ_3.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_GMZ_3.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            }
+                        },
+                        platoon2:{
+                            name:"2nd platoon, diggers/clearers",
+                            squad1:{
+                                name:"1st squad",
+                                members:DB.uComps.squads.SQ_ENG_BAT_2.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_BAT_2.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_BAT_2,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_BAT_2.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_ENG_BAT_2.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_ENG_BAT_2.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_BAT_2.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd squad",
+                                members:DB.uComps.squads.SQ_ENG_BAT_2.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_BAT_2.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_BAT_2,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_BAT_2.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_ENG_BAT_2.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_ENG_BAT_2.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_BAT_2.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd squad",
+                                members:DB.uComps.squads.SQ_EOV_3521.members,
+                                vehicle:DB.uComps.squads.SQ_EOV_3521.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_EOV_3521,
+                                vehicleGas:DB.uComps.squads.SQ_EOV_3521.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_EOV_3521.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_EOV_3521.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_EOV_3521.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon3:{
+                            name:"3rd platoon, mineclearer",
+                            squad1:{
+                                name:"1st squad",
+                                members:DB.uComps.squads.SQ_Eng_UR_77.members,
+                                vehicle:DB.uComps.squads.SQ_Eng_UR_77.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_Eng_UR_77,
+                                vehicleGas:DB.uComps.squads.SQ_Eng_UR_77.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_Eng_UR_77.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_Eng_UR_77.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_Eng_UR_77.vehicleCarriedSupplies,
+                                vicTimeTillBack:0,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        }
+                    },
+                    supportUnit3:{
+                        uType:1,
+                        uCata:3,
+                        y:42.657,
+                        x:41.559,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"21st Medical Detachment",  
+                        platoon1:{
+                            name:"1st platoon",
+                            squad1:{
+                                name:"1st Miltary Ambulance",
+                                sTemplate:DB.uComps.squads.SQ_M_U375,
+                                members:DB.uComps.squads.SQ_M_U375.members,
+                                vehicle:DB.uComps.squads.SQ_M_U375.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_M_U375.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_M_U375.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_M_U375.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_M_U375.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Military Ambulance",
+                                sTemplate:DB.uComps.squads.SQ_M_U375,
+                                members:DB.uComps.squads.SQ_M_U375.members,
+                                vehicle:DB.uComps.squads.SQ_M_U375.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_M_U375.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_M_U375.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_M_U375.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_M_U375.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Military Ambulance",
+                                sTemplate:DB.uComps.squads.SQ_M_U375,
+                                members:DB.uComps.squads.SQ_M_U375.members,
+                                vehicle:DB.uComps.squads.SQ_M_U375.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_M_U375.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_M_U375.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_M_U375.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_M_U375.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad4:{
+                                name:"4th Military Ambulance",
+                                sTemplate:DB.uComps.squads.SQ_M_U375,
+                                members:DB.uComps.squads.SQ_M_U375.members,
+                                vehicle:DB.uComps.squads.SQ_M_U375.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_M_U375.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_M_U375.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_M_U375.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_M_U375.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,DB.components.personnel.S_Staffer[1].supplies,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        }
+                    },
+                    supportUnit4:{
+                        uType:2,
+                        uCata:3,
+                        y:42.652,
+                        x:41.566,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"22nd Material Technical Support Platoon",  
+                        platoon1:{
+                            name:"Motor Transport Squad: Supplies and ammunition",
+                            squad1:{
+                                name:"Truck 1",
+                                members:DB.uComps.squads.SQ_LOGI_K_43101.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_K_43101.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_K_43101,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_K_43101.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"Truck 2",
+                                members:DB.uComps.squads.SQ_LOGI_K_43101.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_K_43101.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_K_43101,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_K_43101.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"Truck 3",
+                                members:DB.uComps.squads.SQ_LOGI_K_43101.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_K_43101.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_K_43101,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_K_43101.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad4:{
+                                name:"Truck 4",
+                                members:DB.uComps.squads.SQ_LOGI_K_43101.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_K_43101.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_K_43101,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_K_43101.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad5:{
+                                name:"Truck 5",
+                                members:DB.uComps.squads.SQ_LOGI_K_43101.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_K_43101.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_K_43101,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_K_43101.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad6:{
+                                name:"Truck 6",
+                                members:DB.uComps.squads.SQ_LOGI_K_43101.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_K_43101.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_K_43101,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_K_43101.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad7:{
+                                name:"Truck 7",
+                                members:DB.uComps.squads.SQ_LOGI_K_43101.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_K_43101.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_K_43101,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_K_43101.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad8:{
+                                name:"Truck 8",
+                                members:DB.uComps.squads.SQ_LOGI_K_43101.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_K_43101.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_K_43101,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_K_43101.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_K_43101.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_K_43101.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon2:{
+                            name:"Second Motor Transport Squad: Fuel",
+                            squad1:{
+                                name:"Fuel Truck 1",
+                                members:DB.uComps.squads.SQ_LOGI_ATZ5.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_ATZ5,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_ATZ5.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_ATZ5.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"Fuel Truck 2",
+                                members:DB.uComps.squads.SQ_LOGI_ATZ5.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_ATZ5,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_ATZ5.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_ATZ5.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"Fuel Truck 3",
+                                members:DB.uComps.squads.SQ_LOGI_ATZ5.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_ATZ5,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_ATZ5.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_ATZ5.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_ATZ5.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon3:{
+                            name:"3rd Motor Transport Squad: Water",
+                            squad1:{
+                                name:"Water Truck 1",
+                                members:DB.uComps.squads.SQ_LOGI_ATS5.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_ATS5.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_ATS5,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_ATS5.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_ATS5.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_ATS5.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_ATS5.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"Water Truck 2",
+                                members:DB.uComps.squads.SQ_LOGI_ATS5.members,
+                                vehicle:DB.uComps.squads.SQ_LOGI_ATS5.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_LOGI_ATS5,
+                                vSupplies:DB.uComps.squads.SQ_LOGI_ATS5.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_LOGI_ATS5.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_LOGI_ATS5.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_LOGI_ATS5.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon4:{
+                            name:"Evacuation Squad (Combat recovery vehicles)",
+                            squad1:{
+                                name:"Combat Recovery Vehicle 1",
+                                members:DB.uComps.squads.SQ_ENG_BREM_L.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_BREM_L.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_BREM_L,
+                                vSupplies:DB.uComps.squads.SQ_ENG_BREM_L.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_BREM_L.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_ENG_BREM_L.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_BREM_L.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"Combat Recovery Vehicle 2",
+                                members:DB.uComps.squads.SQ_ENG_BREM_L.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_BREM_L.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_BREM_L,
+                                vSupplies:DB.uComps.squads.SQ_ENG_BREM_L.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_BREM_L.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_ENG_BREM_L.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_BREM_L.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"Combat Recovery Vehicle 3",
+                                members:DB.uComps.squads.SQ_ENG_BREM_L.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_BREM_L.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_BREM_L,
+                                vSupplies:DB.uComps.squads.SQ_ENG_BREM_L.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_BREM_L.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_ENG_BREM_L.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_BREM_L.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad4:{
+                                name:"Mobile maintenance crane",
+                                members:DB.uComps.squads.SQ_ENG_REM_KL.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_REM_KL.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_REM_KL,
+                                vSupplies:DB.uComps.squads.SQ_ENG_REM_KL.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_REM_KL.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_ENG_REM_KL.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_REM_KL.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon5:{
+                            name:"Maintenance Squad (mobile repair shop)",
+                            squad1:{
+                                name:"Mobile repair shop 1",
+                                members:DB.uComps.squads.SQ_ENG_MTO_UB1.members,
+                                vehicle:DB.uComps.squads.SQ_ENG_MTO_UB1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_ENG_MTO_UB1,
+                                vSupplies:DB.uComps.squads.SQ_ENG_MTO_UB1.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_ENG_MTO_UB1.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_ENG_MTO_UB1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_ENG_MTO_UB1.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon6:{
+                            name:"Kitchen Squad",
+                            squad1:{
+                                name:"Kitchen Truck 1",
+                                members:DB.uComps.squads.SQ_MAINT_PAK_200_M.members,
+                                vehicle:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_MAINT_PAK_200_M,
+                                vSupplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },   
+                            squad2:{
+                                name:"Kitchen Truck 2",
+                                members:DB.uComps.squads.SQ_MAINT_PAK_200_M.members,
+                                vehicle:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_MAINT_PAK_200_M,
+                                vSupplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            }, 
+                            squad3:{
+                                name:"Kitchen Truck 3",
+                                members:DB.uComps.squads.SQ_MAINT_PAK_200_M.members,
+                                vehicle:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_MAINT_PAK_200_M,
+                                vSupplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicle.fuelcap,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_MAINT_PAK_200_M.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },     
+                        },
+                        platoon7:{
+                            name:"Shower and laundry Squad",
+                            squad1:{
+                                name:"Shower Complex",
+                                members:DB.uComps.squads.SQ_MAINT_DDU_1.members,
+                                vehicle:DB.uComps.squads.SQ_MAINT_DDU_1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_MAINT_DDU_1,
+                                vehicleGas:DB.uComps.squads.SQ_MAINT_DDU_1.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_MAINT_DDU_1.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_MAINT_DDU_1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_MAINT_DDU_1.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"Laundry Complex",
+                                members:DB.uComps.squads.SQ_PKPB10.members,
+                                vehicle:DB.uComps.squads.SQ_PKPB10.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_PKPB10,
+                                vehicleGas:DB.uComps.squads.SQ_PKPB10.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_PKPB10.vehicle.vSupplies,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_PKPB10.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_PKPB10.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                    },
+                    fSupportUnit1:{
+                        uType:0,//0: 2S3,1: BM21,2: BM30,3: SA8,4: SA15,5: SA11
+                        uCata:4,
+                        y:42.545,
+                        x:41.580,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"23rd Motor Howitzer Battery",
+                        HQ:{
+                            squad1:{
+                                name:"1st Squad: Headquarters",
+                                sTemplate:DB.uComps.squads.SQ_C2_1V14,
+                                members:DB.uComps.squads.SQ_C2_1V14.members,
+                                vehicle:DB.uComps.squads.SQ_C2_1V14.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_C2_1V14.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_C2_1V14.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_C2_1V14.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_C2_1V14.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd squad: Fire Control",
+                                members:DB.uComps.squads.SQ_C2_1V13.members,
+                                vehicle:DB.uComps.squads.SQ_C2_1V13.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_C2_1V13,
+                                vehicleGas:DB.uComps.squads.SQ_C2_1V13.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_C2_1V13.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_C2_1V13.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_C2_1V13.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },                        
+                        },
+                        platoon1:{
+                            name:"1st Platoon: Fire Group 1",
+                            squad1:{
+                                name:"1st Squad",
+                                members:DB.uComps.squads.SQ_2S3M1.members,
+                                vehicle:DB.uComps.squads.SQ_2S3M1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3M1,
+                                vSupplies:DB.uComps.squads.SQ_2S3M1.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3M1.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3M1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3M1.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                rounds:DB.uComps.squads.SQ_2S3M1.vehicle.roundsCarried,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad",
+                                members:DB.uComps.squads.SQ_2S3M1.members,
+                                vehicle:DB.uComps.squads.SQ_2S3M1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3M1,
+                                vSupplies:DB.uComps.squads.SQ_2S3M1.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3M1.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3M1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3M1.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3M1.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Squad",
+                                members:DB.uComps.squads.SQ_2S3M1.members,
+                                vehicle:DB.uComps.squads.SQ_2S3M1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3M1,
+                                vSupplies:DB.uComps.squads.SQ_2S3M1.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3M1.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3M1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3M1.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3M1.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon2:{
+                            name:"2nd Platoon: Fire Group 2",
+                            squad1:{
+                                name:"1st Squad",
+                                members:DB.uComps.squads.SQ_2S3M1.members,
+                                vehicle:DB.uComps.squads.SQ_2S3M1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3M1,
+                                vSupplies:DB.uComps.squads.SQ_2S3M1.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3M1.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3M1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3M1.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3M1.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad",
+                                members:DB.uComps.squads.SQ_2S3M1.members,
+                                vehicle:DB.uComps.squads.SQ_2S3M1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3M1,
+                                vSupplies:DB.uComps.squads.SQ_2S3M1.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3M1.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3M1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3M1.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3M1.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Squad",
+                                members:DB.uComps.squads.SQ_2S3M1.members,
+                                vehicle:DB.uComps.squads.SQ_2S3M1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3M1,
+                                vSupplies:DB.uComps.squads.SQ_2S3M1.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3M1.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3M1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3M1.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3M1.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon3:{
+                            name:"3rd Platoon: Additional ammunition transport",
+                            squad1:{
+                                name:"1st Squad",
+                                members:DB.uComps.squads.SQ_2S3_Resupply.members,
+                                vehicle:DB.uComps.squads.SQ_2S3_Resupply.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3_Resupply,
+                                vSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3_Resupply.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3_Resupply.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3_Resupply.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad",
+                                members:DB.uComps.squads.SQ_2S3_Resupply.members,
+                                vehicle:DB.uComps.squads.SQ_2S3_Resupply.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3_Resupply,
+                                vSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3_Resupply.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3_Resupply.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3_Resupply.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"3rd Squad",
+                                members:DB.uComps.squads.SQ_2S3_Resupply.members,
+                                vehicle:DB.uComps.squads.SQ_2S3_Resupply.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3_Resupply,
+                                vSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3_Resupply.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3_Resupply.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3_Resupply.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },                            
+                        platoon4:{
+                            name:"4th Platoon: Additional ammunition transport",
+                            squad1:{
+                                name:"1st Squad",
+                                members:DB.uComps.squads.SQ_2S3_Resupply.members,
+                                vehicle:DB.uComps.squads.SQ_2S3_Resupply.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3_Resupply,
+                                vSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3_Resupply.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3_Resupply.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3_Resupply.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad",
+                                members:DB.uComps.squads.SQ_2S3_Resupply.members,
+                                vehicle:DB.uComps.squads.SQ_2S3_Resupply.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3_Resupply,
+                                vSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3_Resupply.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3_Resupply.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3_Resupply.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"3rd Squad",
+                                members:DB.uComps.squads.SQ_2S3_Resupply.members,
+                                vehicle:DB.uComps.squads.SQ_2S3_Resupply.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_2S3_Resupply,
+                                vSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_2S3_Resupply.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_2S3_Resupply.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_2S3_Resupply.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_2S3_Resupply.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        }   
+                    },
+                    fSupportUnit2:{
+                        uType:1,//0: 2S3,1: BM21,2: BM30,3: SA8,4: SA15,5: SA11
+                        uCata:4,
+                        y:42.546,
+                        x:41.571,
+                        locString:"unknown",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"24th Multiple Rocket Launcher Battery",
+                        HQ:{
+                            squad1:{
+                                name:"1st Squad: Headquarters",
+                                sTemplate:DB.uComps.squads.SQ_C2_1V14,
+                                members:DB.uComps.squads.SQ_C2_1V14.members,
+                                vehicle:DB.uComps.squads.SQ_C2_1V14.vehicle,
+                                vehicleGas:DB.uComps.squads.SQ_C2_1V14.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_C2_1V14.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_C2_1V14.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_C2_1V14.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd squad: Fire Control",
+                                members:DB.uComps.squads.SQ_C2_1V13.members,
+                                vehicle:DB.uComps.squads.SQ_C2_1V13.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_C2_1V13,
+                                vehicleGas:DB.uComps.squads.SQ_C2_1V13.vehicle.fuelcap,
+                                vSupplies:DB.uComps.squads.SQ_C2_1V13.vehicle.vSupplies,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_C2_1V13.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_C2_1V13.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },                        
+                        },
+                        platoon1:{
+                            name:"1st Platoon: Fire Group 1",
+                            squad1:{
+                                name:"1st Squad",
+                                members:DB.uComps.squads.SQ_BM21.members,
+                                vehicle:DB.uComps.squads.SQ_BM21.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BM21,
+                                vSupplies:DB.uComps.squads.SQ_BM21.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_BM21.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BM21.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BM21.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                rounds:DB.uComps.squads.SQ_BM21.vehicle.roundsCarried,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad",
+                                members:DB.uComps.squads.SQ_BM21.members,
+                                vehicle:DB.uComps.squads.SQ_BM21.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BM21,
+                                vSupplies:DB.uComps.squads.SQ_BM21.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_BM21.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BM21.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BM21.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                rounds:DB.uComps.squads.SQ_BM21.vehicle.roundsCarried,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Squad",
+                                members:DB.uComps.squads.SQ_BM21.members,
+                                vehicle:DB.uComps.squads.SQ_BM21.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BM21,
+                                vSupplies:DB.uComps.squads.SQ_BM21.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_BM21.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BM21.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BM21.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                rounds:DB.uComps.squads.SQ_BM21.vehicle.roundsCarried,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon2:{
+                            name:"2nd Platoon: Fire Group 2",
+                            squad1:{
+                                name:"1st Squad",
+                                members:DB.uComps.squads.SQ_BM21.members,
+                                vehicle:DB.uComps.squads.SQ_BM21.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BM21,
+                                vSupplies:DB.uComps.squads.SQ_BM21.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_BM21.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BM21.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BM21.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                rounds:DB.uComps.squads.SQ_BM21.vehicle.roundsCarried,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad",
+                                members:DB.uComps.squads.SQ_BM21.members,
+                                vehicle:DB.uComps.squads.SQ_BM21.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BM21,
+                                vSupplies:DB.uComps.squads.SQ_BM21.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_BM21.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BM21.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BM21.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                rounds:DB.uComps.squads.SQ_BM21.vehicle.roundsCarried,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Squad",
+                                members:DB.uComps.squads.SQ_BM21.members,
+                                vehicle:DB.uComps.squads.SQ_BM21.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_BM21,
+                                vSupplies:DB.uComps.squads.SQ_BM21.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_BM21.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_BM21.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_BM21.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                rounds:DB.uComps.squads.SQ_BM21.vehicle.roundsCarried,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon3:{
+                            name:"3rd Platoon: Additional ammunition transport",
+                            squad1:{
+                                name:"1st Squad",
+                                members:DB.uComps.squads.SQ_9T254_BM21_Resupplier.members,
+                                vehicle:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T254_BM21_Resupplier,
+                                vSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad",
+                                members:DB.uComps.squads.SQ_9T254_BM21_Resupplier.members,
+                                vehicle:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T254_BM21_Resupplier,
+                                vSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"3rd Squad",
+                                members:DB.uComps.squads.SQ_9T254_BM21_Resupplier.members,
+                                vehicle:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T254_BM21_Resupplier,
+                                vSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },                            
+                        platoon4:{
+                            name:"4th Platoon: Additional ammunition transport",
+                            squad1:{
+                                name:"1st Squad",
+                                members:DB.uComps.squads.SQ_9T254_BM21_Resupplier.members,
+                                vehicle:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T254_BM21_Resupplier,
+                                vSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad",
+                                members:DB.uComps.squads.SQ_9T254_BM21_Resupplier.members,
+                                vehicle:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T254_BM21_Resupplier,
+                                vSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Squad",
+                                members:DB.uComps.squads.SQ_9T254_BM21_Resupplier.members,
+                                vehicle:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T254_BM21_Resupplier,
+                                vSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicleCarriedSupplies,
+                                rounds:DB.uComps.squads.SQ_9T254_BM21_Resupplier.vehicle.roundsCarried,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        }   
+                    },
+                    fSupportUnit3:{
+                        uType:4,
+                        uCata:4,
+                        y:42.644,
+                        x:41.564,
+                        locString:"unknown",
+                        skill:"excellent",
+                        status:2,
+                        type:2,
+                        AoD:1,
+                        hasArtillerySupport:2,
+                        hoursSinceLastMove:0,
+                        isInHomeTerritory:1,
+                        locationType:7,
+                        name:"25th Point Defense Battery",
+                        HQ:{ 
+                            squad1:{
+                                name:"Battery Headquarters",
+                                members:DB.uComps.squads.SQ_C3_9S737.members,
+                                vehicle:DB.uComps.squads.SQ_C3_9S737.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_C3_9S737,
+                                vSupplies:DB.uComps.squads.SQ_C3_9S737.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_C3_9S737.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_C3_9S737.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_C3_9S737.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,DB.components.personnel.S_Staffer[3].supplies,0],
+                                    [DB.components.personnel.S_Officer[3].supplies,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            }                       
+                        },
+                        platoon1:{
+                            name:"fire group 1",
+                            squad1:{
+                                name:"1st Squad: TEL 1",
+                                members:DB.uComps.squads.SQ_TELAR_9K330.members,
+                                vehicle:DB.uComps.squads.SQ_TELAR_9K330.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_TELAR_9K330,
+                                vSupplies:DB.uComps.squads.SQ_TELAR_9K330.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_TELAR_9K330.vehicle.fuelcap,
+                                rounds:DB.uComps.squads.SQ_TELAR_9K330.vehicle.rounds,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_TELAR_9K330.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_TELAR_9K330.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad: TEL 2",
+                                members:DB.uComps.squads.SQ_TELAR_9K330.members,
+                                vehicle:DB.uComps.squads.SQ_TELAR_9K330.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_TELAR_9K330,
+                                vSupplies:DB.uComps.squads.SQ_TELAR_9K330.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_TELAR_9K330.vehicle.fuelcap,
+                                rounds:DB.uComps.squads.SQ_TELAR_9K330.vehicle.rounds,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_TELAR_9K330.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_TELAR_9K330.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Squad: Resupply",
+                                members:DB.uComps.squads.SQ_9T244_SA15_Resupplier.members,
+                                vehicle:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T244_SA15_Resupplier,
+                                vSupplies:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicle.fuelcap,
+                                rounds:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicle.roundsCarried,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T244_SA15_Resupplier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon2:{
+                            name:"fire group 2",
+                            squad1:{
+                                name:"1st Squad: TEL 1",
+                                members:DB.uComps.squads.SQ_TELAR_9K330.members,
+                                vehicle:DB.uComps.squads.SQ_TELAR_9K330.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_TELAR_9K330,
+                                rounds:DB.uComps.squads.SQ_TELAR_9K330.vehicle.rounds,
+                                vSupplies:DB.uComps.squads.SQ_TELAR_9K330.vehicle.vSupplies.concat,
+                                vehicleGas:DB.uComps.squads.SQ_TELAR_9K330.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_TELAR_9K330.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_TELAR_9K330.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad: TEL 2",
+                                members:DB.uComps.squads.SQ_TELAR_9K330.members,
+                                vehicle:DB.uComps.squads.SQ_TELAR_9K330.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_TELAR_9K330,
+                                rounds:DB.uComps.squads.SQ_TELAR_9K330.vehicle.rounds,
+                                vSupplies:DB.uComps.squads.SQ_TELAR_9K330.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_TELAR_9K330.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_TELAR_9K330.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_TELAR_9K330.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,DB.components.personnel.T_Crewman[3].supplies,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Squad: Resupply",
+                                members:DB.uComps.squads.SQ_9T244_SA15_Resupplier.members,
+                                vehicle:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T244_SA15_Resupplier,
+                                vSupplies:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicle.fuelcap,
+                                rounds:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicle.roundsCarried,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T244_SA15_Resupplier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T244_SA15_Resupplier.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        },
+                        platoon3:{
+                            name:"ammunition, maintenance and testing",
+                            squad1:{
+                                name:"1st Squad: Bulk round transporter",
+                                members:DB.uComps.squads.SQ_9T245_SA15_RoundCarrier.members,
+                                vehicle:DB.uComps.squads.SQ_9T245_SA15_RoundCarrier.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_9T245_SA15_RoundCarrier,
+                                vSupplies:DB.uComps.squads.SQ_9T245_SA15_RoundCarrier.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_9T245_SA15_RoundCarrier.vehicle.fuelcap,
+                                rounds:DB.uComps.squads.SQ_9T245_SA15_RoundCarrier.vehicle.roundsCarried,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_9T245_SA15_RoundCarrier.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_9T245_SA15_RoundCarrier.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad2:{
+                                name:"2nd Squad: Missile repair and testing",
+                                members:DB.uComps.squads.SQ_MAINT_9V887.members,
+                                vehicle:DB.uComps.squads.SQ_MAINT_9V887.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_MAINT_9V887,
+                                vSupplies:DB.uComps.squads.SQ_MAINT_9V887.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_MAINT_9V887.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_MAINT_9V887.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_MAINT_9V887.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad3:{
+                                name:"3rd Squad: Missile preperation and testing",
+                                members:DB.uComps.squads.SQ_MAINT_9F116.members,
+                                vehicle:DB.uComps.squads.SQ_MAINT_9F116.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_MAINT_9F116,
+                                vSupplies:DB.uComps.squads.SQ_MAINT_9F116.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_MAINT_9F116.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_MAINT_9F116.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_MAINT_9F116.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad4:{
+                                name:"4th Squad: TELAR Engineering and repair station",
+                                members:DB.uComps.squads.SQ_MAINT_AG3M1.members,
+                                vehicle:DB.uComps.squads.SQ_MAINT_AG3M1.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_MAINT_AG3M1,
+                                vSupplies:DB.uComps.squads.SQ_MAINT_AG3M1.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_MAINT_AG3M1,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_MAINT_AG3M1.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_MAINT_AG3M1.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                            squad5:{
+                                name:"5th Squad: TELAR repair and testing station",
+                                members:DB.uComps.squads.SQ_MAINT_9V887M2K.members,
+                                vehicle:DB.uComps.squads.SQ_MAINT_9V887M2K.vehicle,
+                                sTemplate:DB.uComps.squads.SQ_MAINT_9V887M2K,
+                                vSupplies:DB.uComps.squads.SQ_MAINT_9V887M2K.vehicle.vSupplies,
+                                vehicleGas:DB.uComps.squads.SQ_MAINT_9V887M2K.vehicle.fuelcap,
+                                vicTimeTillBack:0,
+                                hasVehicle:1,
+                                supplies:DB.uComps.squads.SQ_MAINT_9V887M2K.supplies,
+                                vehicleCarriedSupplies:DB.uComps.squads.SQ_MAINT_9V887M2K.vehicleCarriedSupplies,
+                                neededSupplies:[0,0,0,0,0,0,0],
+                                neededVSupplies:[0,0,0,0,0,0,0,0],
+                                morale:100,
+                                effectiveness:100,
+                                personnelProfiles:[
+                                    [DB.components.personnel.T_Crewman[1].supplies,DB.components.personnel.T_Crewman[1].supplies,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0],
+                                    [0,0,0,0]
+                                ],
+                                personnelSPHByIndex:[
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1, 
+                                    .1  
+                                ],
+                                personnelSPHTotal:[],
+                                chanceIorDbyPersonnel:[
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]],
+                                    [[0,0],[0,0],[0,0],[0,0]]                                
+                                ],
+                            },
+                        }
+                    },
                 },
             }
         }

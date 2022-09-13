@@ -284,16 +284,13 @@ function t_BaseAllSuppliesSquad(fVehicle,fSquad,fSquadVehicleType){
 };
 
 // VALUE CALCULATIONS //
-/*
+/* old 
 function vc_opticBuff(mag,sightPic,weight,terrain){
     return (((mag+(sightPic*.1))-weight)*terrain);
 }
 */
-
-function vc_rifle(person,terrain,giveReport){
-    /*
-        attempts to quantify the offensive value of a standard firearm, based on it's weight, length, effective range, attachments, ammunition availability , environment of use, time of use and weather of use. 
-    */
+/*   old vc_rifle (now considered outdated due to changes to the database profile structure for infantry)
+function vc_rifle(person,weapon,terrain,giveReport){
     let priValue=0;
     let priRange=0;
     let priWeight=0;
@@ -323,87 +320,87 @@ function vc_rifle(person,terrain,giveReport){
     let bD2GW=0;
     let AntiVehiclePoints=0;
     if(person!=0){
-        if(person.pri!=0){
-            if((person.pri.caliber=="5.45x39mm")||(person.pri.caliber == "5.56x45mm")||(person.pri.caliber=="7.62x39mm")||(person.pri.caliber=="9x19mm")||(person.pri.caliber==".45")||(person.pri.caliber=="9mm")){
-                if(person.supplies[0]>30){
-                    if(person.pri.caliber=="5.45x39mm"){
+        if(weapon.name!=0){
+            if((weapon.name.caliber=="5.45x39mm")||(weapon.name.caliber == "5.56x45mm")||(weapon.name.caliber=="7.62x39mm")||(weapon.name.caliber=="9x19mm")||(weapon.name.caliber==".45")||(weapon.name.caliber=="9mm")){
+                if(person.status.supplies[0]>30){
+                    if(weapon.name.caliber=="5.45x39mm"){
                         AntiVehiclePoints=(cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_545x39*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);
-                    }else if(person.pri.caliber=="5.56x45mm"){
+                    }else if(weapon.name.caliber=="5.56x45mm"){
                         AntiVehiclePoints=(cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_556x45*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);
-                    }else if(person.pri.caliber=="7.62x39mm"){
+                    }else if(weapon.name.caliber=="7.62x39mm"){
                         AntiVehiclePoints=(cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x39*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);
                     }else{
                         AntiVehiclePoints=0;
                     }
-                    priRange=person.pri.eRange;
-                    priWeight=person.pri.weight;
-                    priLength=person.pri.length;     
-                    priShotLoudness=person.pri.report; 
-                    priName=("a "+person.pri.name);
-                    if(person.suppressor!=0){//suppressors
-                    bD2SW=person.suppressor.weight;
+                    priRange=weapon.name.eRange;
+                    priWeight=weapon.name.weight;
+                    priLength=weapon.name.length;     
+                    priShotLoudness=weapon.name.report; 
+                    priName=("a "+weapon.name.name);
+                    if(weapon.suppressor!=0){//suppressors
+                    bD2SW=weapon.suppressor.weight;
                     priWeight+=bD2SW;
-                    bD2SDBR=person.suppressor.reportReduction;
+                    bD2SDBR=weapon.suppressor.reportReduction;
                     priShotLoudness-=bD2SDBR;
-                    bD2SL=person.suppressor.length;
+                    bD2SL=weapon.suppressor.length;
                     priLength+=bD2SL
-                    suppressorName=(" with a "+person.suppressor.name+" suppressor");
+                    suppressorName=(" with a "+weapon.suppressor.name+" suppressor");
                     };
-                    if(person.uBGL!=0){//underbarrel grenade launchers
-                        bD2UBGW=person.uBGL.weight;
+                    if(weapon.uBGL!=0){//underbarrel grenade launchers
+                        bD2UBGW=weapon.uBGL.weight;
                         priWeight+=bD2UBGW;
-                        uBGLName=(", a "+person.uBGL.name+" underbarrel grenade launcher");
-                        if(person.supplies[4]>0){
-                            bD2UBGL=(person.uBGL.eRange*cfg.multipliers.personnel.weapons.guns.gRangeBByUBGLYardage);
+                        uBGLName=(", a "+weapon.uBGL.name+" underbarrel grenade launcher");
+                        if(person.status.supplies[4]>0){
+                            bD2UBGL=(weapon.uBGL.eRange*cfg.multipliers.personnel.weapons.guns.gRangeBByUBGLYardage);
                             priRange+=bD2UBGL;
                         }
                     };
-                    if(person.railAccessory!=0){//rail mounted lights, lasers, both IR and visual
-                    railMountName=(", a "+person.railAccessory.name+" rail mounted accessory");
-                    if(person.railAccessory.features[0]!=0){
+                    if(weapon.railAccessory!=0){//rail mounted lights, lasers, both IR and visual
+                    railMountName=(", a "+weapon.railAccessory.name+" rail mounted accessory");
+                    if(weapon.railAccessory.features[0]!=0){
                         bD2RMWL=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;
                         priValue+=bD2RMWL;
                     };
-                    if(person.railAccessory.features[1]!=0){
+                    if(weapon.railAccessory.features[1]!=0){
                         bD2RMCL=cfg.multipliers.personnel.weapons.guns.gVBBLaser;
                         priValue+=bD2RMCL;
                     };
-                    if(person.railAccessory.features[2]!=0){
+                    if(weapon.railAccessory.features[2]!=0){
                         bD2RMIRF=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;
                         priValue+=bD2RMIRF;
                     }
-                    if(person.railAccessory.features[3]!=0){
+                    if(weapon.railAccessory.features[3]!=0){
                         bD2RMIRL=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;
                         priValue+=bD2RMIRL;     
                     }
-                    bD2RMAW=person.railAccessory.weight;
+                    bD2RMAW=weapon.railAccessory.weight;
                     priWeight+=bD2RMAW;
                     };
-                    if(person.gripMod!=0){//grips, bipods
-                        gripModName=(", a "+person.gripMod.name+" ");
-                        bD2GM=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.gripMod.type];
+                    if(weapon.gripMod!=0){//grips, bipods
+                        gripModName=(", a "+weapon.gripMod.name+" ");
+                        bD2GM=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[weapon.gripMod.type];
                         priRange+=bD2GM;
-                        bD2GW=person.gripMod.weight;
+                        bD2GW=weapon.gripMod.weight;
                         priWeight+=bD2GW;
                     }
-                    if(person.priOptic!=0){//optics
-                        if(person.priOptic.mag>1){
-                            bD2OM=((person.priOptic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);//buff Due 2 Optic Magnification
+                    if(weapon.optic!=0){//optics
+                        if(weapon.priOptic.mag>1){
+                            bD2OM=((weapon.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);//buff Due 2 Optic Magnification
                             priRange+=bD2OM;                    
                         };
                         if(runtimeVariables.time.time<runtimeVariables.date.sunRise||runtimeVariables.time.time>runtimeVariables.date.sunSet){//is it night time?
                             let RifleOpticNods = 0;//comparing the rifle sights and any helmet mounted optics (including binocs) to see which one has the best night vision capability.
                             let HelmetOpticNods = 0;
-                            if(person.priOptic!=0){
-                                if(person.priOptic.NVG==0){
+                            if(weapon.optic!=0){
+                                if(weapon.optic.NVG==0){
                                     RifleOpticNods=60
-                                }else if(person.priOptic.NVG>0&&person.priOptic.NVG<4){
-                                    RifleOpticNods=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.priOptic.NVG]*cfg.multipliers.personnel.weapons.guns.sightVsHelmetNods);
-                                }else if(Person.priOptic.NVG==5){
+                                }else if(weapon.optic.NVG>0&&weapon.optic.NVG<4){
+                                    RifleOpticNods=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[weapon.optic.NVG]*cfg.multipliers.personnel.weapons.guns.sightVsHelmetNods);
+                                }else if(weapon.optic.NVG==5){
                                     RifleOpticNods=priRange*(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.sightVsHelmetNods);
                                 };                            
                             };
-                            if(person.nods!=0){
+                            if(personnods!=0){
                                 if(person.nods.type==0){
                                     HelmetOpticNods=70;
                                 }else if(person.nods.type>0){
@@ -436,15 +433,15 @@ function vc_rifle(person,terrain,giveReport){
                 };                
             }else{
                 if(person.supplies[1]>20){
-                    if(person.pri.caliber=="7.62x51mm"){
+                    if(weapon.name.caliber=="7.62x51mm"){
                         AntiVehiclePoints=(cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x51*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);
-                    }else if(person.pri.caliber=="7.62x54mmr"){
+                    }else if(weapon.name.caliber=="7.62x54mmr"){
                         AntiVehiclePoints=(cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x54*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);
-                    }else if(person.pri.caliber=="12.7mm"){
+                    }else if(weapon.name.caliber=="12.7mm"){
                         AntiVehiclePoints=(cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_12_7*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);
-                    }else if(person.pri.caliber==".300"){
+                    }else if(weapon.name.caliber==".300"){
                         AntiVehiclePoints=(cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_300WM*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);
-                    }else if(person.pri.caliber==".338"){
+                    }else if(weapon.name.caliber==".338"){
                         AntiVehiclePoints=(cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_338*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);
                     }else{
                         AntiVehiclePoints=0;
@@ -572,18 +569,18 @@ function vc_rifle(person,terrain,giveReport){
         return [priValue,priWeight,priLowLightCapabilities,AntiVehiclePoints];
     };
 };
-
+*/
 function vc_rocketLauncher(){
 
 };
 
-function vc_individual(individual){
-    effectiveness=1;
-    if(individual.hCExperience>0){
-        effectiveness+=(individual.hCExperience*cfg.multipliers.personnel.experience.buffPerHourCombatExperience);        
-    }
-    effectiveness+=(individual.hRIL48*cfg.multipliers.personnel.health.hoursSleepInPast48Buff);
-    
+function vc_individual(company,individual){
+    let heffectiveness=0
+    let hleadershipSkill=0;
+    let hhmorale=0;
+    let hhunger=0;
+    let hthirst=0;
+    let energy=0
 }
 function vc_tank(company,squad){//WIP, before continuing I should really quantify the value of an individual soldier.
     /*  returns a quantitative value of a tank's current offensive and defensive capabilities, accurate to present time. 

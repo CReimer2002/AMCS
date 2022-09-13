@@ -231,7 +231,95 @@ const testItems={
         },
         weapons:{
 
-        }
+        },
+        personnel:{
+            T_Rifleman:{
+                AGF_Base_Fresh_Rifleman_Green:{//Frontline, basic but equipped and trained Abkhaz army infantryman
+                    refreshNo:0,
+                    name:0,
+                    primary:{
+                        name:tComponents.weapons.rifle.W_AK74M,
+                        optic:tComponents.optics.o_1P78,
+                        suppressor:0,
+                        uBGL:0,
+                        railAccessory:0,
+                        gripMod:0,
+                        weight:0,
+                    },
+                    secondary:{
+                        name:tComponents.weapons.rifle.W_AK74M,
+                        optic:tComponents.optics.o_1P78,
+                        suppressor:0,
+                        uBGL:0,
+                        railAccessory:0,
+                        gripMod:0,
+                        weight:0,
+                    },
+                    kit:{
+                        bArmor:tComponents.vests.v_6B45M,
+                        nods:0,
+                        earPro:tComponents.headSets.hs_GSSH01,
+                        comms:tComponents.pRadios.pr_R187P1E, 
+                        uniform:tComponents.uniforms.u_ratnik,
+                        IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                        canteen:0,                        
+                    },
+                    buffs:{
+                        lDrinkBuff:1,
+                        lMealBuff:1,
+                        lHotMealBuff:1,
+                        lLaundryBuff:1,
+                        lHotShowerBuff:1,
+                        lReserveBuff:1,
+                        tSinceReserve:0,
+                    },
+                    status:{
+                        effectivness:1,
+                        morale:1,
+                        confidenceInLeadership:1,
+                        confidenceInCause:1,
+                        resolve:1,
+                        exhaustion:0,
+                        hoursCombatExperience:0,
+                        hoursJobExperience:0,
+                        lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                        cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                        specialty:"11B",
+                        supplies:[210,0,0,3,10,1,.5],
+                        tSupplies:[210,0,0,3,10,1,.5],
+                        sPH:[0,0,0,0,0,0,0], 
+                    },
+                },
+            },
+            T_SR_Rifleman:{
+            },
+            T_Asst_Grenadier:{
+            },
+            T_Grenadier:{
+
+            },
+            T_MG:{
+        
+            },
+            T_SL:{
+                
+            },
+            T_Crewman:{
+
+            },
+            T_MANPADS:{
+
+            },
+            T_SVD:{
+
+            },
+            S_Staffer:{
+
+            },
+            S_Officer:{
+
+            }
+        },
     },
 
 
@@ -363,6 +451,189 @@ const vComponents={
 
 };
 const tComponents={//30 round 7.62 mag weighs 1.99 lbs
+    names:{
+        firstNames:{
+            abkhazia:{
+                male:[
+                "Giorgi",
+                "Giorgi",
+                "Giorgi",
+                "Davit",
+                "Davit",
+                "Irakli",
+                "Irakli",
+                "Zurab",
+                "Levan",
+                "Aleqsandre",/*
+
+
+                */
+                "Merab",
+                "Tamaz",
+                "Temur",
+                "Tengiz",
+                "Vakhtang",
+                "Lasa",
+                "Mamuka",
+                "Gotsag",
+                "Avtandil",
+                "Givi",/*
+
+
+                */
+               "Guram",
+               "Nugzar",
+               "Shota",
+               "Luka",
+               "Nikoloz",
+               "Vladimer",
+               "Nodar",
+               "Zaza",
+               "Mikheil",
+               "Revaz",/*
+
+               */
+              "Gela",
+              "Badri",
+              "Malkha",
+              "Nika",
+              "Otar",
+              "Teimuraz",
+              "Gia",
+              "Roman",
+              "Amiran",
+              "Besik",
+
+
+              "Koba",
+              "Koba",
+              "Salva",
+              "Akaki",
+              "Vaja",
+              "Veliri",
+              "Omar",
+              "Sergo",
+              "Luri",
+              "Boris"
+
+
+
+                ],
+                female:[
+                    "Nino",
+                    "Nana",
+                    "Tamar",
+                    "Marina",
+                    "Manana",
+                    "Maia",
+                    "Natela",
+                    "Ana",
+                    "Liana",
+                    "Lali"
+                ]
+            },
+            russia:{
+                male:[
+                    "Sergey",
+                    "Sergey",
+                    "Sergey",
+                    "Sergey",
+                    "Aleksandr",
+
+                    "Aleksandr",
+                    "Aleksandr",
+                    "Andrey",
+                    "Andrey",
+                    "Dmitry",
+
+
+
+                    "Dmitry",
+                    "Vladimir",
+                    "Vladimir",
+                    "Aleksey",
+                    "Aleksey",
+
+                    "Maksim",
+                    "Ivan",
+                    "Evgeniy",
+                    "Alexander",
+                    "Nikolay",
+
+
+
+
+                    "Mikhail",
+                    "Denis",
+                    "Roman",
+                    "Pavel",
+                    "Igor",
+
+                    "Anton",
+                    "Nikita",
+                    "Oleg",
+                    "Ilya",
+                    "Viktor",
+
+
+
+                    "Alexey",
+                    "Konstantin",
+                    "Artyom",
+                    "Kirill",
+                    "Yuriy",
+
+                    "Dimitry",
+                    "Ruslan",
+                    "Vadim",
+                    "Vitaliy",
+                    "Artem",
+
+
+
+                    "Evgeny",
+                    "Danila",
+                    "Danila",
+                    "Danila",
+                    "Stanislov",
+
+                    "Egor",
+                    "Vasily",
+                    "Vladislav",
+                    "Maxim",
+                    "Artur"
+
+
+                ],
+                female:[
+                    "Elena",
+                    "Tatyana",
+                    "Olga",
+                    "Natalya",
+                    "Ekaterina",
+                    "Irina",
+                    "Svetlana",
+                    "Anastasiya",
+                    "Anna",
+                    "Elizaveta"
+                ]
+            },
+            USA:{
+                male:[
+                    "John",
+                    "John",
+                    "Michael",
+                    "Michael",
+                    "Robert",
+
+                    "Robert",
+                    "David",
+                    "David",
+                ]
+            }
+        }
+
+    },
     weapons:{
         rifle:{
             //assault rifles
@@ -3582,7 +3853,7 @@ V : Vehicle driver
                 iRBuff:1,//buff received for having spent time in reserve recently.
 
             },
-            AA_Tank_Cmdr_Trained_Green:{
+            AGF_Tank_Cmdr_Green:{
                 value:0,//before this was an arbitrary value that was probably going to stay constant through runtime. Now it will be calculated every time the sim refreshes. 
                 lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
                 cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
@@ -3609,9 +3880,11 @@ V : Vehicle driver
                 IFAK:tComponents.iFAKs.iFAK_Generic_1,//new, affects all casualty rates to widely varying levels, along with a slight buff to morale. 
                 morale:1,//getting rid of morale cost as that will be calculated in runtime. With this as a stat it can be modified on an individual level and potentially impact casualty chances. 
                 specialty:"19Z",//MOS, yes I am using that and not AFSC. The USAF doesn't have tank crews. 
+                specialtyExperience:0,//for non-combat MOS
                 hCExperience:0,//adding this, with veterancy soldiers can become battlehardened and this will increase lethality while decreasing casualty rates. 
                 hSLMeal:0,//adding this, this can impact other things in the dataset. May only become a factor if the soldier has no food.
                 hSLDrink:0,//adding this for the same reason as above.
+                hSLR:0,//hours since last rest
                 hRIL48:18,//adding this for the same reason as above.
                 hMBuff:1,//this may not be used but if it is it will allow for the modeling of the positive impacts of a trip to the rear area mess to a soldier's morale. 1 indicates that their last meal was a hot one. It will decrease with time after
                 sBuff:1,//similar to the above, only it accounts for the recency of a hot shower. 
