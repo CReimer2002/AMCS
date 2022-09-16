@@ -1118,6 +1118,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 useCase:[1,0,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
                 aquisition:0,//naked eye, heat seeking, other
                 weight:7.9,//lbs
+                roundWeight:0,//0 because it's unreloadable and thus the weight of the whole system is used. 
                 warheadWeight:2,//lbs explosive (estimated for the LAW)
                 pen:150,//mm rha    
                 eRange:240//yards
@@ -1129,6 +1130,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
                 aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:0,
+                roundWeight:6.83,//stat taken from wiki, FFV441B HE round. 
                 weight:22,
                 warheadWeight:6.5,
                 pen:400,    
@@ -1138,10 +1140,11 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 name:"FGM-148 Javelin heavy antitank guided missile launcher",
                 disc:"reloadable top-attack advanced ATGML",
                 guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,1,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                useCase:[1,1,1,1,1,1,1,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
                 aquisition:2,//naked eye, heat seeking, other
+                roundWeight:35,
                 isSingleShot:0,
-                weight:14,
+                weight:0,
                 warheadWeight:35,
                 pen:760,    
                 eRange:4000//yards
@@ -1153,6 +1156,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
                 aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:1,
+                roundWeight:0,
                 weight:6.4,
                 warheadWeight:4,
                 pen:440,    
@@ -1166,6 +1170,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:0,
                 weight:15.4,
+                roundWeight:5.7,
                 warheadWeight:10,
                 pen:550,    
                 eRange:360//yards
@@ -1176,7 +1181,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
                 useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
                 aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:0,
+                isSingleShot:1,
+                roundWeight:0,
                 weight:4.172,
                 warheadWeight:2,
                 pen:400,    
@@ -1190,6 +1196,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:1,
                 weight:13,
+                roundWeight:0,
                 warheadWeight:.97,
                 pen:450,    
                 eRange:328//yards
@@ -1202,10 +1209,133 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:1,
                 weight:13.7,
+                roundWeight:0,
                 warheadWeight:2,
                 pen:500,    
                 eRange:1093//yards
             },
+            NLAW:{
+                name:"Saab Bofors Dynamics NLAW",
+                disc:"disposable, single-shot shoulder-fired PLOS anti-tank rocket",
+                guidance:1,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,0,0,1,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
+                isSingleShot:1,
+                weight:28,
+                roundWeight:0,
+                warheadWeight:4,
+                pen:500,    
+                eRange:850//yards
+            },
+
+
+
+            // MAN PORTABLE SURFACE TO AIR MISSILES
+            RL_FIM92E:{
+                name:"FIM-92E Stinger RMP Block I",
+                disc:"Standard US IR MANPAD with midlife upgrade",
+                isSingleShot:0,
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                weight:10,//lbs
+                warheadWeight:2.25,
+                roundWeight:24,
+                pen:150,//mm rha    
+                eRange:4000//yards
+            },
+            RL_FIM92J:{
+                name:"FIM-92J Stinger RMP Block I+",
+                disc:"Standard US IR MANPAD with EOL upgrade",
+                isSingleShot:0,
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                weight:10,//lbs
+                warheadWeight:2.25,
+                roundWeight:24,
+                pen:150,//mm rha    
+                eRange:4250//yards
+            },
+            RL_SA18:{
+                name:"SA-18 Igla",
+                disc:"1983 variant of the SA-16 Gimlet short range MANPAD",
+                isSingleShot:1,
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                weight:39.46,//lbs
+                warheadWeight:3.74,
+                roundWeight:0,
+                pen:150,//mm rha    
+                eRange:5650//yards
+            },
+            RL_SA24:{
+                name:"SA-24 Grinch",
+                disc:"2004 variant of the SA-16 Gimlet short range MANPAD",
+                isSingleShot:1,
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                weight:39.46,//lbs
+                warheadWeight:3.74,
+                roundWeight:0,
+                pen:150,//mm rha    
+                eRange:6560//yards
+            },
+            RL_SA25:{
+                name:"SA-25 Verba",
+                disc:"2004 variant of the SA-16 Gimlet short range MANPAD",
+                isSingleShot:0,
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                weight:8,//lbs
+                warheadWeight:3.3,
+                roundWeight:30,
+                pen:150,//mm rha    
+                eRange:6560//yards
+            },
+            RL_Grom:{
+                name:"Grom",
+                disc:"1995 Polish modernization of the SA-18 Igla",
+                isSingleShot:0,
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:1,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                weight:13,//lbs
+                warheadWeight:2.8,
+                roundWeight:23,
+                pen:150,//mm rha    
+                eRange:6000//yards
+            },
+            RL_SHVM:{
+                name:"Starstreak High Velocity Missile",
+                disc:"ultra fast, uniquely designed self guiding laser MANPAD",
+                isSingleShot:0,
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[0,0,1,1,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                weight:10,//lbs
+                warheadWeight:3,
+                roundWeight:20.86,
+                pen:150,//mm rha    
+                eRange:7650//yards
+            },
+            RL_SHVMII:{
+                name:"Starstreak II High Velocity Missile",
+                disc:"ultra fast, uniquely designed self guiding laser MANPAD",
+                isSingleShot:0,
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[0,0,1,1,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                weight:10,//lbs
+                warheadWeight:3,
+                roundWeight:20.86,
+                pen:150,//mm rha    
+                eRange:7800//yards
+            },
+
 
         },
         fGren:{
@@ -1219,12 +1349,6 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
         sGren:{
 
         },
-
-        MANPAD:{
-            W_SA18:{
-
-            },            
-        }
     },
     optics:{
         //magnifiying scopes
@@ -1315,6 +1439,30 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             obj:27,//this is a guess
             weight:1.36,//weight, pounds.
             NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_RIM93RMP:{
+            name:"RIM-93 RMP",//the text name of the scope
+            disc:"RMP block optic for the RIM-93 Stinger C+ variants",
+            mag:4,//magnification x
+            obj:30,//this is a guess
+            weight:0,//integrated with the rest of the system (excluding the launcher) so this is zero
+            NVG:4,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_RIM93RMP:{
+            name:"RIM-93 RMP",//the text name of the scope
+            disc:"RMP block optic for the RIM-93 Stinger C+ variants",
+            mag:4.5,//magnification x
+            obj:30,//this is a guess
+            weight:0,//integrated with the rest of the system (excluding the launcher) so this is zero
+            NVG:4,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_NLAW:{
+            name:"",//the text name of the scope
+            disc:"Integrated optic for the NLAW rocket launcher",
+            mag:2.5,//magnification x
+            obj:30,//this is a guess
+            weight:0,//integrated with the rest of the system (excluding the launcher) so this is zero
+            NVG:2,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
         },
         
 
