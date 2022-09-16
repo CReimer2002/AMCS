@@ -1627,13 +1627,69 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"III",
             mass:26.45,
         },
+        v_MTV_MK1_NoPlates:{
+            name:"Modular Tactical Vest MK-I", 
+            disc:"Georgian standard issue modular tactical vest",
+            NIJ:"IIIA",
+            mass:7.71,
+        },
+        v_MTV_MK1_WPlates:{
+            name:"Modular Tactical Vest MK-I with added plates", 
+            disc:"Georgian standard issue modular tactical vest with added plates",
+            NIJ:"IV",
+            mass:18.73,
+        },
+        v_MTV_MK2_WPlates:{
+            name:"Modular Tactical Vest MK-II with added plates", 
+            disc:"Georgian standard issue modular tactical vest with added plates",
+            NIJ:"IV",
+            mass:18.51,
+        },
+        v_MTV_MK2_NoPlates:{
+            name:"Modular Tactical Vest MK-II ", 
+            disc:"Georgian standard issue modular tactical vest",
+            NIJ:"IIIA",
+            mass:8.81,
+        },
+
 
     },
     helmets:{
         h_6B47:{
-            name:"6B47 combat helmet, standard helmet for the RGF and AGF",
+            name:"6B47 combat helmet",
+            disc:"standard ballistic helmet of the RGF and AGF",
+            opticMount:1,
+            canMount:1,
             NIJ:"IIA",
             mass:2.64,
+            cut:0,//full helmet, high cut, 
+        },
+        h_DHMKI:{
+            name:"DH MK-I combat helmet",
+            disc:"Georgian standard issue ballistic helmet of the Georgian Defense Forces, early variant with no nod or can mounts",
+            opticMount:0,
+            canMount:0,
+            NIJ:"IIIA",
+            mass:2.75,
+            cut:0,
+        },
+        h_DHMKII:{
+            name:"DH MK-II combat helmet",
+            disc:"Georgian produced standard issue ballistic helmet of the Georgian Defense Forces, modern variant with NOD and Can mounts",
+            opticMount:1,
+            canMount:1,
+            NIJ:"IIIA",
+            mass:2.8,
+            cut:0,
+        },
+        h_DHMKIII:{
+            name:"DH MK-III combat helmet",
+            disc:"Georgian produced Special Forces helmet of the Georgian Defense Forces, modern variant with NOD and Can mounts",
+            opticMount:1,
+            canMount:1,
+            NIJ:"IIIA",
+            mass:2.85,
+            cut:1,
         }
     },
     helmetOptics:{
@@ -1720,26 +1776,91 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
     },
     headSets:{
         hs_GSSH01:{
-            name:"GSSH-01-01 6M2-1 active earpro cans w/headset, part of the ratnik kit",
+            name:"GSSH-01-01 6M2-1 active earpro cans w/headset",
+            disc:"part of the ratnik kit",
             earProType:5,//1 is basic earplugs, 2 is cans with passive protection, 3 is passive cans with comms link, 4 is active cans, 5 is active cans with comm link
             weight:.66
+        },
+        hs_ComTacIII:{
+            name:"Peltor ComTac III Active Earpro headset w/ mic and enhanced hearing",
+            disc:"long time standard issue headset for US forces",
+            earProType:5,//1 is basic earplugs, 2 is cans with passive protection, 3 is passive cans with comms link, 4 is active cans, 5 is active cans with comm link
+            weight:1.1
+        },
+        hs_ComTacVI:{
+            name:"Peltor Comtac VI Active Earpro headset w/ mic and enhanced hearing",
+            disc:"gucci headset, similar to the Comtac III but lighter, top of the line and in use with well paid western personnel and special forces",
+            earProType:5,//1 is basic earplugs, 2 is cans with passive protection, 3 is passive cans with comms link, 4 is active cans, 5 is active cans with comm link
+            weight:.86
+        },
+        hs_earplugs:{
+            name:"basic earplugs",
+            disc:"for infantry everywhere who want to save their hearing",
+            earProType:1,//1 is basic earplugs, 2 is cans with passive protection, 3 is passive cans with comms link, 4 is active cans, 5 is active cans with comm link
+            weight:.1
         }
     },
     pRadios:{
         pr_R16801UME:{
-            name:"R-168-0.1U(M)E VHF handheld radio set for platoon, squad and individual level comms. VHF and non-digital",
+            name:"R-168-0.1U(M)E VHF handheld radio set",
+            disc:"VHF handheld radio set for platoon, squad and individual level comms. VHF and non-digital",
             range:.75,//miles, effective
             transTypes:[1,0,1,1,0,0,1],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
             minRange:45,//mhz
-            maxRange:56
+            encryption:0,//0 none, 1 basic, 2 advanced (features like rapid frequency hopping)
+            maxRange:56,
+            weight:3
         },
         pr_R187P1E:{
-            name:"R-187-P1E AZART VHF and VHF digital, dual channel, frequency hopping, sattelite handheld radio set. Part of the Ratnik kit and a massive upgrade over the R-168",
+            name:"R-187-P1E AZART VHF and VHF digital, dual channel, frequency hopping, sattelite handheld radio set",
+            disc:"Part of the Ratnik kit and a massive upgrade over the R-168",
             range:12.42,//miles, effective
             transTypes:[1,1,1,1,1,1,1],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
             minRange:27,//mhz
-            maxRange:530
-        }
+            encryption:2,//0 none, 1 basic, 2 advanced
+            maxRange:530,
+            weight:1.1
+        },
+        pr_ANPRC113:{
+            name:"AN/PRC-113 manpack portable VHF/UHF frequency hopping encrypted radio",
+            disc:"Common western manpack radio, found in US, RAF, RAAF and Georgian use",
+            range:10,//miles, effective
+            transTypes:[1,1,1,0,0,0,1],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
+            encryption:2,
+            minRange:116,//mhz, for this radio it operates in 116-149.975 and 225 to 399.975.
+            maxRange:399,
+            weight:16.7
+        },
+        pr_ANPRC117G:{
+            name:"AN/PRC-117G manpack portable VHF/UHF frequency hopping encrypted radio",
+            disc:"Common western manpack radio, found in US, RAF, RAAF and Georgian use",
+            range:1000,//miles, effective
+            transTypes:[1,1,1,1,1,1,0],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
+            encryption:2,
+            minRange:30,//mhz
+            maxRange:2000,
+            weight:8.6
+        },
+        pr_ANPRC148:{
+            name:"AN/PRC-148 handheld portable AM/FM frequency hopping encrypted radio",
+            disc:"American advanced handheld multiband tactical radio",
+            range:20,//miles, effective
+            transTypes:[1,1,1,1,1,1,0],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
+            encryption:2,
+            minRange:30,//mhz
+            maxRange:512,
+            weight:1.91
+        },
+        pr_MR3000P:{
+            name:"MR3000P handheld portable AM/FM frequency hopping encrypted radio",
+            disc:"American advanced VHF tactical radio",
+            range:20,//miles, effective
+            transTypes:[1,0,0,1,0,0,0],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
+            encryption:1,
+            minRange:25,//mhz
+            maxRange:146,
+            weight:2
+        },
     },
     iFAKs:{
         iFAK_RU_1:{
