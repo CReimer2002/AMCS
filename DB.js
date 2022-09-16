@@ -246,8 +246,8 @@ const testItems={
                         weight:0,
                     },
                     secondary:{
-                        name:tComponents.weapons.rifle.W_AK74M,
-                        optic:tComponents.optics.o_1P78,
+                        name:0,
+                        optic:0,
                         suppressor:0,
                         uBGL:0,
                         railAccessory:0,
@@ -291,6 +291,7 @@ const testItems={
                         lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
                         cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
                         specialty:"11B",
+                        organization:"Abkhaz Ground Forces",
                         supplies:[210,0,0,3,10,1,.5],
                         tSupplies:[210,0,0,3,10,1,.5],
                         sPH:[0,0,0,0,0,0,0], 
@@ -1113,6 +1114,9 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 name:"M72A7 Light Antitank Weapon",
                 disc:"Light, general purpose single-shot rocket launcher for use against light vehicles and structures",
                 isSingleShot:1,
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,0,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
                 weight:7.9,//lbs
                 warheadWeight:2,//lbs explosive (estimated for the LAW)
                 pen:150,//mm rha    
@@ -1121,33 +1125,33 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             RL_M3MAAWS:{
                 name:"Carl Gustaf M3 recoilless rifle",
                 disc:"multipurpose reloadable recoilless rifle with a vast variety of available rounds",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:0,
                 weight:22,
                 warheadWeight:6.5,
-                pen:500,    
+                pen:400,    
                 eRange:546//yards
             },
             FGM148:{
                 name:"FGM-148 Javelin heavy antitank guided missile launcher",
                 disc:"reloadable top-attack advanced ATGML",
+                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,1,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:2,//naked eye, heat seeking, other
                 isSingleShot:0,
                 weight:14,
                 warheadWeight:35,
                 pen:760,    
-                eRange:4374//yards
+                eRange:4000//yards
             },
             RPG26:{
                 name:"RPG-26 Aglen",
                 disc:"light single shot anti-tank rocket launcher",
-                isSingleShot:1,
-                weight:6.4,
-                warheadWeight:4,
-                pen:440,    
-                eRange:273.4//yards
-            },
-            RPG26:{
-                name:"RPG-26 Aglen",
-                disc:"light single shot anti-tank rocket launcher",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:1,
                 weight:6.4,
                 warheadWeight:4,
@@ -1157,6 +1161,9 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             RPG7V2:{
                 name:"RPG-7V2 rocket launcher",
                 disc:"extremely common rocket launcher with a variety of warheads",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:0,
                 weight:15.4,
                 warheadWeight:10,
@@ -1166,6 +1173,9 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             RPG22:{
                 name:"RPG-22 Netto",
                 disc:"extremely common rocket launcher with a variety of warheads",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:0,
                 weight:4.172,
                 warheadWeight:2,
@@ -1173,8 +1183,11 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 eRange:218.72//yards
             },
             AT4HEAT:{
-                name:"AT4 HEAT single shot rocket launcher",
-                disc:"",
+                name:"M136 AT4 HEAT",
+                disc:"NATO single shot rocket launcher",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:1,
                 weight:13,
                 warheadWeight:.97,
@@ -1184,6 +1197,9 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             M141BDM:{
                 name:"M141 Bunker Defeat Munition",
                 disc:"disposable, single-shot shoulder-fired rocket launcher designed to defeat hardened structures",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
                 isSingleShot:1,
                 weight:13.7,
                 warheadWeight:2,
@@ -1275,6 +1291,30 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             obj:32,//this is a guess
             weight:.656,//weight, pounds.
             NVG:1,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_CLU_Standard:{
+            name:"FGM-148 Command Launch Unit",//the text name of the scope
+            disc:"targeting component for the FGM-148 Javelin",
+            mag:12,//magnification x
+            obj:40,//this is a guess
+            weight:14,//weight, pounds.
+            NVG:4,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_CLU_Improved:{
+            name:"FGM-148 Lightweight Command Launch Unit",//the text name of the scope
+            disc:"upgraded targeting component for the FGM-148 Javelin, also usable with the stinger for advanced effectiveness against drones",
+            mag:12,//magnification x
+            obj:40,//this is a guess
+            weight:8.4,//weight, pounds.
+            NVG:4,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_PGO7:{
+            name:"PGO-7",//the text name of the scope
+            disc:"Standard magnified optic for the RPG-7 series",
+            mag:2.7,//magnification x
+            obj:27,//this is a guess
+            weight:1.36,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
         },
         
 

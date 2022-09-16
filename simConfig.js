@@ -1,6 +1,7 @@
 import time from "./weather.js";
 let general={
     refreshRate:1,//how many times per hour the sim will create a complete dataset. 1 will mean the sim will refresh at an hourly rate. 2 will be every 30 minutes. 3 will be every 20. etc.
+    refreshNumber:0,//how many times the sim has refreshed. 
 };
 let unitPower = {
     riflePowerByTerrain:{//how much power each primary contributes to a soldier's capability in battle.
