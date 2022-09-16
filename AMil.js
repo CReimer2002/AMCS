@@ -45422,7 +45422,7 @@ let GroundForcesTestV2 = {
                             },
                         }   
                     },
-                    fSupportUnit3:{
+                    fSupportUnit3:{ 
                         uType:4,
                         uCata:4,
                         y:42.644,

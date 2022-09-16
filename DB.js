@@ -235,7 +235,6 @@ const testItems={
         personnel:{
             T_Rifleman:{
                 AGF_Base_Fresh_Rifleman_Green:{//Frontline, basic but equipped and trained Abkhaz army infantryman
-                    refreshNo:0,
                     name:0,
                     primary:{
                         name:tComponents.weapons.rifle.W_AK74M,
@@ -251,6 +250,13 @@ const testItems={
                         optic:tComponents.optics.o_1P78,
                         suppressor:0,
                         uBGL:0,
+                        railAccessory:0,
+                        gripMod:0,
+                        weight:0,
+                    },
+                    special:{
+                        name:0,
+                        optic:0,
                         railAccessory:0,
                         gripMod:0,
                         weight:0,
