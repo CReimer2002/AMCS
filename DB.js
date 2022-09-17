@@ -743,6 +743,51 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 eRange:437,//presuming no optic
                 report:160                
             },
+            W_M16A2:{
+                name:"M16A2 Rifle",
+                weight:8.81,
+                length:39.61,
+                bLength:20,
+                caliber:"5.56x45mm",
+                eRange:601,//presuming no optic
+                report:158                
+            },
+            W_M16A4:{
+                name:"M16A4 Rifle",
+                weight:8,
+                length:39.37,
+                bLength:20,
+                caliber:"5.56x45mm",
+                eRange:601,//presuming no optic
+                report:158                
+            },
+            W_SCAR_H:{
+                name:"FN MK 17 Mod 0 SCAR-H battle rifle",
+                weight:8.5,
+                length:28,
+                bLength:16,
+                caliber:"7.62x51mm",
+                eRange:660,//presuming no optic
+                report:165                
+            },
+            W_HK416A5:{
+                name:"Heckler & Koch HK416 assault rifle",
+                weight:8.25,
+                length:30,
+                bLength:16,
+                caliber:"5.56x45mm",
+                eRange:550,//presuming no optic
+                report:158                
+            },
+            W_M27:{
+                name:"M27 Infantry Automatic Rifle",
+                weight:9.8,
+                length:33,
+                bLength:16.5,
+                caliber:"5.56x45mm",
+                eRange:656,//presuming no optic
+                report:159.5                
+            },
             //carbines
             W_AK74SU:{
                 name:"AK-74SU",
@@ -1087,7 +1132,123 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
         },
         pistol:{
-
+            W_M9:{
+                name:"Beretta 92FS",
+                weight:2.55,
+                length:8.5,
+                bLength:4.9,
+                caliber:"9mm",
+                eRange:55,//presuming no optic
+                report:139                
+            },
+            W_M17:{
+                name:"Sig Sauer M17",
+                weight:1.92,
+                length:8,
+                bLength:4.7,
+                caliber:"9mm",
+                eRange:55,//presuming no optic
+                report:140                
+            },
+            W_M18:{
+                name:"Sig Sauer M18",
+                weight:2.41,
+                length:8.5,
+                bLength:3.9,
+                caliber:"9mm",
+                eRange:55,//presuming no optic
+                report:142               
+            },
+            W_P226:{
+                name:"Sig Sauer P226",
+                weight:2.41,
+                length:7.7,
+                bLength:4.4,
+                caliber:"9mm",
+                eRange:55,//presuming no optic
+                report:140               
+            },
+            W_G17:{
+                name:"Glock 17",
+                weight:2.01,
+                length:8.03,
+                bLength:4.49,
+                caliber:"9mm",
+                eRange:55,//presuming no optic
+                report:139               
+            },
+            W_USP:{
+                name:"Heckler & Koch USP",
+                weight:2,
+                length:7.6,
+                bLength:4.25,
+                caliber:"9mm",
+                eRange:55,//presuming no optic
+                report:140               
+            },
+            W_J941:{
+                name:"Jericho 941",
+                weight:2,//guess
+                length:8,
+                bLength:4.43,
+                caliber:"9mm",
+                eRange:55,//presuming no optic
+                report:140               
+            },
+            W_MP443:{
+                name:"MP-443 Grach",
+                weight:2,//guess
+                length:7.8,
+                bLength:4.4,
+                caliber:"9mm",
+                eRange:55,//presuming no optic
+                report:140               
+            },
+            W_SR1:{
+                name:"SR-1 Vektor",
+                weight:2.09,//guessing this is loaded
+                length:7.7,
+                bLength:4.4,
+                caliber:"9x21mm",
+                eRange:55,//presuming no optic
+                report:140               
+            },
+            W_APS:{
+                name:"Automatic Pistol Stechkin",
+                weight:2.69,//guessing this is loaded
+                length:8.86,
+                bLength:5.51,
+                caliber:"9x18mm",
+                eRange:55,//presuming no optic
+                report:135               
+            },
+            W_PM:{
+                name:"Pistol Makarov",
+                weight:1.5,//guessing this is loaded
+                length:6.36,
+                bLength:3.68,
+                caliber:"9x18mm",
+                eRange:40,//presuming no optic
+                report:135               
+            },
+            W_GSh18:{
+                name:"GSh-18",
+                weight:2,//guessing this is loaded
+                length:7.2,
+                bLength:4.1,
+                caliber:"9mm",
+                eRange:50,//presuming no optic
+                report:140               
+            },
+            W_TT33:{
+                name:"TT-33",
+                weight:2,//guessing this is loaded
+                length:7.6,
+                bLength:4.6,
+                caliber:"7.62x25mm",
+                eRange:50,//presuming no optic
+                report:138               
+            },
         },
         uBGL:{
             W_GP25:{
@@ -1645,11 +1806,17 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IV",
             mass:18.51,
         },
-        v_MTV_MK2_NoPlates:{
-            name:"Modular Tactical Vest MK-II ", 
-            disc:"Georgian standard issue modular tactical vest",
-            NIJ:"IIIA",
-            mass:8.81,
+        v_SPCS:{
+            name:"Soldier Plate Carrier System", 
+            disc:"basic vest in use with the US Army",
+            NIJ:"IIIA",//guess
+            mass:22,
+        },
+        v_MSV:{
+            name:"Soldier Plate Carrier System", 
+            disc:"most advanced body armor available to the US army",
+            NIJ:"IV",//guess
+            mass:25,
         },
 
 
@@ -1662,6 +1829,15 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             canMount:1,
             NIJ:"IIA",
             mass:2.64,
+            cut:0,//full helmet, high cut, 
+        },
+        h_SSh68:{
+            name:"SSh-68 steel helmet",
+            disc:"combloc steel combat helmet",
+            opticMount:0,
+            canMount:0,
+            NIJ:"IIA",
+            mass:3.3,
             cut:0,//full helmet, high cut, 
         },
         h_DHMKI:{
@@ -1690,7 +1866,70 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",
             mass:2.85,
             cut:1,
-        }
+        },
+        h_IHPS:{
+            name:"Integrated Head Protection System",
+            disc:"newest available combat helmet for US personnel",
+            opticMount:1,
+            canMount:1,
+            NIJ:"IIIA",
+            mass:3,
+            cut:1,
+        },
+        h_FASTRF1:{
+            name:"Ops-Core Future Assault Shell Technology Helmet RF1",
+            disc:"advanced high cut combat helmet used by US special forces, heavy variant",
+            opticMount:1,
+            canMount:1,
+            NIJ:"III",
+            mass:3.5,
+            cut:1,
+        },
+        h_FASTRXR:{
+            name:"Ops-Core Future Assault Shell Technology Helmet XR",
+            disc:"advanced high cut combat helmet used by US special forces, heavy variant",
+            opticMount:1,
+            canMount:1,
+            NIJ:"IIIA",
+            mass:3,
+            cut:1,
+        },
+        h_ACH:{
+            name:"Advanced Combat Helmet",
+            disc:"standard issue combat helmet of the US Army, to be replaced by the IHPS",
+            opticMount:1,
+            canMount:1,
+            NIJ:"IIIA",//guess
+            mass:3.5,//guess
+            cut:0,
+        },
+        h_LWH:{
+            name:"Lightweight Helmet",
+            disc:"standard issue low-risk combat helmet of the USMC and USN, front line units may have access to the ECH",
+            opticMount:0,
+            canMount:0,
+            NIJ:"IIIA",//guess
+            mass:3.2,
+            cut:0,
+        },
+        h_ECH:{
+            name:"Enhanced Combat Helmet",
+            disc:"issued to front line USMC personnel, this is a late variant with high cut and mounts",
+            opticMount:1,
+            canMount:1,
+            NIJ:"III",//guess
+            mass:3.3,
+            cut:1,
+        },
+        h_PASGT:{
+            name:"PASGT helmet",
+            disc:"legacy combat helmet formerly used by the US military as well as georgia",
+            opticMount:0,
+            canMount:0,
+            NIJ:"IIIA",
+            mass:3.4,
+            cut:0,
+        },
     },
     helmetOptics:{
         o_1PN138:{
@@ -1769,9 +2008,39 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
     },
     uniforms:{
         u_ratnik:{
-            name:"Ratnik uniform, one of the most modern uniforms in existence, offering both protection and camo",
+            name:"Ratnik",
+            disc:"one of the most modern uniforms in existence, offering both protection and camo",
             camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
             quality:5,//the quality of the gear. Older gear will be worse typically. 
+            flameResist:0
+        },
+        u_barmitsa:{
+            name:"Barmitsa",
+            disc:"broadly fielded russian uniform, likely replaced by Ratnik",
+            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
+            quality:4.5,//the quality of the gear. Older gear will be worse typically. 
+            flameResist:0,
+        },
+        u_cowboy:{
+            name:"6B15 Cowboy",
+            disc:"standard armor for russian and Abkhaz regular tankers, issue began in 2003",
+            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
+            quality:4.75,//the quality of the gear. Older gear will be worse typically. 
+            flameResist:1,
+        },
+        u_cowboy:{
+            name:"6B15 Cowboy",
+            disc:"standard armor for russian and Abkhaz regular tankers, issue began in 2003",
+            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
+            quality:4.75,//the quality of the gear. Older gear will be worse typically. 
+            flameResist:1,
+        },
+        u_ACM:{
+            name:"Army Combat Uniform",
+            disc:"Standard combat uniform in OCP, used by the US Military",
+            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
+            quality:4.75,//the quality of the gear. Older gear will be worse typically. 
+            flameResist:0,
         },
     },
     headSets:{
