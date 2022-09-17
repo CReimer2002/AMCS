@@ -292,6 +292,7 @@ const testItems={
                         cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
                         specialty:"11B",
                         organization:"Abkhaz Ground Forces",
+                        ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things. 
                         supplies:[210,0,0,3,10,1,.5],
                         tSupplies:[210,0,0,3,10,1,.5],
                         sPH:[0,0,0,0,0,0,0], 
@@ -459,88 +460,92 @@ const vComponents={
 };
 const tComponents={//30 round 7.62 mag weighs 1.99 lbs
     names:{
-        firstNames:{
-            abkhazia:{
-                male:[
-                "Giorgi",
-                "Giorgi",
-                "Giorgi",
-                "Davit",
-                "Davit",
-                "Irakli",
-                "Irakli",
-                "Zurab",
-                "Levan",
-                "Aleqsandre",/*
+        firstNames:[
+            [//USA
+                [//male
+                    "John",
+                    "John",
+                    "Michael",
+                    "Michael",
+                    "Robert",
+
+                    "Robert",
+                    "David",
+                    "David",
+                    "David",
+                    "James",
 
 
-                */
-                "Merab",
-                "Tamaz",
-                "Temur",
-                "Tengiz",
-                "Vakhtang",
-                "Lasa",
-                "Mamuka",
-                "Gotsag",
-                "Avtandil",
-                "Givi",/*
+
+                    "James",
+                    "James",
+                    "William",
+                    "William",
+                    "Richard",
+
+                    "Thomas",
+                    "Thomas",
+                    "Mark",
+                    "Charles",
+                    "Joseph",
 
 
-                */
-               "Guram",
-               "Nugzar",
-               "Shota",
-               "Luka",
-               "Nikoloz",
-               "Vladimer",
-               "Nodar",
-               "Zaza",
-               "Mikheil",
-               "Revaz",/*
+                    "Paul",
+                    "Daniel",
+                    "Steven",
+                    "Brian",
+                    "Donald",
 
-               */
-              "Gela",
-              "Badri",
-              "Malkha",
-              "Nika",
-              "Otar",
-              "Teimuraz",
-              "Gia",
-              "Roman",
-              "Amiran",
-              "Besik",
+                    "Kevin",
+                    "Gary",
+                    "Scott",
+                    "George",
+                    "Edward",
 
 
-              "Koba",
-              "Koba",
-              "Salva",
-              "Akaki",
-              "Vaja",
-              "Veliri",
-              "Omar",
-              "Sergo",
-              "Luri",
-              "Boris"
+
+                    "Kenneth",
+                    "Jason",
+                    "Ronald",
+                    "Larry",
+                    "Christopher",
+
+                    "Jose",
+                    "Anthony",
+                    "Eric",
+                    "Matthew",
+                    "Stephen",
 
 
+
+                    "Frank",
+                    "Andrew",
+                    "Timothy",
+                    "Joe",
+                    "Jerry",
+
+                    "Peter",
+                    "Jim",
+                    "Patrick",
+                    "Dennis",
+                    "Jeff"
 
                 ],
-                female:[
-                    "Nino",
-                    "Nana",
-                    "Tamar",
-                    "Marina",
-                    "Manana",
-                    "Maia",
-                    "Natela",
-                    "Ana",
-                    "Liana",
-                    "Lali"
+                [//female
+                    "Mary",
+                    "Payton",
+                    "Barbara",
+                    "Grace",
+                    "Annabelle",
+                    "Sarah",
+                    "Eliana",
+                    "Lauren",
+                    "Kelly",
+                    "Emily"
                 ]
-            },
-            russia:{
-                male:[
+            ],
+            [//Russia
+                [//male
                     "Sergey",
                     "Sergey",
                     "Sergey",
@@ -612,7 +617,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
 
 
                 ],
-                female:[
+                [//female
                     "Elena",
                     "Tatyana",
                     "Olga",
@@ -624,92 +629,88 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Anna",
                     "Elizaveta"
                 ]
-            },
-            USA:{
-                male:[
-                    "John",
-                    "John",
-                    "Michael",
-                    "Michael",
-                    "Robert",
-
-                    "Robert",
-                    "David",
-                    "David",
-                    "David",
-                    "James",
-
+            ],
+            [//Abkhazia
+                [//male
+                "Giorgi",
+                "Giorgi",
+                "Giorgi",
+                "Davit",
+                "Davit",
+                "Irakli",
+                "Irakli",
+                "Zurab",
+                "Levan",
+                "Aleqsandre",/*
 
 
-                    "James",
-                    "James",
-                    "William",
-                    "William",
-                    "Richard",
-
-                    "Thomas",
-                    "Thomas",
-                    "Mark",
-                    "Charles",
-                    "Joseph",
-
-
-                    "Paul",
-                    "Daniel",
-                    "Steven",
-                    "Brian",
-                    "Donald",
-
-                    "Kevin",
-                    "Gary",
-                    "Scott",
-                    "George",
-                    "Edward",
+                */
+                "Merab",
+                "Tamaz",
+                "Temur",
+                "Tengiz",
+                "Vakhtang",
+                "Lasa",
+                "Mamuka",
+                "Gotsag",
+                "Avtandil",
+                "Givi",/*
 
 
+                */
+               "Guram",
+               "Nugzar",
+               "Shota",
+               "Luka",
+               "Nikoloz",
+               "Vladimer",
+               "Nodar",
+               "Zaza",
+               "Mikheil",
+               "Revaz",/*
 
-                    "Kenneth",
-                    "Jason",
-                    "Ronald",
-                    "Larry",
-                    "Christopher",
+               */
+              "Gela",
+              "Badri",
+              "Malkha",
+              "Nika",
+              "Otar",
+              "Teimuraz",
+              "Gia",
+              "Roman",
+              "Amiran",
+              "Besik",
 
-                    "Jose",
-                    "Anthony",
-                    "Eric",
-                    "Matthew",
-                    "Stephen",
+
+              "Koba",
+              "Koba",
+              "Salva",
+              "Akaki",
+              "Vaja",
+              "Veliri",
+              "Omar",
+              "Sergo",
+              "Luri",
+              "Boris"
 
 
-
-                    "Frank",
-                    "Andrew",
-                    "Timothy",
-                    "Joe",
-                    "Jerry",
-
-                    "Peter",
-                    "Jim",
-                    "Patrick",
-                    "Dennis",
-                    "Jeff"
 
                 ],
-                female:[
-                    "Mary",
-                    "Payton",
-                    "Barbara",
-                    "Grace",
-                    "Annabelle",
-                    "Sarah",
-                    "Eliana",
-                    "Lauren",
-                    "Kelly",
-                    "Emily"
+                [//female
+                    "Nino",
+                    "Nana",
+                    "Tamar",
+                    "Marina",
+                    "Manana",
+                    "Maia",
+                    "Natela",
+                    "Ana",
+                    "Liana",
+                    "Lali"
                 ]
-            },
-            georgia:{
-                male:[
+            ],
+            [//Georgia
+                [//male
                     "Giorgi",
                     "Giorgi",
                     "Giorgi",
@@ -777,7 +778,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Nugzar"
 
                 ],
-                female:[
+                [//female
                     "Nino",
                     "Tamar",
                     "Mariam",
@@ -789,9 +790,9 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Marine",
                     "Marina"
                 ]
-            },
-            england:{
-                male:[
+            ],
+            [//england
+                [//male
                     "David",
                     "David",
                     "John",
@@ -857,7 +858,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Roger",
                     "Tony"
                 ],
-                female:[
+                [//female
                     "Susan",
                     "Margaret",
                     "Sarah",
@@ -868,9 +869,9 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Christine",
                     "Helen"
                 ]
-            },
-            turkey:{
-                male:[
+            ],
+            [
+                [//male
                     "Mehmet",
                     "Mehmet",
                     "Mehmet",
@@ -938,7 +939,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
 
 
                 ],
-                female:[
+                [//female
                     "Fatma",
                     "Ayse",
                     "Emine",
@@ -950,10 +951,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Ozlem",
                     "Hulya"
                 ]
-            }
-        },
-        lastNames:{
-            USA:[
+            ]
+        ],
+        lastNames:[
+            [//USA
                 "Kuenzi",
                 "Reynolds",
                 "Sebastian",
@@ -1032,7 +1033,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 "Snowden",
                 "Waterford"
             ],
-            russia:[
+            [//Russia
                 "Ivanov",
                 "Petrov",
                 "Sidorov",
@@ -1099,85 +1100,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 "Balakin",
                 "Balakirev",
             ],
-            georgia:[
-                "Beridze",
-                "Kapanadze",
-                "Gelashvili",
-                "Mamedov",
-                "Maisuradze",
-                
-                "Giorgadze",
-                "Tsiklauri",
-                "Lomidze",
-                "Mamedova",
-                "Tskhoidze",
-
-
-                "Nozadze",
-                "Bolqvadze",
-                "Chikhladze",
-                "Khachishvili",
-                "Aliev",
-
-                "Abuladze",
-                "Miqeladze",
-                "Tabatadze",
-                "Medolishvili",
-                "Shengalia",
-
-
-                "Gogoladze",
-                "Diasamdize",
-                "Abasi",
-                "Dolidze",
-                "Maraushvili",
-
-                "Dzavasvhili",
-                "Kvaratskhelia",
-                "Alieva",
-                "Dolidze",
-                "Maraushvili",
-
-
-                "Dzavashvili",
-                "Kvaratskhelia",
-                "Alieva",
-                "Tsertsvadze",
-                "Qavtaradze",
-
-                "Qatamadze",
-                "Dzneladze",
-                "Metreveli",
-                "Dumbadze",
-                "Putkaradze",
-
-
-                "Japaridze",
-                "Barbaqadze",
-                "Surmanidze",
-                "Davitadze",
-                "Samkharadze",
-
-                "Kobakhia",
-                "Meladze",
-                "Chinchikadze",
-                "Sikharulidze",
-                "Tchelidze",
-
-
-                "Modebadze",
-                "Jintcharadze",
-                "Dzanashvili",
-                "Bairamov",
-                "Lobjanidze",
-
-                "Mumladze",
-                "Kurtanidze",
-                "Razmadze",
-                "Todua",
-                "Kiknadze",
-            ],
-            abkhazia:[
+            [//Abkhazia
                 "Rekhviashvili",
                 "Maisuradze",
                 "Kvaratskhelia",
@@ -1257,7 +1180,1195 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 "Gagua"
 
             ],
-        }
+            [//Georgia
+                "Beridze",
+                "Kapanadze",
+                "Gelashvili",
+                "Mamedov",
+                "Maisuradze",
+                
+                "Giorgadze",
+                "Tsiklauri",
+                "Lomidze",
+                "Mamedova",
+                "Tskhoidze",
+
+
+                "Nozadze",
+                "Bolqvadze",
+                "Chikhladze",
+                "Khachishvili",
+                "Aliev",
+
+                "Abuladze",
+                "Miqeladze",
+                "Tabatadze",
+                "Medolishvili",
+                "Shengalia",
+
+
+                "Gogoladze",
+                "Diasamdize",
+                "Abasi",
+                "Dolidze",
+                "Maraushvili",
+
+                "Dzavasvhili",
+                "Kvaratskhelia",
+                "Alieva",
+                "Dolidze",
+                "Maraushvili",
+
+
+                "Dzavashvili",
+                "Kvaratskhelia",
+                "Alieva",
+                "Tsertsvadze",
+                "Qavtaradze",
+
+                "Qatamadze",
+                "Dzneladze",
+                "Metreveli",
+                "Dumbadze",
+                "Putkaradze",
+
+
+                "Japaridze",
+                "Barbaqadze",
+                "Surmanidze",
+                "Davitadze",
+                "Samkharadze",
+
+                "Kobakhia",
+                "Meladze",
+                "Chinchikadze",
+                "Sikharulidze",
+                "Tchelidze",
+
+
+                "Modebadze",
+                "Jintcharadze",
+                "Dzanashvili",
+                "Bairamov",
+                "Lobjanidze",
+
+                "Mumladze",
+                "Kurtanidze",
+                "Razmadze",
+                "Todua",
+                "Kiknadze",
+            ],
+        ],
+        ranks:[
+            [//USA
+                [//army
+                    [//rifleman
+                        "Private",
+                        "Private First Class",
+                        "Private First Class",    
+                        "Corporal",
+                        "Private First Class"
+                    ],
+                    [//fire team leader
+                        "Sergeant",
+                    ],
+                    [//squad leader
+                        "Staff Sergeant",
+                    ],
+                    [//assistant platoon leader
+                        "Sergeant First Class",
+                    ],
+                    [//platoon leader
+                        "Lieutenant",
+                    ],
+                    [//assistant company leader
+                        "First Sergeant",
+                    ],
+                    [//company leader
+                        "Captain",
+                    ],
+                    [//assistant battalion leader
+                        "Command Sergeant Major",
+                    ],
+                    [//battalion leader
+                        "Lieutenant Colonel"
+                    ],
+                    [//assistant brigade leader
+                        "Command Sergeant Major",
+                    ],
+                    [//brigade leader
+                        "Colonel",
+                    ],
+                    [//assistant division leader
+                        "Brigadier General",
+                        "Brigadier General",
+                        "Command Sergeant Major",
+                    ],
+                    [//division leader
+                        "Major General",
+                    ],
+                    [//assistant corps leader
+                        "Command Sergeant Major",
+                    ],
+                    [//corps leader
+                        "Lieutenant General"
+                    ],
+                    [//wingmen
+                        "Warrant Officer 1",
+                        "Chief Warant Officer 2",
+                        "Chief Warant Officer 2",
+                        "Chief Warrant Officer 3"
+
+                        
+                    ],
+                    [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                        "Chief Warrant Officer 3",
+                    ],
+                    [//squadron leadership
+                        "Chief Warrant Officer 4"
+                    ],
+                    [//squadron commander
+                        "Chief Warrant Officer 5"
+                    ]
+                    
+                ],
+                [//air force
+                    [//rifleman//element
+                        "Airman Basic",
+                        "Airman",
+                        "Airman",
+                        "Airman First Class",
+                        "Airman First Class",
+    
+                    ],
+                    [//fire team leader//element leader
+                        "Senior Airman",
+                        "Senior Airman",
+                        "Senior Airman",
+                        "Senior Airman",
+                        "Senior Airman",
+                        "Staff Sergeant",
+                        "Staff Sergeant",
+                        "Staff Sergeant",
+                        "Staff Sergeant",
+                        "Tech Sergeant"
+                    ],
+                    [//squad leader//element leader
+                        "Staff Sergeant"
+                    ],
+                    [//assistant platoon leader
+                        "Master Sergeant",
+                    ],
+                    [//platoon leader// Flight
+                        "2nd Lieutenant",
+                        "1st Lieutenant",
+                        "1st Lieutenant",
+                        "2nd Lieutenant",
+                        "Captain"
+                    ],
+                    [//assistant company leader
+                        "Sergeant Major",
+                        "Major",
+                        "Senior Captain",
+                        "Sergeant Major",
+                    ],
+                    [//company leader//squadron
+                        "Major",
+                        "Lieutenant Colonel",
+                        "Lieutenant Colonel",
+                        "Lieutenant Colonel"
+                    ],
+                    [//assistant battalion leader
+                        "Colonel",
+                        "Lieutenant Colonel",
+                        "Lieutenant Colonel",
+                    ],
+                    [//battalion leader//wing
+                        "Colonel",
+                    ],
+                    [//assistant brigade leader
+                        "Colonel"
+                    ],
+                    [//brigade leader//numbered air force
+                        "Major General",
+                        "Lieutenant General",
+                    ],
+                    [//assistant division leader
+                        "Lieutenant General",
+                        "Major General"
+                    ],
+                    [//division leader//MAJCOM
+                        "General"
+                    ],
+                    [//assistant corps leader
+    
+                    ],
+                    [//corps leader
+    
+                    ],
+                    [//wingmen
+                        "Second Lieutenant",
+                        "Second Lieutenant",
+                        "First Lieutenant",
+                        "First Lieutenant",
+                        "First Lieutenant",
+                        
+                    ],
+                    [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                        "Captain",
+                        "Captain",
+                        "Captain",
+                        "Major",
+                    ],
+                    [//high level leadership
+                        "Colonel",
+                        "Colonel",
+                        "Lieutenant Colonel"
+                    ],
+                    [//squadron commander
+                        "Lieutenant Colonel"
+                    ]
+                    
+                ],
+                [//navy
+                    [//rifleman//element
+                        "Seaman Apprentice",
+                        "Seaman",
+                        "Seaman",
+                        "Seaman",
+    
+                    ],
+                    [//fire team leader//element leader
+                        "Petty Officer Third Class"
+                    ],
+                    [//squad leader//element leader
+                        "Petty Officer Second Class"
+                    ],
+                    [//assistant platoon leader
+                        "Petty Officer First Class",
+                    ],
+                    [//platoon leader// Flight
+                        "Ensign"
+                    ],
+                    [//assistant company leader
+                        "Chief Petty Officer",
+                        "Commander"//can also be a captain of a destroyer type ship
+                    ],
+                    [//company leader//captain of a cruiser or larger ship
+                        "Captain"
+                    ],
+                    [//assistant battalion leader
+      
+                    ],
+                    [//battalion leader//wing
+                        "Lieutenant",
+                    ],
+                    [//assistant brigade leader
+                        "Captain"
+                    ],
+                    [//brigade leader//numbered air force
+                        "Rear Admiral Upper Half"
+                    ],
+                    [//assistant division leader   
+                        "Vice Admiral",
+                    ],
+                    [//division leader//MAJCOM
+                        "Admiral",
+                    ],
+                    [//assistant corps leader
+    
+                    ],
+                    [//corps leader
+    
+                    ],
+                    //each squadron should have roughly 1.5x as many pilots as aircraft, with anywhere from 8-20 aircraft being normal. 
+                    [//wingmen
+                        "Second Lieutenant",
+                        "Second Lieutenant",
+                        "First Lieutenant",
+                        "First Lieutenant",
+                        "First Lieutenant",
+                        
+                    ],
+                    [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                        "Captain",
+                        "Captain",
+                        "Captain",
+                        "Major",
+                    ],
+                    [//squadron leadership
+                        "Colonel",
+                        "Colonel",
+                        "Lieutenant Colonel"
+                    ],
+                    [//squadron commander
+                        "Lieutenant Colonel"
+                    ]
+                    
+                ],
+                [//marines
+                    [//rifleman
+                    "Private",
+                    "Private First Class",
+                    "Private First Class",    
+                    "Lance Corporal",
+                    "Lance Corporal",
+                    "Private First Class",
+                ],
+                [//fire team leader
+                    "Corporal",
+                ],
+                [//squad leader
+                    "Sergeant",
+                    "Sergeant",
+                    "Sergeant",
+                    "Corporal"
+                ],
+                [//assistant platoon leader
+                    "Sergeant",
+                    "Master Sergeant",
+                    "Master Sergeant"
+                ],
+                [//platoon leader
+                    "Staff Sergeant",
+                    "Second Lieutenant",
+                    "Second Lieutenant",
+                    "Second Lieutenant",
+                    "First Lieutenant"
+                ],
+                [//assistant company leader
+                    "Gunnery Sergeant",
+                    "Master Sergeant",
+                    "First Lieutenant",
+                ],
+                [//company leader
+                    "Captain",
+                ],
+                [//assistant battalion leader
+                    "Sergeant Major",
+                    "Master Gunnery Sergeant",
+                ],
+                [//battalion leader
+                    "Lieutenant Colonel"
+                ],
+                [//assistant brigade leader
+                    "Major",
+                    "Sergeant Major",
+                    "Command Sergeant Major",
+                ],
+                [//brigade leader
+                    "Colonel",
+                ],
+                [//assistant division leader
+                    "Brigadier General",
+                    "Brigadier General",
+                    "Command Sergeant Major",
+                ],
+                [//division leader
+                    "Major General",
+                ],
+                [//assistant corps leader
+                    "Command Sergeant Major",
+                ],
+                [//corps leader
+                    "Lieutenant General"
+                ],
+                //each squadron should have roughly 1.5x as many pilots as aircraft, with anywhere from 8-20 aircraft being normal. 
+                [//wingmen //all of this is directly copied from the USAF. I cannot discern if they are any different
+                    "Second Lieutenant",
+                    "Second Lieutenant",
+                    "First Lieutenant",
+                    "First Lieutenant",
+                    "First Lieutenant",
+                        
+                ],
+                [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                        "Captain",
+                        "Captain",
+                        "Captain",
+                        "Major",
+                ],
+                [//senior leadership
+                        "Colonel",
+                        "Colonel",
+                        "Lieutenant Colonel"
+                ],
+                [//squadron commander
+                        "Lieutenant Colonel"
+                ]
+                ],
+            ],
+            [//Russia
+                [//army
+                    [//rifleman
+                        "Private",
+                        "Private First Class",
+                        "Private First Class",    
+                        "Private First Class"
+                    ],
+                    [//fire team leader
+                        "Sergeant",
+                        "Junior Sergeant"
+                    ],
+                    [//squad leader
+                        "Staff Sergeant",
+                        "First Sergeant"
+                    ],
+                    [//assistant platoon leader
+                        "Junior Lieutenant"
+                    ],
+                    [//platoon leader
+                        "Lieutenant",
+                    ],
+                    [//assistant company leader
+                        "First Sergeant",
+                    ],
+                    [//company leader
+                        "Captain",
+                        "Senior Lieutenant",
+                    ],
+                    [//assistant battalion leader
+                        "First Sergeant",
+                    ],
+                    [//battalion leader
+                        "Lieutenant Colonel"
+                    ],
+                    [//assistant brigade leader
+                        "Command Sergeant Major",
+                    ],
+                    [//brigade leader
+                        "Colonel",
+                    ],
+                    [//assistant division leader
+                        "Colonel Genmeral"
+                    ],
+                    [//division leader
+                        "Colonel General",
+                    ],
+                    [//assistant corps leader
+                        "Warrant Officer",
+                    ],
+                    [//corps leader
+                        "Army General"
+                    ],
+
+                    [//wingmen
+                        "Mladshiy Leytenant",
+                        "Leytenant",
+                        "Starshiy Leytenant",
+                    ],
+                    [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                        "Kapitan",
+                        "Kapitan",
+                        "Kapitan",
+                        "Major"
+                    ],
+                    [
+                        "Podpolkovnik"
+                    ],
+                    [//squadron commander
+                        "Polkovnik"
+                    ]
+            
+                ],
+                [//air force
+                    [//rifleman
+                    "Private",
+                    "Private First Class",
+                    "Private First Class",    
+                    "Private First Class"
+                ],
+                [//fire team leader
+                    "Sergeant",
+                    "Junior Sergeant"
+                ],
+                [//squad leader
+                    "Staff Sergeant",
+                    "First Sergeant"
+                ],
+                [//assistant platoon leader
+                    "Junior Lieutenant"
+                ],
+                [//platoon leader
+                    "Lieutenant",
+                ],
+                [//assistant company leader
+                    "First Sergeant",
+                ],
+                [//company leader
+                    "Captain",
+                    "Senior Lieutenant",
+                ],
+                [//assistant battalion leader
+                    "First Sergeant",
+                ],
+                [//battalion leader
+                    "Lieutenant Colonel"
+                ],
+                [//assistant brigade leader
+                    "Command Sergeant Major",
+                ],
+                [//brigade leader
+                    "Colonel",
+                ],
+                [//assistant division leader
+                    "Colonel Genmeral"
+                ],
+                [//division leader
+                    "Colonel General",
+                ],
+                [//assistant corps leader
+                    "Warrant Officer",
+                ],
+                [//corps leader
+                    "Army General"
+                ],
+
+                    [//wingmen
+                        "Mladshiy Leytenant",
+                        "Leytenant",
+                        "Starshiy Leytenant",
+                    ],
+                    [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                        "Kapitan",
+                        "Kapitan",
+                        "Kapitan",
+                        "Major"
+                    ],
+                    [
+                        "Podpolkovnik"
+                    ],
+                    [//squadron commander
+                        "Polkovnik"
+                    ]
+                
+                ],
+                [//navy
+                    [//rifleman
+                        "Matros",
+                        "Matros",
+                        "Starshy Matros"
+                    ],
+                    [//fire team leader
+                        "Starshy Matros"
+                    ],
+                    [//squad leader
+                        "Starshina 2 Statji"
+                    ],
+                    [//assistant platoon leader
+                        "Starshina 2 Statji"
+                    ],
+                    [//platoon leader
+                        "Starshey Leytenant",
+    
+                    ],
+                    [//assistant company leader
+                        "Starshina 1 Statji",
+                    ],
+                    [//company leader
+                        "Glavny Starshina",
+                        "Mladshiy Leytenant",
+                    ],
+                    [//assistant battalion leader
+                        "Glavny Starshina",
+                    ],
+                    [//battalion leader
+                        "Kapitan-Leytenant"
+                    ],
+                    [//assistant brigade leader
+                        "Glavny Starshina",
+                    ],
+                    [//brigade leader
+                        "Kapitan 3-go ranga",
+                    ],
+                    [//assistant division leader
+                        "Glavny korabelny starshina"
+                    ],
+                    [//division leader
+                        "Kapitan 2-go ranga",
+                    ],
+                    [//assistant corps leader
+                        "Warrant Officer",
+                    ],
+                    [//corps leader
+                        "Army General"
+                    ],
+
+                        [//wingmen
+                            "Mladshiy Leytenant",
+                            "Leytenant",
+                            "Starshiy Leytenant",
+                        ],
+                        [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                            "Kapitan",
+                            "Kapitan",
+                            "Kapitan",
+                            "Major"
+                        ],
+                        [
+                            "Podpolkovnik"
+                        ],
+                        [//squadron commander
+                            "Polkovnik"
+                        ]
+                    
+                ],
+            ],
+            [//Abkhazia
+                [//army
+                    [//rifleman
+                    "Private",
+                    "Private First Class",
+                    "Private First Class",    
+                    "Private First Class"
+                ],
+                [//fire team leader
+                    "Sergeant",
+                    "Junior Sergeant"
+                ],
+                [//squad leader
+                    "Staff Sergeant",
+                    "First Sergeant"
+                ],
+                [//assistant platoon leader
+                    "Junior Lieutenant"
+                ],
+                [//platoon leader
+                    "Lieutenant",
+                ],
+                [//assistant company leader
+                    "First Sergeant",
+                ],
+                [//company leader
+                    "Captain",
+                    "Senior Lieutenant",
+                ],
+                [//assistant battalion leader
+                    "First Sergeant",
+                ],
+                [//battalion leader
+                    "Lieutenant Colonel"
+                ],
+                [//assistant brigade leader
+                    "Command Sergeant Major",
+                ],
+                [//brigade leader
+                    "Colonel",
+                ],
+                [//assistant division leader
+                    "Colonel Genmeral"
+                ],
+                [//division leader
+                    "Colonel General",
+                ],
+                [//assistant corps leader
+                    "Warrant Officer",
+                ],
+                [//corps leader
+                    "Army General"
+                ],
+
+                [//wingmen
+                    "Mladshiy Leytenant",
+                    "Leytenant",
+                    "Starshiy Leytenant",
+                ],
+                [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                    "Kapitan",
+                    "Kapitan",
+                    "Kapitan",
+                    "Major"
+                ],
+                [
+                    "Podpolkovnik"
+                ],
+                [//squadron commander
+                    "Polkovnik"
+                ]
+        
+            ],
+            [//air force
+                [//rifleman
+                "Private",
+                "Private First Class",
+                "Private First Class",    
+                "Private First Class"
+            ],
+            [//fire team leader
+                "Sergeant",
+                "Junior Sergeant"
+            ],
+            [//squad leader
+                "Staff Sergeant",
+                "First Sergeant"
+            ],
+            [//assistant platoon leader
+                "Junior Lieutenant"
+            ],
+            [//platoon leader
+                "Lieutenant",
+            ],
+            [//assistant company leader
+                "First Sergeant",
+            ],
+            [//company leader
+                "Captain",
+                "Senior Lieutenant",
+            ],
+            [//assistant battalion leader
+                "First Sergeant",
+            ],
+            [//battalion leader
+                "Lieutenant Colonel"
+            ],
+            [//assistant brigade leader
+                "Command Sergeant Major",
+            ],
+            [//brigade leader
+                "Colonel",
+            ],
+            [//assistant division leader
+                "Colonel Genmeral"
+            ],
+            [//division leader
+                "Colonel General",
+            ],
+            [//assistant corps leader
+                "Warrant Officer",
+            ],
+            [//corps leader
+                "Army General"
+            ],
+
+                [//wingmen
+                    "Mladshiy Leytenant",
+                    "Leytenant",
+                    "Starshiy Leytenant",
+                ],
+                [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                    "Kapitan",
+                    "Kapitan",
+                    "Kapitan",
+                    "Major"
+                ],
+                [
+                    "Podpolkovnik"
+                ],
+                [//squadron commander
+                    "Polkovnik"
+                ]
+            
+            ],
+            [//navy
+                [//rifleman
+                    "Matros",
+                    "Matros",
+                    "Starshy Matros"
+                ],
+                [//fire team leader
+                    "Starshy Matros"
+                ],
+                [//squad leader
+                    "Starshina 2 Statji"
+                ],
+                [//assistant platoon leader
+                    "Starshina 2 Statji"
+                ],
+                [//platoon leader
+                    "Starshey Leytenant",
+
+                ],
+                [//assistant company leader
+                    "Starshina 1 Statji",
+                ],
+                [//company leader
+                    "Glavny Starshina",
+                    "Mladshiy Leytenant",
+                ],
+                [//assistant battalion leader
+                    "Glavny Starshina",
+                ],
+                [//battalion leader
+                    "Kapitan-Leytenant"
+                ],
+                [//assistant brigade leader
+                    "Glavny Starshina",
+                ],
+                [//brigade leader
+                    "Kapitan 3-go ranga",
+                ],
+                [//assistant division leader
+                    "Glavny korabelny starshina"
+                ],
+                [//division leader
+                    "Kapitan 2-go ranga",
+                ],
+                [//assistant corps leader
+                    "Warrant Officer",
+                ],
+                [//corps leader
+                    "Army General"
+                ],
+
+                    [//wingmen
+                        "Mladshiy Leytenant",
+                        "Leytenant",
+                        "Starshiy Leytenant",
+                    ],
+                    [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                        "Kapitan",
+                        "Kapitan",
+                        "Kapitan",
+                        "Major"
+                    ],
+                    [
+                        "Podpolkovnik"
+                    ],
+                    [//squadron commander
+                        "Polkovnik"
+                    ]
+                
+            ],
+            ],
+            [//Georgia
+                [//army
+                    [//rifleman
+                    "Private",
+                    "Private First Class",
+                    "Private First Class",    
+                    "Corporal",
+                    "Private First Class"
+                ],
+                [//fire team leader
+                    "Sergeant",
+                ],
+                [//squad leader
+                    "Staff Sergeant",
+                ],
+                [//assistant platoon leader
+                    "Sergeant First Class",
+                ],
+                [//platoon leader
+                    "Lieutenant",
+                ],
+                [//assistant company leader
+                    "First Sergeant",
+                ],
+                [//company leader
+                    "Captain",
+                ],
+                [//assistant battalion leader
+                    "Command Sergeant Major",
+                ],
+                [//battalion leader
+                    "Lieutenant Colonel"
+                ],
+                [//assistant brigade leader
+                    "Command Sergeant Major",
+                ],
+                [//brigade leader
+                    "Colonel",
+                ],
+                [//assistant division leader
+                    "Brigadier General",
+                    "Brigadier General",
+                    "Command Sergeant Major",
+                ],
+                [//division leader
+                    "Major General",
+                ],
+                [//assistant corps leader
+                    "Command Sergeant Major",
+                ],
+                [//corps leader
+                    "Lieutenant General"
+                ],
+                [//wingmen
+                    "Warrant Officer 1",
+                    "Chief Warant Officer 2",
+                    "Chief Warant Officer 2",
+                    "Chief Warrant Officer 3"
+
+                    
+                ],
+                [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                    "Chief Warrant Officer 3",
+                ],
+                [//squadron leadership
+                    "Chief Warrant Officer 4"
+                ],
+                [//squadron commander
+                    "Chief Warrant Officer 5"
+                ]
+                
+            ],
+            [//air force
+                [//rifleman//element
+                    "Airman Basic",
+                    "Airman",
+                    "Airman",
+                    "Airman First Class",
+                    "Airman First Class",
+
+                ],
+                [//fire team leader//element leader
+                    "Senior Airman",
+                    "Senior Airman",
+                    "Senior Airman",
+                    "Senior Airman",
+                    "Senior Airman",
+                    "Staff Sergeant",
+                    "Staff Sergeant",
+                    "Staff Sergeant",
+                    "Staff Sergeant",
+                    "Tech Sergeant"
+                ],
+                [//squad leader//element leader
+                    "Staff Sergeant"
+                ],
+                [//assistant platoon leader
+                    "Master Sergeant",
+                ],
+                [//platoon leader// Flight
+                    "2nd Lieutenant",
+                    "1st Lieutenant",
+                    "1st Lieutenant",
+                    "2nd Lieutenant",
+                    "Captain"
+                ],
+                [//assistant company leader
+                    "Sergeant Major",
+                    "Major",
+                    "Senior Captain",
+                    "Sergeant Major",
+                ],
+                [//company leader//squadron
+                    "Major",
+                    "Lieutenant Colonel",
+                    "Lieutenant Colonel",
+                    "Lieutenant Colonel"
+                ],
+                [//assistant battalion leader
+                    "Colonel",
+                    "Lieutenant Colonel",
+                    "Lieutenant Colonel",
+                ],
+                [//battalion leader//wing
+                    "Colonel",
+                ],
+                [//assistant brigade leader
+                    "Colonel"
+                ],
+                [//brigade leader//numbered air force
+                    "Major General",
+                    "Lieutenant General",
+                ],
+                [//assistant division leader
+                    "Lieutenant General",
+                    "Major General"
+                ],
+                [//division leader//MAJCOM
+                    "General"
+                ],
+                [//assistant corps leader
+
+                ],
+                [//corps leader
+
+                ],
+                [//wingmen
+                    "Second Lieutenant",
+                    "Second Lieutenant",
+                    "First Lieutenant",
+                    "First Lieutenant",
+                    "First Lieutenant",
+                    
+                ],
+                [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                    "Captain",
+                    "Captain",
+                    "Captain",
+                    "Major",
+                ],
+                [//high level leadership
+                    "Colonel",
+                    "Colonel",
+                    "Lieutenant Colonel"
+                ],
+                [//squadron commander
+                    "Lieutenant Colonel"
+                ]
+                
+            ],
+            [//navy
+                [//rifleman//element
+                    "Seaman Apprentice",
+                    "Seaman",
+                    "Seaman",
+                    "Seaman",
+
+                ],
+                [//fire team leader//element leader
+                    "Petty Officer Third Class"
+                ],
+                [//squad leader//element leader
+                    "Petty Officer Second Class"
+                ],
+                [//assistant platoon leader
+                    "Petty Officer First Class",
+                ],
+                [//platoon leader// Flight
+                    "Ensign"
+                ],
+                [//assistant company leader
+                    "Chief Petty Officer",
+                    "Commander"//can also be a captain of a destroyer type ship
+                ],
+                [//company leader//captain of a cruiser or larger ship
+                    "Captain"
+                ],
+                [//assistant battalion leader
+  
+                ],
+                [//battalion leader//wing
+                    "Lieutenant",
+                ],
+                [//assistant brigade leader
+                    "Captain"
+                ],
+                [//brigade leader//numbered air force
+                    "Rear Admiral Upper Half"
+                ],
+                [//assistant division leader   
+                    "Vice Admiral",
+                ],
+                [//division leader//MAJCOM
+                    "Admiral",
+                ],
+                [//assistant corps leader
+
+                ],
+                [//corps leader
+
+                ],
+                //each squadron should have roughly 1.5x as many pilots as aircraft, with anywhere from 8-20 aircraft being normal. 
+                [//wingmen
+                    "Second Lieutenant",
+                    "Second Lieutenant",
+                    "First Lieutenant",
+                    "First Lieutenant",
+                    "First Lieutenant",
+                    
+                ],
+                [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                    "Captain",
+                    "Captain",
+                    "Captain",
+                    "Major",
+                ],
+                [//squadron leadership
+                    "Colonel",
+                    "Colonel",
+                    "Lieutenant Colonel"
+                ],
+                [//squadron commander
+                    "Lieutenant Colonel"
+                ]
+                
+            ],
+            [//marines
+                [//rifleman
+                "Private",
+                "Private First Class",
+                "Private First Class",    
+                "Lance Corporal",
+                "Lance Corporal",
+                "Private First Class",
+            ],
+            [//fire team leader
+                "Corporal",
+            ],
+            [//squad leader
+                "Sergeant",
+                "Sergeant",
+                "Sergeant",
+                "Corporal"
+            ],
+            [//assistant platoon leader
+                "Sergeant",
+                "Master Sergeant",
+                "Master Sergeant"
+            ],
+            [//platoon leader
+                "Staff Sergeant",
+                "Second Lieutenant",
+                "Second Lieutenant",
+                "Second Lieutenant",
+                "First Lieutenant"
+            ],
+            [//assistant company leader
+                "Gunnery Sergeant",
+                "Master Sergeant",
+                "First Lieutenant",
+            ],
+            [//company leader
+                "Captain",
+            ],
+            [//assistant battalion leader
+                "Sergeant Major",
+                "Master Gunnery Sergeant",
+            ],
+            [//battalion leader
+                "Lieutenant Colonel"
+            ],
+            [//assistant brigade leader
+                "Major",
+                "Sergeant Major",
+                "Command Sergeant Major",
+            ],
+            [//brigade leader
+                "Colonel",
+            ],
+            [//assistant division leader
+                "Brigadier General",
+                "Brigadier General",
+                "Command Sergeant Major",
+            ],
+            [//division leader
+                "Major General",
+            ],
+            [//assistant corps leader
+                "Command Sergeant Major",
+            ],
+            [//corps leader
+                "Lieutenant General"
+            ],
+            //each squadron should have roughly 1.5x as many pilots as aircraft, with anywhere from 8-20 aircraft being normal. 
+            [//wingmen //all of this is directly copied from the USAF. I cannot discern if they are any different
+                "Second Lieutenant",
+                "Second Lieutenant",
+                "First Lieutenant",
+                "First Lieutenant",
+                "First Lieutenant",
+                    
+            ],
+            [//leaders of 2-ship flights or command of a single multi crew aircraft, can progress further to get to 4-ship flight lead
+                    "Captain",
+                    "Captain",
+                    "Captain",
+                    "Major",
+            ],
+            [//senior leadership
+                    "Colonel",
+                    "Colonel",
+                    "Lieutenant Colonel"
+            ],
+            [//squadron commander
+                    "Lieutenant Colonel"
+            ]
+            ],
+            ],
+        ]
 
     },
     weapons:{

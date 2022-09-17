@@ -158,5 +158,33 @@ let multipliers = {
         }
     },
 };
+let nationalities = {
+    percentageInfWomenByService:[
+        [//USA
+            .135,//US Army
+            .209,//US Air Force
+            .16,//Navy
+            .063//Marines
+        ],
+        [//Russia
+            .04,
+            .1,
+            .05,
+            .01
+        ],
+        [//Abkhazia
+            .04,
+            .1,
+            .05,
+            .01
+        ],
+        [//Georgia
+            .025,
+            .04,
+            .025,
+            .01
+        ],
+    ]
+}
 
-export default {general,unitPower,environment,multipliers};
+export default {general,unitPower,environment,multipliers,nationalities};
