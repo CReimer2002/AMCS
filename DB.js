@@ -268,7 +268,7 @@ const testItems={
                         comms:tComponents.pRadios.pr_R187P1E, 
                         uniform:tComponents.uniforms.u_ratnik,
                         IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                        canteen:0,                        
+                        canteen:tComponents.canteens.USSR_Canteen,                        
                     },
                     buffs:{
                         lDrinkBuff:1,
@@ -636,8 +636,627 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Robert",
                     "David",
                     "David",
+                    "David",
+                    "James",
+
+
+
+                    "James",
+                    "James",
+                    "William",
+                    "William",
+                    "Richard",
+
+                    "Thomas",
+                    "Thomas",
+                    "Mark",
+                    "Charles",
+                    "Joseph",
+
+
+                    "Paul",
+                    "Daniel",
+                    "Steven",
+                    "Brian",
+                    "Donald",
+
+                    "Kevin",
+                    "Gary",
+                    "Scott",
+                    "George",
+                    "Edward",
+
+
+
+                    "Kenneth",
+                    "Jason",
+                    "Ronald",
+                    "Larry",
+                    "Christopher",
+
+                    "Jose",
+                    "Anthony",
+                    "Eric",
+                    "Matthew",
+                    "Stephen",
+
+
+
+                    "Frank",
+                    "Andrew",
+                    "Timothy",
+                    "Joe",
+                    "Jerry",
+
+                    "Peter",
+                    "Jim",
+                    "Patrick",
+                    "Dennis",
+                    "Jeff"
+
+                ],
+                female:[
+                    "Mary",
+                    "Payton",
+                    "Barbara",
+                    "Grace",
+                    "Annabelle",
+                    "Sarah",
+                    "Eliana",
+                    "Lauren",
+                    "Kelly",
+                    "Emily"
+                ]
+            },
+            georgia:{
+                male:[
+                    "Giorgi",
+                    "Giorgi",
+                    "Giorgi",
+                    "Giorgi",
+                    "Davit",
+
+                    "Davit",
+                    "Aleqsandre",
+                    "Aleqsandre",
+                    "Irakli",
+                    "Irakli",
+
+
+
+                    "Zurab",
+                    "Levan",
+                    "Nikoloz",
+                    "Mikheil",
+                    "Gocha",
+
+                    "Givi",
+                    "Mamuka",
+                    "Daviti",
+                    "Lasa",
+                    "Zaza",
+
+                    
+                    "Shota",
+                    "Avtandil",
+                    "Nika",
+                    "Gela",
+                    "Tamaz",
+
+                    "Luka",
+                    "Salva",
+                    "Teimuraz",
+                    "Guram",
+                    "Nodar",
+
+
+                    "Vladimer",
+                    "Zurabi",
+                    "Levani",
+                    "Vaja",
+                    "Tornike",
+
+                    "Beqa",
+                    "Ivane",
+                    "Sergo",
+                    "Vakhtang",
+                    "Ilia",
+
+
+                    "Gia",
+                    "Tengiz",
+                    "Amiran",
+                    "Merab",
+                    "Otar",
+
+
+                    "Akaki",
+                    "Badri",
+                    "Koba",
+                    "Paata",
+                    "Nugzar"
+
+                ],
+                female:[
+                    "Nino",
+                    "Tamar",
+                    "Mariam",
+                    "Maia",
+                    "Anna",
+                    "Nana",
+                    "Manana",
+                    "Tamari",
+                    "Marine",
+                    "Marina"
+                ]
+            },
+            england:{
+                male:[
+                    "David",
+                    "David",
+                    "John",
+                    "John",
+                    "Michael",
+
+
+                    "Paul",
+                    "Andrew",
+                    "Peter",
+                    "James",
+                    "Robert",
+
+
+                    "Mark",
+                    "Richard",
+                    "Stephen",
+                    "Christopher",
+                    "Ian",
+
+                    "Steven",
+                    "Thomas",
+                    "William",
+                    "Alan",
+                    "Anthony",
+
+
+                    "Simon",
+                    "Brian",
+                    "Daniel",
+                    "Martin",
+                    "Matthew",
+
+                    "Kevin",
+                    "Philip",
+                    "Gary",
+                    "Colin",
+                    "Graham",
+
+
+                    "George",
+                    "Neil",
+                    "Keith",
+                    "Lee",
+                    "Jonathan",
+
+                    "Stuart",
+                    "Kenneth",
+                    "Adam",
+                    "Edward",
+                    "Darren",
+
+                    
+                    "Jason",
+                    "Raymond",
+                    "Ronald",
+                    "Joseph",
+                    "Benjamin",
+
+                    "Barry",
+                    "Derek",
+                    "Craig",
+                    "Roger",
+                    "Tony"
+                ],
+                female:[
+                    "Susan",
+                    "Margaret",
+                    "Sarah",
+                    "Patricia",
+                    "Elizabeth",
+                    "Mary",
+                    "Julie",
+                    "Christine",
+                    "Helen"
+                ]
+            },
+            turkey:{
+                male:[
+                    "Mehmet",
+                    "Mehmet",
+                    "Mehmet",
+                    "Mustafa",
+                    "Mustafa",
+
+                    "Ahmet",
+                    "Ahmet",
+                    "Ali",
+                    "Ali",
+                    "Hasan",
+
+
+                    "Huseyin",
+                    "Ibrahim",
+                    "Murat",
+                    "Ismail",
+                    "Omer",
+
+                    "Osman",
+                    "Ramazan",
+                    "Halil",
+                    "Yusuf",
+                    "Abdullah",
+
+
+                    "Suleyman",
+                    "Fatih",
+                    "Mahmut",
+                    "Recep",
+                    "Hakan",
+
+                    "Adem",
+                    "Metin",
+                    "Kemal",
+                    "Kadir",
+                    "Salih",
+
+
+                    "Orhan",
+                    "Serkan",
+                    "Gokhan",
+                    "Bayram",
+                    "Ugur",
+
+                    "Yunus",
+                    "Ayhan",
+                    "Muhammet",
+                    "Emre",
+                    "Yilmaz",
+
+
+                    "Bekir",
+                    "Musa",
+                    "Erkan",
+                    "Mesut",
+                    "Bulent",
+
+                    "Ercan",
+                    "Sinan",
+                    "Erol",
+                    "Cemal",
+                    "Cengiz"
+
+
+
+                ],
+                female:[
+                    "Fatma",
+                    "Ayse",
+                    "Emine",
+                    "Hatice",
+                    "Zeynep",
+                    "Elif",
+                    "Meryem",
+                    "Sultan",
+                    "Ozlem",
+                    "Hulya"
                 ]
             }
+        },
+        lastNames:{
+            USA:[
+                "Kuenzi",
+                "Reynolds",
+                "Sebastian",
+                "Bruneau",
+                "Tilley",
+
+                "Scovel",
+                "Devereux",
+                "Lord",
+                "Wheatley",
+                "Zylath",
+
+
+                "Hanley",
+                "Barazal",
+                "Baltazar",
+                "Patton",
+                "Waters",
+
+                "Mello",
+                "Greeves",
+                "Holley",
+                "Wells",
+                "Doyle",
+
+
+
+                "Cyr",
+                "Mueller",
+                "Hanma",
+                "Dawdy",
+                "Parrish",
+
+                "Marques",
+                "Barquest",
+                "Patterson",
+                "Esquivel",
+                "Wash",
+
+
+                "Holmes",
+                "Bat",
+                "Murray",
+                "Voth",
+                "Holtz",
+                
+                "Wallison",
+                "Fleming",
+                "Sanzotera",
+                "O'Meara",
+                "Capwell",
+
+
+                "Knife",
+                "Buckeye",
+                "Chine",
+                "Meerts",
+                "Chang",
+
+                "Familiant",
+                "Denk",
+                "Kieurlik",
+                "Vermillion",
+                "Kondrath",
+
+                
+                "Mallum",
+                "Howell",
+                "Castillo",
+                "McVeigh",
+                "Jones",
+
+                "Weaver",
+                "Ostrowski",
+                "Holsey",
+                "Snowden",
+                "Waterford"
+            ],
+            russia:[
+                "Ivanov",
+                "Petrov",
+                "Sidorov",
+                "Smirnoff",
+                "Volkov",
+
+                "Federov",
+                "Popov",
+                "Semenov",
+                "Mikhailov",
+                "Egorov",
+
+
+                "Lenkov",
+                "Vasiliev",
+                "Meerts",
+                "Chyorny",
+                "Nikolaev",
+
+                "Morozov",
+                "Stepanov",
+                "Novikov",
+                "Koslov",
+                "Pavlov",
+
+
+                "Sokolov",
+                "Lebedev",
+                "Kuznetzov",
+                "Putin",
+                "Orlov",
+
+                "Ovechkin",
+                "Nikitin",
+                "Preobrazhensky",
+                "Golubev",
+                "Familiant",
+
+
+                "Pasternak",
+                "Zaitsev",
+                "Vinogradov",
+                "Belyaev",
+                "Agapov",
+                
+
+                "Antonov",
+                "Angeloff",
+                "Balabanov",
+                "Turgenev",
+                "Yahontov",
+
+
+
+                "Abakumov",
+                "Abdulov",
+                "Abramov",
+                "Agafonov",
+                "Pepin",
+
+                "Andreyev",
+                "Arsenyev",
+                "Belov",
+                "Balakin",
+                "Balakirev",
+            ],
+            georgia:[
+                "Beridze",
+                "Kapanadze",
+                "Gelashvili",
+                "Mamedov",
+                "Maisuradze",
+                
+                "Giorgadze",
+                "Tsiklauri",
+                "Lomidze",
+                "Mamedova",
+                "Tskhoidze",
+
+
+                "Nozadze",
+                "Bolqvadze",
+                "Chikhladze",
+                "Khachishvili",
+                "Aliev",
+
+                "Abuladze",
+                "Miqeladze",
+                "Tabatadze",
+                "Medolishvili",
+                "Shengalia",
+
+
+                "Gogoladze",
+                "Diasamdize",
+                "Abasi",
+                "Dolidze",
+                "Maraushvili",
+
+                "Dzavasvhili",
+                "Kvaratskhelia",
+                "Alieva",
+                "Dolidze",
+                "Maraushvili",
+
+
+                "Dzavashvili",
+                "Kvaratskhelia",
+                "Alieva",
+                "Tsertsvadze",
+                "Qavtaradze",
+
+                "Qatamadze",
+                "Dzneladze",
+                "Metreveli",
+                "Dumbadze",
+                "Putkaradze",
+
+
+                "Japaridze",
+                "Barbaqadze",
+                "Surmanidze",
+                "Davitadze",
+                "Samkharadze",
+
+                "Kobakhia",
+                "Meladze",
+                "Chinchikadze",
+                "Sikharulidze",
+                "Tchelidze",
+
+
+                "Modebadze",
+                "Jintcharadze",
+                "Dzanashvili",
+                "Bairamov",
+                "Lobjanidze",
+
+                "Mumladze",
+                "Kurtanidze",
+                "Razmadze",
+                "Todua",
+                "Kiknadze",
+            ],
+            abkhazia:[
+                "Rekhviashvili",
+                "Maisuradze",
+                "Kvaratskhelia",
+                "Shonia",
+                "Gogokhia",
+
+                "Tsaldadze",
+                "Kopalyan",
+                "Qardava",
+                "Metreveli",
+                "Pipia",
+
+
+                "Shengalia",
+                "Todua",
+                "Khurtsilava",
+                "Qobalia",
+                "Tsulaia",
+
+                "Gogoryan",
+                "Rukhaia",
+                "Tchanturia",
+                "Abshilava",
+                "Gogoberishvili",
+
+
+                "Danelia",
+                "Natchkhebia",
+                "Bendelyan",
+                "Tsaava",
+                "Berulava",
+
+                "Saminava",
+                "Gasvyan",
+                "Jalaghonia",
+                "Tsanava",
+                "Gogia",
+
+
+                "Tseladze",
+                "Sajaia",
+                "Gogua",
+                "Jiqia",
+                "Kholbaia",
+
+                "Vekua",
+                "Zarqua",
+                "Tsurtsumia",
+                "Akhalaila",
+                "Lobjanidze",
+
+
+                "Shamugia",
+                "Miqava",
+                "Papava",
+                "Mushkudyan",
+                "Kalandia",
+
+                "Javjani",
+                "Gabelia",
+                "Kvitsyan",
+                "Qarchava",
+                "Kharaishvili",
+
+
+
+                "Gabunia",
+                "Svanidze",
+                "Janashia",
+                "Govejishvili",
+                "Lomidze",
+
+                "Melashvili",
+                "Ugrekhelidze",
+                "Karaeva",
+                "Benidze",
+                "Gagua"
+
+            ],
         }
 
     },
@@ -1269,6 +1888,18 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:3.1,
                 eRange:440,                
             },
+            W_M203:{
+                name:"M203",
+                disc:"standard issue 40mm grenade launcher for NATO and partners",
+                weight:3,
+                eRange:437,                
+            },
+            W_M320:{
+                name:"M320",
+                disc:"upgraded 40mm grenade launcher for NATO and partners, supposed to replace the M203 ",
+                weight:3.3,
+                eRange:437,                
+            },
         },
         RL:{
             RL_M72A7:{
@@ -1683,6 +2314,20 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             length:7.9,//length and width copied from the PBS-1 due to lack of data
             weight:1,
             reportReduction:15//db reduction
+        },
+        s_MSX240:{
+            name:"Maxim Defense MSX-240",
+            disc:"Suppressor for the M240",
+            length:10,
+            weight:1,
+            reportReduction:24//db reduction
+        },
+        s_KACNT4:{
+            name:"KAC NT4",
+            disc:"Rifle Suppressor issued to USMC infantrymen for their M4 and M27 rifles",
+            length:6.5,//length and width copied from the PBS-1 due to lack of data
+            weight:1.375,
+            reportReduction:30//db reduction
         }
     },
     foreGrips:{
@@ -2200,6 +2845,27 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             bbKit:1,
             mTape:1
         }
+    },
+    canteens:{
+        GI_MOLLE:{
+            name:"3l hydration carrier",
+            disc:"standard issue backpack-style water bladder for western troops",
+            capacity:.792,//gallons
+            weight:7.113,//weight, full
+        },
+        USSR_Canteen:{
+            name:"Soviet water canteen",
+            disc:"standard issue backpack-style water bladder for western troops",
+            capacity:.211,//gallons
+            weight:1.9,//weight, full
+        },
+        DisposableWaterBottle:{
+            name:"16.9 fluid ounce water bottle",
+            disc:"for the unprofessional or very thirsty soldier",
+            capacity:.132,
+            weight:1.25
+        }
+
     }
 }
 const components={
