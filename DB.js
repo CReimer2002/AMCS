@@ -236,9 +236,10 @@ const testItems={
             T_Rifleman:{
                 AGF_Base_Fresh_Rifleman_Green:{//Frontline, basic but equipped and trained Abkhaz army infantryman
                     name:0,
+                    ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
                     primary:{
-                        name:tComponents.weapons.rifle.W_AK74M,
-                        optic:tComponents.optics.o_1P78,
+                        //name:tComponents.weapons.rifle.W_AK74M,
+                        //optic:tComponents.optics.o_1P78,
                         suppressor:0,
                         uBGL:0,
                         railAccessory:0,
@@ -262,13 +263,13 @@ const testItems={
                         weight:0,
                     },
                     kit:{
-                        bArmor:tComponents.vests.v_6B45M,
+                        //bArmor:tComponents.vests.v_6B45M,
                         nods:0,
-                        earPro:tComponents.headSets.hs_GSSH01,
-                        comms:tComponents.pRadios.pr_R187P1E, 
-                        uniform:tComponents.uniforms.u_ratnik,
-                        IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                        canteen:tComponents.canteens.USSR_Canteen,                        
+                        //earPro:tComponents.headSets.hs_GSSH01,
+                        //comms:tComponents.pRadios.pr_R187P1E, 
+                        //uniform:tComponents.uniforms.u_ratnik,
+                        //IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                        //canteen:tComponents.canteens.USSR_Canteen,                        
                     },
                     buffs:{
                         lDrinkBuff:1,
@@ -292,7 +293,6 @@ const testItems={
                         cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
                         specialty:"11B",
                         organization:"Abkhaz Ground Forces",
-                        ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things. 
                         supplies:[210,0,0,3,10,1,.5],
                         tSupplies:[210,0,0,3,10,1,.5],
                         sPH:[0,0,0,0,0,0,0], 
@@ -5764,50 +5764,321 @@ V : Vehicle driver
                 cD:[5.1,.0849,.0169,.0339],
                 cDWV:[4.35,.0725,.0144,.0289],
             },
-            4:{//this is a test module, the only one so far with an index of 4. It is used in cdist.reg1.btg1.co1.p1.s1.pProfiles[0]   
-                /*
-                    the purposed of this refactor is to optimize and upgrade all of the profiles. The goalposts of the sim have moved far beyond what was initially intended and thus there are a number of deprecated features to the code. For example,
-                    sPH numbers are not useful at all because they are now to be calculated in runtime, as are cDI figures and potentially the value the soldier brings. Before the sim only took the supplies of each person...now they will take the entire dataset.
-                    comparison between other units is only as difficult as looking above or below. This is a candidate profile to be used in place of Type 1 SLs. 
-
-
-
-                */
-                //this particular SL has some very gucci gear, with a load of ratnik kit at his disposal.
-                value:0,//before this was an arbitrary value that was probably going to stay constant through runtime. Now it will be calculated every time the sim refreshes. 
-                lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                pri:tComponents.weapons.rifle.W_SVD,//keeping this, it is currently presumed that soldiers will keep what they are initially issued.
-                priEffectiveRange:0,
-                secEffectiveRange:0,
-                priCombinedWeight:0,
-                secCombinedWeight:0,
-                nightEffectiveRange:0,
-                priOptic:tComponents.optics.o_PSO1,//new. Accounting for optics allows for more accurate simulation of battle and the capabilities of each soldier. It will also allow the sim to actually model the impact of better equipment amongst a force.  
-                suppressor:tComponents.suppressors.s_PBS1,//increases lethality (harder to ID shot location), decreases casualty rates for the same reason, increases morale 
-                uBGL:0,
-                railAccessory:0,//rail mounted lights such as flashlights, lasers both IR and regular, IR floodbeams
-                gripMod:tComponents.foreGrips.fg_S1,//bipods, dongs, etc.
-                supplies:[270,270,0,2,10,1,.2],//keeping this but it will be modified in runtime.
-                tSupplies:[0,200,0,2,10,1,.2],//this will serve as a reference for what the soldier should have to retain their baseline capabilities. 
-                sPH:[0,0,0,0,0,0,0],//reducing 4 arrays of data down to one, this should save some space. sPH will be calculated in runtime. 
-                sec:0,//secondary already existed but now is linked directly
-                bArmor:tComponents.vests.v_6B45M,//body armor is now calculated for each soldier. Better body armor means lower rates of all casualties (even disertion, good kit improves morale!)
-                nods:tComponents.helmetOptics.o_1PN139,//new, nods will now provide various increases to lethality and reductions in casualty rates
-                earPro:tComponents.headSets.hs_GSSH01,//new, increases lethality in cqb, buffs morale, and reduces casualty rates
-                comms:tComponents.pRadios.pr_R187P1E,//new, buffs morale, reduces casualty rates depending on type along with the presence of enemy commint and ew assets. 
-                uniform:tComponents.uniforms.u_ratnik,//new, affects casualty rates and morale
-                IFAK:tComponents.iFAKs.iFAK_Generic_1,//new, affects all casualty rates to widely varying levels, along with a slight buff to morale. 
-                morale:100,//getting rid of morale cost as that will be calculated in runtime. With this as a stat it can be modified on an individual level and potentially impact casualty chances. 
-                hCExperience:0,//adding this, with veterancy soldiers can become battlehardened and this will increase lethality while decreasing casualty rates. 
-                hSLMeal:0,//adding this, this can impact other things in the dataset. May only become a factor if the soldier has no food.
-                hSLDrink:0,//adding this for the same reason as above.
-                hRIL48:18,//adding this for the same reason as above.
-                hMBuff:1,//this may not be used but if it is it will allow for the modeling of the positive impacts of a trip to the rear area mess to a soldier's morale. 1 indicates that their last meal was a hot one. It will decrease with time after
-                sBuff:1,//similar to the above, only it accounts for the recency of a hot shower. 
-                lBuff:1,//buff received for having recently gotten clothes washed or replaced.
-                iRBuff:1,//buff received for having spent time in reserve recently.
-            }
+            AGF_1_11B_G:{//Abkhaz Ground Forces standard issue 11B (infantryman), Green
+                name:0,
+                ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_0_11B_G:{//Abkhaz Ground Forces minimal issue 11B (infantryman), Green
+                name:0,
+                ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_barmitsa,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_2_11B_G:{//Abkhaz Ground Forces  11B (infantryman) equipped with GP-34, Green
+                name:0,
+                ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:tComponents.weapons.uBGL.W_GP34,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,10,1,.5],
+                    tSupplies:[210,0,0,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_2_11B_G:{//Abkhaz Ground Forces 11B with UBGL and suppressor, Green
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:tComponents.suppressors.s_PBS4,
+                    uBGL:tComponents.weapons.uBGL.W_GP34,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,10,1,.5],
+                    tSupplies:[210,0,0,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_2_11B_G:{//Abkhaz Ground Forces 11B with rocket launcher and suppressor, Green
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:tComponents.suppressors.s_PBS4,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:tComponents.weapons.RL.RPG26,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,1,3,0,1,.5],
+                    tSupplies:[210,0,1,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
         },
         T_SR_Rifleman:{
             1:{
@@ -5857,6 +6128,195 @@ V : Vehicle driver
                 issuedSecondary:"W_GP25",
                 moraleImpactOutOfAction:-7,
                 effectivenessImpactOutOfAction:-7, 
+            },
+            AGF_0_11B_FTL_G:{
+                name:0,
+                ID:[2,0,1],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45L,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_barmitsa,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_1_11B_FTL_G:{
+                name:0,
+                ID:[2,0,1],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:tComponents.weapons.uBGL.W_GP34,
+                    railAccessory:tComponents.railAccessories.ra_Klesch1L,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,10,1,.5],
+                    tSupplies:[210,0,0,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_2_11B_FTL_G:{
+                name:0,
+                ID:[2,0,1],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:tComponents.suppressors.s_PBS4,
+                    uBGL:0,
+                    railAccessory:tComponents.railAccessories.ra_Klesch1L,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
             },
         },
         T_Asst_Grenadier:{
@@ -5908,6 +6368,195 @@ V : Vehicle driver
                 moraleImpactOutOfAction:-5.5,
                 effectivenessImpactOutOfAction:-6,
             },
+            AGF_0_11B_AG_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_PKAS,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_barmitsa,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,4,3,0,1,.5],
+                    tSupplies:[210,0,4,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_1_11B_AG_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,4,3,0,1,.5],
+                    tSupplies:[210,0,4,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_2_11B_AG_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:tComponents.suppressors.s_PBS4,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,4,3,0,1,.5],
+                    tSupplies:[210,0,4,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
         },
         T_Grenadier:{
             1:{
@@ -5957,7 +6606,196 @@ V : Vehicle driver
                 secondary:"W_RPG7",
                 moraleImpactOutOfAction:-7,
                 effectivenessImpactOutOfAction:-7,   
-            }
+            },
+            AGF_0_11B_GRN_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:tComponents.weapons.RL.RPG26,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45L,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,2,3,0,1,.5],
+                    tSupplies:[210,0,2,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_1_11B_GRN_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:tComponents.weapons.RL.RPG7V2,
+                    optic:tComponents.optics.o_PGO7,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,2,3,0,1,.5],
+                    tSupplies:[210,0,2,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_2_11B_GRN_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:tComponents.weapons.RL.RPG7V2,
+                    optic:tComponents.optics.o_PGO7,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,2,3,0,1,.5],
+                    tSupplies:[210,0,2,3,10,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
         },
         T_MG:{
             1:{
@@ -6007,6 +6845,195 @@ V : Vehicle driver
                 secondary:0,
                 moraleImpactOutOfAction:-6.8,
                 effectivenessImpactOutOfAction:-6.8,
+            },
+            AGF_0_11B_MG_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_RPK74,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:tComponents.foreGrips.fg_RPKBipod,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_1_11B_MG_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_RPK74M,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:tComponents.foreGrips.fg_RPKBipod,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_2_11B_MG_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_RPK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:tComponents.foreGrips.fg_RPKBipod,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11B",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
             },
         },
         T_SL:{
@@ -6078,50 +7105,194 @@ V : Vehicle driver
                 moraleImpactOutOfAction:-12,
                 effectivenessImpactOutOfAction:-12,
             },
-            4:{//this is a test module, the only one so far with an index of 4. It is used in cdist.reg1.btg1.co1.p1.s1.pProfiles[0]   
-                /*
-                    the purposed of this refactor is to optimize and upgrade all of the profiles. The goalposts of the sim have moved far beyond what was initially intended and thus there are a number of deprecated features to the code. For example,
-                    sPH numbers are not useful at all because they are now to be calculated in runtime, as are cDI figures and potentially the value the soldier brings. Before the sim only took the supplies of each person...now they will take the entire dataset.
-                    comparison between other units is only as difficult as looking above or below. This is a candidate profile to be used in place of Type 1 SLs. 
-
-
-
-                */
-                //this particular SL has some very gucci gear, with a load of ratnik kit at his disposal.
-                value:0,//before this was an arbitrary value that was probably going to stay constant through runtime. Now it will be calculated every time the sim refreshes. 
-                lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                pri:tComponents.weapons.rifle.W_AK74M,//keeping this, it is currently presumed that soldiers will keep what they are initially issued.
-                priEffectiveRange:0,
-                secEffectiveRange:0,
-                priCombinedWeight:0,
-                secCombinedWeight:0,
-                nightEffectiveRange:0,
-                priOptic:tComponents.optics.o_1P78,//new. Accounting for optics allows for more accurate simulation of battle and the capabilities of each soldier. It will also allow the sim to actually model the impact of better equipment amongst a force.  
-                suppressor:0,//increases lethality (harder to ID shot location), decreases casualty rates for the same reason, increases morale 
-                uBGL:tComponents.weapons.uBGL.W_GP34,
-                railAccessory:tComponents.railAccessories.ra_Klesch1L,//rail mounted lights such as flashlights, lasers both IR and regular, IR floodbeams
-                gripMod:0,//bipods, dongs, etc.
-                supplies:[270,0,0,2,10,1,.2],//keeping this but it will be modified in runtime.
-                tSupplies:[270,0,0,2,10,1,.2],//this will serve as a reference for what the soldier should have to retain their baseline capabilities. 
-                sPH:[0,0,0,0,0,0,0],//reducing 4 arrays of data down to one, this should save some space. sPH will be calculated in runtime. 
-                sec:tComponents.weapons.uBGL.W_GP34,//secondary already existed but now is linked directly
-                bArmor:tComponents.vests.v_6B45M,//body armor is now calculated for each soldier. Better body armor means lower rates of all casualties (even disertion, good kit improves morale!)
-                nods:tComponents.helmetOptics.o_1PN138,//new, nods will now provide various increases to lethality and reductions in casualty rates
-                earPro:tComponents.headSets.hs_GSSH01,//new, increases lethality in cqb, buffs morale, and reduces casualty rates
-                comms:tComponents.pRadios.pr_R187P1E,//new, buffs morale, reduces casualty rates depending on type along with the presence of enemy commint and ew assets. 
-                uniform:tComponents.uniforms.u_ratnik,//new, affects casualty rates and morale
-                IFAK:tComponents.iFAKs.iFAK_Generic_1,//new, affects all casualty rates to widely varying levels, along with a slight buff to morale. 
-                morale:100,//getting rid of morale cost as that will be calculated in runtime. With this as a stat it can be modified on an individual level and potentially impact casualty chances. 
-                hCExperience:0,//adding this, with veterancy soldiers can become battlehardened and this will increase lethality while decreasing casualty rates. 
-                hSLMeal:0,//adding this, this can impact other things in the dataset. May only become a factor if the soldier has no food.
-                hSLDrink:0,//adding this for the same reason as above.
-                hRIL48:18,//adding this for the same reason as above.
-                hMBuff:1,//this may not be used but if it is it will allow for the modeling of the positive impacts of a trip to the rear area mess to a soldier's morale. 1 indicates that their last meal was a hot one. It will decrease with time after
-                sBuff:1,//similar to the above, only it accounts for the recency of a hot shower. 
-                lBuff:1,//buff received for having recently gotten clothes washed or replaced.
-                iRBuff:1,//buff received for having spent time in reserve recently.
-
+            AGF_0_11Z_G:{
+                name:0,
+                ID:[2,0,2],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45L,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_earplugs,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11Z",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_1_11Z_G:{
+                name:0,
+                ID:[2,0,2],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11Z",
+                    supplies:[210,0,0,3,0,1,.5],
+                    tSupplies:[210,0,0,3,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_2_11Z_G:{
+                name:0,
+                ID:[2,0,2],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74M,
+                    optic:tComponents.optics.o_1P78,
+                    suppressor:0,
+                    uBGL:tComponents.weapons.uBGL.W_GP34,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45M,
+                    nods:tComponents.helmetOptics.o_1PN138,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:tComponents.pRadios.pr_R187P1E, 
+                    uniform:tComponents.uniforms.u_ratnik,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11Z",
+                    supplies:[210,0,0,3,5,1,.5],
+                    tSupplies:[210,0,0,3,5,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
             },
         },
         T_Crewman:{
@@ -6172,86 +7343,194 @@ V : Vehicle driver
                 moraleImpactOutOfAction:-20,
                 effectivenessImpactOutOfAction:-25,
             },
-            4:{
-                value:0,//before this was an arbitrary value that was probably going to stay constant through runtime. Now it will be calculated every time the sim refreshes. 
-                lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                pri:tComponents.weapons.rifle.W_AK74SU,//keeping this, it is currently presumed that soldiers will keep what they are initially issued.
-                priEffectiveRange:0,
-                secEffectiveRange:0,
-                priCombinedWeight:0,
-                secCombinedWeight:0,
-                nightEffectiveRange:0,
-                priOptic:0,//new. Accounting for optics allows for more accurate simulation of battle and the capabilities of each soldier. It will also allow the sim to actually model the impact of better equipment amongst a force.  
-                suppressor:0,//increases lethality (harder to ID shot location), decreases casualty rates for the same reason, increases morale 
-                uBGL:0,
-                railAccessory:0,//rail mounted lights such as flashlights, lasers both IR and regular, IR floodbeams
-                gripMod:0,//bipods, dongs, etc.
-                supplies:[270,0,0,2,10,1,.2],//keeping this but it will be modified in runtime.
-                tSupplies:[270,0,0,2,10,1,.2],//this will serve as a reference for what the soldier should have to retain their baseline capabilities. 
-                sPH:[0,0,0,0,0,0,0],//reducing 4 arrays of data down to one, this should save some space. sPH will be calculated in runtime. 
-                sec:0,//secondary already existed but now is linked directly
-                bArmor:tComponents.vests.v_6B45L,//body armor is now calculated for each soldier. Better body armor means lower rates of all casualties (even disertion, good kit improves morale!)
-                nods:0,//new, nods will now provide various increases to lethality and reductions in casualty rates
-                earPro:tComponents.headSets.hs_GSSH01,//new, increases lethality in cqb, buffs morale, and reduces casualty rates
-                comms:tComponents.pRadios.pr_R187P1E,//new, buffs morale, reduces casualty rates depending on type along with the presence of enemy commint and ew assets. 
-                uniform:tComponents.uniforms.u_ratnik,//new, affects casualty rates and morale
-                IFAK:tComponents.iFAKs.iFAK_Generic_1,//new, affects all casualty rates to widely varying levels, along with a slight buff to morale. 
-                morale:100,//getting rid of morale cost as that will be calculated in runtime. With this as a stat it can be modified on an individual level and potentially impact casualty chances. 
-                training:{//0: none, 1: crash course, 2: boot, 3 is boot+special training in the topic
-                    armoredVehicle:3,
-                    basicInfantry:2,
-                    leadership:3,
-
+            AGF_0_19K_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:tComponents.weapons.uBGL.W_GP34,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
                 },
-                hCExperience:0,//adding this, with veterancy soldiers can become battlehardened and this will increase lethality while decreasing casualty rates. 
-                hSLMeal:0,//adding this, this can impact other things in the dataset. May only become a factor if the soldier has no food.
-                hSLDrink:0,//adding this for the same reason as above.
-                hRIL48:18,//adding this for the same reason as above.
-                hMBuff:1,//this may not be used but if it is it will allow for the modeling of the positive impacts of a trip to the rear area mess to a soldier's morale. 1 indicates that their last meal was a hot one. It will decrease with time after
-                sBuff:1,//similar to the above, only it accounts for the recency of a hot shower. 
-                lBuff:1,//buff received for having recently gotten clothes washed or replaced.
-                iRBuff:1,//buff received for having spent time in reserve recently.
-
+                secondary:{
+                    name:tComponents.weapons.pistol.W_MP443,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45L,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_cowboy,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"19K",
+                    supplies:[30,0,0,0,0,1,.5],
+                    tSupplies:[30,0,0,0,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
             },
-            AGF_Tank_Cmdr_Green:{
-                value:0,//before this was an arbitrary value that was probably going to stay constant through runtime. Now it will be calculated every time the sim refreshes. 
-                lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                pri:tComponents.weapons.rifle.W_AK74SU,//keeping this, it is currently presumed that soldiers will keep what they are initially issued.
-                priEffectiveRange:0,
-                secEffectiveRange:0,
-                priCombinedWeight:0,
-                secCombinedWeight:0,
-                nightEffectiveRange:0,
-                priOptic:0,//new. Accounting for optics allows for more accurate simulation of battle and the capabilities of each soldier. It will also allow the sim to actually model the impact of better equipment amongst a force.  
-                suppressor:0,//increases lethality (harder to ID shot location), decreases casualty rates for the same reason, increases morale 
-                uBGL:0,
-                railAccessory:0,//rail mounted lights such as flashlights, lasers both IR and regular, IR floodbeams
-                gripMod:0,//bipods, dongs, etc.
-                supplies:[270,0,0,2,10,1,.2],//keeping this but it will be modified in runtime.
-                tSupplies:[270,0,0,2,10,1,.2],//this will serve as a reference for what the soldier should have to retain their baseline capabilities. 
-                sPH:[0,0,0,0,0,0,0],//reducing 4 arrays of data down to one, this should save some space. sPH will be calculated in runtime. 
-                sec:0,//secondary already existed but now is linked directly
-                bArmor:tComponents.vests.v_6B45L,//body armor is now calculated for each soldier. Better body armor means lower rates of all casualties (even disertion, good kit improves morale!)
-                nods:0,//new, nods will now provide various increases to lethality and reductions in casualty rates
-                earPro:tComponents.headSets.hs_GSSH01,//new, increases lethality in cqb, buffs morale, and reduces casualty rates
-                comms:tComponents.pRadios.pr_R187P1E,//new, buffs morale, reduces casualty rates depending on type along with the presence of enemy commint and ew assets. 
-                uniform:tComponents.uniforms.u_ratnik,//new, affects casualty rates and morale
-                IFAK:tComponents.iFAKs.iFAK_Generic_1,//new, affects all casualty rates to widely varying levels, along with a slight buff to morale. 
-                morale:1,//getting rid of morale cost as that will be calculated in runtime. With this as a stat it can be modified on an individual level and potentially impact casualty chances. 
-                specialty:"19Z",//MOS, yes I am using that and not AFSC. The USAF doesn't have tank crews. 
-                specialtyExperience:0,//for non-combat MOS
-                hCExperience:0,//adding this, with veterancy soldiers can become battlehardened and this will increase lethality while decreasing casualty rates. 
-                hSLMeal:0,//adding this, this can impact other things in the dataset. May only become a factor if the soldier has no food.
-                hSLDrink:0,//adding this for the same reason as above.
-                hSLR:0,//hours since last rest
-                hRIL48:18,//adding this for the same reason as above.
-                hMBuff:1,//this may not be used but if it is it will allow for the modeling of the positive impacts of a trip to the rear area mess to a soldier's morale. 1 indicates that their last meal was a hot one. It will decrease with time after
-                sBuff:1,//similar to the above, only it accounts for the recency of a hot shower. 
-                lBuff:1,//buff received for having recently gotten clothes washed or replaced.
-                iRBuff:1,//buff received for having spent time in reserve recently.
-
+            AGF_1_19K_G:{
+                name:0,
+                ID:[2,0,0],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74SU,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45L,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_cowboy,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"19K",
+                    supplies:[60,0,0,0,0,1,.5],
+                    tSupplies:[60,0,0,0,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            AGF_1_19Z_G:{
+                name:0,
+                ID:[2,0,2],
+                primary:{
+                    name:tComponents.weapons.rifle.W_AK74SU,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                secondary:{
+                    name:0,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{
+                    name:0,
+                    optic:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_6B45L,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_GSSH01,
+                    comms:0, 
+                    uniform:tComponents.uniforms.u_cowboy,
+                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                    canteen:tComponents.canteens.USSR_Canteen,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"19Z",
+                    supplies:[60,0,0,0,0,1,.5],
+                    tSupplies:[60,0,0,0,0,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
             },
         },
         T_MANPADS:{

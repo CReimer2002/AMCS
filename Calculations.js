@@ -351,25 +351,27 @@ function nameGen(person){//generates complete ranks and names for individual sol
     let isWoman=0;
     let randomChance=Math.random();
     let finishedName = 0;
-    if(randomChance<cfg.nationalities.percentageInfWomenByService[person.ID[0][person.ID[1]]]){
+    if(randomChance<cfg.nationalities.percentageInfWomenByService[person.ID[0]][person.ID[1]]){
         isWoman=1;
     }
-    if(person.name==0){//don't want to regen names for soldiers that already have them
-        //handle the ranks first. Find their country, branch and role and give them a random rank from the pool
-        rankArray=DB.tComponents.names.ranks[person.ID[0]][person.ID[1]][person.ID[2]];
-        rank = rankArray[Math.floor(Math.random()*rankArray.length)];
-
-        //then first names
-        firstNameArray=DB.tComponents.names.firstNames[person.ID[0]][isWoman];
-        firstName = firstNameArray[Math.floor(Math.random()*firstNameArray.length)];
-
-        //then last names. Middle names aren't handled
-        lastNameArray=DB.tComponents.names.lastNames[person.ID[0]];
-        lastName = lastNameArray[Math.floor(Math.random()*lastNameArray.length)];
-
-        //add them together and assign it to the person's name
-        finishedName=(rank+" "+firstName+" "+lastName)
-        person.name=finishedName;
+    if(person!=0){
+        if(person.name==0){//don't want to regen names for soldiers that already have them
+            //handle the ranks first. Find their country, branch and role and give them a random rank from the pool
+            rankArray=DB.tComponents.names.ranks[person.ID[0]][person.ID[1]][person.ID[2]];
+            rank = rankArray[Math.floor(Math.random()*rankArray.length)];
+    
+            //then first names
+            firstNameArray=DB.tComponents.names.firstNames[person.ID[0]][isWoman];
+            firstName = firstNameArray[Math.floor(Math.random()*firstNameArray.length)];
+    
+            //then last names. Middle names aren't handled
+            lastNameArray=DB.tComponents.names.lastNames[person.ID[0]];
+            lastName = lastNameArray[Math.floor(Math.random()*lastNameArray.length)];
+    
+            //add them together and assign it to the person's name
+            finishedName=(rank+" "+firstName+" "+lastName)
+            person.name=finishedName;
+        };        
     }
 }
 function g_sqPersonsByIndex(squad,squadIndex){
