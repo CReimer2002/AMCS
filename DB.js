@@ -238,8 +238,8 @@ const testItems={
                     name:0,
                     ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
                     primary:{
-                        //name:tComponents.weapons.rifle.W_AK74M,
-                        //optic:tComponents.optics.o_1P78,
+                        name:0,
+                        optic:0,
                         suppressor:0,
                         uBGL:0,
                         railAccessory:0,
@@ -263,13 +263,14 @@ const testItems={
                         weight:0,
                     },
                     kit:{
-                        //bArmor:tComponents.vests.v_6B45M,
+                        bArmor:0,
                         nods:0,
-                        //earPro:tComponents.headSets.hs_GSSH01,
-                        //comms:tComponents.pRadios.pr_R187P1E, 
-                        //uniform:tComponents.uniforms.u_ratnik,
-                        //IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                        //canteen:tComponents.canteens.USSR_Canteen,                        
+                        earPro:0,
+                        comms:0, //comms needs more complexity. 
+                        squadComm:0,//radio for communication with other squad members
+                        uniform:0,
+                        IFAK:0,
+                        canteen:t0,                        
                     },
                     buffs:{
                         lDrinkBuff:1,
@@ -3770,6 +3771,13 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             quality:5,//the quality of the gear. Older gear will be worse typically. 
             flameResist:0
         },
+        u_ratnik_6B48:{
+            name:"Ratnik 6B48 tanker uniform",
+            disc:"variant of the Ratnik uniform specifically for armored vehicle crews, featuring flame resistant cloth",
+            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
+            quality:5,//the quality of the gear. Older gear will be worse typically. 
+            flameResist:1,
+        },
         u_barmitsa:{
             name:"Barmitsa",
             disc:"broadly fielded russian uniform, likely replaced by Ratnik",
@@ -3830,61 +3838,153 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             name:"R-168-0.1U(M)E VHF handheld radio set",
             disc:"VHF handheld radio set for platoon, squad and individual level comms. VHF and non-digital",
             range:.75,//miles, effective
-            transTypes:[1,0,1,1,0,0,1],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
             minRange:45,//mhz
             encryption:0,//0 none, 1 basic, 2 advanced (features like rapid frequency hopping)
             maxRange:56,
-            weight:3
+            weight:3,
+            SINCGARS:0,
+            HAVEQUICKII:0,
+            Satcom:0,
+            MILSTD188:0,
+            TETRA:0,
+            freqHop:0
+        },
+        mpr_R1685UN1E:{
+            name:"R-168-5U(1)E russian VHF manpack radio set",
+            disc:"Manpack/Vehicular radio station with frequency hopping VHF capabilities",
+            range:12.42,//miles, effective
+            minRange:45,//mhz
+            encryption:1,//0 none, 1 basic, 2 advanced
+            maxRange:56,
+            weight:5.952,
+            SINCGARS:0,
+            HAVEQUICKII:0,
+            Satcom:1,
+            MILSTD188:0,
+            TETRA:1,
+            freqHop:1
+        },
+        mpr_R1685KNE:{
+            name:"R-168-5KNE russian HF manpack radio set",
+            disc:"Manpack/Vehicular radio station with frequency hopping HF capabilities",
+            range:15,//miles, effective
+            minRange:1.5,//mhz
+            encryption:1,//0 none, 1 basic, 2 advanced
+            maxRange:29.9999,
+            weight:6.6,
+            SINCGARS:0,
+            HAVEQUICKII:0,
+            Satcom:1,
+            MILSTD188:0,
+            TETRA:1,
+            freqHop:1
         },
         pr_R187P1E:{
             name:"R-187-P1E AZART VHF and VHF digital, dual channel, frequency hopping, sattelite handheld radio set",
             disc:"Part of the Ratnik kit and a massive upgrade over the R-168",
             range:12.42,//miles, effective
-            transTypes:[1,1,1,1,1,1,1],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
             minRange:27,//mhz
             encryption:2,//0 none, 1 basic, 2 advanced
             maxRange:530,
-            weight:1.1
+            weight:1.1,
+            SINCGARS:0,
+            HAVEQUICKII:0,
+            Satcom:1,
+            MILSTD188:0,
+            TETRA:1,
+            freqHop:1
         },
-        pr_ANPRC113:{
+        mpr_ANPRC113:{
             name:"AN/PRC-113 manpack portable VHF/UHF frequency hopping encrypted radio",
             disc:"Common western manpack radio, found in US, RAF, RAAF and Georgian use",
             range:10,//miles, effective
-            transTypes:[1,1,1,0,0,0,1],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
             encryption:2,
             minRange:116,//mhz, for this radio it operates in 116-149.975 and 225 to 399.975.
             maxRange:399,
-            weight:16.7
+            weight:16.7,
+            SINCGARS:0,
+            HAVEQUICKII:1,
+            Satcom:1,
+            MILSTD188:1,
+            TETRA:0,
+            freqHop:1
         },
-        pr_ANPRC117G:{
+        mpr_ANPRC117G:{
             name:"AN/PRC-117G manpack portable VHF/UHF frequency hopping encrypted radio",
-            disc:"Common western manpack radio, found in US, RAF, RAAF and Georgian use",
+            disc:"Common western manpack radio, found in US, RAF, RAAF and Georgian use. ",
             range:1000,//miles, effective
-            transTypes:[1,1,1,1,1,1,0],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
             encryption:2,
             minRange:30,//mhz
             maxRange:2000,
-            weight:8.6
+            weight:8.6,
+            SINCGARS:1,
+            HAVEQUICKII:1,
+            Satcom:1,
+            MILSTD188:1,
+            TETRA:0,
+            freqHop:1
         },
         pr_ANPRC148:{
             name:"AN/PRC-148 handheld portable AM/FM frequency hopping encrypted radio",
             disc:"American advanced handheld multiband tactical radio",
             range:20,//miles, effective
-            transTypes:[1,1,1,1,1,1,0],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
             encryption:2,
             minRange:30,//mhz
             maxRange:512,
-            weight:1.91
+            weight:1.91,
+            SINCGARS:1,
+            HAVEQUICKII:1,
+            Satcom:0,
+            MILSTD188:0,
+            TETRA:0,
+            freqHop:1
+        },
+        mpr_ANPRC150:{
+            name:"AN/PRC-150 manpac VHF/UHF radio",
+            disc:"American advanced handheld multiband tactical radio",
+            range:20,//miles, effective
+            encryption:2,
+            minRange:30,//mhz
+            maxRange:512,
+            weight:14,
+            SINCGARS:0,
+            HAVEQUICKII:0,
+            Satcom:0,
+            MILSTD188:1,
+            TETRA:0,
+            freqHop:0
+        },
+        pr_ANPRC152:{
+            name:"AN/PRC-152 multiband handheld combat net radio",
+            disc:"American advanced handheld multiband tactical radio used by USN EOD, the US Army and the USMC, also used by USAF, can be used by FACs",
+            range:20,//miles, effective
+            encryption:2,
+            minRange:30,//mhz
+            maxRange:512,
+            weight:2.7,
+            SINCGARS:1,
+            HAVEQUICKII:1,
+            Satcom:1,
+            MILSTD188:1,
+            TETRA:0,
+            freqHop:1
+
         },
         pr_MR3000P:{
             name:"MR3000P handheld portable AM/FM frequency hopping encrypted radio",
             disc:"American advanced VHF tactical radio",
             range:20,//miles, effective
-            transTypes:[1,0,0,1,0,0,0],//vhf,uhf,analog clear,analog cypher,digital,digital advanced, tone call
             encryption:1,
             minRange:25,//mhz
             maxRange:146,
-            weight:2
+            weight:2,
+            SINCGARS:0,
+            HAVEQUICKII:0,
+            Satcom:0,
+            MILSTD188:0,
+            TETRA:0,
+            freqHop:0
+
         },
     },
     iFAKs:{
