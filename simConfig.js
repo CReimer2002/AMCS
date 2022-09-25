@@ -48,6 +48,7 @@ let environment ={
     timeZone:4,//time + or - UTC, used to calculate sunset/sunrise times which are in turn used to control the employment of troops, movements of supplies, and calculations for unit capabilities in real time, not sure if I will use this.
     startDate:time.GE_9_3_21_600.d0,//how many days including and after january 1st the simulation is to start
     startTime:time.GE_9_3_21_600.d0.h730,//the hour and minute the sim is supposed to start. Unsure if this is to be used.
+    clearDayVis:6.21//how far, in miles, the sim treat a perfect day's visibilty being. Sources of visibility must not factor in the position of the sun. This impacts effective ranges of most weapons. 
 };
 let multipliers = {
     personnel:{
@@ -69,18 +70,18 @@ let multipliers = {
         },
         weapons:{
             guns:{
-                gLengthDBuffByTType:[//how much a gun's contribution to the fight will be negatively affected by it's TOTAL length in various terrains. The more instances of confined space combat there are in an environment, the more the length will be a detriment.
+                gLengthDBuffByTType:[//how much every inch will of total length will reduce a gun's power in various terrains
                     0,    // grassland with very little cover
-                    .05,  // rural with few buildings
-                    .15,  // rural with  buildings
-                    .05,  // vineyards/tall fields/farmland
+                    .01,  // rural with few buildings
+                    .012,  // rural with  buildings
+                    .013,  // vineyards/tall fields/farmland
                     .05,  // forest, dense
-                    .075, // industrial facility
-                    .025,  // airfield
-                    .06,  // military base
-                    .2,   // urban area with many houses
-                    .25,  // highly developed city
-                    .075  // rural with buildings and lots of forest                
+                    .045, // industrial facility
+                    .03,  // airfield
+                    .035,  // military base
+                    .04,   // urban area with many houses
+                    .05,  // highly developed city
+                    .92  // rural with buildings and lots of forest                
                 ],
                 gRangeByOpticNODAtNight:[//how much a weapons range will be set to at night time with various night vision optics
                     60,//naked eye
@@ -88,6 +89,13 @@ let multipliers = {
                     200,//gen 2 nods without IR illuminators and with a clearer picture. Not quite as good as daytime but still much better than previous options
                     400//gen 3 nods, best non-thermal nods on the market.
                        //thermal nods are not on this list but are represented in the code. best possible option, able to see through fog and are a huge force multiplier.
+                ],
+                eByEyepieceType:[//how much the number of tubes on the NOD impacts it's effectiveness
+                    0,
+                    .8,
+                    1,
+                    1.1,
+                    1.2
                 ],
                 sightVsHelmetNods:.85,// what percent effective rifle optics are compared to helmet mounted nods of the same type.
                 thermalSightRangeBuff:1.25,// what multiplier will be applied to the effective range of whichever lucky bastard has thermal nods in his kit. 

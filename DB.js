@@ -1,4 +1,4 @@
-
+import cfg from "./simConfig.js";
  /*
     Estimated 
  
@@ -237,7 +237,7 @@ const testItems={
                 AGF_Base_Fresh_Rifleman_Green:{//Frontline, basic but equipped and trained Abkhaz army infantryman
                     name:0,
                     ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
-                    primary:{
+                    primary:{//primary weapon, must be a firearm
                         name:0,
                         optic:0,
                         suppressor:0,
@@ -246,7 +246,7 @@ const testItems={
                         gripMod:0,
                         weight:0,
                     },
-                    secondary:{
+                    secondary:{//secondary weapon, must be a firearm
                         name:0,
                         optic:0,
                         suppressor:0,
@@ -255,10 +255,9 @@ const testItems={
                         gripMod:0,
                         weight:0,
                     },
-                    special:{
+                    special:{//special weapon, a standalone rocket launcher
                         name:0,
                         optic:0,
-                        railAccessory:0,
                         gripMod:0,
                         weight:0,
                     },
@@ -266,11 +265,10 @@ const testItems={
                         bArmor:0,
                         nods:0,
                         earPro:0,
-                        comms:0, //comms needs more complexity. 
-                        squadComm:0,//radio for communication with other squad members
+                        comms:0, //More advanced stuff will be handled at sq level
                         uniform:0,
                         IFAK:0,
-                        canteen:t0,                        
+                        canteen:0,                        
                     },
                     buffs:{
                         lDrinkBuff:1,
@@ -294,8 +292,8 @@ const testItems={
                         cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
                         specialty:"11B",
                         organization:"Abkhaz Ground Forces",
-                        supplies:[210,0,0,3,10,1,.5],
-                        tSupplies:[210,0,0,3,10,1,.5],
+                        supplies:[0,210,0,0,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
+                        tSupplies:[0,210,0,0,3,10,1,.5],
                         sPH:[0,0,0,0,0,0,0], 
                     },
                 },
@@ -458,6 +456,115 @@ const vComponents={
     }
 
 
+};
+const gComponents={
+    calibers:{
+        //light calibers
+        c9x19:{
+            name:"9x19mm",
+            disc:"9mm",
+            weight:0264,
+            supplyIndex:0,
+            pen:0
+        },
+        c9x21:{
+            name:"9x21mm",
+            disc:"imitation 9mm used in the IMI pistol",
+            weight:0264,
+            supplyIndex:0,
+            pen:0
+        },
+        c9x18:{
+            name:"9x18mm",
+            disc:"soviet pistol round for PM",
+            weight:0242,
+            supplyIndex:0,
+            pen:0
+        },
+        c762x25:{
+            name:"7.62x25mm",
+            disc:"soviet pistol round for TT33",
+            weight:0242,
+            supplyIndex:0,
+            pen:0
+        },
+        //intermediate calibers
+        c545x39:{
+            name:"5.45x39mm",
+            disc:"prolific intermediate ammunition found most notably in the AK-74 family",
+            weight:.0271,//how much weight there is per round
+            supplyIndex:1,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_545x39
+        },
+        c762x39:{
+            name:"7.62x39mm",
+            disc:"prolific heavier cartridge famous for it's use in AK-47 pattern rifles",
+            weight:.0392,//how much weight there is per round
+            supplyIndex:1,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x39
+        },
+        c556x45:{
+            name:"5.56x45mm",
+            disc:"intermediate cartride found in M-16 pattern rifles",
+            weight:.0271,
+            supplyIndex:1,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_556x45
+        },
+        c9x39:{
+            name:"9x39mm",
+            disc:"upnecked 7.62x39mm bullet",
+            weight:.0396,
+            supplyIndex:1,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_556x45
+        },
+
+        //heavy calibers
+        c762x54r:{
+            name:"7.62x54mmr",
+            disc:"heavy cartridge notably found in the M1981",
+            weight:.059,//how much weight there is per round
+            supplyIndex:2,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x54
+        },
+        c762x51:{
+            name:"7.62x51mm",
+            disc:"battle rifle cartridge notably found in the M14",
+            weight:.0559,
+            supplyIndex:2,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x51
+        },
+        c300:{
+            name:".300 WSM",
+            disc:"sniper rifle cartridge",
+            weight:.0648,
+            supplyIndex:2,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_300WM
+        },
+        c338:{
+            name:".338 lapua",
+            disc:"sniper rifle cartridge",
+            weight:.0648,//guess rip from 300 wsm
+            supplyIndex:2,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_338
+        },
+        c12_7:{
+            name:"12.7mm",
+            disc:"sniper rifle cartridge",
+            weight:.24,//a guess because EVERYONE KNOWS HOW TO MEASURE DIAMETER BUT NOBODY THOUGHT TO USE A SCALE
+            supplyIndex:2,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_12_7
+        },
+        c50bmg:{
+            name:".50 BMG",
+            disc:"sniper rifle cartridge",
+            weight:.243,
+            supplyIndex:2,
+            pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_50
+        },
+    },
+            /*    
+            ("7.62x25mm",0),//TT-33 
+        */
 };
 const tComponents={//30 round 7.62 mag weighs 1.99 lbs
     names:{
@@ -2373,6 +2480,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
 
     },
     weapons:{
+
+
         rifle:{
             //assault rifles
             W_AK47:{
@@ -2380,7 +2489,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.69,
                 length:35,
                 bLength:16.3,
-                caliber:"7.62x39mm",
+                caliber:gComponents.calibers.c762x39,
                 eRange:383,
                 report:140
             },
@@ -2389,7 +2498,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.27,
                 length:34.6,
                 bLength:16.3,
-                caliber:"7.62x39mm",
+                caliber:gComponents.calibers.c762x39,
                 eRange:383,
                 report:140
             },
@@ -2398,7 +2507,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.69,
                 length:25.8,
                 bLength:16.3,
-                caliber:"7.62x39mm",
+                caliber:gComponents.calibers.c762x39,
                 eRange:383,
                 report:140
             },
@@ -2407,7 +2516,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.89,
                 length:27.8,
                 bLength:16.3,
-                caliber:"7.62x39mm",
+                caliber:gComponents.calibers.c762x39,
                 eRange:550,
                 report:140
             },
@@ -2416,7 +2525,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:7.31,//pounds, with loaded mag
                 length:37.1,//inches, tip to butt (hehe)
                 bLength:16.3,//barrel length, inches
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:550,//effective range, yards, point target.
                 report:140
             },
@@ -2425,7 +2534,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:8.01,
                 length:27.6,//though the length is technically the same as the vanilla AK-74 with the stock extended, when needed the folded stock means the gun can be much shorter, so the folded length is used here.
                 bLength:16.3,
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:575,
                 report:140
             },
@@ -2434,7 +2543,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.31,
                 length:27.6,
                 bLength:16.3,
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:575,
                 report:140
             },
@@ -2443,7 +2552,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.71,
                 length:27.1,
                 bLength:16.3,
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:481,
                 report:140
             },
@@ -2452,7 +2561,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:7.75,
                 length:29.75,
                 bLength:14.5,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c556x45,
                 eRange:550,
                 report:160                
             },
@@ -2461,7 +2570,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:10,
                 length:40.4,
                 bLength:17.7,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:437,//presuming no optic
                 report:164                
             },
@@ -2470,7 +2579,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:10,
                 length:37,
                 bLength:13.1,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c556x45,
                 eRange:437,//presuming no optic
                 report:160                
             },
@@ -2479,7 +2588,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:8.81,
                 length:39.61,
                 bLength:20,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c556x45,
                 eRange:601,//presuming no optic
                 report:158                
             },
@@ -2488,7 +2597,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:8,
                 length:39.37,
                 bLength:20,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c556x45,
                 eRange:601,//presuming no optic
                 report:158                
             },
@@ -2497,7 +2606,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:8.5,
                 length:28,
                 bLength:16,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:660,//presuming no optic
                 report:165                
             },
@@ -2506,7 +2615,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:8.25,
                 length:30,
                 bLength:16,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c556x45,
                 eRange:550,//presuming no optic
                 report:158                
             },
@@ -2515,7 +2624,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.8,
                 length:33,
                 bLength:16.5,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c556x45,
                 eRange:656,//presuming no optic
                 report:159.5                
             },
@@ -2525,7 +2634,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:7.99,
                 length:19.3,
                 bLength:8.1,
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:380,
                 report:143
             },
@@ -2536,7 +2645,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:23.84,
                 length:47.4,
                 bLength:23.8,
-                caliber:"7.62x54mmr",
+                caliber:gComponents.calibers.c762x54r,
                 eRange:1094,
                 report:150
             },
@@ -2545,7 +2654,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:29,
                 length:49.7,
                 bLength:21.7,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:1200,
                 report:160
             },
@@ -2554,7 +2663,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:27,
                 length:49.7,
                 bLength:21.7,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:1200,
                 report:160
             },
@@ -2563,7 +2672,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:22,
                 length:40.75,
                 bLength:21,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:866,
                 report:160
             },
@@ -2572,7 +2681,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:19.7,
                 length:40.9,
                 bLength:18.3,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c556x45,
                 eRange:866,
                 report:160
             },
@@ -2581,7 +2690,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:19,
                 length:31.889,
                 bLength:18,
-                caliber:"5.56x45mm",
+                caliber:gComponents.calibers.c556x45,
                 eRange:874,
                 report:158
             },
@@ -2590,7 +2699,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:22,//no bipod
                 length:47,
                 bLength:25.9,
-                caliber:"7.62x54mmr",
+                caliber:gComponents.calibers.c762x54r,
                 eRange:1640,
                 report:149
             },
@@ -2599,7 +2708,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:14.79,//with 75 round mag
                 length:40.9,
                 bLength:23.2,
-                caliber:"7.62x39mm",
+                caliber:gComponents.calibers.c762x39,
                 eRange:1093,
                 report:143//guess, slightly reducing it's report because it has a longer barrel than the AK-47            
             },
@@ -2608,7 +2717,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:15.19,//with 75 round mag
                 length:32.3,
                 bLength:23.2,
-                caliber:"7.62x39mm",
+                caliber:gComponents.calibers.c762x39,
                 eRange:1093,
                 report:143//guess, slightly reducing it's report because it has a longer barrel than the AK-47            
             },
@@ -2617,7 +2726,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:12,//pounds, with loaded 45 round mag, according to my guess.
                 length:41.7,//inches, tip to butt (hehe)
                 bLength:23.2,//barrel length, inches
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:850,//effective range, yards, point target.,
                 report:138
             },
@@ -2626,7 +2735,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:12.7,//pounds, with loaded 45 round mag, according to my guess.
                 length:33.3,//inches, tip to butt (hehe)
                 bLength:23.2,//barrel length, inches
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:850,//effective range, yards, point target.,
                 report:138
             },
@@ -2635,7 +2744,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:12.7,//pounds, with loaded 45 round mag, according to my guess.
                 length:33.3,//inches, tip to butt (hehe)
                 bLength:23.2,//barrel length, inches
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:860,//effective range, yards, point target.,
                 report:138
             },
@@ -2644,7 +2753,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:13.23,
                 length:33.3,
                 bLength:21.7,
-                caliber:"5.45x39mm",
+                caliber:gComponents.calibers.c545x39,
                 eRange:870,
                 report:137
             },
@@ -2655,7 +2764,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:8.5,
                 length:40,
                 bLength:20,
-                caliber:"7.62x39mm",
+                caliber:gComponents.calibers.c762x39,
                 eRange:440,//this is presuming someone actually put an optic on it
                 report:145
             },
@@ -2664,7 +2773,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:10.7,
                 length:44.3,
                 bLength:22,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:500,//presuming no optic
                 report:164                
             },
@@ -2673,7 +2782,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.25,//this is a guesstimate. Wikipedia stats say it weighs 9.48 with a scope and an unloaded mag. Reference weight I need is scopeless w/loaded mag..
                 length:48.2,
                 bLength:24.4,
-                caliber:"7.62x54mmr",
+                caliber:gComponents.calibers.c762x54r,
                 eRange:875,
                 report:150//guess, I know that it's a big, very loud round
             },
@@ -2682,7 +2791,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:11,
                 length:34.4,
                 bLength:21.7,
-                caliber:"7.62x54mmr",
+                caliber:gComponents.calibers.c762x54r,
                 eRange:875,
                 report:151
             },
@@ -2691,7 +2800,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:15,
                 length:40.51,
                 bLength:20,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:875,
                 report:162
             },
@@ -2700,7 +2809,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:10,
                 length:35.39,
                 bLength:16.3,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:875,
                 report:165
             },
@@ -2709,7 +2818,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:14,
                 length:46.5,
                 bLength:24,
-                caliber:".300",
+                caliber:gComponents.calibers.c300,
                 eRange:1312,
                 report:160
             },
@@ -2718,7 +2827,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:15,
                 length:36,
                 bLength:20,
-                caliber:".338 lapua magnum",
+                caliber:gComponents.calibers.c338,
                 eRange:1312,
                 report:160
             }, 
@@ -2729,7 +2838,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:8.8,
                 length:48.8,
                 bLength:29,
-                caliber:"7.62x54mmr",
+                caliber:gComponents.calibers.c762x54r,
                 eRange:900,//this is presuming someone actually put an optic on it
                 report:150
             },
@@ -2738,7 +2847,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:12.8,
                 length:47.24,
                 bLength:25.59,
-                caliber:"7.62x54mmr",
+                caliber:gComponents.calibers.c762x54r,
                 eRange:1094,//this is presuming someone actually put an optic on it
                 report:150
             },
@@ -2747,7 +2856,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:9.5,
                 length:41.5,
                 bLength:26,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:700,//this is presuming someone actually put an optic on it
                 report:160
             },
@@ -2756,7 +2865,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:15,
                 length:46.5,
                 bLength:26,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:870,//this is presuming someone actually put an optic on it
                 report:160
             },
@@ -2765,7 +2874,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:32.7,
                 length:57,
                 bLength:29,
-                caliber:"12.7mm",
+                caliber:gComponents.calibers.c50bmg,
                 eRange:1969,//0_0\\
                 report:165
             },
@@ -2774,8 +2883,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:12.5,
                 length:45.28,
                 bLength:25.98,
-                caliber:"7.62x51mm",
-                eRange:875,//0_0\\
+                caliber:gComponents.calibers.c762x51,
+                eRange:875,
                 report:162.75
             },
             W_M24A1:{
@@ -2783,8 +2892,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:14,
                 length:43,
                 bLength:24,
-                caliber:"7.62x51mm",
-                eRange:875,//0_0\\
+                caliber:gComponents.calibers.c762x51,
+                eRange:875,
                 report:163
             },
             W_BT_APR308:{
@@ -2792,7 +2901,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:16.5,
                 length:44.8,
                 bLength:24,
-                caliber:"7.62x51mm",
+                caliber:gComponents.calibers.c762x51,
                 eRange:1094,
                 report:163
             },
@@ -2801,7 +2910,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:6.5,
                 length:24.2,
                 bLength:7.9,
-                caliber:"9x39mm",
+                caliber:gComponents.calibers.c9x39,
                 eRange:464,
                 report:130
             },
@@ -2810,7 +2919,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:6.25,
                 length:24.2,
                 bLength:7.9,
-                caliber:"9x39mm",
+                caliber:gComponents.calibers.c9x39,
                 eRange:464,
                 report:130
             },
@@ -2819,7 +2928,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:40,
                 length:65.748,
                 bLength:39.37,
-                caliber:"12.7mm",
+                caliber:gComponents.calibers.c50bmg,
                 eRange:3280,//bruhhhhh
                 report:165
             },
@@ -2828,7 +2937,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:30,
                 length:57,
                 bLength:29,
-                caliber:".50",
+                caliber:gComponents.calibers.c50bmg,
                 eRange:1970,
                 report:165
             },
@@ -2840,7 +2949,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:7,
                 length:27,
                 bLength:8.9,
-                caliber:"9x19mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:218,
                 report:130
             },            
@@ -2868,7 +2977,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2.55,
                 length:8.5,
                 bLength:4.9,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
                 report:139                
             },
@@ -2877,7 +2986,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:1.92,
                 length:8,
                 bLength:4.7,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
                 report:140                
             },
@@ -2886,7 +2995,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2.41,
                 length:8.5,
                 bLength:3.9,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
                 report:142               
             },
@@ -2895,7 +3004,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2.41,
                 length:7.7,
                 bLength:4.4,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
                 report:140               
             },
@@ -2904,7 +3013,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2.01,
                 length:8.03,
                 bLength:4.49,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
                 report:139               
             },
@@ -2913,7 +3022,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2,
                 length:7.6,
                 bLength:4.25,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
                 report:140               
             },
@@ -2922,7 +3031,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2,//guess
                 length:8,
                 bLength:4.43,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
                 report:140               
             },
@@ -2931,7 +3040,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2,//guess
                 length:7.8,
                 bLength:4.4,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
                 report:140               
             },
@@ -2940,7 +3049,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2.09,//guessing this is loaded
                 length:7.7,
                 bLength:4.4,
-                caliber:"9x21mm",
+                caliber:gComponents.calibers.c9x21,
                 eRange:55,//presuming no optic
                 report:140               
             },
@@ -2949,7 +3058,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2.69,//guessing this is loaded
                 length:8.86,
                 bLength:5.51,
-                caliber:"9x18mm",
+                caliber:gComponents.calibers.c9x18,
                 eRange:55,//presuming no optic
                 report:135               
             },
@@ -2958,7 +3067,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:1.5,//guessing this is loaded
                 length:6.36,
                 bLength:3.68,
-                caliber:"9x18mm",
+                caliber:gComponents.calibers.c9x18,
                 eRange:40,//presuming no optic
                 report:135               
             },
@@ -2967,7 +3076,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2,//guessing this is loaded
                 length:7.2,
                 bLength:4.1,
-                caliber:"9mm",
+                caliber:gComponents.calibers.c9x19,
                 eRange:50,//presuming no optic
                 report:140               
             },
@@ -2976,7 +3085,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:2,//guessing this is loaded
                 length:7.6,
                 bLength:4.6,
-                caliber:"7.62x25mm",
+                caliber:gComponents.calibers.c762x25,
                 eRange:50,//presuming no optic
                 report:138               
             },
@@ -3409,7 +3518,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             mag:1.2,//IRL it is 1 but the incorporated IR laser should be factored
             obj:25,
             weight:.95,//weight, pounds.
-            NVG:10,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
         }
     },
     suppressors:{
@@ -3445,7 +3554,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
     foreGrips:{
         fg_S1:{
             name:"S1 Bipod",
-            disc:"Soviet bipod for SVD rifles, not to be confused with the ones on the SVDM's one. Fairly rudimentary, likely proprietary to the SVD",
+            disc:"Soviet bipod for SVD rifles, not to be confused with the one on the SVDM. Fairly rudimentary, likely proprietary to the SVD",
             type:4,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
             weight:1.28,         
         },
@@ -4078,7 +4187,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
         }
 
     }
-}
+};
 const components={
     vehicles:{
 
@@ -7391,6 +7500,69 @@ V : Vehicle driver
                     specialty:"11Z",
                     supplies:[210,0,0,3,5,1,.5],
                     tSupplies:[210,0,0,3,5,1,.5],
+                    sPH:[0,0,0,0,0,0,0], 
+                },
+            },
+            TEST_US_GIGASOLDIER:{//convienient profile to check out all kinds of weapons
+                name:0,
+                ID:[0,0,2],//country, branch, rank index. This reads as US, Army, SL
+                primary:{//primary weapon, must be a firearm
+                    name:tComponents.weapons.rifle.W_M4A1,
+                    optic:tComponents.optics.o_TA31RCO_ACOG,
+                    suppressor:0,
+                    uBGL:tComponents.weapons.uBGL.W_M203,
+                    railAccessory:tComponents.railAccessories.ra_ANPEQ2,
+                    gripMod:tComponents.foreGrips.fg_RK2L,
+                    weight:0,
+                },
+                secondary:{//secondary weapon, must be a firearm
+                    name:tComponents.weapons.pistol.W_M9,
+                    optic:0,
+                    suppressor:0,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{//special weapon, a standalone rocket launcher
+                    name:tComponents.weapons.RL.RL_M72A7,
+                    optic:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_SPCS,
+                    nods:tComponents.helmetOptics.o_ANPVS14,
+                    earPro:tComponents.headSets.hs_ComTacVI,
+                    comms:tComponents.pRadios.pr_MR3000P, //More advanced stuff will be handled at sq level
+                    uniform:tComponents.uniforms.u_ACM,
+                    IFAK:tComponents.iFAKs.iFAK_II,
+                    canteen:tComponents.canteens.GI_MOLLE,                        
+                },
+                buffs:{
+                    lDrinkBuff:1,
+                    lMealBuff:1,
+                    lHotMealBuff:1,
+                    lLaundryBuff:1,
+                    lHotShowerBuff:1,
+                    lReserveBuff:1,
+                    tSinceReserve:0,
+                },
+                status:{
+                    effectivness:1,
+                    morale:1,
+                    confidenceInLeadership:1,
+                    confidenceInCause:1,
+                    resolve:1,
+                    exhaustion:0,
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                    specialty:"11Z",
+                    organization:"US Army",
+                    supplies:[30,210,0,0,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
+                    tSupplies:[30,210,0,0,3,10,1,.5],
                     sPH:[0,0,0,0,0,0,0], 
                 },
             },

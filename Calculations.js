@@ -72,6 +72,324 @@ function vc_tank(company,squad){//WIP, before continuing I should really quantif
    }
 
 };
+function vc_weaponOptic(person,weapType,yardRange){
+    let opticWeight=0;
+    let newYardRange=yardRange
+    if(weapType==0){//primary
+        if((person.primary.name!=0)&&(person.primary.optic!=0)){
+            if(mu_isNight()){//is it night time?
+                if(person.kit.nods!=0){//does the person have NODs?
+                    if(person.kit.nods.type>=person.primary.optic.NVG){//are the nods equal to or better than the optic?
+                        if(person.kit.nods.type<4){
+                            newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
+                        }else{
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff);//special buff for thermals
+                        }
+                        newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];   
+                    }else{
+                        if(person.primary.optic.NVG<4){//if the optic isn't thermal
+                            newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.primary.optic.NVG])
+                            newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                            newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
+                        }else{//it's thermal so it gets a buff instead of a set decreased range
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                            newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                            newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+                        }
+                    }
+                }else{
+                    if(person.primary.optic.NVG<4){
+                        newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.primary.optic.NVG])                            
+                    }else{
+                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                    }
+                    if(person.kit.nods!=0){
+                        if(person.kit.nods.type==4){
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);
+                        }
+                    }
+                    if(person.primary.optic.NVG==4){
+                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);                        
+                    }
+                }
+            }else{
+                newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+            }
+            opticWeight=person.primary.optic.weight;         
+        }
+    }else if(weapType==1){//secondary
+        if((person.secondary.name!=0)&&(person.secondary.optic!=0)){
+            if(mu_isNight()){//is it night time?
+                if(person.kit.nods!=0){//does the person have NODs?
+                    if(person.kit.nods.type>=person.secondary.optic.NVG){//are the nods equal to or better than the optic?
+                        if(person.kit.nods.type<4){
+                            newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
+                        }else{
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff);//special buff for thermals
+                        }
+                        newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];   
+                    }else{
+                        if(person.secondary.optic.NVG<4){//if the optic isn't thermal
+                            newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.secondary.optic.NVG])
+                            newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                            newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
+                        }else{//it's thermal so it gets a buff instead of a set decreased range
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                            newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                            newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+                        }
+                    }
+                }else{
+                    if(person.secondary.optic.NVG<4){
+                        newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.secondary.optic.NVG])                            
+                    }else{
+                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                    }
+                    if(person.kit.nods!=0){
+                        if(person.kit.nods.type==4){
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);
+                        }
+                    }
+                    if(person.secondary.optic.NVG==4){
+                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);                        
+                    }
+                }
+            }else{
+                newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+            }
+            opticWeight=person.secondary.optic.weight;                    
+        }
+    }else if(weapType==2){//specialty
+        if((person.special.name!=0)&&(person.special.optic!=0)){
+            if(mu_isNight()){//is it night time?
+                if(person.kit.nods!=0){//does the person have NODs?
+                    if(person.kit.nods.type>=person.special.optic.NVG){//are the nods equal to or better than the optic?
+                        if(person.kit.nods.type<4){
+                            newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
+                        }else{
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff);//special buff for thermals
+                        }
+                        newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];   
+                    }else{
+                        if(person.special.optic.NVG<4){//if the optic isn't thermal
+                            newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.special.optic.NVG])
+                            newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                            newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
+                        }else{//it's thermal so it gets a buff instead of a set decreased range
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                            newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                            newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+                        }
+                    }
+                }else{
+                    if(person.special.optic.NVG<4){
+                        newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.special.optic.NVG])                            
+                    }else{
+                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                    }
+                    if(person.kit.nods!=0){
+                        if(person.kit.nods.type==4){
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);
+                        }
+                    }
+                    if(person.special.optic.NVG==4){
+                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);                        
+                    }
+                }
+            }else{
+                newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+            }
+            opticWeight=person.special.optic.weight;                  
+        }
+    }else{
+        console.log("vc_weaponOptic is being fed the value "+weapType+", a weapType it was not designed to handle")
+    }
+    newYardRange*=(cfg.environment.clearDayVis/runtimeVariables.currentWeather.vis);//finally, check the visibility and see if all that optic zoom can actually be useful
+    return[newYardRange,opticWeight];
+        
+};
+function vc_weapon(person,terrain,weaponIndex){//determine the primary value of a primary weapon of a person
+    let Weight = 0;//total weight of the weapon
+    let Power = 0;//power of the weapon, accounting for outside factors like ToD, visibility, etc. 
+    let Pen = 0;//penetration capabilities of the weapon
+    let cumeYards = 0;
+    let Length = 0;   
+    let APPoints = 0;
+    if(weaponIndex==0){//primary
+        if(person.primary.name!=0){
+            Weight+=person.primary.name.weight
+            Length=person.primary.name.bLength;
+            if(person.status.supplies[person.primary.name.caliber.supplyIndex]>29){//only give them offensive/defensive capability if they have ammo
+                cumeYards+=person.primary.name.eRange;
+                if(person.primary.suppressor!=0){//module that handles suppressors
+                    Power+=(person.primary.suppressor.reportReduction*cfg.multipliers.personnel.weapons.guns.gBuffByLDb);
+                    Length+=person.primary.suppressor.length;
+                    Weight+=person.primary.suppressor.weight
+                };
+                if(person.primary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.primary.railAccessory.weight;
+                    if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
+                        if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
+                            if(person.primary.railAccessory.features[2]!=0){
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;                               
+                            }
+                            if(person.primary.railAccessory.features[3]!=0){
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;                                
+                            }
+                        }
+                    }else if((mu_isNight())){//it is night time but they don't have Nods or they have thermals, in which case they don't need lights
+                        if(person.primary.railAccessory.features[0]!=0){
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;                               
+                        }
+                        if(person.primary.railAccessory.features[1]!=0){
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBLaser;                                
+                        }
+                    }        
+                };
+                if(person.primary.gripMod!=0){//grips and bipods handler
+                    Weight+=person.primary.gripMod.weight;
+                    cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.primary.gripMod.type];    
+                };
+                Pen+=person.primary.name.caliber.pen;
+            }else{//if they don't have ammo they still have all the accessories which means all the negative traits will still be counted
+                if(person.primary.suppressor!=0){//module that handles suppressors
+                    Length+=person.primary.suppressor.length;
+                    Weight+=person.primary.suppressor.weight
+                };
+                if(person.primary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.primary.railAccessory.weight;     
+                };
+                if(person.primary.gripMod!=0){//grips and bipods handler
+                    Weight+=person.primary.gripMod.weight;   
+                };      
+            };
+            if(person.primary.uBGL!=0){//underbarrel grenade launcher handler
+                Weight+=person.primary.uBGL.weight;
+                if(person.status.supplies[5]>0){
+                    cumeYards+=person.primary.uBGL.eRange;
+                }    
+            };
+            cumeYards=vc_weaponOptic(person,0,runtimeVariables.currentWeather,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,0,runtimeVariables.currentWeather,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);            
+        }
+    }else if(weaponIndex==1){//secondary
+        if(person.secondary.name!=0){
+            Weight+=person.secondary.name.weight;
+            Length=person.secondary.name.bLength;
+            if(person.status.supplies[person.secondary.name.caliber.supplyIndex]>29){     
+                cumeYards+=person.secondary.name.eRange;//only give yards range bonus if it has ammo
+                if(person.secondary.suppressor!=0){//module that handles suppressors
+                    Power+=(person.secondary.suppressor.reportReduction*cfg.multipliers.personnel.weapons.guns.gBuffByLDb);
+                    Length+=person.secondary.suppressor.length;
+                    Weight+=person.secondary.suppressor.weight
+                };
+                if(person.secondary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.secondary.railAccessory.weight;
+                    if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
+                        if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
+                            if(person.secondary.railAccessory.features[2]!=0){
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;                               
+                            }
+                            if(person.secondary.railAccessory.features[3]!=0){
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;                                
+                            }
+                        }
+                    }else if((mu_isNight())){//it is night time but they don't have Nods or they have thermals, in which case they don't need lights
+                        if(person.secondary.railAccessory.features[0]!=0){
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;                               
+                        }
+                        if(person.secondary.railAccessory.features[1]!=0){
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBLaser;                                
+                        }
+                    }        
+                }
+                if(person.secondary.gripMod!=0){//grips and bipods handler
+                    Weight+=person.secondary.gripMod.weight;
+                    cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.secondary.gripMod.type];    
+                };
+                Pen+=person.secondary.name.caliber.pen;
+            }else{
+                if(person.secondary.suppressor!=0){//module that handles suppressors
+                    Length+=person.secondary.suppressor.length;
+                    Weight+=person.secondary.suppressor.weight
+                };
+                if(person.secondary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.secondary.railAccessory.weight;
+                }
+                if(person.secondary.gripMod!=0){//grips and bipods handler
+                    Weight+=person.secondary.gripMod.weight;    
+                };                
+            }
+            if(person.secondary.uBGL!=0){//underbarrel grenade launcher handler. Handled separately because it does not depend on the host weap having ammo to work. 
+                Weight+=person.secondary.uBGL.weight;
+                if(person.status.supplies[5]>0){
+                    cumeYards+=person.secondary.uBGL.eRange;
+                }    
+            }
+            cumeYards=vc_weaponOptic(person,1,runtimeVariables.currentWeather,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,1,runtimeVariables.currentWeather,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);       
+        }
+    }else if(weaponIndex==2){//special
+        if(person.special.name!=0){
+            Weight+=person.special.name.weight
+            if(person.status.supplies[3]>0){//unique rocket rounds in particular are not tracked, at least not yet. IF they have rocket rounds their rocket is usable.
+            
+                if(person.special.gripMod!=0){//grips and bipods handler
+                    Weight+=person.special.gripMod.weight;
+                    cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.special.gripMod.type];    
+                };
+                Pen+=person.special.name.pen;    
+            }else{
+                if(person.special.gripMod!=0){//grips and bipods handler
+                    Weight+=person.special.gripMod.weight;
+                    cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.special.gripMod.type];    
+                };                
+            }
+            cumeYards=vc_weaponOptic(person,1,runtimeVariables.currentWeather,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,1,runtimeVariables.currentWeather,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);       
+    }else{
+        console.log("VC_weapon is being fed an invalid weaponIndex of "+weaponIndex)
+    }
+        /*Muzzle attachment
+        */        
+        /*UBGL
+        */  
+        /*Rail Device
+        */
+        /*Grip mod
+        */
+        /*Optic (goes last as it has the effect of reducing effective range depending on terrain)
+        */    
+    
+    }
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        antiVehiclePoints:APPoints
+    }
+    
+};
+
+
+
+
+
+
+
+
+
 // SUPPLIES PER HOUR CALCULATIONS //
 
 
@@ -270,7 +588,6 @@ function ss_travelOneVic(squad,pointA,pointB){
 }
 
 // MISCELLANIOUS UTILITY
-
 function c_squadVehicleType(squad){
     let vicType=0
         //simple but widely used function that obtains the vehicle type of a squad. Used several times in the calculation of squad database entries. 
@@ -390,6 +707,13 @@ function g_sqPersonsByIndex(squad,squadIndex){
     }
     return numPersonnel;
 };
+function mu_isNight(){
+    if((runtimeVariables.time<runtimeVariables.date.sunRise)||(runtimeVariables.time>runtimeVariables.date.sunSet)){//is it night time?
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 
@@ -458,7 +782,8 @@ function c_SAMSysSkillLvl(SAMBat){
 let runtimeVariables ={
     date:cfg.environment.startDate,
     time:cfg.environment.startTime,
-    refreshNumber:cfg.general.refreshNumber,    
+    refreshNumber:cfg.general.refreshNumber,
+    currentWeather:cfg.environment.startTime,    
 };
 //ak74 w bipod and suppressor is 9.21
 //ak74 w/o bipod and suppressor is 10.254

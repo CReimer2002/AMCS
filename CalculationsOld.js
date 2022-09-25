@@ -431,7 +431,6 @@ function vc_rifle(person,terrain,giveReport){
                         }
                     };
                     priValue+=((cfg.multipliers.personnel.weapons.guns.gLoudnessThreshold-priShotLoudness)*cfg.multipliers.personnel.weapons.guns.gBuffByLDb);
-                    priValue+=(priRange*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);
                     
                 };                
             }else{

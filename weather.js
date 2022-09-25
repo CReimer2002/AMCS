@@ -11,7 +11,7 @@
         [7.78,2]                  [wind in kts,dir 1 for N, 2 NE, 3 E, 4 SE, 5 S, 6 SW, 7 W, 8 NW]
     ],
 */
-let GE_9_3_21_600= {//in this instance the invasion starts on march 9, 2021 at 600. Chosen due to the poor weather that day and the following day's projected rainfall which will benefit entrenched forces but harm movements of counterattacking US forces. 
+let GE_9_3_21_600={//in this instance the invasion starts on march 9, 2021 at 600. Chosen due to the poor weather that day and the following day's projected rainfall which will benefit entrenched forces but harm movements of counterattacking US forces. 
     d0:{
         sunRise:642,
         sunSet:1819,
