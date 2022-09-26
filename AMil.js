@@ -22960,7 +22960,7 @@ let AbkhazCompaniesTest = {
                 vicTimeTillBack:0,
                 personnelProfiles:[
                     [DB.components.personnel.T_Crewman.AGF_1_19K_G,DB.components.personnel.T_Crewman.AGF_1_19Z_G,0,0],
-                    [DB.components.personnel.T_SL.AGF_1_11Z_G,0,0,0],
+                    [DB.components.personnel.T_SL.TEST_US_GIGASOLDIER,0,0,0],
                     [DB.components.personnel.T_Grenadier.AGF_1_11B_GRN_G,0,0,0],
                     [DB.components.personnel.T_Asst_Grenadier.AGF_1_11B_AG_G,0,0,0],
                     [DB.components.personnel.T_MG.AGF_1_11B_MG_G,0,0,0],

@@ -463,28 +463,28 @@ const gComponents={
         c9x19:{
             name:"9x19mm",
             disc:"9mm",
-            weight:0264,
+            weight:.0264,
             supplyIndex:0,
             pen:0
         },
         c9x21:{
             name:"9x21mm",
             disc:"imitation 9mm used in the IMI pistol",
-            weight:0264,
+            weight:.0264,
             supplyIndex:0,
             pen:0
         },
         c9x18:{
             name:"9x18mm",
             disc:"soviet pistol round for PM",
-            weight:0242,
+            weight:.0242,
             supplyIndex:0,
             pen:0
         },
         c762x25:{
             name:"7.62x25mm",
             disc:"soviet pistol round for TT33",
-            weight:0242,
+            weight:.0242,
             supplyIndex:0,
             pen:0
         },
@@ -2830,7 +2830,37 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 caliber:gComponents.calibers.c338,
                 eRange:1312,
                 report:160
+            },
+            W_M39EMR:{
+                name:"M39 Enhanced Marksman Rifle",
+                disc:"USMC DMR, predecessor to the M110 SASS",
+                weight:14,
+                length:44.2,
+                bLength:22,
+                caliber:gComponents.calibers.c762x51,
+                eRange:850,
+                report:162
+            },
+            W_M38DMR:{
+                name:"M38 DMR",
+                disc:"USMC DMR, as of 2018 all USMC infantry squads have one per inf squad. Comes with the Leupold TS30A2 and a QDSS suppressor (not factored in weight calc",
+                weight:9.8,
+                length:36.9,
+                bLength:16.5,
+                caliber:gComponents.calibers.c556x45,
+                eRange:656,
+                report:158
             }, 
+            W_MK13Mod7:{
+                name:"MK 13 Mod 7 sniper rifle",
+                disc:"USMC replacement of the M40 series. Typically uses the Nightforce Advanced Tactical Riflescope ",
+                weight:12,
+                length:47.5,
+                bLength:26.5,
+                caliber:gComponents.calibers.c300,
+                eRange:1421,
+                report:155
+            },     
             
             //snipers
             W_M1891_30_S:{
@@ -2940,6 +2970,16 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 caliber:gComponents.calibers.c50bmg,
                 eRange:1970,
                 report:165
+            },
+            W_M40A5:{
+                name:"M40A5 USMC Sniper",
+                disc:"Predecessor to the MK13M7, used by the USMC, being replaced as of 2018. Uses the M8541 SSDS, can also be equipped with the Simrad KN200 NV WS",
+                weight:30,
+                length:44.25,
+                bLength:25,
+                caliber:gComponents.calibers.c762x51,
+                eRange:874.89,
+                report:162
             },
             
 
@@ -3088,6 +3128,15 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 caliber:gComponents.calibers.c762x25,
                 eRange:50,//presuming no optic
                 report:138               
+            },
+            W_MEUSOC_Pistol:{
+                name:"MEU(SOC) pistol",
+                weight:3,//guessing this is loaded
+                length:8.25,
+                bLength:5.03,
+                caliber:gComponents.calibers.c9x19,//yeah I know it's 9mil
+                eRange:76.55,//presuming no optic
+                report:140               
             },
         },
         uBGL:{
@@ -3240,7 +3289,19 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 pen:500,    
                 eRange:850//yards
             },
-
+            RL_MK153_SMAW:{
+                name:"MK 154 Shoulder-Launched Multipurpose Assault Weapon",
+                disc:"USMC-unique SMAW replacement used by USMC, Ukraine and Pakistan, interestingly",
+                isSingleShot:0,
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
+                weight:16.6,//the round is in it's own tube, attached to the back of the launcher. It is thus pretty heavy.
+                roundWeight:12.9,
+                warheadWeight:2,//lbs explosive (estimated for the LAW)
+                pen:600,//mm rha    
+                eRange:546//yards
+            },
 
 
             // MAN PORTABLE SURFACE TO AIR MISSILES
@@ -3353,7 +3414,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
         },
         fGren:{
             W_RGD5:{
-
+                
             },
             W_F1:{
 
@@ -3476,6 +3537,38 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             obj:30,//this is a guess
             weight:0,//integrated with the rest of the system (excluding the launcher) so this is zero
             NVG:2,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_ANPVS17AB:{
+            name:"AN/PVS-17 A/B",//the text name of the scope
+            disc:"compact, lightweight night vision weapon sight used on M16 series rifles by US spec ops and USMC",
+            mag:2.25,
+            obj:30,//guess
+            weight:2,
+            NVG:3,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_ANPVS17C:{
+            name:"AN/PVS-17 C",//the text name of the scope
+            disc:"compact, lightweight night vision weapon sight used on M249 and M240 series LMGs by US spec ops and USMC",
+            mag:4.5,
+            obj:30,//guess
+            weight:3,
+            NVG:3,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_N_ATACR:{
+            name:"Nightforce Advanced Tactical Rifle Scope",//the text name of the scope
+            disc:"riflescope used by the USMC MK 17 Mod 3",
+            mag:16,
+            obj:42,//guess
+            weight:.9,//guessing that the rings weigh .12 pounds
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_M8541:{
+            name:"M8541 SSDS",//the text name of the scope
+            disc:"riflescope used by the USMC M40A5",
+            mag:8,
+            obj:36,//guess
+            weight:1,//guessing that the rings weigh .12 pounds
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
         },
         
 
@@ -7561,8 +7654,8 @@ V : Vehicle driver
                     cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
                     specialty:"11Z",
                     organization:"US Army",
-                    supplies:[30,210,0,0,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
-                    tSupplies:[30,210,0,0,3,10,1,.5],
+                    supplies:[30,210,300,0,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
+                    tSupplies:[30,210,300,3,3,10,1,.5],
                     sPH:[0,0,0,0,0,0,0], 
                 },
             },

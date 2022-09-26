@@ -74,7 +74,8 @@ function vc_tank(company,squad){//WIP, before continuing I should really quantif
 };
 function vc_weaponOptic(person,weapType,yardRange){
     let opticWeight=0;
-    let newYardRange=yardRange
+    let newYardRange=yardRange;
+    console.log(" 1 "+newYardRange )
     if(weapType==0){//primary
         if((person.primary.name!=0)&&(person.primary.optic!=0)){
             if(mu_isNight()){//is it night time?
@@ -83,7 +84,7 @@ function vc_weaponOptic(person,weapType,yardRange){
                         if(person.kit.nods.type<4){
                             newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
                         }else{
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff);//special buff for thermals
+                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff);//special buff for 
                         }
                         newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];   
                     }else{
@@ -99,9 +100,10 @@ function vc_weaponOptic(person,weapType,yardRange){
                     }
                 }else{
                     if(person.primary.optic.NVG<4){
-                        newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.primary.optic.NVG])                            
+                        newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.primary.optic.NVG]);                       
                     }else{
                         newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+
                     }
                     if(person.kit.nods!=0){
                         if(person.kit.nods.type==4){
@@ -211,6 +213,7 @@ function vc_weaponOptic(person,weapType,yardRange){
     return[newYardRange,opticWeight];
         
 };
+
 function vc_weapon(person,terrain,weaponIndex){//determine the primary value of a primary weapon of a person
     let Weight = 0;//total weight of the weapon
     let Power = 0;//power of the weapon, accounting for outside factors like ToD, visibility, etc. 
@@ -234,18 +237,18 @@ function vc_weapon(person,terrain,weaponIndex){//determine the primary value of 
                     if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
                         if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
                             if(person.primary.railAccessory.features[2]!=0){
-                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;                               
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;                            
                             }
                             if(person.primary.railAccessory.features[3]!=0){
-                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;                                
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;                                   
                             }
                         }
                     }else if((mu_isNight())){//it is night time but they don't have Nods or they have thermals, in which case they don't need lights
                         if(person.primary.railAccessory.features[0]!=0){
-                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;                               
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;                             
                         }
                         if(person.primary.railAccessory.features[1]!=0){
-                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBLaser;                                
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBLaser;                                  
                         }
                     }        
                 };
@@ -272,9 +275,9 @@ function vc_weapon(person,terrain,weaponIndex){//determine the primary value of 
                     cumeYards+=person.primary.uBGL.eRange;
                 }    
             };
-            cumeYards=vc_weaponOptic(person,0,runtimeVariables.currentWeather,cumeYards)[0];
-            Weight+=vc_weaponOptic(person,0,runtimeVariables.currentWeather,cumeYards)[1];
-            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
+            cumeYards=vc_weaponOptic(person,0,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,0,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation 
             Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
             APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);            
         }
@@ -332,8 +335,8 @@ function vc_weapon(person,terrain,weaponIndex){//determine the primary value of 
                     cumeYards+=person.secondary.uBGL.eRange;
                 }    
             }
-            cumeYards=vc_weaponOptic(person,1,runtimeVariables.currentWeather,cumeYards)[0];
-            Weight+=vc_weaponOptic(person,1,runtimeVariables.currentWeather,cumeYards)[1];
+            cumeYards=vc_weaponOptic(person,1,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,1,cumeYards)[1];
             Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
             Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
             APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);       
@@ -354,24 +357,14 @@ function vc_weapon(person,terrain,weaponIndex){//determine the primary value of 
                     cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.special.gripMod.type];    
                 };                
             }
-            cumeYards=vc_weaponOptic(person,1,runtimeVariables.currentWeather,cumeYards)[0];
-            Weight+=vc_weaponOptic(person,1,runtimeVariables.currentWeather,cumeYards)[1];
+            cumeYards=vc_weaponOptic(person,2,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,2,cumeYards)[1];
             Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
             Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
             APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);       
     }else{
         console.log("VC_weapon is being fed an invalid weaponIndex of "+weaponIndex)
     }
-        /*Muzzle attachment
-        */        
-        /*UBGL
-        */  
-        /*Rail Device
-        */
-        /*Grip mod
-        */
-        /*Optic (goes last as it has the effect of reducing effective range depending on terrain)
-        */    
     
     }
     return{

@@ -3,47 +3,6 @@ let general={
     refreshRate:1,//how many times per hour the sim will create a complete dataset. 1 will mean the sim will refresh at an hourly rate. 2 will be every 30 minutes. 3 will be every 20. etc.
     refreshNumber:0,//how many times the sim has refreshed. 
 };
-let unitPower = {
-    riflePowerByTerrain:{//how much power each primary contributes to a soldier's capability in battle.
-        /*
-            0: grassland with very little cover
-            1: rural with few buildings
-            2: rural area with buildings
-            3: vineyards/tall fields/farmland
-            4: forest, dense
-            5: industrial facility
-            6: airfield
-            7: military base
-            8: urban area with many houses
-            9: highly developed city
-            10: rural with buildings and lots of forest
-        */
-        ak74:10,//stats for different environments, reference above. Factors like the presence and type of optic, barrel length (relevant in cqb and vehicles), effective range, AP capability, etc. will be taken into account.
-        ak47:12,
-        rpk74:15,
-        pkm:20,
-        svd:20,
-        m4:10,
-        m16:11,
-        m249:15,
-        m240:19,
-
-    },
-    opticBonusByTerrain:[//how much the presence of an optic will positively impact a rifle's capabilities in the field, in various terrains. base values at long range determined by (magnification+(optic picture*.1)-optic weight. 
-        1.2,//grassland with very little cover
-        1,//rural with few buildings
-        .9,//rural area with buildings
-        .7,//vineyards/tall fields/farmland
-        .3,//forest, dense
-        .6,//industrial facility
-        1.1,//airfield
-        .8,//military base
-        .4,//urban area with many houses
-        .7,//highly developed city
-        .5//rural with buildings and lots of forest
-    ],
-
-};
 let environment ={
     timeZone:4,//time + or - UTC, used to calculate sunset/sunrise times which are in turn used to control the employment of troops, movements of supplies, and calculations for unit capabilities in real time, not sure if I will use this.
     startDate:time.GE_9_3_21_600.d0,//how many days including and after january 1st the simulation is to start
@@ -72,16 +31,16 @@ let multipliers = {
             guns:{
                 gLengthDBuffByTType:[//how much every inch will of total length will reduce a gun's power in various terrains
                     0,    // grassland with very little cover
-                    .01,  // rural with few buildings
-                    .012,  // rural with  buildings
-                    .013,  // vineyards/tall fields/farmland
-                    .05,  // forest, dense
-                    .045, // industrial facility
-                    .03,  // airfield
-                    .035,  // military base
-                    .04,   // urban area with many houses
-                    .05,  // highly developed city
-                    .92  // rural with buildings and lots of forest                
+                    .8,  // rural with few buildings
+                    .9,  // rural with  buildings
+                    .4,  // vineyards/tall fields/farmland
+                    .95,  // forest, dense
+                    1, // industrial facility
+                    .7,  // airfield
+                    .75,  // military base
+                    1,   // urban area with many houses
+                    1.25,  // highly developed city
+                    .85  // rural with buildings and lots of forest                
                 ],
                 gRangeByOpticNODAtNight:[//how much a weapons range will be set to at night time with various night vision optics
                     60,//naked eye
