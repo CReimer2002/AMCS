@@ -375,6 +375,8 @@ function vc_weapon(person,terrain,weaponIndex){//determine the primary value of 
     
 };
 
+function vc_grenade(person,)
+
 
 
 

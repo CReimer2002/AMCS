@@ -261,6 +261,11 @@ const testItems={
                         gripMod:0,
                         weight:0,
                     },
+                    explosives:{
+                        explosive1:0,
+                        explosive2:0,
+                        explosive3:0,
+                    },
                     kit:{
                         bArmor:0,
                         nods:0,
@@ -3250,6 +3255,58 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 pen:400,    
                 eRange:218.72//yards
             },
+            RPG27:{
+                name:"RPG-27 Tavolga",
+                disc:"Soviet single-shot disposable rocket launcher",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
+                isSingleShot:1,
+                roundWeight:0,
+                weight:16.755,
+                warheadWeight:2,
+                pen:750,    
+                eRange:218.72//yards
+            },
+            RPG29:{
+                name:"RPG-29 Vampir",
+                disc:"Fairly modern russian reloadable rocket launcher, dangerous against even the most modern tanks. Usually comes with the 1P38 sight.",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
+                isSingleShot:0,
+                roundWeight:14,
+                weight:27,
+                warheadWeight:3,//arbitrary
+                pen:750,//this is arbitrary because it has a stated pen value of 650mm, yet that's AFTER active and dynamic protection.
+                eRange:500//yards
+            },
+            RPG30:{
+                name:"RPG-30 Kryuk",
+                disc:"Modern and very dangerous APS defeating tandem charge disposable rocket launcher, introduced by Russia in 2008",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
+                isSingleShot:1,
+                roundWeight:0,
+                weight:22.707,
+                warheadWeight:2,
+                pen:1000,//this is arbitrary because it has a stated pen value of 650mm, yet that's AFTER active and dynamic protection.
+                eRange:218.72//yards
+            },
+            RPG32:{
+                name:"RPG-32 Barkas",
+                disc:"Modern Russian reusable rocket launcher",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
+                isSingleShot:1,
+                roundWeight:8.81,//middle ground between the anti-tank and anti-personnel rounds
+                weight:6.613,
+                warheadWeight:2,
+                pen:750,//this is arbitrary because it has a stated pen value of 650mm, yet that's AFTER active and dynamic protection.
+                eRange:382.764//yards
+            },
             AT4HEAT:{
                 name:"M136 AT4 HEAT",
                 disc:"NATO single shot rocket launcher",
@@ -3413,15 +3470,284 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
 
         },
         fGren:{
-            W_RGD5:{
-                
+            G_RGD5:{
+                type:0,//0 frag, 1 smoke, 2 flash, 3 AP mine, 4 AT mine
+                name:"RGD-5 fragmentation grenade",
+                disc:"Soviet anti-personnel fragmentation grenade first used in 1954, not sure if it is still used by russia today. Still used by Bulgaria, China and Georgia",
+                thrownRange:43.7,//range it can typically be thrown, yards
+                lethalRadius:3.28,//lethal radius, yards
+                weight:.683,//weight, pounds
+                pen:0,//armor penetration (if this an anti-tank grenade)
             },
-            W_F1:{
-
-            }
+            G_RGO:{
+                type:0,
+                name:"RGO fragmentation grenade",
+                disc:"Soviet anti-personnel fragmentation grenade developed during the soviet-afghan war, currently used by Russia and Ukraine, among other countries.",
+                thrownRange:35,//abstract guess. It's heavier than the RGD-5 grenade
+                lethalRadius:15.31,
+                weight:1.157,
+                pen:0,
+            },
+            G_RGN:{
+                type:0,
+                name:"RGN fragmentation grenade",
+                disc:"Soviet anti-personnel fragmentation grenade developed during the soviet-afghan war, currently used by Russia and Ukraine, among other countries.",
+                thrownRange:45,
+                lethalRadius:7.655,
+                weight:.625,
+                pen:0,
+            },
+            G_F1:{
+                type:0,
+                name:"F1 fragmentation grenade",
+                disc:"Soviet anti-personnel fragmentation grenade developed during WW2",
+                thrownRange:41.01,
+                lethalRadius:21.872,
+                weight:1.322,
+                pen:0,
+            },
+            G_M67:{
+                type:0,
+                name:"M67 fragmentation grenade",
+                disc:"US current-issue fragmentation grenade, used by Australia, Canada, Turkey, US, UA, various other nations. ",
+                thrownRange:35.54,
+                lethalRadius:5.468,
+                weight:.875,
+                pen:0,
+            },
+            G_RKG3:{
+                type:0,
+                name:"RKG-3 anti-tank grenade",
+                disc:"Soviet anti-tank grenade encorporating a shaped charge, the very base model ",
+                thrownRange:21.872,
+                lethalRadius:2.2,
+                weight:2.35,
+                pen:125,
+            },
+            G_RKG3M:{
+                type:0,
+                name:"RKG-3M anti-tank grenade",
+                disc:"Soviet anti-tank grenade encorporating a shaped charge, improved model",
+                thrownRange:19,
+                lethalRadius:2.2,
+                weight:2.52,
+                pen:165,
+            },
+            G_RKG3EM:{
+                type:0,
+                name:"RKG-3EM improved anti-tank grenade",
+                disc:"Soviet anti-tank grenade encorporating a shaped charge, the final and best variant",
+                thrownRange:15,//guess, it's going to be reduced due to how heavy the thing is
+                lethalRadius:2.2,
+                weight:3.74,
+                pen:220,
+            },
         },
-        sGren:{
-
+        stGren:{
+            G_M84:{
+                type:2,
+                name:"M84 stun grenade",
+                disc:"US current-issue stun grenade introduced in 1995. Used in room clearing when combatants and non-combatants are anticipated to be present. ",
+                thrownRange:35.54,
+                decibels:175,//how loud it is
+                flash:7,//how much candela it produces
+                weight:.825,
+            },
+        },
+        smGren:{
+            smG_M18:{
+                type:1,
+                name:"M18 smoke grenade",
+                disc:"US current-issue smoke grenade since late 1943",
+                thrownRange:38.27,
+                duration:70,//how long it will produce smoke, in seconds
+                weight:1.188
+            },
+        },
+        antiPersonMine:{
+            APM_MON200:{
+                type:3,
+                name:"MON-200 anti-personnel mine",
+                disc:"Soviet heavy antipersonnel mine introduced in the early 1960s, both command and victim operation possible",
+                det:[1,0,1,1,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:150,//guess, no data
+                isMetalDetectable:1,//can it be metal detected
+                canBeLCd:1,//can it be detonated by line charge
+                weight:55.11
+            },
+            APM_MON100:{
+                type:3,
+                name:"MON-100 anti-personnel mine",
+                disc:"Soviet heavy antipersonnel mine introduced in the early 1960s, both command and victim operation possible",
+                det:[1,0,1,1,1],
+                lethalRange:109.361,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:11.023
+            },
+            APM_MON90:{
+                type:3,
+                name:"MON-90 claymore-style anti-personnel mine",
+                disc:"Soviet heavy antipersonnel mine introduced in the early 1960s, both command and victim operation possible, claymore type",
+                det:[1,0,1,1,1],
+                lethalRange:98.425,
+                isMetalDetectable:0,
+                canBeLCd:1,
+                weight:26.675,
+            },
+            APM_OZM72:{
+                type:3,
+                name:"OZM-72 bounding anti-personnel mine",
+                disc:"Soviet bounding anti-personnel mine that is typically tripwire activated",
+                det:[1,0,0,1,0],
+                lethalRange:27.340,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:11,
+            },
+            APM_POMZ2M:{
+                type:3,
+                name:"POMZ-2m",
+                disc:"Soviet stake mounted anti-personnel fragmentation mine, modernized variant of POMZ. Usually issued in a set of 8 mines.",
+                det:[1,0,0,0,0],
+                lethalRange:4.374,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:3.968
+            },
+            APM_PMN:{
+                type:3,
+                name:"PMN light anti-personnel mine",
+                disc:"prolific Soviet anti-personnel mine, designed to damage and possibly kill the individual who steps on it. Highly dangerous.",
+                det:[1,0,0,0,0],
+                lethalRange:2,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:1.322
+            },
+            APM_PMN2:{
+                type:3,
+                name:"PMN-2 light anti-personnel mine",
+                disc:"modernized version of the PMN mine, blast resistand and made of plastic.",
+                det:[1,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:3,
+                isMetalDetectable:1,
+                canBeLCd:0,
+                weight:.925
+            },
+            APM_M18A2:{
+                type:3,
+                name:"M18A2 'Claymore' directional anti-personnel mine",
+                disc:"prolific and well known US-made directional, typically command-detonated mine, normally issued in crates of 6",
+                det:[1,0,0,1,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:110,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:3.5
+            },
+            APM_M16A1:{
+                type:3,
+                name:"M16A1 bounding anti-personnel mine",
+                disc:"US-made improvement of the WW2 german S-mine",
+                det:[1,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:14.763,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:9.083
+            },
+        },
+        antiTankMine:{
+            ATM_M15:{
+                type:4,
+                name:"M15 anti-tank blast mine",
+                disc:"US-made anti-tank blast mine, most suitable for vehicles with less armor than tanks. When used against tanks it will reliably break tracks but not necessarily do anything else. Still in use by the US though the M19 is available and superior",
+                explType:1,//1 blast, 2 shaped charge
+                explTNT:27.94,//how much TNT it has in it, used if the mine is purely a blast mine.
+                det:[1,1,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:3,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:1,//is it capable of being double impulse
+                isMetalDetectable:1,//can it be metal-detected
+                canBeLCd:1,//can it be line-charged
+                weight:31.526//total weight, pounds
+            },
+            ATM_M21:{
+                type:4,
+                name:"M21 anti-tank shaped charge mine",
+                disc:"US-made anti-tank shaped-charge mine",
+                explType:2,//1 blast, 2 shaped charge
+                explTNT:76,//if explType is 2 (indicative of a shaped charge mine), this will be the mm of RHA it can pen.
+                det:[1,1,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,//is it capable of being double impulse
+                isMetalDetectable:1,//can it be metal-detected
+                canBeLCd:1,//can it be line-charged
+                weight:17.262//total weight, pounds
+            },
+            ATM_M19:{
+                type:4,
+                name:"M15 anti-tank blast mine",
+                disc:"US-made anti-tank blast mine, most suitable for vehicles with less armor than tanks. When used against tanks it will reliably break tracks but not necessarily do anything else. ",
+                explType:1,
+                explTNT:30.191,
+                det:[1,1,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:1,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:31.526
+            },
+            ATM_TM46:{
+                type:4,
+                name:"TM-46 anti-tank mine",
+                disc:"early Soviet anti-tank blast mine, very easy to detect with a metal detector. Largely replaced by the TM-62",
+                explType:1,
+                explTNT:12.566,
+                det:[1,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:3,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:18.959
+            },
+            ATM_TM62M:{
+                type:4,
+                name:"TM-62M anti-tank blast mine",
+                disc:"Modern Soviet/Russian anti-tank blast mine, the M variant has a metal casing.",
+                explType:1,
+                explTNT:17,
+                det:[1,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:21
+            },
+            ATM_TM62P:{
+                type:4,
+                name:"TM-62P anti-tank blast mine",
+                disc:"Modern Soviet/Russian anti-tank blast mine, the P variant is a minimum-metal mine with a plastic casing. This variant is also magnetic fusable.",
+                explType:1,
+                explTNT:17,
+                det:[1,1,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:0,
+                canBeLCd:1,
+                weight:21
+            },
+            ATM_TM89:{
+                type:4,
+                name:"TM-89 anti-tank shaped-charge mine",
+                disc:"Modern Soviet/Russian anti-tank blast mine, the P variant is a minimum-metal mine with a plastic casing. This variant is also magnetic fusable.",
+                explType:2,//shaped charge
+                explTNT:100,
+                det:[1,1,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:0,
+                canBeLCd:1,
+                weight:25.353
+            },
         },
     },
     optics:{
