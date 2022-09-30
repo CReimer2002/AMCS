@@ -375,7 +375,57 @@ function vc_weapon(person,terrain,weaponIndex){//determine the primary value of 
     
 };
 
-function vc_grenade(person,)
+function vc_explosive(terrain,pExplosive,debugBool){//determine the added value a specific explosive (non-mine) brings to the fight. Mines will be handled separately. 
+    let APPoints=0;
+    let Power=0;
+    let Pen=0;
+    let Weight=0;
+    let ThrownRange=0;
+    /* Grenade
+    */
+    if(pExplosive[1]!=0){//do they actually have grenades in their inventory?
+        if(pExplosive[0].type==0){//frag grenade
+            if(debugBool==1){
+                console.log("Frag grenade detected");
+            }
+
+            ThrownRange=pExplosive[0].thrownRange;
+            Pen=pExplosive[0].pen;
+            
+            Weight=pExplosive[0].weight;//not actually a factor in weapon performance as we have the thrown range already. Just used to tally up the soldier's kit weight
+            if(Pen!=0){//is it an anti-tank grenade?
+                APPoints+=(Pen*cfg.multipliers.personnel.weapons.grenades.gr_AVPBYardThrowable);
+                APPoints+=(Pen*cfg.multipliers.personnel.weapons.grenades.gr_AVPBMMRHAPen[terrain[5]]);
+            }
+            Power-=((50-ThrownRange)*cfg.multipliers.personnel.weapons.grenades.gr_BBThrownYardBTerrain[terrain[5]]);
+            Power+=((pExplosive[0].lethalRadius)*cfg.multipliers.personnel.weapons.grenades.gr_BBLethalRadiusBTerrain[terrain[5]]);
+
+        }else if(pExplosive[0].type==1){//smoke grenade
+            if(debugBool==1){
+                console.log("smoke grenade detected");
+            }
+            ThrownRange=pExplosive[0].thrownRange;
+            Weight=pExplosive[0].weight;
+            Power-=((50-ThrownRange)*cfg.multipliers.personnel.weapons.grenades.gr_BBThrownYardBTerrain[terrain[5]]);
+            Power+=(((pExplosive[0].duration/60)*cfg.multipliers.personnel.weapons.grenades.gr_BBLethalRadiusBTerrain[terrain[5]]));      
+        }else if(pExplosive[0].type==2){//kind of arbitrary, flash grenade's aren't that useful for most situations
+            if(debugBool==1){
+                console.log("Stun grenade detected");
+            }
+            ThrownRange=pExplosive[0].thrownRange;
+            Weight=pExplosive[0].weight;
+            Power-=((50-ThrownRange)*cfg.multipliers.personnel.weapons.grenades.gr_BBThrownYardBTerrain[terrain[5]]);
+            Power+=(((pExplosive[0].decibels/75)*cfg.multipliers.personnel.weapons.grenades.gr_BBLethalRadiusBTerrain[terrain[5]]));
+            Power+=(pExplosive[0].flash*.1)               
+        }
+        Weight=pExplosive[0].weight*pExplosive[1];
+    }
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        antiVehiclePoints:APPoints,
+    }
+};
 
 
 

@@ -825,6 +825,107 @@ let MapFeatures = [
         7
     ],
 ]
+let MapFeaturesTest = [
+    [
+        "Grassland Test Area",//name
+        42.363,//coords
+        41.852,//coords
+        .002,//size, decimal coords radius
+        1,//priority for display
+        0,//zone
+        4//ownership
+    ],  
+    [
+        "Rural Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        1,
+        4
+    ],  
+    [
+        "Moderate Rural Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        2,
+        4
+    ],  
+    [
+        "Tall Farmland Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        3,
+        4
+    ],  
+    [
+        "Forest Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        4,
+        4
+    ],  
+    [
+        "Industrial Facility Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        5,
+        4
+    ],  
+    [
+        "Airfield Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        6,
+        4
+    ],  
+    [
+        "Military Base Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        7,
+        4
+    ],  
+    [
+        "Urban Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        8,
+        4
+    ], 
+    [
+        "City Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        9,
+        4
+    ],
+    [
+        "Forested Rural Test Area",
+        42.363,
+        41.852,
+        .002,
+        1,
+        10,
+        4
+    ],     
+]
 let MapFeaturesDeprecatedV2 = [
     /*
         Map features in this sim are a way of identifying and simulating a specific location's attributes and how those will affect attacks, defenses or logistical movement through those regions. Location types are used to approximate the topography of the area for calculating defensibility and ease of movement. Area priorities are a backend means of determining what zone should be used when one zone falls inside another one. Ownership is used to approximate how the population of an area is supposed to react to a unit being based there. Unlike types or priorities, ownership is malleable and if an area falls under new ownership, the ownership number will fluctuate. 
@@ -1116,4 +1217,4 @@ let Routes=[
         0//percentage of the route that is in Georgian territory. Determines the likelihood of a partisan ambush.  
     ],
 ];
-export default {MapFeatures,DistrictSupplyDepots,RegimentalSupplyDepots,BTG_FOBs,ChokePoints,Routes}; 
+export default {MapFeatures,DistrictSupplyDepots,RegimentalSupplyDepots,BTG_FOBs,ChokePoints,Routes,MapFeaturesTest}; 

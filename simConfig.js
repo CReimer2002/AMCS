@@ -104,6 +104,48 @@ let multipliers = {
                     c_12_7:19,//estimated, no source
                     c_300WM:19,//estimated, no source
                 }
+            },
+            grenades:{
+                gr_BBThrownYardBTerrain:[//how much every throwable yard under 50 decreases the grenade's power in various environments. This can also be considered a question of how much throwable distance is a factor.
+                .5,    // grassland with very little cover
+                .4,  // rural with few buildings
+                .35,  // rural with  buildings
+                .425,  // vineyards/tall fields/farmland
+                .3,  // forest, dense
+                .2, // industrial facility
+                .6,  // airfield
+                .425,  // military base
+                .275,   // urban area with many houses
+                .2,  // highly developed city
+                .325  // rural with buildings and lots of forest                
+                ],
+                gr_BBLethalRadiusBTerrain:[//how much every yard of lethal radius increases a grenade's power by terrain type
+                2,    // grassland with very little cover
+                1.9,  // rural with few buildings
+                1.85,  // rural with  buildings
+                1.95,  // vineyards/tall fields/farmland
+                1.8,  // forest, dense
+                1.75, // industrial facility
+                1.7,  // airfield
+                1.7,  // military base
+                1.8,   // urban area with many houses
+                2.1,  // highly developed city
+                1.9  // rural with buildings and lots of forest                
+                ],
+                gr_AVPBMMRHAPen:[//how much every mm of RHA pen ups a grenade's antivehicle points by terrain type. I am approaching this by asking myself how likely one would be able to get close enough to a vehicle to use one of these against it, particularly an armored vehicle. 
+                .4,    // grassland with very little cover
+                .45,  // rural with few buildings
+                .6,  // rural with  buildings
+                .55,  // vineyards/tall fields/farmland
+                .9,  // forest, dense. Lots of cover for infantry and their munitions.
+                .7, // industrial facility
+                .35,  // airfield
+                .375,  // military base
+                .65,   // urban area with many houses
+                1,  // highly developed city. Don't send your tanks into cities!!
+                .95  // rural with buildings and lots of forest                
+                ],
+                gr_AVPBYardThrowable:.5,//how many anti-vehicle points each throwable yard will add, will only be factored if the grenade actually has a reasonable pen value
             }
 
         },
@@ -154,4 +196,4 @@ let nationalities = {
     ]
 }
 
-export default {general,unitPower,environment,multipliers,nationalities};
+export default {general,environment,multipliers,nationalities};

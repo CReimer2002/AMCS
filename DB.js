@@ -262,9 +262,20 @@ const testItems={
                         weight:0,
                     },
                     explosives:{
-                        explosive1:0,
-                        explosive2:0,
-                        explosive3:0,
+                        explosive1:[0,0],//name of explosive, quantity of explosive
+                        explosive2:[0,0],
+                        explosive3:[0,0],
+                    },
+                    mines:{
+                        /*Mines need to be different than explosives. 
+                            Unlike grenades or charges, mines are useful after being removed from an individual's
+                            inventory and thus need special consideration. Mines will impact the zones they are placed
+                            in and will continue to do so until the mines are destroyed, either by themselves, the 
+                            enemie's mine clearing assets or by being actuated by their targets. 
+                        */
+                        mine1:0,
+                        mine2:0,
+                        mine3:0,
                     },
                     kit:{
                         bArmor:0,
@@ -335,7 +346,7 @@ const testItems={
     },
 
 
-} ;
+};
 const vComponents={
     cannons:{
         c_24A6M5:{
@@ -454,7 +465,227 @@ const vComponents={
 
         },
         artyrocket:{
-
+            ar_9M55K:{
+                type:6,//1 is cannon shell, 2 is autocannon shell, 3 is ATGM round, 4 is HMG round, 5 is artillery shell, 6 is arty rocket
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M55K 300mm anti-personnel-cluster-munition-dispensing unguided rocket",
+                disc:"300mm unguided rocket fired originally from the 9K58 BM-30 'Smerch' MRL",
+                range:43.495,
+                payload:3,//1 HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,//used if the payload is something the DB includes. For example, launching a rocket full of AT mines into a zone should add those mines to the zone. 
+                warheadExplTNT:0,//used for simple HE weapons
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:1763.698,
+            },
+            ar_9M55K1:{
+                type:6,
+                guidance:[1,0,0,0,0,1,0],
+                name:"9M55K1 300mm self-guided anti-tank cluster-munition-dispensing unguided rocket",
+                disc:"300mm unguided (but with smart submunitions) rocket fired originally from the 9K58 BM-30 'Smerch' MRL",
+                range:43.495,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55K4:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M55K4 300mm rocket round",
+                disc:"AT-minelet dispenser, presumably using PTM-3 shaped charge mines. Deploys 25 with one rocket.",
+                range:43.495,
+                payload:6,
+                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM3,25],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55K5:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M55K5 300mm rocket round",
+                disc:"HEAT/HE (presumably cluster) munition rocket, dispensing 646 submunitions each with 120mm of pen",
+                range:43.495,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55F:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M55F 300mm rocket round",
+                disc:"HE/Frag munition rocket, I will treat this as an HE rocket",
+                range:43.495,
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:600,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55C:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M55C 300mm rocket round",
+                disc:"Thermobaric rocket",
+                range:43.495,
+                payload:8,
+                payloadDevice:0,
+                warheadExplTNT:900,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT. Further abstracting it, I am multiplying it's payload by 1.5 because it is thermobaric.
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M528:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M528 300mm rocket round",
+                disc:"HE-Fragmentation",
+                range:55.923,
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:600,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT. 
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_9M534:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M534 300mm rocket round",
+                disc:"UAV delivery system",
+                range:55.923,
+                payload:7,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_9M542:{
+                type:6,
+                guidance:[1,0,0,1,1,0,0],
+                name:"9M542 300mm rocket round",
+                disc:"HE/Frag PGM with inertial, GLONASS guidance",
+                range:74.564,
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:350,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_R624:{
+                type:6,
+                guidance:[1,0,1,1,1,0,0],//this round is produced by Ukraine and has GPS guidance. I am going to give it both GPS and GLONASS to allow for the possibility of russian production
+                name:"R624 300mm rocket round",
+                disc:"HE/Frag PGM with inertial, GPS and GLONASS guidance",
+                range:43.495,
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:575,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_R624M:{
+                type:6,
+                guidance:[1,0,1,1,1,0,0],//this round is produced by Ukraine and has GPS guidance. I am going to give it both GPS and GLONASS to allow for the possibility of russian production
+                name:"R624M 300mm rocket round",
+                disc:"HE/Frag PGM with inertial, GPS and GLONASS guidance. Possibly the best rocket in even hypothetical russian inventory",
+                range:80.778,//damn son
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:425,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_9M27F:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M27F 220mm rocket round",
+                disc:"HE/Frag dumb rocket",
+                range:21.7,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,
+                warheadExplTNT:250,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:620,
+            },
+            ar_9M27K1:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M27K1 220mm rocket round",
+                disc:"anti-tank cluster bomb dispenser",
+                range:21.7,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:250,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:600,
+            },
+            ar_9M27K2:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M27K2 220mm rocket round",
+                disc:"dispenses 24 PTM-1 anti-tank mines",
+                range:21.7,
+                payload:6,
+                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM1,24],
+                warheadExplTNT:250,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:600,
+            },
+            ar_9M27K3:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M27K3 220mm rocket round",
+                disc:"dispenses 312 PFM-1 anti-personnel mines",
+                range:21.1,
+                payload:5,
+                payloadDevice:[tComponents.weapons.antiPersonMine.APM_PFM1,312],//that's a lot of mines
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:600,
+            },
+            ar_9M59:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M59 220mm rocket round",
+                disc:"dispenses 9 PTM-3 anti-tank mines",
+                range:21.75,
+                payload:6,
+                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM3,9],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:600,
+            },
+            ar_9M22U:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M22U 122mm rocket round",
+                disc:"HE/Frag dumb rocket",
+                range:21.7,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,
+                warheadExplTNT:250,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:620,
+            },
         }
 
 
@@ -3268,6 +3499,19 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 pen:750,    
                 eRange:218.72//yards
             },
+            RPG28:{
+                name:"RPG-28 Klyukva",
+                disc:"Soviet single-shot disposable rocket launcher",
+                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                aquisition:0,//naked eye, heat seeking, other
+                isSingleShot:1,
+                roundWeight:26.45,
+                weight:29.762,
+                warheadWeight:2,
+                pen:1000,    
+                eRange:328.083//yards
+            },
             RPG29:{
                 name:"RPG-29 Vampir",
                 disc:"Fairly modern russian reloadable rocket launcher, dangerous against even the most modern tanks. Usually comes with the 1P38 sight.",
@@ -3563,98 +3807,192 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 duration:70,//how long it will produce smoke, in seconds
                 weight:1.188
             },
+            smG_RGD2:{
+                type:1,
+                name:"RGD-2 smoke grenade",
+                disc:"Eastern current-issue smoke grenade",
+                thrownRange:38.27,
+                duration:90,//how long it will produce smoke, in seconds
+                weight:1.188
+            },
         },
         antiPersonMine:{
             APM_MON200:{
                 type:3,
                 name:"MON-200 anti-personnel mine",
                 disc:"Soviet heavy antipersonnel mine introduced in the early 1960s, both command and victim operation possible",
-                det:[1,0,1,1,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                det:[1,0,1,1,1,1],//pressure, magnetic, seismic, command (wire), command (signal), tripwire
                 lethalRange:150,//guess, no data
                 isMetalDetectable:1,//can it be metal detected
                 canBeLCd:1,//can it be detonated by line charge
-                weight:55.11
+                weight:55.11,
+                sdTimer:99,
             },
             APM_MON100:{
                 type:3,
                 name:"MON-100 anti-personnel mine",
                 disc:"Soviet heavy antipersonnel mine introduced in the early 1960s, both command and victim operation possible",
-                det:[1,0,1,1,1],
+                det:[1,0,1,1,1,1],
                 lethalRange:109.361,
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:11.023
+                weight:11.023,
+                sdTimer:99
             },
             APM_MON90:{
                 type:3,
                 name:"MON-90 claymore-style anti-personnel mine",
                 disc:"Soviet heavy antipersonnel mine introduced in the early 1960s, both command and victim operation possible, claymore type",
-                det:[1,0,1,1,1],
+                det:[1,0,1,1,1,1],
                 lethalRange:98.425,
                 isMetalDetectable:0,
                 canBeLCd:1,
                 weight:26.675,
+                sdTimer:99
+            },
+            APM_POM3:{
+                type:3,
+                name:"POM-3 mass-deployed seismically detonated self destructing bounding anti-personnel mine",
+                disc:"Modern russian AP mine that is meant to be launched by machines, either from the air or the ground. Deploys itself and self destructs after 8-24 hours",
+                det:[0,0,1,0,0,0],
+                lethalRange:17.497,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:7.054,
+                sdTimer:24
+            },
+            APM_OZM3:{
+                type:3,
+                name:"OZM-3 bounding tripwire-activated anti-personnel mine",
+                disc:"Soviet bounding anti-personnel mine that is typically tripwire activated. Introduced in 1964 it has an easily detectible metal body and will be readily dealt with by being run over with a tracked vehicle",
+                det:[1,0,0,1,0,1],
+                lethalRange:10.93,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:7.054,
+                sdTimer:99
             },
             APM_OZM72:{
                 type:3,
                 name:"OZM-72 bounding anti-personnel mine",
                 disc:"Soviet bounding anti-personnel mine that is typically tripwire activated",
-                det:[1,0,0,1,0],
+                det:[1,0,0,1,0,1],
                 lethalRange:27.340,
                 isMetalDetectable:1,
                 canBeLCd:1,
                 weight:11,
+                sdTimer:99
             },
             APM_POMZ2M:{
                 type:3,
                 name:"POMZ-2m",
                 disc:"Soviet stake mounted anti-personnel fragmentation mine, modernized variant of POMZ. Usually issued in a set of 8 mines.",
-                det:[1,0,0,0,0],
+                det:[1,0,0,0,0,1],
                 lethalRange:4.374,
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:3.968
+                weight:3.968,
+                sdTimer:99
             },
             APM_PMN:{
                 type:3,
                 name:"PMN light anti-personnel mine",
                 disc:"prolific Soviet anti-personnel mine, designed to damage and possibly kill the individual who steps on it. Highly dangerous.",
-                det:[1,0,0,0,0],
+                det:[1,0,0,0,0,0],
                 lethalRange:2,
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:1.322
+                weight:1.322,
+                sdTimer:99
             },
             APM_PMN2:{
                 type:3,
                 name:"PMN-2 light anti-personnel mine",
                 disc:"modernized version of the PMN mine, blast resistand and made of plastic.",
-                det:[1,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                det:[1,0,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal), tripwire
                 lethalRange:3,
                 isMetalDetectable:1,
                 canBeLCd:0,
-                weight:.925
+                weight:.925,
+                sdTimer:99
             },
             APM_M18A2:{
                 type:3,
                 name:"M18A2 'Claymore' directional anti-personnel mine",
                 disc:"prolific and well known US-made directional, typically command-detonated mine, normally issued in crates of 6",
-                det:[1,0,0,1,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                det:[1,0,0,1,0,1],//pressure, magnetic, seismic, command (wire), command (signal),
                 lethalRange:110,
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:3.5
+                weight:3.5,
+                sdTimer:99,
             },
             APM_M16A1:{
                 type:3,
                 name:"M16A1 bounding anti-personnel mine",
                 disc:"US-made improvement of the WW2 german S-mine",
-                det:[1,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                det:[1,0,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
                 lethalRange:14.763,//guess, about half the casualty range
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:9.083
+                weight:9.083,
+                sdTimer:99
             },
+            APM_PFM1:{
+                type:3,
+                name:"PFM-1 scatterable anti-personnel mine",
+                disc:"lightweight, extremely dangerous scatterable landmine deployed only by machines and essentially undefusable. Comes in cassettes of 36 (KSF-1.05) or 72 (KSF-1). Large quantities used by Russia and potentially Ukraine. Can also be deployed by mortar (PKM), remote machine mining (UMZ), helicopters (VSM-1 mine system, up to 8352 mines at a time), MLRS, or airplanes",
+                det:[1,0,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:1,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:.175,
+                sdTimer:99
+            },
+            APM_PFM1:{
+                type:3,
+                name:"PFM-1S scatterable self-liquidating anti-personnel mine",
+                disc:"lightweight, extremely dangerous scatterable landmine deployed only by machines and essentially undefusable. Comes in cassettes of 36 (KSF-1.05) or 72 (KSF-1). Large quantities used by Russia and potentially Ukraine. Can also be deployed by mortar (PKM), remote machine mining (UMZ), helicopters (VSM-1 mine system, up to 8352 mines at a time), MLRS, or airplanes",
+                det:[1,0,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:1,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:.175,
+                sdTimer:35
+            },
+            APM_POM1:{
+                type:3,
+                name:"POM-1 scatterable anti-personnel tripwire mine",
+                disc:"lightweight,auto-tripwire-deploying machine scattered anti-personnel mine introduced by Russia in 1962. Deployed from helicopters and automatic dispensers",
+                det:[1,0,0,0,0,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:4.374,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:1.653,
+                sdTimer:99
+            },
+            APM_POM1S:{
+                type:3,
+                name:"POM-1S scatterable auto-destructing anti-personnel tripwire mine",
+                disc:"lightweight,auto-tripwire-deploying machine scattered anti-personnel mine introduced by Russia in 1962. Deployed from helicopters and automatic dispensers. The S-variant self destructs (at least it's supposed to).",
+                det:[1,0,0,0,0,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:4.374,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:1.653,
+                sdTimer:48,//guess
+            },
+            APM_KSF1:{
+                type:3,
+                name:"72 PFM-1 scatterable mines in a cassette",
+                disc:"lightweight, extremely dangerous scatterable landmine deployed only by machines and essentially undefusable. Comes in cassettes of 36 (KSF-1.05) or 72 (KSF-1). Large quantities used by Russia and potentially Ukraine",
+                det:[1,0,0,0,0,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:30,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:20,
+                sdTimer:99,
+            }
         },
         antiTankMine:{
             ATM_M15:{
@@ -3748,7 +4086,87 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 canBeLCd:1,
                 weight:25.353
             },
+            ATM_PTM3:{
+                type:4,
+                name:"PTM-3 scatterable shaped charge AT mine",
+                disc:"Soviet MLRS/Heli/Minelayer deployed anti-tank mine",
+                explType:2,//shaped charge
+                explTNT:4,
+                det:[0,1,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:0,
+                canBeLCd:1,
+                weight:10.8
+            },
+            ATM_PTM1:{
+                type:4,
+                name:"PTM-1 scatterable blast AT mine",
+                disc:"Soviet MLRS/Heli/Minelayer deployed anti-tank blast mine, mass deployed by MLRS, (BM21/27/30) or helicopters",
+                explType:1,
+                explTNT:3.225,
+                det:[1,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:3.527
+            },
         },
+        explCharge:{
+            EC_quarterLbC4:{
+                type:5,//explosive charge
+                name:"1/4 pound brick of C-4 plastic explosive",
+                disc:"NATO/US plastic explosive",
+                explType:1,
+                explTNT:.32,
+                det:[0,0,0,1,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:1,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:.25
+            }, 
+            EC_halfLbC4:{
+                type:5,//explosive charge
+                name:"1/2 pound brick of C-4 plastic explosive",
+                disc:"NATO/US plastic explosive",
+                explType:1,
+                explTNT:.64,
+                det:[0,0,0,1,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:1,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:.5
+            },
+            EC_1LbC4:{
+                type:5,//explosive charge
+                name:"1/2 pound brick of C-4 plastic explosive",
+                disc:"NATO/US plastic explosive",
+                explType:1,
+                explTNT:1.28,
+                det:[0,0,0,1,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:1,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:1
+            },
+            EC_M112:{
+                type:5,//explosive charge
+                name:"M112 1.25lb C-4 brick",
+                disc:"NATO/US plastic explosive in standard packaging format",
+                explType:1,
+                explTNT:1.6,
+                det:[0,0,0,1,1],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:1,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:1.25
+            },                    
+        }
     },
     optics:{
         //magnifiying scopes
@@ -5225,6 +5643,27 @@ const components={
             urbanSurvivability:.5,            
         },
         SPA_9A52:{
+            type:10,
+            mass:48.17,
+            crew:4,
+            vSupplies:[0,0,0,0,0,0,0,0],
+            supplies:[1,0,0,0,0,3,4],
+            troopcapacity:0,
+            bodyArmorLevel:.5,
+            fuelcap:219,
+            maxSpeed:[20,45],
+            canFloat:0,
+            roundsCarried:12,
+            loadReplenishTime:36,
+            profile:100,
+            catastrophicLossOnPen:.2,
+            fuelBurn:[.608,.395,.1],
+            opRange:[343,528],
+            urbanSurvivability:.5,          
+        },
+        SPA_9P140:{
+            name:"9P140 (BM-27) 'Uragan'",
+            disc:"Soviet 220mm MRL with a variety of warheads. Heavier than the BM-21 but less so than the BM-30.",
             type:10,
             mass:48.17,
             crew:4,
@@ -7922,20 +8361,20 @@ V : Vehicle driver
                     sPH:[0,0,0,0,0,0,0], 
                 },
             },
-            TEST_US_GIGASOLDIER:{//convienient profile to check out all kinds of weapons
+            TEST_US_GIGASOLDIERV2:{//Frontline, basic but equipped and trained Abkhaz army infantryman
                 name:0,
-                ID:[0,0,2],//country, branch, rank index. This reads as US, Army, SL
+                ID:[0,0,2],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
                 primary:{//primary weapon, must be a firearm
                     name:tComponents.weapons.rifle.W_M4A1,
                     optic:tComponents.optics.o_TA31RCO_ACOG,
                     suppressor:0,
-                    uBGL:tComponents.weapons.uBGL.W_M203,
-                    railAccessory:tComponents.railAccessories.ra_ANPEQ2,
-                    gripMod:tComponents.foreGrips.fg_RK2L,
+                    uBGL:0,
+                    railAccessory:0,
+                    gripMod:0,
                     weight:0,
                 },
                 secondary:{//secondary weapon, must be a firearm
-                    name:tComponents.weapons.pistol.W_M9,
+                    name:0,
                     optic:0,
                     suppressor:0,
                     uBGL:0,
@@ -7944,19 +8383,35 @@ V : Vehicle driver
                     weight:0,
                 },
                 special:{//special weapon, a standalone rocket launcher
-                    name:tComponents.weapons.RL.RL_M72A7,
+                    name:0,
                     optic:0,
                     gripMod:0,
                     weight:0,
                 },
+                explosives:{
+                    explosive1:[tComponents.weapons.fGren.G_M67,2],//name of explosive, quantity of explosive
+                    explosive2:[tComponents.weapons.smGren.smG_M18,2],
+                    explosive3:[tComponents.weapons.stGren.G_M84,1],
+                },
+                mines:{
+                    /*Mines need to be different than explosives. 
+                        Unlike grenades or charges, mines are useful after being removed from an individual's
+                        inventory and thus need special consideration. Mines will impact the zones they are placed
+                        in and will continue to do so until the mines are destroyed, either by themselves, the 
+                        enemie's mine clearing assets or by being actuated by their targets. 
+                    */
+                    mine1:0,
+                    mine2:0,
+                    mine3:0,
+                },
                 kit:{
-                    bArmor:tComponents.vests.v_SPCS,
-                    nods:tComponents.helmetOptics.o_ANPVS14,
-                    earPro:tComponents.headSets.hs_ComTacVI,
-                    comms:tComponents.pRadios.pr_MR3000P, //More advanced stuff will be handled at sq level
-                    uniform:tComponents.uniforms.u_ACM,
-                    IFAK:tComponents.iFAKs.iFAK_II,
-                    canteen:tComponents.canteens.GI_MOLLE,                        
+                    bArmor:0,
+                    nods:0,
+                    earPro:0,
+                    comms:0, //More advanced stuff will be handled at sq level
+                    uniform:0,
+                    IFAK:0,
+                    canteen:0,                        
                 },
                 buffs:{
                     lDrinkBuff:1,
@@ -7980,8 +8435,8 @@ V : Vehicle driver
                     cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
                     specialty:"11Z",
                     organization:"US Army",
-                    supplies:[30,210,300,0,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
-                    tSupplies:[30,210,300,3,3,10,1,.5],
+                    supplies:[210,210,5,5,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
+                    tSupplies:[210,210,5,5,3,10,1,.5],
                     sPH:[0,0,0,0,0,0,0], 
                 },
             },
