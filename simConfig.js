@@ -7,26 +7,12 @@ let environment ={
     timeZone:4,//time + or - UTC, used to calculate sunset/sunrise times which are in turn used to control the employment of troops, movements of supplies, and calculations for unit capabilities in real time, not sure if I will use this.
     startDate:time.GE_9_3_21_600.d0,//how many days including and after january 1st the simulation is to start
     startTime:time.GE_9_3_21_600.d0.h730,//the hour and minute the sim is supposed to start. Unsure if this is to be used.
-    clearDayVis:6.21//how far, in miles, the sim treat a perfect day's visibilty being. Sources of visibility must not factor in the position of the sun. This impacts effective ranges of most weapons. 
+    clearDayVis:6.21,//how far, in miles, the sim treat a perfect day's visibilty being. Sources of visibility must not factor in the position of the sun. This impacts effective ranges of most weapons. 
+    bugsNoFactorTemp:50,//at what temperature (F) pesky bugs like mosquitos no longer function
+    bugsLowFactorTemp:60,//at what temperature (F) mosquitos become noticeably less of a concern
 };
 let multipliers = {
     personnel:{
-        medical:{//the value, in points, of various IFAK contents. The presence of a CAT TQ in an IFAK will be more useful than medical shears, yet both will add tangible benefits to a soldier's survivability when wounded. 
-            tieOffTQ:4,
-            CATorSWAT_TQ:10,
-            wPackGauze:2,
-            sCWA:3,
-            nAK:3,
-            PressDressAndBdg:2.5,
-            shears:1,
-            gloves:.5,
-            blanket:.75,
-            litter:.1,
-            splint:.2,
-            meds:3,
-            bbKit:2,
-            mTape:1
-        },
         weapons:{
             guns:{
                 gLengthDBuffByTType:[//how much every inch will of total length will reduce a gun's power in various terrains
@@ -164,6 +150,90 @@ let multipliers = {
             recentReserveBuff:1,
             recentMealBuff:4,
             recentWaterBuff:5
+        },
+        kit:{
+            uniform:{
+                mU_DBBHasNoBugProtect:.3,//if it is warm enough for bugs and the climate has bugs, this debuff will be applied to the morale of soldiers whose uniforms do not have bug treatment.
+                mU_BBHasFLIRCamo:.2,
+                mU_BBUIsClean:.5,
+                mU_BBUIsLowWear:.75,
+                mU_DBBHavingDesertUInWoodland:.5,
+                mU_DBBHavingWoodlandInWinter:.15,     
+                mU_DBBHavingModGearInColdWeather:.4,        
+                mU_DBBHavingColdGearInModWeather:.2,
+                mu_DBBHavingHotGearInColdWeather:.6,
+                mU_DBBHavingColdGearInHotWeather:.55,
+                mU_DBBHavingHotGearInModWeather:.3,
+                mU_BBFlameResist:.1,
+                pU_PBBHavingRightCamo:2.5,
+                pU_PBBHavingAlmostRightCamo:1,
+                pU_PBBHavingFLIRCamo:2,
+            },
+            vest:{
+                mV_MoralePowerMultiplier:.5,//uses the power buffs for body armor level, multiplied by this to get the morale benefits
+                pV_LevelI:2,//how much combat power each level of body armor adds
+                pV_LevelIIA:2.5,
+                pV_LevelII:3,
+                pV_LevelIIIA:3.5,
+                pV_LevelIII:4,
+                pV_LevelIV:5,
+                pV_BBHasSideProtection:1.15,//multiplier for having side armor
+                mV_BBHavingRightCamo:1.5,//morale bonuses for having right or almost right camo
+                pV_BBHavingRightCamo:1,
+                pV_BBHavingAlmostRightCamo:.6,
+                mV_BBHavingAlmostRightCamo:1.25,
+                mV_QualityMultiplier:.7//morale multiplier for a vest's quality level, 5 is a great vest.
+            },
+            helmet:{
+                mH_MoralePowerMultiplier:.7,
+                pH_LevelI:1,
+                pH_LevelIIA:2,
+                pH_LevelII:2.5,
+                pH_LevelIIIA:3,
+                pH_LevelIII:3.25,
+                pH_LevelIV:3.5,
+                pH_BBHavingRightCamo:1,
+                pH_BBHavingAlmostRightCamo:.8,
+                mV_BBHavingRightCamo:.8,
+                mV_BBHavingAlmostRightCamo:.6,
+                mH_QualityMultiplier:.85
+            },
+            IFAK:{
+                iM_BBHTieOffTQ:.2,
+                iM_BBHCATorSWATTQ:.5,
+                iM_BBHwPackGauze:.15,
+                iM_BBHsCWA:.1,//chest wound seal
+                iM_BBHnAK:.1,//nasopharyngeal airway
+                iM_BBHPressDressAndBdg:.15,
+                iM_BBHShears:.11,
+                iM_BBHGloves:.08,
+                iM_BBHBlanket:.08,
+                iM_BBHLitter:.07,
+                iM_BBHSplint:.05,
+                iM_BBHMeds:.1,
+                iM_BBHBBKit:.15,
+                iM_BBHmTape:.1
+            },
+            backpack:{
+                mB_BBHavingRightCamo:.75,
+                mB_BBHavingAlmostRightCamo:.5,
+                pB_BBHavingRightCamo:.5,
+                pB_BBHavingAlmostRightCamo:.35,
+                mB_QualityMultiplier:.3,
+            },
+            tent:{
+                mT_BBHavingRightCamo:.2,
+                mT_BBHavingAlmostRightCamo:.1,
+            },
+            sleepingBag:{
+                mSB_BBHavingRightCamo:.2,
+                mSB_BBHavingAlmostRightCamo:.1,
+                mSB_QualityMultiplier:.1,
+                mSB_CleanLevelMultiplier:.05,
+                mSB_DBBWearLevel:.05,
+                mSB_DBBTempBelowMin:.05
+            }
+
         }
     },
 };

@@ -427,6 +427,256 @@ function vc_explosive(terrain,pExplosive,debugBool){//determine the added value 
     }
 };
 
+function vc_uniform(person){//handles value calculation of a soldier's uniform based on weather, climate, wear, etc.
+    let BugProtect=0;
+    let Weight=0;
+    let ImpactOnMorale=0;
+    let Power = 0;
+    if(person.kit.uniform!=0){//make sure they have a uniform before trying to calculate it's worth
+        if(runtimeVariables.currentWeather.temp>cfg.environment.bugsNoFactorTemp){//bug treated handler
+            BugProtect=person.kit.uniform.bugProtection;
+            if(runtimeVariables.currentWeather.temp<cfg.environment.bugsLowFactorTemp){
+                if(BugProtect==0){
+                    ImpactOnMorale-=(cfg.multipliers.personnel.kit.uniform.mU_DBBHasNoBugProtect*.5);
+                };
+            }else{
+                if(BugProtect==0){
+                    ImpactOnMorale-=(cfg.multipliers.personnel.kit.uniform.mU_DBBHasNoBugProtect);
+                };
+            };
+        };
+        console.log("after bug treatment handler, impact on morale is "+ImpactOnMorale);
+        if(person.kit.uniform.camo!=Theatre.TheatreData.climate){//camo pattern vs clime handler
+            if(person.kit.uniform.camo==1&&Theatre.TheatreData.climate==0){//having summer camo in winter isn't that bad
+                ImpactOnMorale-=cfg.multipliers.personnel.kit.uniform.mU_DBBHavingWoodlandInWinter
+                Power+=cfg.multipliers.personnel.kit.uniform.pU_PBBHavingAlmostRightCamo;
+            }else{//having desert camo in woodland is
+                ImpactOnMorale-=cfg.multipliers.personnel.kit.uniform.mU_DBBHavingDesertUInWoodland
+            }
+        }else{
+            Power+=cfg.multipliers.personnel.kit.uniform.pU_PBBHavingRightCamo;//having proper camo increases lethality
+        };
+        console.log("after camo pattern handler, impact on morale is "+ImpactOnMorale);
+        if(runtimeVariables.currentWeather.temp<41){//uniform suitability for temperature handler
+            if(person.kit.uniform.climate>0){
+                if(person.kit.uniform.climate==1){
+                    ImpactOnMorale-=cfg.multipliers.personnel.kit.uniform.mU_DBBHavingModGearInColdWeather;
+                }else if(person.kit.uniform.climate==2){
+                    ImpactOnMorale-=cfg.multipliers.personnel.kit.uniform.mu_DBBHavingHotGearInColdWeather;
+                }
+            }
+        }else if(runtimeVariables.currentWeather.temp>40&&runtimeVariables.currentWeather.temp<81){
+            if(person.kit.uniform.climate==0){
+                ImpactOnMorale-=cfg.multipliers.personnel.kit.uniform.mU_DBBHavingColdGearInModWeather;
+            }else if(person.kit.uniform.climate==2){
+                ImpactOnMorale-=cfg.multipliers.personnel.kit.uniform.mU_DBBHavingHotGearInModWeather;
+            }
+        }else{
+            if(person.kit.uniform.climate==0){
+                ImpactOnMorale-=cfg.multipliers.personnel.kit.uniform.mU_DBBHavingColdGearInHotWeather;
+            }
+        }
+        if(person.kit.uniform.thermalMasking==1){//presence of thermal protection
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.uniform.mU_BBHasFLIRCamo;
+            Power+=cfg.multipliers.personnel.kit.uniform.pU_PBBHavingFLIRCamo;
+        };
+        console.log("after thermal camo handler, impact on morale is "+ImpactOnMorale);
+        ImpactOnMorale+=(person.kit.uniform.cleanLevel*cfg.multipliers.personnel.kit.uniform.mU_BBUIsClean);
+        console.log("after clean handler, impact on morale is "+ImpactOnMorale);
+        ImpactOnMorale-=(person.kit.uniform.wearLevel*cfg.multipliers.personnel.kit.uniform.mU_BBUIsLowWear);
+        Weight=person.kit.uniform.weight;
+        console.log("after wear, impact on morale is "+ImpactOnMorale);
+        ImpactOnMorale+=(person.kit.uniform.flameResist*cfg.multipliers.personnel.kit.uniform.mU_BBFlameResist);
+        console.log("after flame resist, impact on morale is "+ImpactOnMorale);
+    }
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        moraleImpact:ImpactOnMorale
+    }
+};
+
+function vc_vest(person){//handles value calculation of a soldier's body armor
+    let Weight=0;
+    let ImpactOnMorale=0;
+    let Power = 0;
+    if(person.kit.bArmor!=0){
+        Weight=person.kit.bArmor.mass;
+        if(person.kit.bArmor.NIJ=="I"){//level I vest
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.vest.mV_MoralePowerMultiplier*cfg.multipliers.personnel.kit.vest.pV_LevelI);
+            Power+=cfg.multipliers.personnel.kit.vest.pV_LevelI;
+        }else if(person.kit.bArmor.NIJ=="IIA"){//level IIA vest
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.vest.mV_MoralePowerMultiplier*cfg.multipliers.personnel.kit.vest.pV_LevelIIA);
+            Power+=cfg.multipliers.personnel.kit.vest.pV_LevelIIA;
+        }else if(person.kit.bArmor.NIJ=="II"){//level II vest
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.vest.mV_MoralePowerMultiplier*cfg.multipliers.personnel.kit.vest.pV_LevelII);
+            Power+=cfg.multipliers.personnel.kit.vest.pV_LevelII;
+        }else if(person.kit.bArmor.NIJ=="IIIA"){//level IIIA vest
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.vest.mV_MoralePowerMultiplier*cfg.multipliers.personnel.kit.vest.pV_LevelIIIA);
+            Power+=cfg.multipliers.personnel.kit.vest.pV_LevelIIIA;
+        }else if(person.kit.bArmor.NIJ=="III"){//lvl III vest
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.vest.mV_MoralePowerMultiplier*cfg.multipliers.personnel.kit.vest.pV_LevelIII);
+            Power+=cfg.multipliers.personnel.kit.vest.pV_LevelIII;
+        }else if(person.kit.bArmor.NIJ=="IV"){//level IV
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.vest.mV_MoralePowerMultiplier*cfg.multipliers.personnel.kit.vest.pV_LevelIV);
+            Power+=cfg.multipliers.personnel.kit.vest.pV_LevelIV;
+        }else{//handles bogus NIJ ratings
+            console.log(person.name+" has a vest that lacks a recognizable NIJ rating and VC vest cannot process it")
+        };
+        if(Theatre.TheatreData.climate==person.kit.bArmor.camo){
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.vest.mV_BBHavingRightCamo;
+            Power+=cfg.multipliers.personnel.kit.vest.pV_BBHavingRightCamo;
+        }else if((Theatre.TheatreData.climate==3&&person.kit.bArmor.camo==1)&&(Theatre.TheatreData.climate==1&&person.kit.bArmor.camo==3)){
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.vest.mV_BBHavingAlmostRightCamo;
+            Power+=cfg.multipliers.personnel.kit.vest.pV_BBHavingAlmostRightCamo;
+        };
+        ImpactOnMorale+=(person.kit.bArmor.quality*cfg.multipliers.personnel.kit.vest.mV_QualityMultiplier);                               
+    }
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        moraleImpact:ImpactOnMorale,
+    }
+};
+
+function vc_helmet(person){//handles value calculation of a soldier's helmet
+    let Weight=0;
+    let ImpactOnMorale=0;
+    let Power=0;
+    if(person.kit.helmet!=0){
+        Weight=person.kit.helmet.mass;
+        if(person.kit.helmet.NIJ=="I"){
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.helmet.mH_MoralePowerMultiplier*cfg.multipliers.personnel.kit.helmet.pH_LevelI);
+            Power+=cfg.multipliers.personnel.kit.helmet.pH_LevelI;
+        }else if(person.kit.helmet.NIJ=="IIA"){
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.helmet.mH_MoralePowerMultiplier*cfg.multipliers.personnel.kit.helmet.pH_LevelIIA);
+            Power+=cfg.multipliers.personnel.kit.helmet.pH_LevelIIA;
+        }else if(person.kit.helmet.NIJ=="II"){
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.helmet.mH_MoralePowerMultiplier*cfg.multipliers.personnel.kit.helmet.pH_LevelII);
+            Power+=cfg.multipliers.personnel.kit.helmet.pH_LevelII;
+        }else if(person.kit.helmet.NIJ=="IIIA"){
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.helmet.mH_MoralePowerMultiplier*cfg.multipliers.personnel.kit.helmet.pH_LevelIIIA);
+            Power+=cfg.multipliers.personnel.kit.helmet.pH_LevelIIIA;
+        }else if(person.kit.helmet.NIJ=="III"){
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.helmet.mH_MoralePowerMultiplier*cfg.multipliers.personnel.kit.helmet.pH_LevelIII);
+            Power+=cfg.multipliers.personnel.kit.helmet.pH_LevelIII;
+        }else if(person.kit.helmet.NIJ=="IV"){
+            ImpactOnMorale+=(cfg.multipliers.personnel.kit.helmet.mH_MoralePowerMultiplier*cfg.multipliers.personnel.kit.helmet.pH_LevelIV);
+            Power+=cfg.multipliers.personnel.kit.helmet.pH_LevelIV;
+        }else{
+            console.log(person.name+" has a helmet with an NIJ rating of "+person.kit.helmet.NIJ+" that vc_helmet cannot work with");
+        };
+        if(Theatre.TheatreData.climate==person.kit.helmet.camo){
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.helmet.mV_BBHavingRightCamo;
+            Power+=cfg.multipliers.personnel.kit.helmet.pH_BBHavingRightCamo;
+        }else if((Theatre.TheatreData.climate==3&&person.kit.bArmor.camo==1)&&(Theatre.TheatreData.climate==1&&person.kit.bArmor.camo==3)){
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.helmet.mV_BBHavingAlmostRightCamo;
+            Power+=cfg.multipliers.personnel.kit.helmet.pH_BBHavingAlmostRightCamo;
+        };
+        ImpactOnMorale+=(person.kit.helmet.quality*cfg.multipliers.personnel.kit.helmet.mH_QualityMultiplier);
+    };
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        moraleImpact:ImpactOnMorale,
+    };
+
+};
+
+function vc_IFAK(person){//handles value calculation of a soldier's IFAK
+    let Weight=0;
+    let ImpactOnMorale=0;
+    let Power=0;
+    if(person.kit.IFAK!=0){
+        Weight=person.kit.IFAK.weight;
+        ImpactOnMorale+=(person.kit.IFAK.tieOffTQ*cfg.multipliers.personnel.kit.IFAK.iM_BBHTieOffTQ);
+        ImpactOnMorale+=(person.kit.IFAK.CATorSWAT_TQ*cfg.multipliers.personnel.kit.IFAK.iM_BBHCATorSWATTQ);
+        ImpactOnMorale+=(person.kit.IFAK.wPackGauze*cfg.multipliers.personnel.kit.IFAK.iM_BBHwPackGauze);
+        ImpactOnMorale+=(person.kit.IFAK.sCWA*cfg.multipliers.personnel.kit.IFAK.iM_BBHsCWA);
+        ImpactOnMorale+=(person.kit.IFAK.nAK*cfg.multipliers.personnel.kit.IFAK.iM_BBHnAK);
+        ImpactOnMorale+=(person.kit.IFAK.PressDressAndBdg*cfg.multipliers.personnel.kit.IFAK.iM_BBHPressDressAndBdg);
+        ImpactOnMorale+=(person.kit.IFAK.shears*cfg.multipliers.personnel.kit.IFAK.iM_BBHShears);
+        ImpactOnMorale+=(person.kit.IFAK.gloves*cfg.multipliers.personnel.kit.IFAK.iM_BBHGloves);
+        ImpactOnMorale+=(person.kit.IFAK.blanket*cfg.multipliers.personnel.kit.IFAK.iM_BBHBlanket);
+        ImpactOnMorale+=(person.kit.IFAK.litter*cfg.multipliers.personnel.kit.IFAK.iM_BBHLitter);
+        ImpactOnMorale+=(person.kit.IFAK.splint*cfg.multipliers.personnel.kit.IFAK.iM_BBHSplint);
+        ImpactOnMorale+=(person.kit.IFAK.meds*cfg.multipliers.personnel.kit.IFAK.iM_BBHMeds);
+        ImpactOnMorale+=(person.kit.IFAK.bbKit*cfg.multipliers.personnel.kit.IFAK.iM_BBHBBKit);
+        ImpactOnMorale+=(person.kit.IFAK.mTape*cfg.multipliers.personnel.kit.IFAK.iM_BBHmTape);
+    };
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        moraleImpact:ImpactOnMorale
+    }
+};
+
+function vc_backpack(person){//handles value calculation of a soldier's backpack
+    let Weight=0;
+    let ImpactOnMorale=0;
+    let Power=0;
+    if(person.kit.backpack!=0){
+        Weight=person.kit.backpack.weight;
+        if(person.kit.backpack.camo==Theatre.TheatreData.climate){
+            Power+=cfg.multipliers.personnel.kit.backpack.pB_BBHavingRightCamo;
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.backpack.mB_BBHavingRightCamo;
+        }else if((Theatre.TheatreData.climate==1&&person.kit.backpack.camo==3)||(Theatre.TheatreData.climate==3&&person.kit.backpack.camo==1)){
+            Power+=cfg.multipliers.personnel.kit.backpack.pB_BBHavingAlmostRightCamo;
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.backpack.mB_BBHavingAlmostRightCamo;
+        };
+        ImpactOnMorale+=(person.kit.backpack.quality*cfg.multipliers.personnel.kit.backpack.mB_QualityMultiplier);
+    }
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        moraleImpact:ImpactOnMorale,
+    }
+};
+
+function vc_tent(person){
+    let Weight=0;
+    let ImpactOnMorale=0;
+    let Power=0;    
+    if(person.kit.tent!=0){
+        Weight=person.kit.tent.weight;
+        if(person.kit.tent.camo==Theatre.TheatreData.climate){
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.tent.mT_BBHavingRightCamo;
+        }else if((Theatre.TheatreData.climate==1&&person.kit.tent.camo==3)||(Theatre.TheatreData.climate==3&&person.kit.backpack.camo==1)){
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.tent.mT_BBHavingAlmostRightCamo;
+        };
+    };
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        moraleImpact:ImpactOnMorale,
+    }
+};
+
+function vc_sleepingBag(person){
+    let Weight=0;
+    let ImpactOnMorale=0;
+    let Power=0;    
+    if(person.kit.sleepingBag!=0){
+        Weight=person.kit.sleepingBag.weight;
+        if(person.kit.sleepingBag.camo==Theatre.TheatreData.climate){
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.sleepingBag.mSB_BBHavingRightCamo;
+        }else if((Theatre.TheatreData.climate==1&&person.kit.sleepingBagcamo==3)||(Theatre.TheatreData.climate==3&&person.kit.sleepingBag.camo==1)){
+            ImpactOnMorale+=cfg.multipliers.personnel.kit.sleepingBag.mSB_BBHavingAlmostRightCamo;
+        };
+        ImpactOnMorale+=(person.kit.sleepingBag.quality*cfg.multipliers.personnel.kit.sleepingBag.mSB_QualityMultiplier);
+        ImpactOnMorale-=(person.kit.sleepingBag.wearLevel*cfg.multipliers.personnel.kit.sleepingBag.mSB_DBBWearLevel);
+        ImpactOnMorale+=(person.kit.sleepingBag.cleanLevel*cfg.multipliers.personnel.kit.sleepingBag.mSB_CleanLevelMultiplier);
+        if((runtimeVariables.currentWeather.temp<person.kit.sleepingBag.tempMin)&&(runtimeVariables.time>2000||runtimeVariables.time<600)){
+            ImpactOnMorale-=((person.kit.sleepingBag.tempMin-runtimeVariables.currentWeather.temp)*cfg.multipliers.personnel.kit.sleepingBag.mSB_DBBTempBelowMin);
+        }
+    };
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        moraleImpact:ImpactOnMorale,
+    }
+}
+
 
 
 

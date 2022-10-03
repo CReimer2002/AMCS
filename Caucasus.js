@@ -1,5 +1,9 @@
 /*
 */
+let TheatreData={
+    climate:1,//0 arctic, 1 woodland, 2 desert, 3 tropical
+    hasBugs:1,//whether it has bugs in times of year with warmer temperature
+}
 let MapFeatures = [
     //All of the Baltics (the backdrop)
     [
@@ -824,7 +828,7 @@ let MapFeatures = [
         9,
         7
     ],
-]
+];
 let MapFeaturesTest = [
     [
         "Grassland Test Area",//name
@@ -925,7 +929,7 @@ let MapFeaturesTest = [
         10,
         4
     ],     
-]
+];
 let MapFeaturesDeprecatedV2 = [
     /*
         Map features in this sim are a way of identifying and simulating a specific location's attributes and how those will affect attacks, defenses or logistical movement through those regions. Location types are used to approximate the topography of the area for calculating defensibility and ease of movement. Area priorities are a backend means of determining what zone should be used when one zone falls inside another one. Ownership is used to approximate how the population of an area is supposed to react to a unit being based there. Unlike types or priorities, ownership is malleable and if an area falls under new ownership, the ownership number will fluctuate. 
@@ -1043,7 +1047,7 @@ let MapFeaturesDeprecatedV2 = [
         1,
         0
     ]
-]
+];
 let MapFeaturesDeprecated={
     1:{
         name:"City Center Zugdidi",
@@ -1217,4 +1221,4 @@ let Routes=[
         0//percentage of the route that is in Georgian territory. Determines the likelihood of a partisan ambush.  
     ],
 ];
-export default {MapFeatures,DistrictSupplyDepots,RegimentalSupplyDepots,BTG_FOBs,ChokePoints,Routes,MapFeaturesTest}; 
+export default {MapFeatures,DistrictSupplyDepots,RegimentalSupplyDepots,BTG_FOBs,ChokePoints,Routes,MapFeaturesTest,TheatreData}; 

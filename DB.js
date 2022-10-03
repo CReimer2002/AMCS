@@ -193,506 +193,6 @@ import cfg from "./simConfig.js";
 
 
 */
-const testItems={
-    components:{
-        vehicles:{
-            MBT_T72B3 : {
-                disc:"Test of a possible new system for modeling armored vehicle stats",
-                type:1,//tank 
-                isCombatVehicle:1,
-                mass:45,//tons
-                crew:3,//how many it takes to perform the vehicle's function. Different than troop capacity, or for IFVs, carried squad size.
-                //primaryWeapon:vComponents.cannons.c_24A6M5,
-                //ATGM:vComponents.atgm.atgm_9M119,
-                priWeapSup:[20,10,9,6],//APFSDS, HEAT, HE, ATGM. More generally can be used as pure Anti-Tank, multipurpose, HE/frag, ATGM
-                priWeapSPH:[0,0,0,0],
-                //coax:vComponents.mg.mg_PKT,
-                coaxWeapSup:[0,2000,0,0],//machine gun rounds carried, considered pure anti-tank, multipurpose, HE/frag, ATGM. For almost all vehicles this will just be multipurpose but I am including this for futureproofing in case vehicles like the BMP-3 get added. 
-                coaxWeapSPH:[0,0,0,0],
-                //tertiaryWeapon:vComponents.hmg.hmg_NSV,
-                tertiaryWeapSup:[300],
-                tertiaryWeapSPH:[0],
-                //FCS:vComponents.FCS.s_1A40_4,
-                hasSmokeScreen:1,//can it produce a smoke screen? may be too simplistic, possible update later
-                hullArmor:[950,440,500],//against HEAT, KE, shaped charges. when dug in only the stats for the turret will be used.
-                turretArmor:[950,440,500],
-                supplies:[1,0,0,0,0,2,3],
-                fuelcap:320,//how much fuel can be carried in gallons.
-                maxSpeed:[23.75,28.5],//max speed in mph, both offroad and on-road.
-                reloadtime:6.5,//reload time in seconds, in this case for the autoloader.
-                reloadtimeManual:10,
-                maxRange:[4500,3000,4374],
-                canFloat:1,
-                profile:86.167,//maybe too subjective
-                catastrophicLossOnPen:.75,
-                fuelBurn:[1.71,1.04,.5],//good as-is
-                opRange:[162,270],//good as-is  
-            },           
-        },
-        weapons:{
-
-        },
-        personnel:{
-            T_Rifleman:{
-                AGF_Base_Fresh_Rifleman_Green:{//Frontline, basic but equipped and trained Abkhaz army infantryman
-                    name:0,
-                    ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
-                    primary:{//primary weapon, must be a firearm
-                        name:0,
-                        optic:0,
-                        suppressor:0,
-                        uBGL:0,
-                        railAccessory:0,
-                        gripMod:0,
-                        weight:0,
-                    },
-                    secondary:{//secondary weapon, must be a firearm
-                        name:0,
-                        optic:0,
-                        suppressor:0,
-                        uBGL:0,
-                        railAccessory:0,
-                        gripMod:0,
-                        weight:0,
-                    },
-                    special:{//special weapon, a standalone rocket launcher
-                        name:0,
-                        optic:0,
-                        gripMod:0,
-                        weight:0,
-                    },
-                    explosives:{
-                        explosive1:[0,0],//name of explosive, quantity of explosive
-                        explosive2:[0,0],
-                        explosive3:[0,0],
-                    },
-                    mines:{
-                        /*Mines need to be different than explosives. 
-                            Unlike grenades or charges, mines are useful after being removed from an individual's
-                            inventory and thus need special consideration. Mines will impact the zones they are placed
-                            in and will continue to do so until the mines are destroyed, either by themselves, the 
-                            enemie's mine clearing assets or by being actuated by their targets. 
-                        */
-                        mine1:0,
-                        mine2:0,
-                        mine3:0,
-                    },
-                    kit:{
-                        bArmor:0,
-                        nods:0,
-                        earPro:0,
-                        comms:0, //More advanced stuff will be handled at sq level
-                        uniform:0,
-                        IFAK:0,
-                        canteen:0,                        
-                    },
-                    buffs:{
-                        lDrinkBuff:1,
-                        lMealBuff:1,
-                        lHotMealBuff:1,
-                        lLaundryBuff:1,
-                        lHotShowerBuff:1,
-                        lReserveBuff:1,
-                        tSinceReserve:0,
-                    },
-                    status:{
-                        effectivness:1,
-                        morale:1,
-                        confidenceInLeadership:1,
-                        confidenceInCause:1,
-                        resolve:1,
-                        exhaustion:0,
-                        hoursCombatExperience:0,
-                        hoursJobExperience:0,
-                        lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                        cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                        specialty:"11B",
-                        organization:"Abkhaz Ground Forces",
-                        supplies:[0,210,0,0,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
-                        tSupplies:[0,210,0,0,3,10,1,.5],
-                        sPH:[0,0,0,0,0,0,0], 
-                    },
-                },
-            },
-            T_SR_Rifleman:{
-            },
-            T_Asst_Grenadier:{
-            },
-            T_Grenadier:{
-
-            },
-            T_MG:{
-        
-            },
-            T_SL:{
-                
-            },
-            T_Crewman:{
-
-            },
-            T_MANPADS:{
-
-            },
-            T_SVD:{
-
-            },
-            S_Staffer:{
-
-            },
-            S_Officer:{
-
-            }
-        },
-    },
-
-
-};
-const vComponents={
-    cannons:{
-        c_24A6M5:{
-            rpm:8,//rounds per minute in optimal conditions
-            rpm_m:2,//rounds per minute, loaded manually (assuming the tank is an autoloader and manual loading is secondary, if man is pri, rpm will always be used)
-            barrelLife:1200,//rounds
-            maxRangeAntiTank:9842,//feet
-        }
-    },
-    autoCannons:{
-
-    },
-    atgm:{
-        atgm_9M119:{
-            name:"9M119 'Svir' (AT-11 'sniper') laser guided, beam riding ATGM fired from the main gun of T-72s",
-            range:13123,//max range in feet
-            pen:750//mm of RHA it will pen
-        }
-    },
-    mg:{
-        mg_PKT:{
-            name:"7.62mm coaxial machine gun often used as a coaxial machine gun on tanks",
-            caliber:1,
-            guidance:3,
-            range:4921,
-        }
-    },
-    hmg:{
-        hmg_NSV:{
-            name:"12.5mm heavy machine gun often seen as an aa-mount on tanks like the T-72B",
-            caliber:2,//1 is rifle type ammo, 2 is roughly 50, 3 is above 50 (like 14.5mm)
-            guidance:0,//0 is manual with exposed operator, 1 is manual with operator in a semi-exposed turret, 2 is with remote turret (think CROWS), 3 is directly slaved to the main gun or just is the primary armament
-            range:4921,
-        }
-    },
-    ERA:{
-        era_kontakt_5:{
-
-        }
-    },
-    FCS:{
-        s_1A40_4:{
-            name:"the 1A40-4 FCS is a modern, computerized FCS with thermal, ir and day sights, stabilization and gyrocompasses, most notably used on the T-72B3 tank",
-            gOptics:3,//0 is iron sights, 1 is day sights only, 2 is day sights with floodlight IR NVGs, 3 is day sights+thermal night sights.
-            cOptics:3,
-            stabilized:1,
-            range:[16404,3280]//day, night affective sight ranges
-        }        
-    },
-    optics:{
-    },
-    communications:{
-    },
-    navSys:{
-
-    },
-    SASys:{
-
-    },
-    commSys:{
-        radio:{
-            r_R173:{
-                name:"R-173, standard analog VHF radio for russian tanks",
-                signalRange:12,//miles
-                freqRangeMin:30,//minimum frequency
-                freqRangeMax:79.9,//maximum frequency
-                secure:0//can radio transmissions be encrypted?
-            },
-            r_R168_25VE:{
-                name:"R-168-25VE tactical vehicle-mounted VHF radio",
-                signalRange:21,
-                freqRangeMin:30,
-                freqRangeMax:107,
-                secure:1
-            }
-        },
-    },
-    Ammunition:{
-        cannon:{
-            c_3VBM23:{
-                name:"Svinets-2, used in the 24A6M5 gun for the T-72B3, among others",
-                type:1,//1 is APFSDS, 2 is HEAT, 3 is HE
-                weight:24.25,//projectile weight, pounds
-                pen:500,//mm RHA at max range, being a little generous here.
-                range:9842
-            },
-            c_125mmHE:{
-                name:"generic HE round used by the 24A6 gun, specs from the T-72B3's 2A46M5 gun",
-                type:3,//1 is APFSDS, 2 is HEAT, 3 is HE
-                weight:72.75,//round weight, pounds
-                pen:250,//big guess as it's not listed anywhere. APFSDS is obv preferred.
-                range:16404
-            },
-            c_3VBK27:{
-                name:"start, a HEAT round used in the T-72B3, among others",
-                type:2,
-                weight:44.13,
-                pen:500,
-                range:9842
-            }
-        },
-        autocannon:{
-
-        },
-        atgm:{
-            m_9K120:{
-                name:"Svir, an ATGM launched from the main gun barrel of T-72 series tanks",
-                guidance:1,//1 is laser
-                range:13123,
-                weight:61.72//this is almost certainly wrong and just the weight of the warhead
-            }
-        },
-        hmg:{
-        },
-        artyshell:{
-
-        },
-        artyrocket:{
-            ar_9M55K:{
-                type:6,//1 is cannon shell, 2 is autocannon shell, 3 is ATGM round, 4 is HMG round, 5 is artillery shell, 6 is arty rocket
-                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
-                name:"9M55K 300mm anti-personnel-cluster-munition-dispensing unguided rocket",
-                disc:"300mm unguided rocket fired originally from the 9K58 BM-30 'Smerch' MRL",
-                range:43.495,
-                payload:3,//1 HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
-                payloadDevice:0,//used if the payload is something the DB includes. For example, launching a rocket full of AT mines into a zone should add those mines to the zone. 
-                warheadExplTNT:0,//used for simple HE weapons
-                fireableIDs:[],//what vehicles can fire the munition
-                transportableIDs:[],//what vehicles can carry the munition
-                weight:1763.698,
-            },
-            ar_9M55K1:{
-                type:6,
-                guidance:[1,0,0,0,0,1,0],
-                name:"9M55K1 300mm self-guided anti-tank cluster-munition-dispensing unguided rocket",
-                disc:"300mm unguided (but with smart submunitions) rocket fired originally from the 9K58 BM-30 'Smerch' MRL",
-                range:43.495,
-                payload:4,
-                payloadDevice:0,
-                warheadExplTNT:0,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1763.698,
-            },
-            ar_9M55K4:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],
-                name:"9M55K4 300mm rocket round",
-                disc:"AT-minelet dispenser, presumably using PTM-3 shaped charge mines. Deploys 25 with one rocket.",
-                range:43.495,
-                payload:6,
-                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM3,25],
-                warheadExplTNT:0,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1763.698,
-            },
-            ar_9M55K5:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],
-                name:"9M55K5 300mm rocket round",
-                disc:"HEAT/HE (presumably cluster) munition rocket, dispensing 646 submunitions each with 120mm of pen",
-                range:43.495,
-                payload:4,
-                payloadDevice:0,
-                warheadExplTNT:0,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1763.698,
-            },
-            ar_9M55F:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],
-                name:"9M55F 300mm rocket round",
-                disc:"HE/Frag munition rocket, I will treat this as an HE rocket",
-                range:43.495,
-                payload:1,
-                payloadDevice:0,
-                warheadExplTNT:600,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1763.698,
-            },
-            ar_9M55C:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],
-                name:"9M55C 300mm rocket round",
-                disc:"Thermobaric rocket",
-                range:43.495,
-                payload:8,
-                payloadDevice:0,
-                warheadExplTNT:900,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT. Further abstracting it, I am multiplying it's payload by 1.5 because it is thermobaric.
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1763.698,
-            },
-            ar_9M528:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],
-                name:"9M528 300mm rocket round",
-                disc:"HE-Fragmentation",
-                range:55.923,
-                payload:1,
-                payloadDevice:0,
-                warheadExplTNT:600,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT. 
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1796,
-            },
-            ar_9M534:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],
-                name:"9M534 300mm rocket round",
-                disc:"UAV delivery system",
-                range:55.923,
-                payload:7,
-                payloadDevice:0,
-                warheadExplTNT:0,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1796,
-            },
-            ar_9M542:{
-                type:6,
-                guidance:[1,0,0,1,1,0,0],
-                name:"9M542 300mm rocket round",
-                disc:"HE/Frag PGM with inertial, GLONASS guidance",
-                range:74.564,
-                payload:1,
-                payloadDevice:0,
-                warheadExplTNT:350,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1796,
-            },
-            ar_R624:{
-                type:6,
-                guidance:[1,0,1,1,1,0,0],//this round is produced by Ukraine and has GPS guidance. I am going to give it both GPS and GLONASS to allow for the possibility of russian production
-                name:"R624 300mm rocket round",
-                disc:"HE/Frag PGM with inertial, GPS and GLONASS guidance",
-                range:43.495,
-                payload:1,
-                payloadDevice:0,
-                warheadExplTNT:575,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1796,
-            },
-            ar_R624M:{
-                type:6,
-                guidance:[1,0,1,1,1,0,0],//this round is produced by Ukraine and has GPS guidance. I am going to give it both GPS and GLONASS to allow for the possibility of russian production
-                name:"R624M 300mm rocket round",
-                disc:"HE/Frag PGM with inertial, GPS and GLONASS guidance. Possibly the best rocket in even hypothetical russian inventory",
-                range:80.778,//damn son
-                payload:1,
-                payloadDevice:0,
-                warheadExplTNT:425,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:1796,
-            },
-            ar_9M27F:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
-                name:"9M27F 220mm rocket round",
-                disc:"HE/Frag dumb rocket",
-                range:21.7,
-                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
-                payloadDevice:0,
-                warheadExplTNT:250,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:620,
-            },
-            ar_9M27K1:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
-                name:"9M27K1 220mm rocket round",
-                disc:"anti-tank cluster bomb dispenser",
-                range:21.7,
-                payload:4,
-                payloadDevice:0,
-                warheadExplTNT:250,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:600,
-            },
-            ar_9M27K2:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
-                name:"9M27K2 220mm rocket round",
-                disc:"dispenses 24 PTM-1 anti-tank mines",
-                range:21.7,
-                payload:6,
-                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM1,24],
-                warheadExplTNT:250,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:600,
-            },
-            ar_9M27K3:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
-                name:"9M27K3 220mm rocket round",
-                disc:"dispenses 312 PFM-1 anti-personnel mines",
-                range:21.1,
-                payload:5,
-                payloadDevice:[tComponents.weapons.antiPersonMine.APM_PFM1,312],//that's a lot of mines
-                warheadExplTNT:0,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:600,
-            },
-            ar_9M59:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
-                name:"9M59 220mm rocket round",
-                disc:"dispenses 9 PTM-3 anti-tank mines",
-                range:21.75,
-                payload:6,
-                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM3,9],
-                warheadExplTNT:0,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:600,
-            },
-            ar_9M22U:{
-                type:6,
-                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
-                name:"9M22U 122mm rocket round",
-                disc:"HE/Frag dumb rocket",
-                range:21.7,
-                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
-                payloadDevice:0,
-                warheadExplTNT:250,
-                fireableIDs:[],
-                transportableIDs:[],
-                weight:620,
-            },
-        }
-
-
-    }
-
-
-};
 const gComponents={
     calibers:{
         //light calibers
@@ -798,6 +298,145 @@ const gComponents={
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_50
         },
     },
+    mags:{
+        referenceMag:{
+            name:"",//name of the mag
+            disc:"",//disc of the mag
+            caliber:"",//caliber of the weapon
+            capacity:0,//number of rounds it can hold
+            weight:0,//weight, pounds
+            quality:5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_D60AR:{
+            name:"Magpul PMAG 60 M4 Gen M3",//name of the mag
+            disc:"Modern plastic AR 5.56 drum",//disc of the mag
+            caliber:"5.56x45mm",//caliber of the weapon
+            capacity:60,//number of rounds it can hold
+            weight:1.281,//weight, pounds
+            quality:5,
+            hasSidePort:1,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_P40AR:{
+            name:"Magpul PMAG 40 M4 Gen M3",//name of the mag
+            disc:"Modern 40 round polymer mag",//disc of the mag
+            caliber:"5.56x45mm",//caliber of the weapon
+            capacity:40,//number of rounds it can hold
+            weight:.39,//weight, pounds
+            quality:5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_P30AR:{
+            name:"Magpul PMAG 30 M4 Gen M3",//name of the mag
+            disc:"Modern 40 round polymer mag with window",//disc of the mag
+            caliber:"5.56x45mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.297,//weight, pounds
+            quality:5,
+            hasSidePort:1,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_USGI30AR:{
+            name:"USGI 30 magazine",//name of the mag
+            disc:"Standard-issue US aluminum mag",//disc of the mag
+            caliber:"5.56x45mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.25,//weight, pounds
+            quality:4.5,
+            hasSidePort:1,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_AK74_30:{
+            name:"Combloc AK-74 magazine",//name of the mag
+            disc:"Standard-issue combloc mag",//disc of the mag
+            caliber:"5.45x39mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.5625,//weight, pounds
+            quality:4.5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_RPK74M_45:{
+            name:"Russian RPK-74M magazine",//name of the mag
+            disc:"Standard-issue russian mag",//disc of the mag
+            caliber:"5.45x39mm",//caliber of the weapon
+            capacity:45,//number of rounds it can hold
+            weight:.625,//weight, pounds
+            quality:4.5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_RPK74_45:{
+            name:"Russian RPK-74 magazine",//name of the mag
+            disc:"Standard-issue bakelite combloc mag",//disc of the mag
+            caliber:"5.45x39mm",//caliber of the weapon
+            capacity:45,//number of rounds it can hold
+            weight:.625,//weight, pounds
+            quality:4.5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_AK74M_30:{
+            name:"AK-74M magazine",//name of the mag
+            disc:"Standard-issue russian mag",//disc of the mag
+            caliber:"5.45x39mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.51,//weight, pounds
+            quality:4.5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_AK47_30_Early:{
+            name:"AK-47 magazine, early issue",//name of the mag
+            disc:"Standard-issue combloc mag",//disc of the mag
+            caliber:"7.62x39mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.95,//weight, pounds
+            quality:4.4,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_AK47_30_S:{
+            name:"AK-47 magazine, steel",//name of the mag
+            disc:"Standard-issue combloc mag, came after the early issue but before plastic",//disc of the mag
+            caliber:"7.62x39mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.73,//weight, pounds
+            quality:4.4,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_AK47_30_P:{
+            name:"AK-47 magazine, plastic",//name of the mag
+            disc:"Standard-issue combloc mag, came after the steel but before light alloy",//disc of the mag
+            caliber:"7.62x39mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.55,//weight, pounds
+            quality:4.5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_AK47_30_LA:{
+            name:"AK-47 magazine, light alloy",//name of the mag
+            disc:"Latest-issue combloc mag",//disc of the mag
+            caliber:"7.62x39mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.37,//weight, pounds
+            quality:4.5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_AK12_30:{
+            name:"AK-47 magazine, light alloy",//name of the mag
+            disc:"Latest-issue combloc mag",//disc of the mag
+            caliber:"5.45x39mm",//caliber of the weapon
+            capacity:30,//number of rounds it can hold
+            weight:.425,//weight, pounds
+            quality:5,
+            hasSidePort:1,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_AK47_40_P:{
+            name:"AK-47 40 round magazine, bakelite",//name of the mag
+            disc:"Bakelite 40 rounder",//disc of the mag
+            caliber:"7.62x39mm",//caliber of the weapon
+            capacity:40,//number of rounds it can hold
+            weight:.5625,//weight, pounds
+            quality:5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+
+
+    }
             /*    
             ("7.62x25mm",0),//TT-33 
         */
@@ -3971,6 +3610,17 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:1.653,
                 sdTimer:99
             },
+            APM_POM2:{
+                type:3,
+                name:"POM-2 scatterable anti-personnel tripwire mine",
+                disc:"lightweight,auto-tripwire-deploying machine scattered anti-personnel mine introduced by Russia in 1962. Deployed from helicopters and automatic dispensers",
+                det:[1,0,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:10,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:3.527,
+                sdTimer:25,
+            },
             APM_POM1S:{
                 type:3,
                 name:"POM-1S scatterable auto-destructing anti-personnel tripwire mine",
@@ -3992,7 +3642,29 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 canBeLCd:1,
                 weight:20,
                 sdTimer:99,
-            }
+            },
+            APM_M67:{
+                type:3,
+                name:"M67 anti-personnel mine",
+                disc:"lightweight,auto-tripwire-deploying machine scattered anti-personnel mine deployed via the M692 155mm artillery shells",
+                det:[1,0,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:2,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:1.19,
+                sdTimer:4,
+            },
+            APM_M72:{
+                type:3,
+                name:"M67 anti-personnel mine",
+                disc:"lightweight,auto-tripwire-deploying machine scattered anti-personnel mine deployed via the M731 155mm artillery shell",
+                det:[1,0,0,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                lethalRange:2,//guess, about half the casualty range
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:1.19,
+                sdTimer:48,
+            },
         },
         antiTankMine:{
             ATM_M15:{
@@ -4006,7 +3678,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:1,//is it capable of being double impulse
                 isMetalDetectable:1,//can it be metal-detected
                 canBeLCd:1,//can it be line-charged
-                weight:31.526//total weight, pounds
+                weight:31.526,//total weight, pounds
+                sdTimer:99,//time to self destruct, hours. 99 is used to indicate that it does not self destruct
             },
             ATM_M21:{
                 type:4,
@@ -4019,7 +3692,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:0,//is it capable of being double impulse
                 isMetalDetectable:1,//can it be metal-detected
                 canBeLCd:1,//can it be line-charged
-                weight:17.262//total weight, pounds
+                weight:17.262,//total weight, pounds,
+                sdTimer:99,
             },
             ATM_M19:{
                 type:4,
@@ -4032,7 +3706,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:1,
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:31.526
+                weight:31.526,
+                sdTimer:99,
             },
             ATM_TM46:{
                 type:4,
@@ -4045,7 +3720,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:0,
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:18.959
+                weight:18.959,
+                sdTimer:99,
             },
             ATM_TM62M:{
                 type:4,
@@ -4058,7 +3734,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:0,
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:21
+                weight:21,
+                sdTimer:99,
             },
             ATM_TM62P:{
                 type:4,
@@ -4071,7 +3748,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:0,
                 isMetalDetectable:0,
                 canBeLCd:1,
-                weight:21
+                weight:21,
+                sdTimer:99,
             },
             ATM_TM89:{
                 type:4,
@@ -4084,7 +3762,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:0,
                 isMetalDetectable:0,
                 canBeLCd:1,
-                weight:25.353
+                weight:25.353,
+                sdTimer:99,
             },
             ATM_PTM3:{
                 type:4,
@@ -4097,7 +3776,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:0,
                 isMetalDetectable:0,
                 canBeLCd:1,
-                weight:10.8
+                weight:10.8,
+                sdTimer:99,
             },
             ATM_PTM1:{
                 type:4,
@@ -4110,7 +3790,22 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 doubleImpulse:0,
                 isMetalDetectable:1,
                 canBeLCd:1,
-                weight:3.527
+                weight:3.527,
+                sdTimer:99,
+            },
+            ATM_AT2:{
+                type:4,
+                name:"AT-2 scatterable Anti-Tank Mine",
+                disc:"German advanced self-destructing AT mine, most notably used in the MLRS M28 rocket",
+                explType:2,
+                explTNT:3.225,
+                det:[1,1,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:1,
+                canBeLCd:1,
+                weight:4.894,
+                sdTimer:96,
             },
         },
         explCharge:{
@@ -4227,12 +3922,20 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NVG:1,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR
         },
         o_TA31RCO_ACOG:{
-            name:"ACOG",//the text name of the scope
+            name:"TA31 ACOG",//the text name of the scope
             disc:"ubiquitous magnified day sight for 5.56 rifles",
             mag:4,//magnification x
-            obj:32,//this is a guess
-            weight:.656,//weight, pounds.
-            NVG:1,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+            obj:32,
+            weight:.9875,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_TA11RCO_ACOG:{
+            name:"TA11 ACOG",//the text name of the scope
+            disc:"ubiquitous magnified day sight for 5.56 rifles",
+            mag:3.5,//magnification x
+            obj:35,
+            weight:.875,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
         },
         o_CLU_Standard:{
             name:"FGM-148 Command Launch Unit",//the text name of the scope
@@ -4314,6 +4017,22 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             weight:1,//guessing that the rings weigh .12 pounds
             NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
         },
+        o_L_MK4:{
+            name:"Leupold Mark 4 LRT M3",//the text name of the scope
+            disc:"Advanced new scope possibly replacing the ACOG in USMC frontline service",
+            mag:10,
+            obj:40,
+            weight:.92,//guessing that the rings weigh .15 pounds
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_V_RZRGen2:{
+            name:"Vortex Razor HD Gen II",//the text name of the scope
+            disc:"Advanced scope found in use on USMC Force Recon rifles",
+            mag:6,
+            obj:24,
+            weight:1.5,//1.344, rounded to 1.5 for scope rings
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
         
 
         //red dots
@@ -4347,6 +4066,30 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             mag:1,//magnification x
             obj:40,//this is a guess
             weight:.737,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_MicroT2:{
+            name:"Aimpoint Micro T-2",//the text name of the scope
+            disc:"modern american red dot rifle optic for picatinny rails",
+            mag:1,//magnification x
+            obj:40,//this is a guess
+            weight:.288,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_SU231A:{
+            name:"EOTech EXPS3-2 SU-231A/PEQ 68",//the text name of the scope
+            disc:"modern american red dot rifle optic for picatinny rails",
+            mag:1,//magnification x
+            obj:50,//this is a guess
+            weight:.7,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        o_SU231:{
+            name:"EOTech SU-231",//the text name of the scope
+            disc:"modern american holographic sight, discontinued in favor of the SU-231A",
+            mag:1,//magnification x
+            obj:50,//this is a guess
+            weight:.743,//weight, pounds.
             NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
         },
         o_MARS:{
@@ -4442,6 +4185,12 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             disc:"standard bipod for the PKP",
             type:4,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
             weight:1,    
+        },
+        fg_GPS02:{
+            name:"GPS-02 grip-bipod",
+            disc:"common attachment for western rifles",
+            type:5,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
+            weight:1.5,//guess, looked on 3 different websites and nobody was saying.    
         }
     },
     railAccessories:{
@@ -4463,69 +4212,139 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             features:[0,0,1,1],
             weight:.6,         
         },
+        ra_ANPEQ15:{
+            name:"AN/PEQ-15 IR/visual laser and IR illuminator",
+            disc:"Widely used in the US military, though the USMC is/has replaced it with the AN/PEQ-16",
+            features:[0,1,1,1],
+            weight:.469,         
+        },
+        ra_ANPEQ16:{
+            name:"AN/PEQ-16 IR/visual laser and IR illuminator",
+            disc:"Top-of-the laser/illuminator, found on many USMC rifles",
+            features:[0,1,1,1],
+            weight:.562,         
+        },
 
     },
     vests:{
-        v_6B45L:{
-            name:"Russian 6B45 vest, light variant. Used by specops, tankers, snipers, officers and medics in the RGF and AGF. Info sourced from armyrecognition", 
+        v_6B45L_W:{
+            name:"6B45L body armor vest",
+            disc:"Light variant of the newer russian body armor sets, used by high speeders, tankers, snipers, officers and medics in the RGF and hypothetical AGF. EMR pattern.",
             NIJ:"II",
             mass:12,//made up, no known spec
+            sideProtect:1,
+            quality:5,
+            camo:1,//0 winter, 1 woodland/forest, 2 desert,3 tropical
         },
-        v_6B45M:{
-            name:"Russian 6B45 vest, medium variant. used by all types of frontline troops in the RGF and AGF. Info sourced from armyrecognition", 
+        v_6B45M_W:{
+            name:"6B45M body armor vest", 
+            disc:"Medium variant of the newer russian body armor sets, used by frontline troops of the RGF and hypothetical AGF. EMR Pattern",
             NIJ:"III",
-            mass:16.5
+            mass:16.5,
+            sideProtect:1,
+            quality:5,
+            camo:1
         },
-        v_6B45H:{
-            name:"Russian 6B45 vest, light variant. Used by specops, tankers, snipers, officers and medics in the RGF and AGF. Info sourced from armyrecognition", 
+        v_6B45H_W:{
+            name:"6B45H body armor vest", 
+            disc:"Heavy variant of the newer russian body armor sets, used by frontline troops of the RGF and hypothetical AGF. EMR Pattern",
             NIJ:"IV",
             mass:33,
+            sideProtect:1,
+            quality:5,
+            camo:1
+        },
+        v_6B23_W:{
+            name:"6B23 body armor vest", 
+            disc:"Pre-Ratnik standard vest for Russian infantry. EMR Pattern",
+            NIJ:"III",
+            mass:17,
+            sideProtect:0,
+            quality:4.5,
+            camo:1
         },
         v_6B517:{
             name:"Russian 6B5-17 vest produced in 1991 and used by KGB and FSB operatives in Chechnya and Yugoslavia", 
             NIJ:"III",
             mass:26,
         },
-        v_Defender2:{
-            name:"FORT DEFENDER-2 vest ", 
+        v_Defender2_W:{
+            name:"FORT DEFENDER-2 body armor vest ", 
+            disc:"Post-Chechnya vest ubiquitous in Russia, many SF users.",
             NIJ:"III",
             mass:26.45,
+            sideProtect:0,
+            quality:4.5,
+            camo:1
         },
-        v_MTV_MK1_NoPlates:{
+        v_MTV_MK1_NoPlates_W:{
             name:"Modular Tactical Vest MK-I", 
-            disc:"Georgian standard issue modular tactical vest",
+            disc:"Georgian standard issue modular tactical vest, green",
             NIJ:"IIIA",
             mass:7.71,
+            sideProtect:1,
+            quality:5,
+            camo:1
         },
-        v_MTV_MK1_WPlates:{
+        v_MTV_MK1_WPlates_W:{
             name:"Modular Tactical Vest MK-I with added plates", 
-            disc:"Georgian standard issue modular tactical vest with added plates",
+            disc:"Georgian standard issue modular tactical vest with added plates, green",
             NIJ:"IV",
             mass:18.73,
+            sideProtect:0,
+            quality:5,
+            camo:1
         },
-        v_MTV_MK2_WPlates:{
+        v_MTV_MK2_WPlates_W:{
             name:"Modular Tactical Vest MK-II with added plates", 
-            disc:"Georgian standard issue modular tactical vest with added plates",
+            disc:"Georgian standard issue modular tactical vest with added plates, green",
             NIJ:"IV",
             mass:18.51,
+            sideProtect:1,
+            quality:5,
+            camo:1
         },
-        v_SPCS:{
+        v_SPCS_W:{
             name:"Soldier Plate Carrier System", 
-            disc:"basic vest in use with the US Army",
-            NIJ:"IIIA",//guess
-            mass:22,
+            disc:"Being replaced by the MSV",
+            NIJ:"IV",//guess
+            mass:25,
+            sideProtect:1,
+            quality:5,
+            camo:1
+        },
+        v_IOTV_W:{
+            name:"Improved Outer Tactical Vest", 
+            disc:"Older US army vest, good protection but so heavy that some troops almost consider wearing it a liability",
+            NIJ:"IV",//guess
+            mass:31,
+            sideProtect:1,
+            quality:4.75,
+            camo:1
         },
         v_MSV:{
-            name:"Soldier Plate Carrier System", 
+            name:"Modular Scalable Vest", 
             disc:"most advanced body armor available to the US army",
             NIJ:"IV",//guess
             mass:25,
+            sideProtect:1,
+            quality:5,
+            camo:1
+        },
+        v_MTV:{
+            name:"Modular Tactical Vest", 
+            disc:"Standard issue ballistic vest for the USMC since 2006",
+            NIJ:"IV",//guess
+            mass:30,
+            sideProtect:1,
+            quality:5,
+            camo:1
         },
 
 
     },
     helmets:{
-        h_6B47:{
+        h_6B47_W:{
             name:"6B47 combat helmet",
             disc:"standard ballistic helmet of the RGF and AGF",
             opticMount:1,
@@ -4533,6 +4352,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIA",
             mass:2.64,
             cut:0,//full helmet, high cut, 
+            camo:1,
+            quality:5,
         },
         h_SSh68:{
             name:"SSh-68 steel helmet",
@@ -4542,8 +4363,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIA",
             mass:3.3,
             cut:0,//full helmet, high cut, 
+            camo:1,
+            quality:4,
         },
-        h_DHMKI:{
+        h_DHMKI_W:{
             name:"DH MK-I combat helmet",
             disc:"Georgian standard issue ballistic helmet of the Georgian Defense Forces, early variant with no nod or can mounts",
             opticMount:0,
@@ -4551,8 +4374,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",
             mass:2.75,
             cut:0,
+            camo:1,
+            quality:4.75,
         },
-        h_DHMKII:{
+        h_DHMKII_W:{
             name:"DH MK-II combat helmet",
             disc:"Georgian produced standard issue ballistic helmet of the Georgian Defense Forces, modern variant with NOD and Can mounts",
             opticMount:1,
@@ -4560,8 +4385,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",
             mass:2.8,
             cut:0,
+            camo:1,
+            quality:5,
         },
-        h_DHMKIII:{
+        h_DHMKIII_W:{
             name:"DH MK-III combat helmet",
             disc:"Georgian produced Special Forces helmet of the Georgian Defense Forces, modern variant with NOD and Can mounts",
             opticMount:1,
@@ -4569,8 +4396,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",
             mass:2.85,
             cut:1,
+            camo:1,
+            quality:5,
         },
-        h_IHPS:{
+        h_IHPS_W:{
             name:"Integrated Head Protection System",
             disc:"newest available combat helmet for US personnel",
             opticMount:1,
@@ -4578,8 +4407,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",
             mass:3,
             cut:1,
+            camo:1,
+            quality:5,
         },
-        h_FASTRF1:{
+        h_FASTRF1_W:{
             name:"Ops-Core Future Assault Shell Technology Helmet RF1",
             disc:"advanced high cut combat helmet used by US special forces, heavy variant",
             opticMount:1,
@@ -4587,8 +4418,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"III",
             mass:3.5,
             cut:1,
+            camo:1,
+            quality:5,
         },
-        h_FASTRXR:{
+        h_FASTRXR_W:{
             name:"Ops-Core Future Assault Shell Technology Helmet XR",
             disc:"advanced high cut combat helmet used by US special forces, heavy variant",
             opticMount:1,
@@ -4596,8 +4429,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",
             mass:3,
             cut:1,
+            camo:1,
+            quality:5,
         },
-        h_ACH:{
+        h_ACH_W:{
             name:"Advanced Combat Helmet",
             disc:"standard issue combat helmet of the US Army, to be replaced by the IHPS",
             opticMount:1,
@@ -4605,8 +4440,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",//guess
             mass:3.5,//guess
             cut:0,
+            camo:1,
+            quality:4.75,
         },
-        h_LWH:{
+        h_LWH_W:{
             name:"Lightweight Helmet",
             disc:"standard issue low-risk combat helmet of the USMC and USN, front line units may have access to the ECH",
             opticMount:0,
@@ -4614,8 +4451,10 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",//guess
             mass:3.2,
             cut:0,
+            camo:1,
+            quality:4.6,
         },
-        h_ECH:{
+        h_ECH_W:{
             name:"Enhanced Combat Helmet",
             disc:"issued to front line USMC personnel, this is a late variant with high cut and mounts",
             opticMount:1,
@@ -4623,6 +4462,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"III",//guess
             mass:3.3,
             cut:1,
+            camo:1,
+            quality:5,
         },
         h_PASGT:{
             name:"PASGT helmet",
@@ -4632,6 +4473,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             NIJ:"IIIA",
             mass:3.4,
             cut:0,
+            camo:1,
+            quality:4
         },
     },
     helmetOptics:{
@@ -4710,47 +4553,77 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
 
     },
     uniforms:{
-        u_ratnik:{
-            name:"Ratnik",
-            disc:"one of the most modern uniforms in existence, offering both protection and camo",
-            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
-            quality:5,//the quality of the gear. Older gear will be worse typically. 
+        u_6SH122_Ratnik:{
+            name:"6SH122 'Ratnik' BDU",
+            disc:"Standard issue Russian battle dress uniform",
+            bugProtection:0,
+            camo:1,//0 is winter, 1 is forest, 2 is desert
+            climate:1,//0 is sub-freezing, 1 is moderate, 2 is hot
+            thermalMasking:1,//does it have IR camo?
+            wearLevel:0,
+            cleanLevel:1,
+            weight:2,//guess
+            flameResist:1
+        },
+        u_6B15_Cowboy:{
+            name:"6B15 'Cowboy' Tanker Uniform",
+            disc:"Standard issue Russian tanker uniform",
+            bugProtection:0,
+            camo:1,//0 is winter, 1 is forest, 2 is desert
+            climate:1,//0 is sub-freezing, 1 is moderate, 2 is hot
+            thermalMasking:1,//does it have IR camo?
+            wearLevel:0,
+            cleanLevel:1,
+            weight:2,//guess
+            flameResist:1
+        },
+        u_ACU_OCP:{
+            name:"Army Combat Uniform, OCP print",
+            disc:"Standard issue US Army Combat uniform",
+            bugProtection:1,
+            camo:1,//0 is winter, 1 is forest, 2 is desert
+            climate:1,//0 is sub-freezing, 1 is moderate, 2 is hot
+            thermalMasking:1,//does it have IR camo?
+            wearLevel:0,
+            cleanLevel:1,
+            weight:2,//guess
+            flameResist:1
+        },
+        u_MCCUU_W:{
+            name:"Marine Corps Combat Utility Uniform, Woodland Print",
+            disc:"Standard uniform of USMC personnel",
+            bugProtection:1,
+            camo:1,//0 is winter, 1 is forest, 2 is desert
+            climate:1,//0 is sub-freezing, 1 is moderate, 2 is hot
+            thermalMasking:1,//does it have IR camo?
+            wearLevel:0,
+            cleanLevel:1,
+            weight:2,//guess
+            flameResist:1
+        },
+        u_MCCUU_D:{
+            name:"Marine Corps Combat Utility Uniform, Desert Print",
+            disc:"Standard uniform of USMC personnel",
+            bugProtection:1,
+            camo:2,//0 is winter, 1 is forest, 2 is desert
+            climate:1,//0 is sub-freezing, 1 is moderate, 2 is hot
+            thermalMasking:1,//does it have IR camo?
+            wearLevel:0,
+            cleanLevel:1,
+            weight:2,//guess
+            flameResist:1
+        },
+        u_civ_light:{
+            name:"Civilian clothes",
+            disc:"Standard uniform of civilians everywhere",
+            bugProtection:0,
+            camo:3,//0 is winter, 1 is forest, 2 is desert
+            climate:1,//0 is sub-freezing, 1 is moderate, 2 is hot
+            thermalMasking:0,//does it have IR camo?
+            wearLevel:0,
+            cleanLevel:1,
+            weight:2,//guess
             flameResist:0
-        },
-        u_ratnik_6B48:{
-            name:"Ratnik 6B48 tanker uniform",
-            disc:"variant of the Ratnik uniform specifically for armored vehicle crews, featuring flame resistant cloth",
-            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
-            quality:5,//the quality of the gear. Older gear will be worse typically. 
-            flameResist:1,
-        },
-        u_barmitsa:{
-            name:"Barmitsa",
-            disc:"broadly fielded russian uniform, likely replaced by Ratnik",
-            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
-            quality:4.5,//the quality of the gear. Older gear will be worse typically. 
-            flameResist:0,
-        },
-        u_cowboy:{
-            name:"6B15 Cowboy",
-            disc:"standard armor for russian and Abkhaz regular tankers, issue began in 2003",
-            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
-            quality:4.75,//the quality of the gear. Older gear will be worse typically. 
-            flameResist:1,
-        },
-        u_cowboy:{
-            name:"6B15 Cowboy",
-            disc:"standard armor for russian and Abkhaz regular tankers, issue began in 2003",
-            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
-            quality:4.75,//the quality of the gear. Older gear will be worse typically. 
-            flameResist:1,
-        },
-        u_ACM:{
-            name:"Army Combat Uniform",
-            disc:"Standard combat uniform in OCP, used by the US Military",
-            camo:2,//0 is color camo only, 1 is color+thermal, 2 is color+thermal+bug repellant
-            quality:4.75,//the quality of the gear. Older gear will be worse typically. 
-            flameResist:0,
         },
     },
     headSets:{
@@ -4949,7 +4822,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             splint:0,//handy for securing limbs
             meds:0,//specialty meds, specialty item
             bbKit:0,//booboo kit, important for avoiding infections in minor wounds.
-            mTape:0
+            mTape:0,
+            weight:.6,
 
         },
         iFAK_Generic_1:{
@@ -4967,7 +4841,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             splint:0,
             meds:0,
             bbKit:1,
-            mTape:0
+            mTape:0,
+            weight:.9,
         },
         iFAK_Improved:{
             name:"A middle ground between the 2003 US army standard issue and the IFAK II of the 2010+ era, good candidate for issue to georgian forces",
@@ -4983,14 +4858,15 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             splint:0,
             meds:0,
             bbKit:1,
-            mTape:1
+            mTape:1,
+            weight:3,
         },
         iFAK_II:{
             name:"An advanced IFAK issued beginning in 2014 for the US army. Also a possible candidate for Georgian forces and perhaps elite RU/Abkhaz commandos. Adds extra TQ, chest seal",
             tieOffTQ:0,
             CATorSWAT_TQ:2,
             wPackGauze:2,
-            sCWA:1,
+            sCWA:1,//
             nAK:1,
             PressDressAndBdg:1,
             shears:0,
@@ -5000,7 +4876,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             splint:0,
             meds:0,
             bbKit:1,
-            mTape:1
+            mTape:1,
+            weight:3.25//guess, no data
         }
     },
     canteens:{
@@ -5023,7 +4900,1032 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             weight:1.25
         }
 
+    },
+    backpacks:{
+        referenceBackpack:{
+            name:"",//basic name of the backpack
+            disc:"",//description such as general purpose, who uses it, etc.
+            weight:0,//pounds, empty
+            camo:1,//0 is winter, 1 is woodland, 2 is desert, 3 is jungle
+            quality:5,//0-5, impacts morale       
+        },
+        ap_MOLLE2_W:{
+            name:"MOLLE II 3 Day Assault Pack",
+            disc:"standard issue US army backpack",
+            weight:4,
+            camo:1,
+            quality:5,  
+        },
+        ap_6SH117_W:{
+            name:"6SH117 patrol backpack",
+            disc:"standard issue modern Russian patrol backpack, EMR",
+            weight:5.5,
+            camo:1,
+            quality:5,  
+        },
+        rs_RKSht30_W:{
+            name:"RK-ShT-30 3 day pack",
+            disc:"Part of the 6B46 Ratnik combat set, issued to Russian soldiers.",
+            weight:3.196,
+            camo:1,
+            quality:5,  
+        },
+        rs_6SH118_W:{
+            name:"6SH118 rucksack",
+            disc:"standard issue modern Russian Ratnik heavy pack, EMR",
+            weight:7.716,
+            camo:1,
+            quality:5,  
+        },
+        rs_MOLLE2_W:{
+            name:"MOLLE II rucksack",
+            disc:"standard issue US army rucksack, for use on marches and not necessarily in frontline combat",
+            weight:9.5,
+            camo:1,
+            quality:5,  
+        },
+        rs_USMC_FILBE_W:{
+            name:"USMC FILBE rucksack",
+            disc:"standard issue USMC rucksack, for use on the march, not necessarily in frontline combat",
+            weight:9,
+            camo:1,
+            quality:4.5,//consumer reviews cite problems with it's load bearing apparatus, especially at the waist
+        },
+        lp_HighEnd_12Hr_W:{
+            name:"5.11 RUSH12 2.0 light pack",
+            disc:"Consumer high-end light backpack used by soldiers with an extra focus on quality, as well as GrEy MeN everywhere",
+            weight:3.15,
+            camo:1,
+            quality:5,  
+        },
+        ap_HighEnd_24Hr_W:{
+            name:"5.11 RUSH24 2.0 assault backpack",
+            disc:"Consumer high-end assault backpack used by soldiers with an extra focus on quality, as well as GrEy MeN everywhere",
+            weight:3.84,
+            camo:1,
+            quality:5,  
+        },
+       ap_HighEnd_72Hr_W:{
+            name:"5.11 RUSH72 2.0 assault backpack",
+            disc:"Consumer high-end 3-day bag used by soldiers with an extra focus on quality, as well as GrEy MeN everywhere",
+            weight:5.291,
+            camo:1,
+            quality:5,  
+        },
+        rs_HighEnd_72Hr_W:{
+            name:"5.11 RUSH100 2.0 rucksack",
+            disc:"Consumer high-end rucksack used by soldiers with an extra focus on quality, as well as GrEy MeN everywhere",
+            weight:5.732,
+            camo:1,
+            quality:5,  
+        },
+    },
+    loadBearingVests:{//maybe add this later
+        referenceLoadBearingVest:{
+            name:"",//name of the bag
+            disc:"",//description
+            weight:0,//pounds
+            quality:0,
+            camo:0,//0 winter, 1 woodland, 2 desert, 3 tropical
+            wearLevel:0
+        },
+        lbv_6Sh116_W:{
+            name:"6Sh116 load bearing vest",
+            disc:"modern load bearing vest from the Russian Ratnik kit",
+            weight:3,//guess
+            quality:5,
+            camo:1,
+            wearLevel:0
+        },
+        lbv_6Sh116_W:{
+            name:"6Sh116 load bearing vest",
+            disc:"modern load bearing vest from the Russian Ratnik kit",
+            weight:3,//guess
+            quality:5,
+            camo:1,
+            wearLevel:0
+        }
+    },
+    sleepingBags:{
+        referenceSleepingBag:{
+            name:"",//name of the bag
+            disc:"",//description
+            weight:0,//pounds
+            quality:0,
+            camo:0,
+            cleanLevel:0,
+            wearLevel:0,
+            tempMin:0,//minimum temperature the user should be comfortable. There is no max as if it gets too hot, the soldier can simply sleep on top of it or not use it at all.
+        },
+        sb_Ratnik_W:{
+            name:"Ratnik Standard sleeping bag",//name of the bag
+            disc:"Not much known about this one",//description
+            weight:3.306,//pounds
+            quality:5,
+            camo:1,
+            cleanLevel:1,
+            wearLevel:0,
+            tempMin:5//
+        },
+        sb_ruArmyStd_W:{
+            name:"Russian Army Sleeping Bag",//name of the bag
+            disc:"Not much known about this one, it's presumably pre-ratnik",//description
+            weight:6.614,//pounds
+            quality:5,
+            camo:1,
+            cleanLevel:1,
+            wearLevel:0,
+            tempMin:-2//
+        },
+        sb_MSS_W:{
+            name:"Modular Sleeping System",//name of the bag
+            disc:"Standard issue US military heavy sleeping bag",//description
+            weight:9.5,//pounds
+            quality:5,
+            camo:1,
+            cleanLevel:1,
+            wearLevel:0,
+            tempMin:-30//
+        },
+        sb_MSS_P_W:{
+            name:"Modular Sleeping System, Patrol",//name of the bag
+            disc:"Standard issue US military sleeping bag, subcomponent of the MSS for more moderate environments",//description
+            weight:3,//pounds
+            quality:5,
+            camo:1,
+            cleanLevel:1,
+            wearLevel:0,
+            tempMin:30//
+        },
+    },
+    tents:{
+        referenceTent:{
+            name:"",//name of the tent
+            disc:"",//description
+            weight:0,//pounds
+            camo:0,//0 winter, 1 woodland, 2 desert, 3 tropical
+        },
+        t_6SH120:{
+            name:"6SH120 Ratnik Universal Shelter",//name of the tent
+            disc:"Simple universal shelter issued with the ratnik kit",//description
+            weight:6.5,//pounds
+            camo:1,//0 winter, 1 woodland, 2 desert, 3 tropical
+        },
+        t_UICST:{
+            name:"Universal Improved Combat Shelter Tent",//name of the tent
+            disc:"US Army current issue personal shelter",//description
+            weight:6.5,//pounds
+            camo:1,//0 winter, 1 woodland, 2 desert, 3 tropical
+        },
     }
+};
+const vComponents={
+    cannons:{
+        c_24A6M5:{
+            rpm:8,//rounds per minute in optimal conditions
+            rpm_m:2,//rounds per minute, loaded manually (assuming the tank is an autoloader and manual loading is secondary, if man is pri, rpm will always be used)
+            barrelLife:1200,//rounds
+            maxRangeAntiTank:9842,//feet
+        }
+    },
+    autoCannons:{
+
+    },
+    atgm:{
+        atgm_9M119:{
+            name:"9M119 'Svir' (AT-11 'sniper') laser guided, beam riding ATGM fired from the main gun of T-72s",
+            range:13123,//max range in feet
+            pen:750//mm of RHA it will pen
+        }
+    },
+    mg:{
+        mg_PKT:{
+            name:"7.62mm coaxial machine gun often used as a coaxial machine gun on tanks",
+            caliber:1,
+            guidance:3,
+            range:4921,
+        }
+    },
+    hmg:{
+        hmg_NSV:{
+            name:"12.5mm heavy machine gun often seen as an aa-mount on tanks like the T-72B",
+            caliber:2,//1 is rifle type ammo, 2 is roughly 50, 3 is above 50 (like 14.5mm)
+            guidance:0,//0 is manual with exposed operator, 1 is manual with operator in a semi-exposed turret, 2 is with remote turret (think CROWS), 3 is directly slaved to the main gun or just is the primary armament
+            range:4921,
+        }
+    },
+    ERA:{
+        era_kontakt_5:{
+
+        }
+    },
+    FCS:{
+        s_1A40_4:{
+            name:"the 1A40-4 FCS is a modern, computerized FCS with thermal, ir and day sights, stabilization and gyrocompasses, most notably used on the T-72B3 tank",
+            gOptics:3,//0 is iron sights, 1 is day sights only, 2 is day sights with floodlight IR NVGs, 3 is day sights+thermal night sights.
+            cOptics:3,
+            stabilized:1,
+            range:[16404,3280]//day, night affective sight ranges
+        }        
+    },
+    optics:{
+    },
+    communications:{
+    },
+    navSys:{
+
+    },
+    SASys:{
+
+    },
+    commSys:{
+        radio:{
+            r_R173:{
+                name:"R-173, standard analog VHF radio for russian tanks",
+                signalRange:12,//miles
+                freqRangeMin:30,//minimum frequency
+                freqRangeMax:79.9,//maximum frequency
+                secure:0//can radio transmissions be encrypted?
+            },
+            r_R168_25VE:{
+                name:"R-168-25VE tactical vehicle-mounted VHF radio",
+                signalRange:21,
+                freqRangeMin:30,
+                freqRangeMax:107,
+                secure:1
+            }
+        },
+    },
+    Ammunition:{
+        cannon:{
+            c_3VBM23:{
+                name:"Svinets-2, used in the 24A6M5 gun for the T-72B3, among others",
+                type:1,//1 is APFSDS, 2 is HEAT, 3 is HE
+                weight:24.25,//projectile weight, pounds
+                pen:500,//mm RHA at max range, being a little generous here.
+                range:9842
+            },
+            c_125mmHE:{
+                name:"generic HE round used by the 24A6 gun, specs from the T-72B3's 2A46M5 gun",
+                type:3,//1 is APFSDS, 2 is HEAT, 3 is HE
+                weight:72.75,//round weight, pounds
+                pen:250,//big guess as it's not listed anywhere. APFSDS is obv preferred.
+                range:16404
+            },
+            c_3VBK27:{
+                name:"start, a HEAT round used in the T-72B3, among others",
+                type:2,
+                weight:44.13,
+                pen:500,
+                range:9842
+            }
+        },
+        autocannon:{
+
+        },
+        atgm:{
+            m_9K120:{
+                name:"Svir, an ATGM launched from the main gun barrel of T-72 series tanks",
+                guidance:1,//1 is laser
+                range:13123,
+                weight:61.72//this is almost certainly wrong and just the weight of the warhead
+            }
+        },
+        hmg:{
+        },
+        artyshell:{//shells for standard artillery.
+            /* Note that range is ommitted; range can vary based on platform, and there are many more platforms capable of firing the same caliber of shell than there are MRLs that use common calibers. As such, effective range for artillery pieces will be decided based on the vehicle, not the round. */
+            as_2K25:{
+                type:5,//1 is cannon shell, 2 is autocannon shell, 3 is ATGM round, 4 is HMG round, 5 is artillery shell, 6 is arty rocket
+                guidance:[1,1,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"2K25 Krasnopol 152mm artillery shell",
+                disc:"Soviet Artillery shell with active endgame laser homing capability. Cannot be used by 2S19. India reports it to be of dubious quality and prefers the NATO Excalibur",
+                payload:1,//1 HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,//used if the payload is something the DB includes. For example, launching a rocket full of AT mines into a zone should add those mines to the zone. 
+                warheadExplTNT:19.058,//used for simple HE weapons. In russian warheads, as in NATO rounds unless otherwise noted, filler will be assumed to be of comp-b capability.
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:110,               
+            },
+            as_152EOF:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"152-EOF 152mm artillery shell",
+                disc:"Czech Standard HE-Frag round, notably used with the Dana SPG",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:15,//this is a complete guess. I have no data.
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:96,               
+            },
+            as_152EOFD:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"152-EOFd 152mm artillery shell",
+                disc:"Czech Long-Range HE-Frag round, notably used with the Dana SPG",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:15.5,//this is a complete guess. I have no data.
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:96,               
+            },
+            as_OF32:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"OF-32 152mm artillery shell",
+                disc:"Standard HE-Frag round",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:13.22,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:97,               
+            },
+            as_JN546:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"JN-546 152mm artillery shell",
+                disc:"Bulgarian HE shell",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:14.33,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:132.277,               
+            },
+            as_G530:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"OF-32 152mm artillery shell",
+                disc:"Concrete-Piercing round",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:11.243,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:88.184,               
+            },
+            as_3OF69M:{
+                type:5,
+                guidance:[1,1,0,0,0,0,0],
+                name:"3OF-69M 122mm artillery shell",
+                disc:"HE-Frag round with endgame laser homing",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:12.125,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:61.729,               
+            },
+            as_D462:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"D-462 122mm artillery shell",
+                disc:"Smoke round",
+                payload:2,
+                payloadDevice:0,
+                warheadExplTNT:8.928,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:49.163,               
+            },
+            as_2K25M:{
+                type:5,
+                guidance:[1,1,0,1,0,0,0],
+                name:"2K25M Krasnopol-M 152mm artillery shell",
+                disc:"Russian Artillery shell with active endgame laser homing capability and GPS. Shorter and can be used by the 2S19 as well as others",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:32.252,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:119,               
+            },
+            as_3OF56:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"3OF-56 122mm artillery shell",
+                disc:"Improved Soviet Frag-HE shell",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:8.928,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:47.972,               
+            },
+            as_OF642:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"OF-642 122mm artillery shell",
+                disc:"Soviet basic FRAG-HE shell",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:8.101,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:47.972,               
+            },
+            as_M982:{
+                type:5,
+                guidance:[1,0,1,0,1,0,0],
+                name:"M982 Increment 1A-2 Excalibur 155mm artillery shell",
+                disc:"US GPS and INS guided artillery shell, resistant to GPS jamming with extended range",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:64.5,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:106,               
+            },
+            as_M982A1S:{
+                type:5,
+                guidance:[1,1,1,0,1,0,0],
+                name:"M982A1S Increment 1BS Excalibur 155mm artillery shell",
+                disc:"US GPS, Laser and INS guided artillery shell, resistant to GPS jamming with extended range",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:64.5,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:106,               
+            },
+            as_M982A2:{
+                type:5,
+                guidance:[1,1,1,0,1,0,0],
+                name:"M982A2 Increment 2 Excalibur 155mm artillery shell",
+                disc:"US GPS, Laser and INS guided artillery shell, resistant to GPS jamming with extended range",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:64.5,
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:106,               
+            },
+            as_M549A1:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"M549A1 High-Explosive Rocket Assisted 155mm artillery shell",
+                disc:"US standard high explosive artillery projectile, has an increased range over other shells",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:15,//actually filled with TNT
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:103,               
+            },
+            as_M692:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"M692 ADAM 155mm artillery shell",
+                disc:"US Area Denial Munition that scatters 36 M67 self-destructing (48hr) anti-personnel mines",
+                payload:5,
+                payloadDevice:[tComponents.weapons.antiPersonMine.APM_M67,36],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:102.955,               
+            },
+            as_M731:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"M731 ADAM 155mm artillery shell",
+                disc:"US Area Denial Munition that scatters 36 M72 self-destructing (4hr) anti-personnel mines",
+                payload:5,
+                payloadDevice:[tComponents.weapons.antiPersonMine.APM_M72,36],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:102.955,               
+            },
+            as_M712:{
+                type:5,
+                guidance:[1,1,0,0,0,0,0],
+                name:"M712 Copperhead 155mm artillery shell",
+                disc:"US Laser-guided HE round",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:19.618,//14.75lbs of comp-b
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:137.6,               
+            },
+            as_M795:{
+                type:5,
+                guidance:[1,0,0,0,0,0,0],
+                name:"M795 HE 155mm artillery shell",
+                disc:"US standard high explosive artillery projectile",
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:23.8,//actually filled with TNT, not comp-b, according to wikipedia. The USMC uses IMX-101, which is equivelant but apparently less sensitive
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:103,               
+            },
+            
+        },
+        artyrocket:{//rockets for rocket artillery pieces. Data is much the same except for the addition of range stats
+            ar_9M55K:{
+                type:6,//1 is cannon shell, 2 is autocannon shell, 3 is ATGM round, 4 is HMG round, 5 is artillery shell, 6 is arty rocket
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M55K 300mm anti-personnel-cluster-munition-dispensing unguided rocket",
+                disc:"300mm unguided rocket fired originally from the 9K58 BM-30 'Smerch' MRL",
+                range:43.495,
+                payload:3,//1 HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,//used if the payload is something the DB includes. For example, launching a rocket full of AT mines into a zone should add those mines to the zone. 
+                warheadExplTNT:0,//used for simple HE weapons
+                fireableIDs:[],//what vehicles can fire the munition
+                transportableIDs:[],//what vehicles can carry the munition
+                weight:1763.698,
+            },
+            ar_9M55K1:{
+                type:6,
+                guidance:[1,0,0,0,0,1,0],
+                name:"9M55K1 300mm self-guided anti-tank cluster-munition-dispensing unguided rocket",
+                disc:"300mm unguided (but with smart submunitions) rocket fired originally from the 9K58 BM-30 'Smerch' MRL",
+                range:43.495,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55K4:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M55K4 300mm rocket round",
+                disc:"AT-minelet dispenser, presumably using PTM-3 shaped charge mines. Deploys 25 with one rocket.",
+                range:43.495,
+                payload:6,
+                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM3,25],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55K5:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M55K5 300mm rocket round",
+                disc:"HEAT/HE (presumably cluster) munition rocket, dispensing 646 submunitions each with 120mm of pen",
+                range:43.495,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55K6:{
+                type:6,
+                guidance:[1,0,0,0,0,1,0],
+                name:"9M55K6 300mm rocket round",
+                disc:"Anti-tank auto-targeting cluster munition dispenser, uses 5 9N268 smart submunitions",
+                range:43.495,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55K7:{
+                type:6,
+                guidance:[1,0,0,0,0,1,0],
+                name:"9M55K7 300mm rocket round",
+                disc:"Anti-tank auto-targeting cluster munition dispenser, carries 20 submunitions of unknown type",
+                range:43.495,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55F:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M55F 300mm rocket round",
+                disc:"HE/Frag munition rocket, I will treat this as an HE rocket",
+                range:43.495,
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:600,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M55C:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M55C 300mm rocket round",
+                disc:"Thermobaric rocket",
+                range:43.495,
+                payload:8,
+                payloadDevice:0,
+                warheadExplTNT:900,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT. Further abstracting it, I am multiplying it's payload by 1.5 because it is thermobaric.
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M528:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M528 300mm rocket round",
+                disc:"HE-Fragmentation",
+                range:55.923,
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:600,//this is a guess, I am not sure what explosive it is filled with and how it compares to TNT. 
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_9M532:{
+                type:6,
+                guidance:[1,0,0,0,0,1,0],
+                name:"9M532 300mm rocket round",
+                disc:"Anti-tank auto-targeting cluster munition dispenser, carries 20 9N282 submunitions",
+                range:43.495,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1763.698,
+            },
+            ar_9M534:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],
+                name:"9M534 300mm rocket round",
+                disc:"UAV delivery system, ostensibly using the T-90 UAV, which has 20 min loiter time. ",
+                range:55.923,
+                payload:7,
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_9M542:{
+                type:6,
+                guidance:[1,0,0,1,1,0,0],
+                name:"9M542 300mm rocket round",
+                disc:"HE/Frag PGM with inertial, GLONASS guidance",
+                range:74.564,
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:350,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_R624:{
+                type:6,
+                guidance:[1,0,1,1,1,0,0],//this round is produced by Ukraine and has GPS guidance. I am going to give it both GPS and GLONASS to allow for the possibility of russian production
+                name:"R624 300mm rocket round",
+                disc:"HE/Frag PGM with inertial, GPS and GLONASS guidance",
+                range:43.495,
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:575,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_R624M:{
+                type:6,
+                guidance:[1,0,1,1,1,0,0],//this round is produced by Ukraine and has GPS guidance. I am going to give it both GPS and GLONASS to allow for the possibility of russian production
+                name:"R624M 300mm rocket round",
+                disc:"HE/Frag PGM with inertial, GPS and GLONASS guidance. Possibly the best rocket in even hypothetical russian inventory",
+                range:80.778,//damn son
+                payload:1,
+                payloadDevice:0,
+                warheadExplTNT:425,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:1796,
+            },
+            ar_9M27F:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M27F 220mm rocket round",
+                disc:"HE/Frag dumb rocket",
+                range:21.7,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,
+                warheadExplTNT:250,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:620,
+            },
+            ar_9M27K1:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M27K1 220mm rocket round",
+                disc:"anti-tank cluster bomb dispenser",
+                range:21.7,
+                payload:4,
+                payloadDevice:0,
+                warheadExplTNT:250,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:600,
+            },
+            ar_9M27K2:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M27K2 220mm rocket round",
+                disc:"dispenses 24 PTM-1 anti-tank mines",
+                range:21.7,
+                payload:6,
+                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM1,24],
+                warheadExplTNT:250,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:600,
+            },
+            ar_9M27K3:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M27K3 220mm rocket round",
+                disc:"dispenses 312 PFM-1 anti-personnel mines",
+                range:21.1,
+                payload:5,
+                payloadDevice:[tComponents.weapons.antiPersonMine.APM_PFM1,312],//that's a lot of mines
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:600,
+            },
+            ar_9M59:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M59 220mm rocket round",
+                disc:"dispenses 9 PTM-3 anti-tank mines",
+                range:21.75,
+                payload:6,
+                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM3,9],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:600,
+            },
+            ar_9M22U:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M22U 122mm rocket round",
+                disc:"HE/Frag dumb rocket",
+                range:12.66,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,
+                warheadExplTNT:50,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:147,
+            },
+            ar_9M28F:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M28F 122mm rocket round",
+                disc:"HE/Frag dumb rocket",
+                range:9.3,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,
+                warheadExplTNT:55,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:125,
+            },
+            ar_9M28K:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M28K 122mm rocket round",
+                disc:"Anti-Tank mines, not clear what kind but I am going to guess PTM-3, of which it can carry 5",
+                range:8.3,
+                payload:6, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:[tComponents.weapons.antiTankMine.ATM_PTM3,5],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:127,
+            },
+            ar_9M43:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M43 122mm rocket round",
+                disc:"smoke",
+                range:12,
+                payload:2, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,
+                warheadExplTNT:45,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:146,
+            },
+            ar_9M217:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M217 122mm rocket round",
+                disc:"Anti-Tank cluster munition dispenser",
+                range:19,
+                payload:4, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:150,
+            },
+            ar_9M218:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M218 122mm rocket round",
+                disc:"HEAT cluster munition dispenser",
+                range:19,
+                payload:4, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:150,
+            },
+            ar_9M519:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M519 122mm rocket round",
+                disc:"deploys an R-032 1.5-120mhz jammer that stays active for 60 minutes",
+                range:11.5,
+                payload:11, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:0,
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:150,
+            },
+            ar_9M521:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M521 122mm rocket round",
+                disc:"Frag/HE rocket, a more modern version with increased range",
+                range:25,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:0,
+                warheadExplTNT:55,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:146,
+            },
+            ar_9M22S:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"9M22S 122mm rocket round",
+                disc:"Incendiary rocket",
+                range:12.36,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:0,
+                warheadExplTNT:39,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:146,
+            },
+            ar_3M16:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"3M16 122mm rocket round",
+                disc:"Anti-Personnel mine dispenser with 5 POM-2 mines",
+                range:9.36,
+                payload:5, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[tComponents.weapons.antiPersonMine.APM_POM2,5],
+                warheadExplTNT:39,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:117,
+            },
+            ar_M28:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M28 227mm rocket",
+                disc:"Anti-Tank mine dispensing roud with a total of 28 AT-2 mines",
+                range:24.854,
+                payload:5, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[tComponents.weapons.antiTankMine.ATM_AT2,28],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:567.69,//nice
+            },
+            ar_M26A1:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M26A1 227mm rocket",
+                disc:"General purpose cluster-munition dispensing rocket, dispenses 518 M85/M77 cluster munitions. No longer in use and actively being destroyed as of 22",
+                range:28.272,
+                payload:3, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[,],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:652.568,
+            },
+            ar_M26:{
+                type:6,
+                guidance:[1,0,0,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M26 227mm rocket",
+                disc:"General purpose cluster-munition dispensing rocket, dispenses 518 M85/M77 cluster munitions, no longer in use as of 22",
+                range:19.635,
+                payload:3, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[,],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:674.614,
+            },
+            ar_M30:{
+                type:6,
+                guidance:[1,0,1,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M30 227mm rocket",
+                disc:"First major innovation over the M26, the M30 GMLRS combines US rocket artillery with GPS-guided precision capability, deploys 404 cluster munitions. No longer in use as of 2019",
+                range:41.942,
+                payload:3, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[,],
+                warheadExplTNT:0,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:674.614,//guess, no data
+            },
+            ar_M31:{
+                type:6,
+                guidance:[1,0,1,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M31 227mm rocket",
+                disc:"US General purpose unitary explosive GMRLS rocket",
+                range:41.942,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[,],
+                warheadExplTNT:67.439,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:674.614,
+            },
+            ar_M31A1:{
+                type:6,
+                guidance:[1,0,1,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M31A1 227mm rocket",
+                disc:"US General purpose unitary explosive GMRLS rocket, improved version with allegedly improved range",
+                range:55.923,
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[,],
+                warheadExplTNT:67.439,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:674.614,
+            },
+            ar_M31A2:{
+                type:6,
+                guidance:[1,0,1,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M31A2 227mm rocket",
+                disc:"US General purpose unitary explosive GMRLS rocket, improved version with allegedly improved range",
+                range:56,//guess, giving it a slight buff because I know of no other reason why it's better
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[,],
+                warheadExplTNT:67.439,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:674.614,
+            },
+            ar_M48:{
+                type:6,
+                guidance:[1,0,1,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M48 MGM-140 ATACMS QRU",
+                disc:"US quasi-ballistic MLRS-launched missile",
+                range:186,//guess, giving it a slight buff because I know of no other reason why it's better
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[,],
+                warheadExplTNT:665,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:674.614,
+            },
+            ar_M57:{
+                type:6,
+                guidance:[1,0,1,0,0,0,0],//dumb, dumb+final laser guidance, GPS guidance, GLONASS, INS guidance, target finding, MIL
+                name:"M48 MGM-140 ATACMS TAMCS 2000",
+                disc:"US quasi-ballistic MLRS-launched missile",
+                range:186,//guess, giving it a slight buff because I know of no other reason why it's better
+                payload:1, //HE, 2 Smoke, 3 anti-personnel cluster, 4 anti-tank cluster, 5 anti-p mines, 6 anti-T mines, 7 drone, 8 thermobaric, 9 bunker busting, 10 chemical,11 jammer
+                payloadDevice:[,],
+                warheadExplTNT:665,
+                fireableIDs:[],
+                transportableIDs:[],
+                weight:674.614,
+            },
+        }
+
+
+    }
+
+
 };
 const components={
     vehicles:{
@@ -10485,4 +11387,162 @@ const MOSCodes=[
 
     */
 ];
+const testItems={
+    components:{
+        vehicles:{
+            MBT_T72B3 : {
+                disc:"Test of a possible new system for modeling armored vehicle stats",
+                type:1,//tank 
+                isCombatVehicle:1,
+                mass:45,//tons
+                crew:3,//how many it takes to perform the vehicle's function. Different than troop capacity, or for IFVs, carried squad size.
+                //primaryWeapon:vComponents.cannons.c_24A6M5,
+                //ATGM:vComponents.atgm.atgm_9M119,
+                priWeapSup:[20,10,9,6],//APFSDS, HEAT, HE, ATGM. More generally can be used as pure Anti-Tank, multipurpose, HE/frag, ATGM
+                priWeapSPH:[0,0,0,0],
+                //coax:vComponents.mg.mg_PKT,
+                coaxWeapSup:[0,2000,0,0],//machine gun rounds carried, considered pure anti-tank, multipurpose, HE/frag, ATGM. For almost all vehicles this will just be multipurpose but I am including this for futureproofing in case vehicles like the BMP-3 get added. 
+                coaxWeapSPH:[0,0,0,0],
+                //tertiaryWeapon:vComponents.hmg.hmg_NSV,
+                tertiaryWeapSup:[300],
+                tertiaryWeapSPH:[0],
+                //FCS:vComponents.FCS.s_1A40_4,
+                hasSmokeScreen:1,//can it produce a smoke screen? may be too simplistic, possible update later
+                hullArmor:[950,440,500],//against HEAT, KE, shaped charges. when dug in only the stats for the turret will be used.
+                turretArmor:[950,440,500],
+                supplies:[1,0,0,0,0,2,3],
+                fuelcap:320,//how much fuel can be carried in gallons.
+                maxSpeed:[23.75,28.5],//max speed in mph, both offroad and on-road.
+                reloadtime:6.5,//reload time in seconds, in this case for the autoloader.
+                reloadtimeManual:10,
+                maxRange:[4500,3000,4374],
+                canFloat:1,
+                profile:86.167,//maybe too subjective
+                catastrophicLossOnPen:.75,
+                fuelBurn:[1.71,1.04,.5],//good as-is
+                opRange:[162,270],//good as-is  
+            },           
+        },
+        weapons:{
+
+        },
+        personnel:{
+            T_Rifleman:{
+                USMC_Rifleman_Basic:{
+                    name:0,
+                    ID:[0,3,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                    primary:{//primary weapon, must be a firearm
+                        name:tComponents.weapons.rifle.W_M27,
+                        optic:tComponents.optics.o_TA31RCO_ACOG,
+                        suppressor:tComponents.suppressors.s_KACNT4,
+                        uBGL:0,
+                        railAccessory:tComponents.railAccessories.ra_ANPEQ15,
+                        gripMod:0,
+                        weight:0,
+                    },
+                    secondary:{//secondary weapon, must be a firearm
+                        name:0,
+                        optic:0,
+                        suppressor:0,
+                        uBGL:0,
+                        railAccessory:0,
+                        gripMod:0,
+                        weight:0,
+                    },
+                    special:{//special weapon, a standalone rocket launcher
+                        name:0,
+                        optic:0,
+                        gripMod:0,
+                        weight:0,
+                    },
+                    explosives:{
+                        explosive1:[tComponents.weapons.fGren.G_M67,2],//name of explosive, quantity of explosive
+                        explosive2:[0,0],
+                        explosive3:[0,0],
+                    },
+                    mines:{
+                        /*Mines need to be different than explosives. 
+                            Unlike grenades or charges, mines are useful after being removed from an individual's
+                            inventory and thus need special consideration. Mines will impact the zones they are placed
+                            in and will continue to do so until the mines are destroyed, either by themselves, the 
+                            enemie's mine clearing assets or by being actuated by their targets. 
+                        */
+                        mine1:0,
+                        mine2:0,
+                        mine3:0,
+                    },
+                    kit:{
+                        bArmor:tComponents.vests.v_MTV,
+                        nods:tComponents.helmetOptics.o_ANPVS14,
+                        earPro:tComponents.headSets.hs_earplugs,
+                        comms:tComponents.pRadios.pr_MR3000P, //More advanced stuff will be handled at sq level
+                        uniform:tComponents.uniforms.u_MCCUU_W,
+                        IFAK:tComponents.iFAKs.iFAK_II,
+                        canteen:tComponents.canteens.GI_MOLLE,           
+                        helmet:tComponents.helmets.h_LWH_W,
+                        backpack:tComponents.backpacks.ap_MOLLE2_W,
+                        tent:tComponents.tents.t_UICST,       
+                        sleepingBag:tComponents.sleepingBags.sb_MSS_P_W      
+                    },
+                    buffs:{
+                        lDrinkBuff:1,
+                        lMealBuff:1,
+                        lHotMealBuff:1,
+                        lLaundryBuff:1,
+                        lHotShowerBuff:1,
+                        lReserveBuff:1,
+                        tSinceReserve:0,
+                    },
+                    status:{
+                        effectivness:1,
+                        morale:1,
+                        confidenceInLeadership:1,
+                        confidenceInCause:1,
+                        resolve:1,
+                        exhaustion:0,
+                        hoursCombatExperience:0,
+                        hoursJobExperience:0,
+                        lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
+                        cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                        specialty:"11B",
+                        organization:"Abkhaz Ground Forces",
+                        supplies:[0,210,0,0,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
+                        tSupplies:[0,210,0,0,3,10,1,.5],
+                        sPH:[0,0,0,0,0,0,0], 
+                    },
+                },
+            },
+            T_SR_Rifleman:{
+            },
+            T_Asst_Grenadier:{
+            },
+            T_Grenadier:{
+
+            },
+            T_MG:{
+        
+            },
+            T_SL:{
+                
+            },
+            T_Crewman:{
+
+            },
+            T_MANPADS:{
+
+            },
+            T_SVD:{
+
+            },
+            S_Staffer:{
+
+            },
+            S_Officer:{
+
+            }
+        },
+    },
+
+
+};
 export default {components,uComps,largeUComps,BTGComps,testItems,SAMSystemComps,vComponents,tComponents,MOSCodes};
