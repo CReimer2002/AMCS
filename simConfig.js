@@ -89,7 +89,15 @@ let multipliers = {
                     c_762x54:19,//estimated, no source
                     c_12_7:19,//estimated, no source
                     c_300WM:19,//estimated, no source
-                }
+                },
+                APPointsByLbTnT:1,
+                APPointsByYdRng:.025,
+                softLaunchBuff:5,
+                fireAndForgetBuff:3.5,
+                smartMunitionBuff:10,
+                AVPointsByMMPen:.2,
+                AVPointsByYdRange:.03,
+                APPointsDBBDecibel:.3,
             },
             grenades:{
                 gr_BBThrownYardBTerrain:[//how much every throwable yard under 50 decreases the grenade's power in various environments. This can also be considered a question of how much throwable distance is a factor.
@@ -132,6 +140,34 @@ let multipliers = {
                 .95  // rural with buildings and lots of forest                
                 ],
                 gr_AVPBYardThrowable:.5,//how many anti-vehicle points each throwable yard will add, will only be factored if the grenade actually has a reasonable pen value
+                gr_APPBYardThrowable:.25
+            },
+            explosives:{
+               expl_OFKOL:{
+                name:"OFKOL",
+                disc:"Russian HMX explosive",
+                tntMult:1.7,
+               },
+               expl_CompB:{
+                name:"Composition B",
+                disc:"Western explosive mixture of RDX and TNT very popular from early ww2 to the 1950s, being replaced by IMX-101",
+                tntMult:1.33,
+               },
+               expl_IMX101:{
+                name:"IMX-101",
+                disc:"insensitive high explosive composite mixture designed to replace TNT, starting in 2011 for artillery and large caliber munitions",
+                tntMult:1,
+               },   
+               expl_CompH6:{
+                name:"Composition H-6",
+                disc:"castable western explosive notably used in underwater munitions",
+                tntMult:1.35,
+               },
+               expl_ANFO:{
+                name:"Ammonium Nitrate",
+                disc:"crude fertilizer explosive",
+                tntMult:.32,
+               },
             }
 
         },

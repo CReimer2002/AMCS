@@ -434,6 +434,33 @@ const gComponents={
             quality:5,
             hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
         },
+        m_M9_15:{
+            name:"M9 magazine",//name of the mag
+            disc:"15 round classic mag for the 92FS",//disc of the mag
+            caliber:"9x19mm",//caliber of the weapon
+            capacity:15,//number of rounds it can hold
+            weight:.238,//guess, the stats I could find were for guns with mags inserted but empty, and guns with mags inserted and full
+            quality:5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_m17_M18_17:{
+            name:"M17/18 magazine",//name of the mag
+            disc:"17 round 9mm mag for the Sig Sauer pistol",//disc of the mag
+            caliber:"9x19mm",//caliber of the weapon
+            capacity:17,//number of rounds it can hold
+            weight:.238,//guess, nobody fucking weighs their mags it seems
+            quality:5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_HKG3_762_20_A:{
+            name:"H&K G3 7.62x51mm 20 round magazine, alloy",//name of the mag
+            disc:"note that the sim has multiple H&K variants",//disc of the mag
+            caliber:"9x19mm",//caliber of the weapon
+            capacity:17,//number of rounds it can hold
+            weight:.238,//guess, nobody fucking weighs their mags it seems
+            quality:5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
 
 
     }
@@ -2361,7 +2388,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             //assault rifles
             W_AK47:{
                 name:"AK-47 assault rifle",
-                weight:9.69,
+                weight:7.7,
                 length:35,
                 bLength:16.3,
                 caliber:gComponents.calibers.c762x39,
@@ -2370,7 +2397,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_AKM:{
                 name:"AKM assault rifle",
-                weight:9.27,
+                weight:7.28,
                 length:34.6,
                 bLength:16.3,
                 caliber:gComponents.calibers.c762x39,
@@ -2379,7 +2406,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_AKMS:{
                 name:"AKMS assault rifle with folding stock",
-                weight:9.69,
+                weight:7.7,
                 length:25.8,
                 bLength:16.3,
                 caliber:gComponents.calibers.c762x39,
@@ -2388,7 +2415,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_AK103:{
                 name:"AK-103 modernized assault rifle",
-                weight:9.89,
+                weight:7.9,
                 length:27.8,
                 bLength:16.3,
                 caliber:gComponents.calibers.c762x39,
@@ -2397,7 +2424,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_AK74:{
                 name:"AK-74 assault rifle",
-                weight:7.31,//pounds, with loaded mag
+                weight:6.8,//pounds, with loaded mag
                 length:37.1,//inches, tip to butt (hehe)
                 bLength:16.3,//barrel length, inches
                 caliber:gComponents.calibers.c545x39,
@@ -2406,7 +2433,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_AK74M:{
                 name:"AK-74M assault rifle",
-                weight:8.01,
+                weight:7.5,
                 length:27.6,//though the length is technically the same as the vanilla AK-74 with the stock extended, when needed the folded stock means the gun can be much shorter, so the folded length is used here.
                 bLength:16.3,
                 caliber:gComponents.calibers.c545x39,
@@ -2415,7 +2442,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_AK74Z:{
                 name:"AK-74M assault rifle with Zenitco upfit for receiving foregrips and laser mods",
-                weight:9.31,
+                weight:7.6,
                 length:27.6,
                 bLength:16.3,
                 caliber:gComponents.calibers.c545x39,
@@ -2424,7 +2451,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_AK12:{
                 name:"AK-12 assault rifle",
-                weight:9.71,
+                weight:7.72,
                 length:27.1,
                 bLength:16.3,
                 caliber:gComponents.calibers.c545x39,
@@ -2433,34 +2460,52 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M4A1:{
                 name:"M4A1 assault rifle",
-                weight:7.75,
+                weight:6.43,
                 length:29.75,
                 bLength:14.5,
                 caliber:gComponents.calibers.c556x45,
                 eRange:550,
                 report:160                
             },
-            W_HKG3:{
-                name:"H&K G3 assault rifle",
+            W_HKG3A3:{
+                name:"H&K G3A3 assault rifle",
+                weight:9.66,
+                length:40.4,
+                bLength:17.7,
+                caliber:gComponents.calibers.c762x51,
+                eRange:437,
+                report:164                
+            },
+            W_HKG3A4:{
+                name:"H&K G3A4 assault rifle",
                 weight:10,
                 length:40.4,
                 bLength:17.7,
                 caliber:gComponents.calibers.c762x51,
-                eRange:437,//presuming no optic
+                eRange:437,
                 report:164                
             },
             W_HK33A3:{
                 name:"H&K 33A3 assault rifle",
-                weight:10,
+                weight:8.6,
                 length:37,
                 bLength:13.1,
                 caliber:gComponents.calibers.c556x45,
-                eRange:437,//presuming no optic
+                eRange:437,
                 report:160                
+            },
+            W_M16A1:{
+                name:"M16A1 Rifle",
+                weight:6.37,
+                length:38.81,
+                bLength:20,
+                caliber:gComponents.calibers.c556x45,
+                eRange:601,//presuming no optic
+                report:158                
             },
             W_M16A2:{
                 name:"M16A2 Rifle",
-                weight:8.81,
+                weight:8.31,
                 length:39.61,
                 bLength:20,
                 caliber:gComponents.calibers.c556x45,
@@ -2469,25 +2514,25 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M16A4:{
                 name:"M16A4 Rifle",
-                weight:8,
+                weight:7.5,
                 length:39.37,
                 bLength:20,
                 caliber:gComponents.calibers.c556x45,
-                eRange:601,//presuming no optic
+                eRange:601,
                 report:158                
             },
             W_SCAR_H:{
                 name:"FN MK 17 Mod 0 SCAR-H battle rifle",
-                weight:8.5,
+                weight:7.9,
                 length:28,
                 bLength:16,
                 caliber:gComponents.calibers.c762x51,
-                eRange:660,//presuming no optic
+                eRange:660,
                 report:165                
             },
             W_HK416A5:{
                 name:"Heckler & Koch HK416 assault rifle",
-                weight:8.25,
+                weight:7.5,
                 length:30,
                 bLength:16,
                 caliber:gComponents.calibers.c556x45,
@@ -2496,28 +2541,95 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M27:{
                 name:"M27 Infantry Automatic Rifle",
-                weight:9.8,
+                weight:7.9,
                 length:33,
                 bLength:16.5,
                 caliber:gComponents.calibers.c556x45,
                 eRange:656,//presuming no optic
                 report:159.5                
             },
+            W_FB_Beryl:{
+                name:"FB Beryl",
+                weight:7.39,
+                length:29.2,
+                bLength:18,
+                caliber:gComponents.calibers.c556x45,
+                eRange:546,//presuming no optic
+                report:159.5                
+            },
+            W_FB_MSBS_GrotC:{
+                name:"FB MSBS Grot C",
+                weight:8.2,
+                length:39,
+                bLength:16,
+                caliber:gComponents.calibers.c556x45,
+                eRange:547,//presuming no optic
+                report:159.5                
+            },
+            W_L85A2:{
+                name:"L85A2",
+                weight:9,//guess
+                length:30.,
+                bLength:20.4,
+                caliber:gComponents.calibers.c556x45,
+                eRange:650,//presuming no optic
+                report:159.5                
+            },
+            W_C7A2:{
+                name:"Colt Canada C7A2",
+                disc:"Standard issue canadian service rifle",
+                weight:7.3,
+                length:36.61,
+                bLength:20,
+                caliber:gComponents.calibers.c556x45,
+                eRange:600,
+                report:159.5                
+            },
             //carbines
             W_AK74SU:{
                 name:"AK-74SU",
-                weight:7.99,
+                weight:6.5,
                 length:19.3,
                 bLength:8.1,
                 caliber:gComponents.calibers.c545x39,
                 eRange:380,
                 report:143
             },
+            W_FB_Mini_Beryl:{
+                name:"FB Mini-Beryl",
+                disc:"Polish compact assault rifle used by the Polish military",
+                weight:6.61,
+                length:20.7,
+                bLength:9.3,
+                caliber:gComponents.calibers.c556x45,
+                eRange:380,
+                report:143
+            },
 
             //machine guns
+            W_MG3:{
+                name:"MG3",
+                disc:"brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrt",
+                weight:25.35,
+                length:48.2,
+                bLength:22.2,
+                caliber:gComponents.calibers.c762x51,
+                eRange:1312,
+                report:160
+            },
+            W_UKM_2000P:{
+                name:"UKM-2000P",
+                disc:"standard GPMG version for the Polish Army",
+                weight:18.52,
+                length:47.4,
+                bLength:21.5,
+                caliber:gComponents.calibers.c762x51,
+                eRange:1640,
+                report:160
+            },
             W_PK:{
                 name:"PK medium machine gun",
-                weight:23.84,
+                weight:16.534,
                 length:47.4,
                 bLength:23.8,
                 caliber:gComponents.calibers.c762x54r,
@@ -2526,7 +2638,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M240B:{
                 name:"M240B GPMG",
-                weight:29,
+                weight:27.6,
                 length:49.7,
                 bLength:21.7,
                 caliber:gComponents.calibers.c762x51,
@@ -2535,7 +2647,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M240G:{
                 name:"M240G GPMG",
-                weight:27,
+                weight:25.6,
                 length:49.7,
                 bLength:21.7,
                 caliber:gComponents.calibers.c762x51,
@@ -2544,7 +2656,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M249:{
                 name:"M249 SAW",
-                weight:22,
+                weight:17,
                 length:40.75,
                 bLength:21,
                 caliber:gComponents.calibers.c762x51,
@@ -2553,7 +2665,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_FN_Minimi:{
                 name:"FN Minimi SAW",
-                weight:19.7,
+                weight:15.7,
                 length:40.9,
                 bLength:18.3,
                 caliber:gComponents.calibers.c556x45,
@@ -2562,7 +2674,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_IWI_Negev_NG5:{
                 name:"IWI Negev SAW",
-                weight:19,
+                weight:16.865,
                 length:31.889,
                 bLength:18,
                 caliber:gComponents.calibers.c556x45,
@@ -2571,7 +2683,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_PKP:{
                 name:"PKP medium machine gun",
-                weight:22,//no bipod
+                weight:18,//no bipod
                 length:47,
                 bLength:25.9,
                 caliber:gComponents.calibers.c762x54r,
@@ -2580,7 +2692,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_RPK:{
                 name:"RPK light machine gun",
-                weight:14.79,//with 75 round mag
+                weight:10.6,
                 length:40.9,
                 bLength:23.2,
                 caliber:gComponents.calibers.c762x39,
@@ -2589,7 +2701,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_RPKS:{
                 name:"RPKS light machine gun with folding stock",
-                weight:15.19,//with 75 round mag
+                weight:11,
                 length:32.3,
                 bLength:23.2,
                 caliber:gComponents.calibers.c762x39,
@@ -2598,7 +2710,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_RPK74:{
                 name:"RPK-74 light machine gun",
-                weight:12,//pounds, with loaded 45 round mag, according to my guess.
+                weight:10,//pounds, with loaded 45 round mag, according to my guess.
                 length:41.7,//inches, tip to butt (hehe)
                 bLength:23.2,//barrel length, inches
                 caliber:gComponents.calibers.c545x39,
@@ -2607,7 +2719,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_RPKS74:{
                 name:"RPK-74 light machine gun with folding stock",
-                weight:12.7,//pounds, with loaded 45 round mag, according to my guess.
+                weight:10.7,//pounds, with loaded 45 round mag, according to my guess.
                 length:33.3,//inches, tip to butt (hehe)
                 bLength:23.2,//barrel length, inches
                 caliber:gComponents.calibers.c545x39,
@@ -2616,7 +2728,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_RPK74M:{
                 name:"RPK-74M modernized light machine gun with picatinny rails and a folding stock",
-                weight:12.7,//pounds, with loaded 45 round mag, according to my guess.
+                weight:11,//guess
                 length:33.3,//inches, tip to butt (hehe)
                 bLength:23.2,//barrel length, inches
                 caliber:gComponents.calibers.c545x39,
@@ -2625,7 +2737,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_RPK16:{
                 name:"RPK-16 modern light machine gun with scope mount and folding stock",
-                weight:13.23,
+                weight:10.5,//guess
                 length:33.3,
                 bLength:21.7,
                 caliber:gComponents.calibers.c545x39,
@@ -2645,7 +2757,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M14:{
                 name:"M14 semi automatic rifle",
-                weight:10.7,
+                weight:9.2,
                 length:44.3,
                 bLength:22,
                 caliber:gComponents.calibers.c762x51,
@@ -2654,7 +2766,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_SVD:{
                 name:"SVD DMR",
-                weight:9.25,//this is a guesstimate. Wikipedia stats say it weighs 9.48 with a scope and an unloaded mag. Reference weight I need is scopeless w/loaded mag..
+                weight:9,//guess
                 length:48.2,
                 bLength:24.4,
                 caliber:gComponents.calibers.c762x54r,
@@ -2663,7 +2775,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_SVDM:{
                 name:"SVD-M modernized DMR",
-                weight:11,
+                weight:10,
                 length:34.4,
                 bLength:21.7,
                 caliber:gComponents.calibers.c762x54r,
@@ -2672,7 +2784,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M110SASS:{
                 name:"M110 Semi Automatic Sniper System",
-                weight:15,
+                weight:10.5,
                 length:40.51,
                 bLength:20,
                 caliber:gComponents.calibers.c762x51,
@@ -2681,7 +2793,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M110A1:{
                 name:"M110 Compact Semi Automatic Sniper System",
-                weight:10,
+                weight:13.8,
                 length:35.39,
                 bLength:16.3,
                 caliber:gComponents.calibers.c762x51,
@@ -2690,7 +2802,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M2010ESR:{
                 name:"M2010 Enhanced Sniper Rifle",
-                weight:14,
+                weight:12.1,
                 length:46.5,
                 bLength:24,
                 caliber:gComponents.calibers.c300,
@@ -2699,7 +2811,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_RMSR:{
                 name:"Remington Modular Sniper Rifle",
-                weight:15,
+                weight:13,
                 length:36,
                 bLength:20,
                 caliber:gComponents.calibers.c338,
@@ -2709,7 +2821,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             W_M39EMR:{
                 name:"M39 Enhanced Marksman Rifle",
                 disc:"USMC DMR, predecessor to the M110 SASS",
-                weight:14,
+                weight:16.5,
                 length:44.2,
                 bLength:22,
                 caliber:gComponents.calibers.c762x51,
@@ -2719,7 +2831,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             W_M38DMR:{
                 name:"M38 DMR",
                 disc:"USMC DMR, as of 2018 all USMC infantry squads have one per inf squad. Comes with the Leupold TS30A2 and a QDSS suppressor (not factored in weight calc",
-                weight:9.8,
+                weight:7.9,
                 length:36.9,
                 bLength:16.5,
                 caliber:gComponents.calibers.c556x45,
@@ -2729,7 +2841,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             W_MK13Mod7:{
                 name:"MK 13 Mod 7 sniper rifle",
                 disc:"USMC replacement of the M40 series. Typically uses the Nightforce Advanced Tactical Riflescope ",
-                weight:12,
+                weight:11.4,
                 length:47.5,
                 bLength:26.5,
                 caliber:gComponents.calibers.c300,
@@ -2738,6 +2850,26 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },     
             
             //snipers
+            W_Bor:{
+                name:"Bor rifle",
+                disc:"Polish bolt-action sniper rifle, in use with the Polish army",
+                weight:13.45,
+                length:40.9,
+                bLength:26.8,
+                caliber:gComponents.calibers.c762x51,
+                eRange:875,
+                report:150
+            },
+            W_WKW_Wilk:{
+                name:"WKW Wilk",
+                disc:"Polish bolt-action sniper rifle, in use with the Polish army",
+                weight:35.494,
+                length:53.149,
+                bLength:26.8,
+                caliber:gComponents.calibers.c50bmg,
+                eRange:3280,
+                report:170
+            },
             W_M1891_30_S:{
                 name:"M-1891/30 soviet Optics Ready rifle",
                 weight:8.8,
@@ -2758,7 +2890,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_R700:{
                 name:"Remington 700 sniper rifle",
-                weight:9.5,
+                weight:8.99,
                 length:41.5,
                 bLength:26,
                 caliber:gComponents.calibers.c762x51,
@@ -2785,7 +2917,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_S_TRG:{
                 name:"Sako TRG sniper rifle",
-                weight:12.5,
+                weight:10.4,
                 length:45.28,
                 bLength:25.98,
                 caliber:gComponents.calibers.c762x51,
@@ -2794,7 +2926,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M24A1:{
                 name:"M24 sniper rifle",
-                weight:14,
+                weight:12,
                 length:43,
                 bLength:24,
                 caliber:gComponents.calibers.c762x51,
@@ -2803,7 +2935,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_BT_APR308:{
                 name:"B&T APR",
-                weight:16.5,
+                weight:15.45,
                 length:44.8,
                 bLength:24,
                 caliber:gComponents.calibers.c762x51,
@@ -2812,7 +2944,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_VSSM:{
                 name:"VSSM light sniper rifle",
-                weight:6.5,
+                weight:5.73,
                 length:24.2,
                 bLength:7.9,
                 caliber:gComponents.calibers.c9x39,
@@ -2821,7 +2953,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_ASVAL:{
                 name:"VSSM light sniper rifle",
-                weight:6.25,
+                weight:5.51,
                 length:24.2,
                 bLength:7.9,
                 caliber:gComponents.calibers.c9x39,
@@ -2830,7 +2962,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_ZM93_BA:{
                 name:"Zastava M93 Black Arrow sniper rifle",
-                weight:40,
+                weight:35,
                 length:65.748,
                 bLength:39.37,
                 caliber:gComponents.calibers.c50bmg,
@@ -2839,7 +2971,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_MMTAC50:{
                 name:"McMillan TAC-50 sniper rifle",
-                weight:30,
+                weight:26,
                 length:57,
                 bLength:29,
                 caliber:gComponents.calibers.c50bmg,
@@ -2849,7 +2981,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             W_M40A5:{
                 name:"M40A5 USMC Sniper",
                 disc:"Predecessor to the MK13M7, used by the USMC, being replaced as of 2018. Uses the M8541 SSDS, can also be equipped with the Simrad KN200 NV WS",
-                weight:30,
+                weight:16.5,
                 length:44.25,
                 bLength:25,
                 caliber:gComponents.calibers.c762x51,
@@ -2861,7 +2993,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             //sub machine guns
             W_MPSD:{
                 name:"H&K MP5SD suppressed submachine gun",
-                weight:7,
+                weight:5.6,
                 length:27,
                 bLength:8.9,
                 caliber:gComponents.calibers.c9x19,
@@ -2889,7 +3021,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
         pistol:{
             W_M9:{
                 name:"Beretta 92FS",
-                weight:2.55,
+                weight:2.1375,
                 length:8.5,
                 bLength:4.9,
                 caliber:gComponents.calibers.c9x19,
@@ -2898,7 +3030,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M17:{
                 name:"Sig Sauer M17",
-                weight:1.92,
+                weight:1.8375,
                 length:8,
                 bLength:4.7,
                 caliber:gComponents.calibers.c9x19,
@@ -2907,7 +3039,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_M18:{
                 name:"Sig Sauer M18",
-                weight:2.41,
+                weight:1.625,
                 length:8.5,
                 bLength:3.9,
                 caliber:gComponents.calibers.c9x19,
@@ -2916,8 +3048,8 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_P226:{
                 name:"Sig Sauer P226",
-                weight:2.41,
-                length:7.7,
+                weight:2,
+                length:1.7,
                 bLength:4.4,
                 caliber:gComponents.calibers.c9x19,
                 eRange:55,//presuming no optic
@@ -2925,7 +3057,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_G17:{
                 name:"Glock 17",
-                weight:2.01,
+                weight:1.5,
                 length:8.03,
                 bLength:4.49,
                 caliber:gComponents.calibers.c9x19,
@@ -2934,7 +3066,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_USP:{
                 name:"Heckler & Koch USP",
-                weight:2,
+                weight:1.65,
                 length:7.6,
                 bLength:4.25,
                 caliber:gComponents.calibers.c9x19,
@@ -2952,52 +3084,52 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_MP443:{
                 name:"MP-443 Grach",
-                weight:2,//guess
+                weight:2.125,
                 length:7.8,
                 bLength:4.4,
                 caliber:gComponents.calibers.c9x19,
-                eRange:55,//presuming no optic
+                eRange:55,
                 report:140               
             },
             W_SR1:{
                 name:"SR-1 Vektor",
-                weight:2.09,//guessing this is loaded
+                weight:2.09,
                 length:7.7,
                 bLength:4.4,
                 caliber:gComponents.calibers.c9x21,
-                eRange:55,//presuming no optic
+                eRange:55,
                 report:140               
             },
             W_APS:{
                 name:"Automatic Pistol Stechkin",
-                weight:2.69,//guessing this is loaded
+                weight:2.69,
                 length:8.86,
                 bLength:5.51,
                 caliber:gComponents.calibers.c9x18,
-                eRange:55,//presuming no optic
+                eRange:55,
                 report:135               
             },
             W_PM:{
                 name:"Pistol Makarov",
-                weight:1.5,//guessing this is loaded
+                weight:1.625,
                 length:6.36,
                 bLength:3.68,
                 caliber:gComponents.calibers.c9x18,
-                eRange:40,//presuming no optic
+                eRange:40,
                 report:135               
             },
             W_GSh18:{
                 name:"GSh-18",
-                weight:2,//guessing this is loaded
+                weight:1.3125,
                 length:7.2,
                 bLength:4.1,
                 caliber:gComponents.calibers.c9x19,
-                eRange:50,//presuming no optic
+                eRange:50,
                 report:140               
             },
             W_TT33:{
                 name:"TT-33",
-                weight:2,//guessing this is loaded
+                weight:1.881,//guessing this is loaded
                 length:7.6,
                 bLength:4.6,
                 caliber:gComponents.calibers.c762x25,
@@ -3006,11 +3138,51 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
             W_MEUSOC_Pistol:{
                 name:"MEU(SOC) pistol",
-                weight:3,//guessing this is loaded
+                weight:2.2,//guess
                 length:8.25,
                 bLength:5.03,
-                caliber:gComponents.calibers.c9x19,//yeah I know it's 9mil
-                eRange:76.55,//presuming no optic
+                caliber:gComponents.calibers.c9x19,//yeah I know it's 45
+                eRange:76.55,
+                report:140               
+            },
+            W_FB_P83:{
+                name:"FB P-83 Wanad",
+                disc:"Polish service pistol, in limited use with their police and military, being replaced by the G19",
+                weight:1.625,//guess
+                length:6.5,
+                bLength:3.5,
+                caliber:gComponents.calibers.c9x18,
+                eRange:27.34,
+                report:140               
+            },
+            W_FB_VIS_100:{
+                name:"FB VIS 100",
+                disc:"Polish current issue service pistol",
+                weight:1.531,
+                length:7.8,
+                bLength:4.3,
+                caliber:gComponents.calibers.c9x19,
+                eRange:27.34,
+                report:140               
+            },
+            W_WIST_94:{
+                name:"WIST-94",
+                disc:"Polish service pistol",
+                weight:1.625,
+                length:7.5,
+                bLength:4.5,
+                caliber:gComponents.calibers.c9x19,
+                eRange:27.34,
+                report:140               
+            },
+            W_P99_RAD:{
+                name:"Fabryka Broni Radom P99 RAD",
+                disc:"Polish service pistol",
+                weight:1.375,
+                length:7.1,
+                bLength:4,
+                caliber:gComponents.calibers.c9x19,
+                eRange:55,
                 report:140               
             },
         },
@@ -3425,6 +3597,24 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 weight:3.74,
                 pen:220,
             },
+            G_RGZ89:{
+                type:0,
+                name:"RGZ-89 fragmentation grenade",
+                disc:"Modern Polish frag grenade",
+                thrownRange:36,
+                lethalRadius:10,
+                weight:.838,
+                pen:0,
+            },
+            G_RGO88:{
+                type:0,
+                name:"RGO-88 fragmentation grenade",
+                disc:"Modern Polish frag grenade",
+                thrownRange:30,
+                lethalRadius:5,
+                weight:1.069,
+                pen:0,
+            },
         },
         stGren:{
             G_M84:{
@@ -3806,6 +3996,20 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 canBeLCd:1,
                 weight:4.894,
                 sdTimer:96,
+            },
+            ATM_MPP_B_Wierzba:{
+                type:4,
+                name:"MPP-B Wierzba Anti-Tank Mine",
+                disc:"Polish fiberglass minimum metal anti-tank blast mine",
+                explType:1,
+                explTNT:17.857,
+                det:[1,1,0,0,0],//pressure, magnetic, seismic, command (wire), command (signal),
+                antiVehicle:4,//1 trucks, 2 armored trucks, 3 APC/IFV, 4 tank
+                doubleImpulse:0,
+                isMetalDetectable:0,
+                canBeLCd:1,
+                weight:21.384,
+                sdTimer:99,
             },
         },
         explCharge:{
@@ -11387,6 +11591,236 @@ const MOSCodes=[
 
     */
 ];
+const testGComponents={
+    specialAmmunition:{
+        sA_FGM148A_HEAT:{
+            name:"FGM-148 round",
+            disc:"Standard HEAT round for pre-javelin-F models, uses listed range for pre L-CLU models",
+            serial:"",
+            weight:35,
+            range:2734,
+            penRHA:760,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_IMX101.tntMult,
+            warheadWeight:19,//pounds TNT
+            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[0,0,0,1,0],//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
+            fireAndForget:1,
+            softLaunch:1
+        },
+        sA_RPG7_PG7VL_HEAT:{
+            name:"PG-7VL",
+            disc:"standard HEAT rocket found with the RPG-7 series",
+            serial:"",
+            weight:5.7,
+            range:750,
+            penRHA:550,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
+            warheadWeight:1.61,
+            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
+            fireAndForget:1,
+            softLaunch:1
+        },
+        sA_RPG7_PG7VR_THEAT:{
+            name:"PG-7VR",
+            disc:"tandem charge HEAT for the RPG-7 series",
+            serial:"",
+            weight:9.9,
+            range:350,
+            penRHA:750,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
+            warheadWeight:3.153,
+            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,5 is laser,
+            fireAndForget:1,
+            softLaunch:1
+        },
+        sA_RPG7_OG7V_FRAG:{
+            name:"OG-7V",
+            disc:"tandem charge HEAT for the RPG-7 series",
+            serial:"",
+            weight:4,
+            range:750,
+            penRHA:0,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
+            warheadWeight:.463,
+            warHeadType:3,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,0,1,0,0,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[1,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
+            fireAndForget:1,
+            softLaunch:1
+        },
+    },
+    uBGLAmmunition:{
+        uA_40mm:{
+            name:"M433",
+            disc:"High Explosive Dual Purpose round for western 40mm grenade launchers, namely the M203 and M320. Not used in the MK-19",
+            weight:.5,
+            lethalRadius:5.468,
+            range:273,
+        },
+        uA_40mmRU:{
+            name:"VOG-25",
+            disc:"High Explosive round for eastern 40mm grenade launchers, namely the GP-25 pattern",
+            weight:.55,
+            lethalRadius:6.562,
+            range:248.43,
+        },
+        
+    }
+
+};
+const testComponents={
+    tComponents:{
+        weapons:{
+            assaultRifles:{
+                ar_M4A1:{
+                    name:"M4A1 Carbine",
+                    disc:"Extremely prolific 5.56x45 carbine, the A1 variant has 3-round burst replaced with full-auto while also being slightly heavier. As of 2019 all M4s in the US Army are this variant",
+                    weight:6.71,
+                    caliber:gComponents.calibers.c556x45,
+                    fireModes:[0,0,1,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                    rateOfFire:825,//used if it is full-auto capable
+                    reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                    mounts:[1,1,1],//bottom, sides, top
+                    railStyle:1,
+                    shotDB:158.9,
+                    uBGLType:1,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                    length:29.75,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                    bLength:14.5,//barrel length
+                    eRange:550//yards
+                },
+                ar_M27IAR:{
+                    name:"Heckler & Koch M27 Infantry Automatic Rifle",
+                    disc:"Based on the H&K 416. The new workhorse of the USMC.",
+                    weight:7.9,
+                    caliber:gComponents.calibers.c556x45,
+                    fireModes:[0,0,1,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic.
+                    rateOfFire:800,//used if it is full-auto capable
+                    reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                    mounts:[1,1,1],//bottom, sides, top
+                    shotDB:158.9,
+                    uBGLType:1,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                    length:33,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                    bLength:16.5,//barrel length
+                    eRange:656//yards
+                },
+                ar_AK74M:{
+                    name:"Izhmash AK-74M ",
+                    disc:"Standard service rifle of the Russian military, being replaced by the AK-12",
+                    serial:"6P34",
+                    weight:7.5,
+                    caliber:gComponents.calibers.c545x39,
+                    fireModes:[0,0,1,0,0,1],
+                    rateOfFire:625,
+                    reloadTime:3.5,
+                    shotDB:158.9,
+                    opticMountStyle:2,
+                    mounts:[0,0,0],
+                    uBGLType:2,
+                    length:27.6,
+                    bLength:16.3,
+                    eRange:550
+                },
+            },
+            uBGL:{
+                W_GP25:{
+                    name:"GP-25 Kostyor",
+                    disc:"'Bonfire' underbarrel grenade launcher for AK pattern rifles",
+                    weight:3.31,//removed eRange as that is now determined by ammo type
+                    mountStyle:2//added this for compatibility checking 
+                },
+            },
+            RL:{
+                FGM148:{
+                    name:"FGM-148 Javelin heavy antitank guided missile launcher",
+                    disc:"reloadable top-attack advanced ATGML",
+                    isSingleShot:0,
+                    weight:0,
+                },
+                RL_RPG7V2:{
+                    name:"RPG-7V2",
+                    disc:"extremely prolific russian rocket-propelled grenade launcher",
+                    isSingleShot:0,
+                    weight:13.9,
+                },
+    
+                // MAN PORTABLE SURFACE TO AIR MISSILES
+                RL_FIM92J:{
+                    name:"FIM-92J Stinger RMP Block I+",
+                    disc:"Standard US IR MANPAD with EOL upgrade",
+                    isSingleShot:0,
+                    guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                    useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                    aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                    weight:10,//lbs
+                    warheadWeight:2.25,
+                    roundWeight:24,
+                    pen:150,//mm rha    
+                    eRange:4250//yards
+                },
+                RL_SA18:{
+                    name:"SA-18 Igla",
+                    disc:"1983 variant of the SA-16 Gimlet short range MANPAD",
+                    isSingleShot:1,
+                    guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
+                    useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+                    aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
+                    weight:39.46,//lbs
+                    warheadWeight:3.74,
+                    roundWeight:0,
+                    pen:150,//mm rha    
+                    eRange:5650//yards
+                },
+    
+    
+            },
+        },
+        optics:{
+            o_TA11RCO_ACOG:{
+                name:"TA11 ACOG",//the text name of the scope
+                disc:"ubiquitous magnified day sight for 5.56 rifles",
+                mag:3.5,//magnification x
+                obj:35,
+                weight:.875,//weight, pounds.
+                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+                mountStyle:1,
+            },
+            o_1P78:{
+                name:"1P78-1 Kashtan",//the text name of the scope
+                disc:"standard modernized rifle scope of the russian military, optimized for AK-74 pattern rifles",
+                mag:2.8,//magnification x
+                obj:25,//objective diameter, mm
+                weight:1.1,//weight, pounds, with mount if applicable and possible
+                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR
+                mountStyle:2
+            },
+            o_PGO7:{
+                name:"PGO-7",//the text name of the scope
+                disc:"Standard magnified optic for the RPG-7 series",
+                mag:2.7,//magnification x
+                obj:27,//this is a guess
+                weight:1.36,//weight, pounds.
+                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+                mountStyle:3
+            },
+        },
+        foreGrips:{
+            fg_GPS02:{
+                name:"GPS-02 grip-bipod",
+                disc:"common attachment for western rifles",
+                type:5,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
+                weight:1.5,//guess, looked on 3 different websites and nobody was saying.    
+                mountStyle:1,
+            }
+        }
+    },
+}
 const testItems={
     components:{
         vehicles:{
@@ -11428,35 +11862,45 @@ const testItems={
         },
         personnel:{
             T_Rifleman:{
-                USMC_Rifleman_Basic:{
+                AAF_Rifleman_Loaded:{
                     name:0,
-                    ID:[0,3,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                    ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
                     primary:{//primary weapon, must be a firearm
-                        name:tComponents.weapons.rifle.W_M27,
-                        optic:tComponents.optics.o_TA31RCO_ACOG,
-                        suppressor:tComponents.suppressors.s_KACNT4,
-                        uBGL:0,
-                        railAccessory:tComponents.railAccessories.ra_ANPEQ15,
+                        name:testComponents.tComponents.weapons.assaultRifles.ar_AK74M,
+                        optic:testComponents.tComponents.optics.o_1P78,
+                        suppressor:0,
+                        mag:gComponents.mags.m_AK74M_30,
+                        ammunition:[gComponents.calibers.c545x39,210],
+                        uBGL:testComponents.tComponents.weapons.uBGL.W_GP25,
+                        uBGLAmmunition:[testGComponents.uBGLAmmunition.uA_40mmRU,5],
+                        railAccessory:0,
                         gripMod:0,
                         weight:0,
                     },
                     secondary:{//secondary weapon, must be a firearm
-                        name:0,
-                        optic:0,
+                        name:testComponents.tComponents.weapons.assaultRifles.ar_AK74M,
+                        optic:testComponents.tComponents.optics.o_1P78,
                         suppressor:0,
-                        uBGL:0,
+                        mag:gComponents.mags.m_AK74M_30,
+                        ammunition:[gComponents.calibers.c545x39,210],
+                        uBGL:testComponents.tComponents.weapons.uBGL.W_GP25,
+                        uBGLAmmunition:[testGComponents.uBGLAmmunition.uA_40mmRU,5],
                         railAccessory:0,
                         gripMod:0,
                         weight:0,
                     },
                     special:{//special weapon, a standalone rocket launcher
-                        name:0,
-                        optic:0,
+                        name:testComponents.tComponents.weapons.RL.RL_RPG7V2,
+                        optic:testComponents.tComponents.optics.o_PGO7,
                         gripMod:0,
                         weight:0,
+                        GPRound:[testGComponents.specialAmmunition.sA_RPG7_PG7VL_HEAT,2],
+                        APRound:[testGComponents.specialAmmunition.sA_RPG7_OG7V_FRAG,2],
+                        HeavyRound:[testGComponents.specialAmmunition.sA_RPG7_PG7VR_THEAT,2],
+                        SmokeRound:[0,0],
                     },
                     explosives:{
-                        explosive1:[tComponents.weapons.fGren.G_M67,2],//name of explosive, quantity of explosive
+                        explosive1:[tComponents.weapons.fGren.G_RGD5,2],//name of explosive, quantity of explosive
                         explosive2:[0,0],
                         explosive3:[0,0],
                     },
@@ -11472,17 +11916,17 @@ const testItems={
                         mine3:0,
                     },
                     kit:{
-                        bArmor:tComponents.vests.v_MTV,
-                        nods:tComponents.helmetOptics.o_ANPVS14,
-                        earPro:tComponents.headSets.hs_earplugs,
-                        comms:tComponents.pRadios.pr_MR3000P, //More advanced stuff will be handled at sq level
-                        uniform:tComponents.uniforms.u_MCCUU_W,
-                        IFAK:tComponents.iFAKs.iFAK_II,
-                        canteen:tComponents.canteens.GI_MOLLE,           
-                        helmet:tComponents.helmets.h_LWH_W,
-                        backpack:tComponents.backpacks.ap_MOLLE2_W,
-                        tent:tComponents.tents.t_UICST,       
-                        sleepingBag:tComponents.sleepingBags.sb_MSS_P_W      
+                        bArmor:tComponents.vests.v_6B45M_W,
+                        nods:tComponents.helmetOptics.o_1PN138,
+                        earPro:tComponents.headSets.hs_GSSH01,
+                        comms:tComponents.pRadios.pr_R187P1E, //More advanced stuff will be handled at sq level
+                        uniform:tComponents.uniforms.u_6SH122_Ratnik,
+                        IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                        canteen:tComponents.canteens.USSR_Canteen,           
+                        helmet:tComponents.helmets.h_6B47_W,
+                        backpack:tComponents.backpacks.ap_6SH117_W,
+                        tent:0,       
+                        sleepingBag:tComponents.sleepingBags.sb_Ratnik_W    
                     },
                     buffs:{
                         lDrinkBuff:1,
@@ -11494,6 +11938,7 @@ const testItems={
                         tSinceReserve:0,
                     },
                     status:{
+                        totalKitWeight:0,
                         effectivness:1,
                         morale:1,
                         confidenceInLeadership:1,
@@ -11512,37 +11957,156 @@ const testItems={
                     },
                 },
             },
-            T_SR_Rifleman:{
-            },
-            T_Asst_Grenadier:{
-            },
-            T_Grenadier:{
-
-            },
-            T_MG:{
-        
-            },
-            T_SL:{
-                
-            },
-            T_Crewman:{
-
-            },
-            T_MANPADS:{
-
-            },
-            T_SVD:{
-
-            },
-            S_Staffer:{
-
-            },
-            S_Officer:{
-
-            }
         },
     },
 
-
 };
-export default {components,uComps,largeUComps,BTGComps,testItems,SAMSystemComps,vComponents,tComponents,MOSCodes};
+const testUnits={
+    company1:{
+        uCata:1,
+        uType:3,//0 is truck, 1 is BTR-80, 2 is enhanced BTR-80, 3 is BTR-82, 4 is BMP-1, 5 is BMP-2, 6 is T-72, 7 is T-72B3
+        y:42.588,
+        x:41.551,//used as the location of the company HQ/supply dump, which is replenished from the BTG supply dump.
+        locationModule:0,//actual module of the location
+        locString:"unknown",
+        status:2,//0 is in combat, 1 is on a front, 2 is in reserve,3 is policing 
+        type:1,//1 is truck, 2 is motorized, 3 is mechanized
+        AoD:1,//1 is defending, 2 is attacking
+        hasArtillerySupport:2,//0 is no artillery support, 1 is an MRL battery, 2 is an SPG battery, 3 is both
+        hoursSinceLastMove:0,
+        isInHomeTerritory:1,
+        locationType:7,//Location or area type: 0: grassland with very little cover, 1: rural with few buildings, 2: rural area with buildings, 3: vineyards/tall fields/farmland, 4: forest, dense, 5: industrial facility, 6: airfield, 7: military base, 8: urban area with many houses, 9: highly developed city
+        name:"12th Motorized Infantry Company",
+        commander:"Senior Lieutenant Giorgi Ratyan",
+        HQ:{
+            squad1:{
+                name:"Company Commander's squad",
+                members:uComps.squads.SQ_BTR82InfantryCompanyC2.members,
+                vehicle:uComps.squads.SQ_BTR82InfantryCompanyC2.vehicle,
+                vehicleGas:uComps.squads.SQ_BTR82InfantryCompanyC2.vehicle.fuelcap,
+                sTemplate:uComps.squads.SQ_BTR82InfantryCompanyC2,
+                personnelProfiles:[
+                    [components.personnel.T_Crewman[2].supplies,components.personnel.T_Crewman[2].supplies,components.personnel.T_Crewman[2].supplies,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [components.personnel.T_MANPADS[2].supplies,0,0,0],
+                    [0,0,0,0],
+                    [components.personnel.S_Staffer[2].supplies,0,0,0],
+                    [components.personnel.S_Officer[2].supplies,0,0,0]
+                ],
+                personnelSPHByIndex:[
+                    .1, //sph for the crewmen as an array in the standard supply format
+                    .1, //sph for the SL
+                    .1, //sph for the Gren
+                    .1, //sph for the ass. gren
+                    .1, //sph for mg
+                    .1, //sph for sr riflemen
+                    .1, //sph for riflemen
+                    .1, //sph for manpads
+                    .1, //sph for snipers
+                    .1, //sph for staffers
+                    .1  //sph for the officers
+                ],
+                personnelSPHTotal:[],
+                chanceIorDbyPersonnel:[
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]],
+                    [[0,0],[0,0],[0,0],[0,0]]                                
+                ],
+                hasVehicle:1,
+                supplies:uComps.squads.SQ_BTR82InfantryCompanyC2.supplies,
+                vehicleCarriedSupplies:uComps.squads.SQ_BTR82InfantryCompanyC2.vehicleCarriedSupplies,
+                vicTimeTillBack:0,
+                neededSupplies:[0,0,0,0,0,0,0],
+                neededVSupplies:[0,0,0,0,0,0,0,0],
+                morale:100,
+                effectiveness:100,
+            }
+        },
+        platoon1:{
+            name:"1st Platoon",
+            squad1:{
+                name:"1st squad",
+                sTemplate:uComps.squads.SQ_BTR82Infantry,
+                members:uComps.squads.SQ_BTR82Infantry.members,
+                vehicle:uComps.squads.SQ_BTR82Infantry.vehicle,
+                vehicleGas:uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
+                vSupplies:uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
+                vicTimeTillBack:0,
+                personnelProfiles:[
+                    [components.personnel.T_Crewman.AGF_1_19K_G,components.personnel.T_Crewman.AGF_1_19Z_G,0,0],
+                    [components.personnel.T_SL.TEST_US_GIGASOLDIERV2,0,0,0],
+                    [components.personnel.T_Grenadier.AGF_1_11B_GRN_G,0,0,0],
+                    [components.personnel.T_Asst_Grenadier.AGF_1_11B_AG_G,0,0,0],
+                    [components.personnel.T_MG.AGF_1_11B_MG_G,0,0,0],
+                    [components.personnel.T_SR_Rifleman.AGF_1_11B_FTL_G,0,0,0],
+                    [components.personnel.T_Rifleman.AGF_1_11B_G,components.personnel.T_Rifleman.AGF_1_11B_G,components.personnel.T_Rifleman.AGF_1_11B_G,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0]
+                ],
+                personnelSPHByIndex:[
+                    .1, //sph for the crewmen as an array in the standard supply format
+                    .1, //sph for the SL
+                    .1, //sph for the Gren
+                    .1, //sph for the ass. gren
+                    .1, //sph for mg
+                    .1, //sph for sr riflemen
+                    .1, //sph for riflemen
+                    .1, //sph for manpads
+                    .1, //sph for snipers
+                    .1, //sph for staffers
+                    .1  //sph for the officers
+                ],
+                personnelSPHTotal:[],
+                chanceInjDeaDesMutTurbyPersonnel:[
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],                                
+                ],
+                moraleByPerson:[
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,0,0,0]                                  
+                ],
+                hasVehicle:1,
+                supplies:uComps.squads.SQ_BTR82Infantry.supplies,
+                vehicleCarriedSupplies:uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
+                neededSupplies:[0,0,0,0,0,0,0],
+                neededVSupplies:[0,0,0,0,0,0,0,0],
+                morale:100,
+                effectiveness:100,
+            },
+        },
+    },
+};
+export default {components,uComps,largeUComps,BTGComps,SAMSystemComps,vComponents,tComponents,MOSCodes,testItems,testGComponents,testComponents,testUnits};

@@ -53,168 +53,353 @@ const functionHelpers = {
 
 // VALUE CALCULATIONS //
 
-
-function vc_individual(company,individual){
-    let heffectiveness=0
-    let hleadershipSkill=0;
-    let hhmorale=0;
-    let hhunger=0;
-    let hthirst=0;
-    let energy=0
-}
-function vc_tank(company,squad){//WIP, before continuing I should really quantify the value of an individual soldier.
-    /*  returns a quantitative value of a tank's current offensive and defensive capabilities, accurate to present time. 
-        Capabilities are anti-armor, anti-personnel.
-    */
-   let crewEffectiveness = 0;
-   if(squad.vehicle.type==1){//check if this is actually a tank before trying to calculate stuff about it.
-    crewEffectiveness=(mu_tallyPersonnelInCat(squad.personnelProfiles[0]/squad.vehicle.crew))//
-   }
-
+function vc_railAccessory(person,terrain,wepIndx){//determine the value of a rail accessory
+    let subWeight=0;
+    let subPower=0;
+    let subCumeYards=0;
+    if(wepIndx==0){//primary
+        if((person.primary.railAccessory!=0)&&((person.primary.mounts[1]==1)||(person.primary.mounts[2]==1))){//rail mounted accessory handler 
+            subWeight+=person.primary.railAccessory.weight;
+            if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
+                if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
+                    if(person.primary.railAccessory.features[2]!=0){
+                        subPower+=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;                            
+                    }
+                    if(person.primary.railAccessory.features[3]!=0){
+                        subPower+=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;                                   
+                    }
+                }
+            }else if((mu_isNight())){//it is night time but they don't have Nods or they have thermals, in which case they don't need lights
+                if(person.primary.railAccessory.features[0]!=0){
+                    subPower+=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;                             
+                }
+                if(person.primary.railAccessory.features[1]!=0){
+                    subPower+=cfg.multipliers.personnel.weapons.guns.gVBBLaser;                                  
+                }
+            }        
+        };
+    }else if(wepIndx==1){//secondary
+        if((person.secondary.railAccessory!=0)&&((person.secondary.mounts[1]==1)||(person.secondary.mounts[2]==1))){//rail mounted accessory handler 
+            subWeight+=person.secondary.railAccessory.weight;
+            if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
+                if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
+                    if(person.secondary.railAccessory.features[2]!=0){
+                        subPower+=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;                            
+                    }
+                    if(person.secondary.railAccessory.features[3]!=0){
+                        subPower+=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;                                   
+                    }
+                }
+            }else if((mu_isNight())){//it is night time but they don't have Nods or they have thermals, in which case they don't need lights
+                if(person.secondary.railAccessory.features[0]!=0){
+                    subPower+=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;                             
+                }
+                if(person.secondary.railAccessory.features[1]!=0){
+                    subPower+=cfg.multipliers.personnel.weapons.guns.gVBBLaser;                                  
+                }
+            }        
+        };
+    }
+    return{
+        totalWeight:subWeight,
+        totalPower:subPower,
+        totalYards:subCumeYards
+    };
 };
+function vc_uBGL(person,terrain,wepIndex){
+    let weaponWeight=0;
+    let restAmmoWeight=0;
+    let subAPPoints=0;
+    let subAVPoints=0;
+    if(wepIndex==0){
+        if(person.primary.uBGL!=0){//check for presence of a uBGL
+            weaponWeight+=person.primary.uBGL.weight;
+            if(person.primary.uBGLAmmunition[1]!=0){
+                weaponWeight+=person.primary.uBGLAmmunition[0].weight;
+                restAmmoWeight=(person.primary.uBGLAmmunition[0].weight*(person.primary.uBGLAmmunition[1]-1));
+                subAPPoints+=(person.primary.uBGLAmmunition[0].lethalRadius*cfg.multipliers.personnel.weapons.grenades.gr_BBLethalRadiusBTerrain[terrain[5]]);
+                subAPPoints+=(person.primary.uBGLAmmunition[0].range*cfg.multipliers.personnel.weapons.grenades.gr_APPBYardThrowable);
+            };
+        };
+    }else if(wepIndex==1){
+        if(person.secondary.uBGL!=0){//check for presence of a uBGL
+            weaponWeight+=person.secondary.uBGL.weight;
+            if(person.secondary.uBGLAmmunition[1]!=0){
+                weaponWeight+=person.secondary.uBGLAmmunition[0].weight;
+                restAmmoWeight=(person.secondary.uBGLAmmunition[0].weight*(person.secondary.uBGLAmmunition[1]-1));
+                subAPPoints+=(person.secondary.uBGLAmmunition[0].lethalRadius*cfg.multipliers.personnel.weapons.grenades.gr_BBLethalRadiusBTerrain[terrain[5]]);
+                subAPPoints+=(person.secondary.uBGLAmmunition[0].range*cfg.multipliers.personnel.weapons.grenades.gr_APPBYardThrowable);
+            };
+        };
+    }
+    return{
+        uBGLWeight:weaponWeight,
+        otherAmmoWeight:restAmmoWeight,
+        totalAVPoints:subAVPoints,
+        totalAPPoints:subAPPoints
+    }
+}
+function vc_uBGLOld(person,terrain,wepIndex){//determine the value of an underbarrel grenade launcher
+    let subWeight=0;
+    let subCumeYards=0;
+    let subPower=0;    
+    if(wepIndex==0){
+        if(person.primary.uBGL!=0){//underbarrel grenade launcher handler
+            if(person.primary.uBGL.mountStyle==person.primary.name.uBGLType){
+                if(person.status.supplies[5]>0){
+                    subWeight+=person.primary.uBGL.weight;
+                    if(person.status.supplies[5]>0){
+                        subCumeYards+=person.primary.uBGL.eRange;
+                    };          
+                };                    
+            };
+        };
+    }else if(wepIndex==1){
+        if(person.secondary.uBGL!=1){//underbarrel grenade launcher handler
+            if(secondary.secondary.uBGL.mountStyle==person.secondary.name.uBGLType){
+                if(person.status.supplies[5]>0){
+                    subWeight+=person.primary.uBGL.weight;
+                    if(person.status.supplies[5]>0){
+                        subCumeYards+=person.primary.uBGL.eRange;
+                    };          
+                };                       
+            };
+        };
+    };
+    return{
+        totalWeight:subWeight,
+        totalPower:subPower,
+        totalYards:subCumeYards
+    };
+};
+
+function vc_gripMod(person,terrain,wepIndex){//determine the value of a grip mod
+    let subWeight=0;
+    let subCumeYards=0;
+    let subPower=0;   
+    if(wepIndex==0){
+        if(person.primary.gripMod!=0){
+            if(person.primary.gripMod.mountStyle==person.primary.name.railStyle){
+                subWeight+=person.primary.gripMod.weight;
+                subCumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.primary.gripMod.type];                         
+            } 
+        };
+    }else if(wepIndex==1){
+        if(person.secondary.gripMod!=0){
+            if(person.secondary.gripMod.mountStyle==person.secondary.name.railStyle){
+                subWeight+=person.secondary.gripMod.weight;
+                subCumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.secondary.gripMod.type];                         
+            } 
+        };   
+    }else if(wepIndex==2){
+        if(person.special.gripMod!=0){
+            if(person.special.gripMod.mountStyle==person.special.name.railStyle){
+                subWeight+=person.special.gripMod.weight;
+                subCumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.special.gripMod.type];                         
+            } 
+        };   
+    }
+    return{
+        totalWeight:subWeight,
+        totalPower:subPower,
+        totalYards:subCumeYards
+    };
+};
+
+function vc_suppressor(person,terrain,wepIndex,subShotVolume){
+    let subWeight=0;
+    let subCumeYards=0;
+    let subPower=0;         
+    let subLength=0;
+    let newShotVolume = subShotVolume
+    if(wepIndex==0){
+        if(person.primary.suppressor!=0){//module that handles suppressors
+            subLength+=person.primary.suppressor.length;
+            subWeight+=person.primary.suppressor.weight;
+            newShotVolume-=(person.primary.suppressor.reportReduction);
+
+        };
+    }else if(wepIndex==1){
+        if(person.secondary.suppressor!=0){//module that handles suppressors
+            subLength+=person.secondary.suppressor.length;
+            subWeight+=person.secondary.suppressor.weight;
+            newShotVolume-=(person.secondary.suppressor.reportReduction);
+        };
+    }
+    return{
+        totalWeight:subWeight,
+        totalPower:subPower,
+        totalYards:subCumeYards,
+        totalLength:subLength,
+        totalShotVolume:newShotVolume
+    };
+};
+
+function vsc_NightSightHandler(person,subYardRange,weaponIndex){
+    let newYardRange=subYardRange;
+    if(mu_isNight()){
+        if(weaponIndex==0){
+            if(person.kit.nods.type>=person.primary.optic.NVG){
+                if(person.kit.nods.type<4){
+                    newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
+                }else{
+                    newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff)
+                }
+                newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];
+            }else{
+                if(person.primary.optic.NVG<4){//if the optic isn't thermal
+                    newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.primary.optic.NVG])
+                    newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                    newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
+                }else{//it's thermal so it gets a buff instead of a set decreased range
+                    newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                    newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                    newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+                }
+            }
+        }else if(weaponIndex==1){
+            if(person.kit.nods.type>=person.secondary.optic.NVG){
+                if(person.kit.nods.type<4){
+                    newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
+                }else{
+                    newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff)
+                }
+                newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];
+            }else{
+                if(person.secondary.optic.NVG<4){//if the optic isn't thermal
+                    newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.secondary.optic.NVG])
+                    newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                    newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
+                }else{//it's thermal so it gets a buff instead of a set decreased range
+                    newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                    newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                    newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+                }
+            }
+        }else if(weaponIndex==2){
+            if(person.kit.nods.type>=person.special.optic.NVG){
+                if(person.kit.nods.type<4){
+                    newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
+                }else{
+                    newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff)
+                }
+                newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];
+            }else{
+                if(person.special.optic.NVG<4){//if the optic isn't thermal
+                    newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.special.optic.NVG])
+                    newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                    newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
+                }else{//it's thermal so it gets a buff instead of a set decreased range
+                    newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
+                    newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+                    newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+                }
+            }
+        }
+    }else{
+        if(weaponIndex==0){
+            newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+            newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+        }else if(weaponIndex==1){
+            newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+            newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+        }else if(weaponIndex==2){
+            newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
+            newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
+        };
+    }
+    return{
+        newYardage:newYardRange,
+    };
+};
+
 function vc_weaponOptic(person,weapType,yardRange){
     let opticWeight=0;
     let newYardRange=yardRange;
     console.log(" 1 "+newYardRange )
     if(weapType==0){//primary
         if((person.primary.name!=0)&&(person.primary.optic!=0)){
-            if(mu_isNight()){//is it night time?
-                if(person.kit.nods!=0){//does the person have NODs?
-                    if(person.kit.nods.type>=person.primary.optic.NVG){//are the nods equal to or better than the optic?
-                        if(person.kit.nods.type<4){
-                            newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
-                        }else{
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff);//special buff for 
-                        }
-                        newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];   
-                    }else{
-                        if(person.primary.optic.NVG<4){//if the optic isn't thermal
-                            newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.primary.optic.NVG])
-                            newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                            newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
-                        }else{//it's thermal so it gets a buff instead of a set decreased range
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
-                            newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                            newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
-                        }
-                    }
-                }else{
-                    if(person.primary.optic.NVG<4){
-                        newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.primary.optic.NVG]);                       
-                    }else{
-                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
-
-                    }
-                    if(person.kit.nods!=0){
-                        if(person.kit.nods.type==4){
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);
-                        }
-                    }
-                    if(person.primary.optic.NVG==4){
-                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);                        
-                    }
-                }
-            }else{
-                newYardRange+=((person.primary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                newYardRange+=((person.primary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
-            }
-            opticWeight=person.primary.optic.weight;         
+            if(person.primary.optic.mountStyle==person.primary.opticMountStyle){
+                newYardRange=(vsc_NightSightHandler(person,newYardRange,0).newYardage);
+                opticWeight=person.primary.optic.weight;
+            };     
         }
     }else if(weapType==1){//secondary
         if((person.secondary.name!=0)&&(person.secondary.optic!=0)){
-            if(mu_isNight()){//is it night time?
-                if(person.kit.nods!=0){//does the person have NODs?
-                    if(person.kit.nods.type>=person.secondary.optic.NVG){//are the nods equal to or better than the optic?
-                        if(person.kit.nods.type<4){
-                            newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
-                        }else{
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff);//special buff for thermals
-                        }
-                        newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];   
-                    }else{
-                        if(person.secondary.optic.NVG<4){//if the optic isn't thermal
-                            newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.secondary.optic.NVG])
-                            newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                            newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
-                        }else{//it's thermal so it gets a buff instead of a set decreased range
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
-                            newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                            newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
-                        }
-                    }
-                }else{
-                    if(person.secondary.optic.NVG<4){
-                        newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.secondary.optic.NVG])                            
-                    }else{
-                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
-                    }
-                    if(person.kit.nods!=0){
-                        if(person.kit.nods.type==4){
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);
-                        }
-                    }
-                    if(person.secondary.optic.NVG==4){
-                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);                        
-                    }
-                }
-            }else{
-                newYardRange+=((person.secondary.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                newYardRange+=((person.secondary.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
-            }
-            opticWeight=person.secondary.optic.weight;                    
+            if(person.secondary.optic.mountStyle==person.secondary.opticMountStyle){
+                newYardRange=(vsc_NightSightHandler(person,newYardRange,1).newYardage);
+                opticWeight=person.secondary.optic.weight;                  
+            }               
         }
     }else if(weapType==2){//specialty
         if((person.special.name!=0)&&(person.special.optic!=0)){
-            if(mu_isNight()){//is it night time?
-                if(person.kit.nods!=0){//does the person have NODs?
-                    if(person.kit.nods.type>=person.special.optic.NVG){//are the nods equal to or better than the optic?
-                        if(person.kit.nods.type<4){
-                            newYardRange=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
-                        }else{
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff);//special buff for thermals
-                        }
-                        newYardRange*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];   
-                    }else{
-                        if(person.special.optic.NVG<4){//if the optic isn't thermal
-                            newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.special.optic.NVG])
-                            newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                            newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);                            
-                        }else{//it's thermal so it gets a buff instead of a set decreased range
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
-                            newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                            newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
-                        }
-                    }
-                }else{
-                    if(person.special.optic.NVG<4){
-                        newYardRange=(cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.special.optic.NVG])                            
-                    }else{
-                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[1]);
-                    }
-                    if(person.kit.nods!=0){
-                        if(person.kit.nods.type==4){
-                            newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);
-                        }
-                    }
-                    if(person.special.optic.NVG==4){
-                        newYardRange*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff*cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType]);                        
-                    }
-                }
-            }else{
-                newYardRange+=((person.special.optic.mag-1)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticMag);
-                newYardRange+=((person.special.optic.obj-20)*cfg.multipliers.personnel.weapons.guns.gRangeBuffByOpticPic);
-            }
-            opticWeight=person.special.optic.weight;                  
+            if(person.secondary.optic.mountStyle==person.secondary.opticMountStyle){
+                newYardRange=(vsc_NightSightHandler(person,newYardRange,2).newYardage);
+                opticWeight=person.special.optic.weight;                
+            }          
         }
     }else{
         console.log("vc_weaponOptic is being fed the value "+weapType+", a weapType it was not designed to handle")
     }
     newYardRange*=(cfg.environment.clearDayVis/runtimeVariables.currentWeather.vis);//finally, check the visibility and see if all that optic zoom can actually be useful
-    return[newYardRange,opticWeight];
+    return{
+        finalYardRange:newYardRange,
+        addedWeight:opticWeight
+    };
         
 };
+function vc_primary(terrain,person){
+    let Weight = 0;
+    let AAPoints = 0;
+    let AVPoints = 0;
+    let APPoints = 0;
+    let Length=0;
+    let Yardage=0;
+    let Pen=0;
+    let ShotVolume=0;
+    if(person.primary.name!=0){
+        Weight+=person.primary.name.weight;
+        Length+=person.primary.name.length;
+        if(person.primary.ammunition[0]==person.primary.name.caliber){//check for ammunition compatibility
+                Weight+=(person.primary.mag.weight);
+                Weight+=(person.primary.name.caliber.weight*person.primary.mag.capacity);
+                if(person.primary.ammunition[1]>30){//make sure they have plenty of ammo
+                    Pen+=person.primary.name.caliber.pen;
+                    Yardage+=person.primary.name.eRange;
+                    ShotVolume=person.primary.name.shotDB;
+                    Weight+=(vc_railAccessory(person,terrain,0).totalWeight);
+                    AAPoints+=(vc_railAccessory(person,terrain,0).totalPower);
+                    Yardage+=(vc_railAccessory(person,terrain,0).totalYards);
+                    Weight+=(vc_uBGL(person,terrain,0).uBGLWeight)
+                    APPoints+=(vc_uBGL(person,terrain,0).totalAPPoints);
+                    AVPoints+=(vc_uBGL(person,terrain,0).totalAVPoints);
+                    Weight+=(vc_gripMod(person,terrain,0).totalWeight);
+                    APPoints+=(vc_gripMod(person,terrain,0).totalPower);
+                    Yardage+=(vc_gripMod(person,terrain,0).totalYards);
+                    Weight+=(vc_suppressor(person,terrain,0).totalWeight);
+                    APPoints+=(vc_suppressor(person,terrain,0,ShotVolume).totalPower);
+                    Yardage+=(vc_suppressor(person,terrain,0,ShotVolume).totalYards);
+                    Length+=(vc_suppressor(person,terrain,0,ShotVolume).totalLength);
+                    ShotVolume=(vc_suppressor(person,terrain,0,ShotVolume).totalShotVolume);
+                    Yardage=(vc_weaponOptic(person,0,Yardage).finalYardRange);
+                    Weight+=(vc_weaponOptic(person,0,Yardage).addedWeight);
+                    APPoints+=(Yardage*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[5]]);
+                    APPoints-=(Weight*cfg.multipliers.personnel.weapons.guns.gDBuffByLb);
+                    APPoints-=(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[5]]);
+                    AVPoints+=(Pen*cfg.multipliers.personnel.weapons.general.AVPointsByMMPen);
+                    APPoints-=(ShotVolume*cfg.multipliers.personnel.weapons.general.APPointsDBBDecibel);
+                };
+        }
+    }
 
-function vc_weapon(person,terrain,weaponIndex){//determine the primary value of a primary weapon of a person
+    return{
+        totalWeight:Weight,
+        totalAAPoints:AAPoints,
+        totalAVPoints:AVPoints,
+        totalAPPoints:APPoints
+    }
+}
+function vc_weaponDeprecated(person,terrain,weaponIndex){//determine the primary value of a primary weapon of a person
     let Weight = 0;//total weight of the weapon
     let Power = 0;//power of the weapon, accounting for outside factors like ToD, visibility, etc. 
     let Pen = 0;//penetration capabilities of the weapon
@@ -374,6 +559,293 @@ function vc_weapon(person,terrain,weaponIndex){//determine the primary value of 
     }
     
 };
+function vc_weaponV2(person,terrain,weaponIndex){//determine the primary value of a primary weapon of a person
+    let Weight = 0;//total weight of the weapon
+    let Power = 0;//power of the weapon, accounting for outside factors like ToD, visibility, etc. 
+    let Pen = 0;//penetration capabilities of the weapon
+    let cumeYards = 0;
+    let Length = 0;   
+    let APPoints = 0;
+    if(weaponIndex==0){//primary
+        if(person.primary.name!=0){
+            Weight+=person.primary.name.weight
+            Length=person.primary.name.bLength;
+            if(person.status.supplies[person.primary.name.caliber.supplyIndex]>30){//only give them offensive/defensive capability if they have ammo
+                Weight+=(person.primary.mag.weight);
+                Weight+=(person.primary.mag.capacity*person.primary.caliber.weight);
+                cumeYards+=person.primary.name.eRange;
+                if(person.primary.suppressor!=0){//module that handles suppressors
+                    Power+=(person.primary.suppressor.reportReduction*cfg.multipliers.personnel.weapons.guns.gBuffByLDb);
+                    Length+=person.primary.suppressor.length;
+                    Weight+=person.primary.suppressor.weight
+                };
+                if((person.primary.railAccessory!=0)&&((person.primary.mounts[1]==1)||(person.primary.mounts[2]==1))){//rail mounted accessory handler 
+                    Weight+=person.primary.railAccessory.weight;
+                    if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
+                        if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
+                            if(person.primary.railAccessory.features[2]!=0){
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;                            
+                            }
+                            if(person.primary.railAccessory.features[3]!=0){
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;                                   
+                            }
+                        }
+                    }else if((mu_isNight())){//it is night time but they don't have Nods or they have thermals, in which case they don't need lights
+                        if(person.primary.railAccessory.features[0]!=0){
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;                             
+                        }
+                        if(person.primary.railAccessory.features[1]!=0){
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBLaser;                                  
+                        }
+                    }        
+                };
+                if(person.primary.gripMod!=0){//grips and bipods handler
+                    if(person.primary.gripMod.mountStyle==person.primary.name.railStyle){
+                        Weight+=person.primary.gripMod.weight;
+                        cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.primary.gripMod.type];                         
+                    } 
+                };
+                Pen+=person.primary.name.caliber.pen;
+            }else{//if they don't have ammo they still have all the accessories which means all the negative traits will still be counted
+                if(person.primary.suppressor!=0){//module that handles suppressors
+                    Length+=person.primary.suppressor.length;
+                    Weight+=person.primary.suppressor.weight
+                };
+                if(person.primary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.primary.railAccessory.weight;     
+                };
+                if(person.primary.gripMod!=0){//grips and bipods handler
+                    Weight+=person.primary.gripMod.weight;   
+                };      
+            };
+            if(person.primary.uBGL!=0){//underbarrel grenade launcher handler
+                if(person.primary.uBGL.mountStyle==person.primary.name.uBGLType){
+                    Weight+=person.primary.uBGL.weight;
+                    if(person.status.supplies[5]>0){
+                        cumeYards+=person.primary.uBGL.eRange;
+                    };                        
+                };
+            };
+            cumeYards=vc_weaponOpticV2(person,0,cumeYards)[0];
+            Weight+=vc_weaponOpticV2(person,0,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation 
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);            
+        }
+    }else if(weaponIndex==1){//secondary
+        if(person.secondary.name!=0){
+            Weight+=person.secondary.name.weight;
+            Length=person.secondary.name.bLength;
+            if(person.status.supplies[person.secondary.name.caliber.supplyIndex]>29){     
+                cumeYards+=person.secondary.name.eRange;//only give yards range bonus if it has ammo
+                if(person.secondary.suppressor!=0){//module that handles suppressors
+                    Power+=(person.secondary.suppressor.reportReduction*cfg.multipliers.personnel.weapons.guns.gBuffByLDb);
+                    Length+=person.secondary.suppressor.length;
+                    Weight+=person.secondary.suppressor.weight
+                };
+                if(person.secondary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.secondary.railAccessory.weight;
+                    if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
+                        if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
+                            if(person.secondary.railAccessory.features[2]!=0){
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLight;                               
+                            }
+                            if(person.secondary.railAccessory.features[3]!=0){
+                                Power+=cfg.multipliers.personnel.weapons.guns.gVBBIRLaser;                                
+                            }
+                        }
+                    }else if((mu_isNight())){//it is night time but they don't have Nods or they have thermals, in which case they don't need lights
+                        if(person.secondary.railAccessory.features[0]!=0){
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBWhiteLight;                               
+                        }
+                        if(person.secondary.railAccessory.features[1]!=0){
+                            Power+=cfg.multipliers.personnel.weapons.guns.gVBBLaser;                                
+                        }
+                    }        
+                }
+                if(person.secondary.gripMod!=0){//grips and bipods handler
+                    if(person.secondary.gripMod.mountStyle==person.secondary.name.railStyle){
+                        Weight+=person.secondary.gripMod.weight;
+                        cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.secondary.gripMod.type];                         
+                    } 
+                };
+                Pen+=person.secondary.name.caliber.pen;
+            }else{
+                if(person.secondary.suppressor!=0){//module that handles suppressors
+                    Length+=person.secondary.suppressor.length;
+                    Weight+=person.secondary.suppressor.weight
+                };
+                if(person.secondary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.secondary.railAccessory.weight;
+                }
+                if(person.secondary.gripMod!=0){//grips and bipods handler
+                    Weight+=person.secondary.gripMod.weight;    
+                };                
+            }
+            if(person.secondary.uBGL!=0){//underbarrel grenade launcher handler. Handled separately because it does not depend on the host weap having ammo to work. 
+                Weight+=person.secondary.uBGL.weight;
+                if(person.status.supplies[5]>0){
+                    cumeYards+=person.secondary.uBGL.eRange;
+                }    
+            }
+            cumeYards=vc_weaponOptic(person,1,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,1,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);       
+        }
+    }else if(weaponIndex==2){//special
+        if(person.special.name!=0){
+            Weight+=person.special.name.weight
+            if(person.status.supplies[3]>0){//unique rocket rounds in particular are not tracked, at least not yet. IF they have rocket rounds their rocket is usable.
+            
+                if(person.special.gripMod!=0){//grips and bipods handler
+                    Weight+=person.special.gripMod.weight;
+                    cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.special.gripMod.type];    
+                };
+                Pen+=person.special.name.pen;    
+            }else{
+                if(person.special.gripMod!=0){//grips and bipods handler
+                    Weight+=person.special.gripMod.weight;
+                    cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.special.gripMod.type];    
+                };                
+            }
+            cumeYards=vc_weaponOptic(person,2,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,2,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);       
+    }else{
+        console.log("VC_weapon is being fed an invalid weaponIndex of "+weaponIndex)
+    }
+    
+    }
+    return{
+        totalWeight:Weight,
+        totalPower:Power,
+        antiVehiclePoints:APPoints
+    }   
+};
+function vc_weapon(person,terrain,weaponIndex){
+    let Weight = 0;
+    let Power = 0;
+    let Pen = 0;
+    let cumeYards=0;
+    let Length = 0;
+    let APPoints = 0;
+    if(weaponIndex==0){//primary
+        if(person.primary.name!=0){
+            Weight+=person.primary.name.weight
+            Length=person.primary.name.bLength;
+            if(person.status.supplies[person.primary.name.caliber.supplyIndex]>30){//only give them offensive/defensive capability if they have ammo
+                Weight+=(person.primary.mag.weight);
+                Weight+=(person.primary.mag.capacity*person.primary.caliber.weight);
+                cumeYards+=person.primary.name.eRange;
+                Weight+=(vc_railAccessory(person,terrain,weaponIndex).totalWeight);
+                Power+=(vc_railAccessory(person,terrain,weaponIndex).totalPower);
+                cumeYards+=(vc_railAccessory(person,terrain,weaponIndex).totalYards);
+                Weight+=(vc_uBGL(person,terrain,weaponIndex).totalWeight);
+                Power+=(vc_uBGL(person,terrain,weaponIndex).totalPower);
+                cumeYards+=(vc_uBGL(person,terrain,weaponIndex).totalYards);
+                Weight+=(vc_gripMod(person,terrain,weaponIndex).totalWeight);
+                Power+=(vc_gripMod(person,terrain,weaponIndex).totalPower);
+                cumeYards+=(vc_gripMod(person,terrain,weaponIndex).totalYards);
+                Weight+=(vc_suppressor(person,terrain,weaponIndex).totalWeight);
+                Power+=(vc_suppressor(person,terrain,weaponIndex).totalPower);
+                cumeYards+=(vc_suppressor(person,terrain,weaponIndex).totalYards);
+                Length+=(vc_suppressor(person,terrain,weaponIndex).totalLength);
+                Pen+=person.primary.name.caliber.pen;
+            }else{//if they don't have ammo they still have all the accessories which means all the negative traits will still be counted
+                if(person.primary.suppressor!=0){//module that handles suppressors
+                    Length+=person.primary.suppressor.length;
+                    Weight+=person.primary.suppressor.weight
+                };
+                if(person.primary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.primary.railAccessory.weight;     
+                };
+                if(person.primary.gripMod!=0){//grips and bipods handler
+                    Weight+=person.primary.gripMod.weight;   
+                };      
+            };
+            Weight+=(vc_uBGL(person,terrain,weaponIndex).totalWeight);
+            Power+=(vc_uBGL(person,terrain,weaponIndex).totalPower);
+            cumeYards+=(vc_uBGL(person,terrain,weaponIndex).totalYards);
+            cumeYards=vc_weaponOpticV2(person,0,cumeYards)[0];
+            Weight+=vc_weaponOpticV2(person,0,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation 
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);            
+        }
+    }else if(weaponIndex==1){//secondary
+        if(person.secondary.name!=0){
+            Weight+=person.secondary.name.weight
+            Length=person.secondary.name.bLength;
+            if(person.status.supplies[person.secondary.name.caliber.supplyIndex]>30){//only give them offensive/defensive capability if they have ammo
+                Weight+=(person.secondary.mag.weight);
+                Weight+=(person.secondary.mag.capacity*person.secondary.caliber.weight);
+                cumeYards+=person.secondary.name.eRange;
+                Weight+=(vc_railAccessory(person,terrain,weaponIndex).totalWeight);
+                Power+=(vc_railAccessory(person,terrain,weaponIndex).totalPower);
+                cumeYards+=(vc_railAccessory(person,terrain,weaponIndex).totalYards);
+                Weight+=(vc_uBGL(person,terrain,weaponIndex).totalWeight);
+                Power+=(vc_uBGL(person,terrain,weaponIndex).totalPower);
+                cumeYards+=(vc_uBGL(person,terrain,weaponIndex).totalYards);
+                Weight+=(vc_gripMod(person,terrain,weaponIndex).totalWeight);
+                Power+=(vc_gripMod(person,terrain,weaponIndex).totalPower);
+                cumeYards+=(vc_gripMod(person,terrain,weaponIndex).totalYards);
+                Weight+=(vc_suppressor(person,terrain,weaponIndex).totalWeight);
+                Power+=(vc_suppressor(person,terrain,weaponIndex).totalPower);
+                cumeYards+=(vc_suppressor(person,terrain,weaponIndex).totalYards);
+                Length+=(vc_suppressor(person,terrain,weaponIndex).totalLength);
+                Pen+=person.secondary.name.caliber.pen;
+            }else{//if they don't have ammo they still have all the accessories which means all the negative traits will still be counted
+                if(person.secondary.suppressor!=0){//module that handles suppressors
+                    Length+=person.secondary.suppressor.length;
+                    Weight+=person.secondary.suppressor.weight
+                };
+                if(person.secondary.railAccessory!=0){//rail mounted accessory handler
+                    Weight+=person.secondary.railAccessory.weight;     
+                };
+                if(person.secondary.gripMod!=0){//grips and bipods handler
+                    Weight+=person.secondary.gripMod.weight;   
+                };      
+            };
+            Weight+=(vc_uBGL(person,terrain,weaponIndex).totalWeight);
+            Power+=(vc_uBGL(person,terrain,weaponIndex).totalPower);
+            cumeYards+=(vc_uBGL(person,terrain,weaponIndex).totalYards);
+            cumeYards=vc_weaponOpticV2(person,0,cumeYards)[0];
+            Weight+=vc_weaponOpticV2(person,0,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation 
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);            
+        }
+    }else if(weaponIndex==2){//special
+        if(person.special.name!=0){
+            Weight+=person.special.name.weight
+            if(person.status.supplies[3]>0){//unique rocket rounds in particular are not tracked, at least not yet. IF they have rocket rounds their rocket is usable.
+            
+                if(person.special.gripMod!=0){//grips and bipods handler
+                    Weight+=person.special.gripMod.weight;
+                    cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.special.gripMod.type];    
+                };
+                Pen+=person.special.name.pen;    
+            }else{
+                if(person.special.gripMod!=0){//grips and bipods handler
+                    Weight+=person.special.gripMod.weight;
+                    cumeYards+=cfg.multipliers.personnel.weapons.guns.gRangeBByGripType[person.special.gripMod.type];    
+                };                
+            }
+            cumeYards=vc_weaponOptic(person,2,cumeYards)[0];
+            Weight+=vc_weaponOptic(person,2,cumeYards)[1];
+            Power+=(cumeYards*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[4]]);//add the range to the power, factoring in the usefulness of a long range weapon in each situation
+            Power=(Power-(Length*cfg.multipliers.personnel.weapons.guns.gLengthDBuffByTType[terrain[4]]));
+            APPoints = (Pen*cfg.multipliers.personnel.weapons.general.AVPointsPerMMRHAPen);       
+    }else{
+        console.log("VC_weapon is being fed an invalid weaponIndex of "+weaponIndex)
+    }
+    
+    }
+};
 
 function vc_explosive(terrain,pExplosive,debugBool){//determine the added value a specific explosive (non-mine) brings to the fight. Mines will be handled separately. 
     let APPoints=0;
@@ -426,7 +898,102 @@ function vc_explosive(terrain,pExplosive,debugBool){//determine the added value 
         antiVehiclePoints:APPoints,
     }
 };
+function vc_antiPersonnelRound(person,terrain,round){//calculate value of a an antipersonnel round against personnel
+    let yardage = round.range;
+    let subAPPower = 0;
+    let explosive = (round.warheadWeight*round.explType);
+    yardage = vc_weaponOpticV2(person,2,yardage)[0];
+    subAPPower=(yardage*cfg.multipliers.personnel.weapons.general.APPointsByYdRng);
+    subAPPower+=(explosive*cfg.multipliers.personnel.weapons.general.APPointsByLbTnT);
+    subAPPower+=(round.softLaunch*cfg.multipliers.personnel.weapons.general.softLaunchBuff);
+    subAPPower+=(round.fireAndForget*cfg.multipliers.personnel.weapons.general.fireAndForgetBuff);
+    subAPPower+=(round.guidance[1]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff*.5));
+    subAPPower+=(round.guidance[2]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff*.6));
+    subAPPower+=(round.guidance[3]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff));
+    subAPPower+=(round.guidance[1]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff*1.1));
+    subAPPower+=(round.guidance[1]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff*.6));
+    return{
+        totalAPPoints:subAPPower
+    }
 
+};
+function vc_heavyRound(person,terrain,round){//calculate value of a round against heavies
+    let yardage = round.range;
+    let subAVPower = 0;
+    let pen = (round.warheadWeight*round.explType);
+    yardage = vc_weaponOpticV2(person,2,yardage)[0];
+    subAVPower=(yardage*cfg.multipliers.personnel.weapons.general.APPointsByYdRng);
+    subAVPower=(pen*cfg.multipliers.personnel.weapons.general.AVPointsByMMPen);
+    subAVPower+=(round.softLaunch*cfg.multipliers.personnel.weapons.general.softLaunchBuff);
+    subAVPower+=(round.fireAndForget*cfg.multipliers.personnel.weapons.general.fireAndForgetBuff);
+    subAVPower+=(round.guidance[1]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff*.5));
+    subAVPower+=(round.guidance[2]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff*.6));
+    subAVPower+=(round.guidance[3]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff));
+    subAVPower+=(round.guidance[1]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff*1.1));
+    subAVPower+=(round.guidance[1]*(cfg.multipliers.personnel.weapons.general.smartMunitionBuff*.6));
+    return{
+        totalAVPoints:subAVPower
+    }
+
+};
+function vc_specialWeapon(person,terrain){
+    let Weight = 0;
+    let Power = 0;
+    let Pen = 0;
+    let HE=0;
+    let CumeYards = 0;
+    let AAPoints = 0;
+    let AVPoints = 0;
+    let APPoints = 0;
+    let hasAmmo=false;
+    let hasGPRound = 0;
+    let hasAPRound= 0;
+    let hasHeavyRound=0;
+    let hasSmokeRound=0;
+    let bestPen=0;
+    let bestHE=0;
+        if(person.special.GPRound[1]!=0){//add up all the ammunition for weight calcs, even if they don't have a RL
+            Weight+=(person.special.GPRound[0].weight*person.special.GPRound[1]);
+            hasGPRound=true;
+            bestPen=person.special.GPRound[0];
+            if(person.special.APRound[1]==0){
+                bestHE=person.special.APRound[0];
+            };
+            hasAmmo=true;
+
+        };
+        if(person.special.APRound[1]!=0){
+            Weight+=(person.special.APRound[0].weight*person.special.APRound[1]);
+            hasAPRound=true;
+            if(person.special.APRound[0].penRHA>bestPen.penRHA){
+                bestPen=person.special.APRound[0];
+            }
+            bestHE=person.special.APRound[0];
+            hasAmmo=true;
+        };
+        if(person.special.HeavyRound[1]!=0){
+            Weight+=(person.special.HeavyRound[0].weight*person.special.HeavyRound[1]);
+            hasHeavyRound=true;
+            if(person.special.HeavyRound[0].penRHA>bestPen.penRHA){
+                bestPen=person.special.HeavyRound[0];
+            };
+            hasAmmo=true;
+        };
+        if(person.special.SmokeRound[1]!=0){
+            Weight+=(person.special.SmokeRound[0].weight*person.special.SmokeRound[1]);
+            hasSmokeRound=true;
+        }
+    if((person.special.name!=0)&&(hasAmmo)){//make sure they have a rocket and that it has ammo before assigning value
+        Weight+=person.special.name.weight;
+        
+    }
+    return{
+        totalWeight:Weight,
+        totalAAPoints:AAPoints,
+        totalAVPoints:AVPoints,
+        totalAPPoints:APPoints
+    }
+}
 function vc_uniform(person){//handles value calculation of a soldier's uniform based on weather, climate, wear, etc.
     let BugProtect=0;
     let Weight=0;
