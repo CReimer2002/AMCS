@@ -17,16 +17,16 @@ let multipliers = {
             guns:{
                 gLengthDBuffByTType:[//how much every inch will of total length will reduce a gun's power in various terrains
                     0,    // grassland with very little cover
-                    .8,  // rural with few buildings
-                    .9,  // rural with  buildings
-                    .4,  // vineyards/tall fields/farmland
-                    .95,  // forest, dense
-                    1, // industrial facility
-                    .7,  // airfield
-                    .75,  // military base
-                    1,   // urban area with many houses
-                    1.25,  // highly developed city
-                    .85  // rural with buildings and lots of forest                
+                    .1,  // rural with few buildings .8
+                    .125,  // rural with  buildings .9
+                    .13,  // vineyards/tall fields/farmland 
+                    .135,  // forest, dense 
+                    .127, // industrial facility
+                    .12,  // airfield
+                    .13,  // military base
+                    .135,   // urban area with many houses
+                    .16,  // highly developed city
+                    .135  // rural with buildings and lots of forest                
                 ],
                 gRangeByOpticNODAtNight:[//how much a weapons range will be set to at night time with various night vision optics
                     60,//naked eye
@@ -49,7 +49,7 @@ let multipliers = {
                     .08,  // rural with few buildings
                     .07,  // rural with  buildings
                     .04,  // vineyards/tall fields/farmland
-                    0,  // forest, dense
+                    .01,  // forest, dense
                     .03, // industrial facility
                     .05,  // airfield
                     .045,  // military base
@@ -57,11 +57,11 @@ let multipliers = {
                     .015,  // highly developed city
                     .01  // rural with buildings and lots of forest      
                 ],
-                gDBuffByLb:.1,//how much every lb of rifle weight is multiplied by to create a total to be subtracted from a weapon's combat effectiveness
+                gDBuffByLb:.15,//how much every lb of rifle weight is multiplied by to create a total to be subtracted from a weapon's combat effectiveness
                 gLoudnessThreshold:165,//the sound decibels below which a gun will start gaining points for being quiet
                 gBuffByLDb:.025,//how much every decibel less than the threshold will add to the soldier's combat effectiveness
-                gRangeBuffByOpticMag:25,//how much the effective range is boosted by each x of magnification more than 1 of an optic
-                gRangeBuffByOpticPic:.3,//how much the effective range is boosted by each mm of sight picture
+                gRangeBuffByOpticMag:40,//how much the effective range is boosted by each x of magnification more than 1 of an optic
+                gRangeBuffByOpticPic:1,//how much the effective range is boosted by each mm of sight picture
                 gRangeBByUBGLYardage:.5,//how much every yard of a uBGL's effective range is multiplied to be added to the primary weapon's range stat. Only factored in if the soldier has more than 0 uBGL rounds on them
                 gRangeBByGripType:[//effective range buff by type of grip, if any
                     0,//none
@@ -75,7 +75,10 @@ let multipliers = {
                 gVBBIRLight:.25,//how much is added to the overall value of a weapon due to it having a weapon mounted IR flashlight
                 gVBBLaser:.25,//how much is added to the overall value of a weapon due to it having a conventional laser
                 gVBBIRLaser:.25,//how much is added to the overall value of weapon due to it having an IR laser
-
+                APBBMOALowerThan5:2,//how much ever MOA lower than 5 will increase the weapon's antipersonnel points
+                APLMGBBFireRate:.005,//how much each rpm will increase an LMG's antipersonnel points
+                APBBRoundWeight:20,//how much every lb of round weight contributes to an LMG's suppressive qualities
+                APBBMagSize:.015
             },
             general:{
                 AVPointsPerMMRHAPen:1,//how many Antivehicle points is given to a firearm per MM of RHA it can pen
@@ -91,13 +94,15 @@ let multipliers = {
                     c_300WM:19,//estimated, no source
                 },
                 APPointsByLbTnT:1,
-                APPointsByYdRng:.025,
+                APPointsByYdRng:.05,
                 softLaunchBuff:5,
                 fireAndForgetBuff:3.5,
                 smartMunitionBuff:10,
                 AVPointsByMMPen:.2,
-                AVPointsByYdRange:.03,
-                APPointsDBBDecibel:.3,
+                AVPointsByYdRange:.05,
+                APPointsDBBDecibel:.02,
+                visionNoNodsOrOpticAtNight:100,
+                visionNoNodsOrOpticDaytime:500,
             },
             grenades:{
                 gr_BBThrownYardBTerrain:[//how much every throwable yard under 50 decreases the grenade's power in various environments. This can also be considered a question of how much throwable distance is a factor.
@@ -172,20 +177,38 @@ let multipliers = {
 
         },
         experience:{
-            buffPerHourCombatExperience:.05,
-            combatExperiencePerHourInCombat:1,
-            combatExperiencePerHourOnFront:.25,
-            combatExperiencePerHourPolicing:.1,
-            nonCombatJobExperiencePerHourActive:.025,
+            hCEPHVariousCombatModes:[
+                .8,//on the front in a dug in position, light contact against infantry
+                .85,//on the front in a dug in position, light contact against infantry/artillery
+                1,//on the front in a dug in position, contact against infantry
+                .4,//on the front in a dug in position, contact against infantry with vehicle or artillery support
+                .5,//on the front in a dug in position, under heavy attack
+                .6,//defending against ambush or suprise attack
+                .7,//on recon patrol, low risk
+                .8,//on patrol, medium risk
+                .9,//on patrol, high risk
+                1,//attacking a position on foot,
+                1,//attacking a position in a vehicle
+            ],
+            APPMBHourCombatExperience:.0003,
+            AVPMBHourCombatExperience:.0004,
+            AAPMBHourCombatExperience:.0005
         },
         health:{
             hoursSleepInPast48Buff:.075,
             hoursSinceLastRestDebuff:.1,//how much every hour over 14 since last rest will deduct from a soldier's morale, effectiveness and energy.
             recentShowerBuff:1,
+            showerBuffDecay:48,//how many hours it takes for each buff to go from one to zero
             recentLaundryBuff:1,
+            laundryBuffDecay:48,
             recentReserveBuff:1,
+            reserveBuffDecay:96,
             recentMealBuff:4,
-            recentWaterBuff:5
+            mealBuffDecay:5,
+            recentHotMealBuff:5,
+            recentHotMealBuffDecay:12,
+            recentWaterBuff:5,
+            waterBuffDecay:1
         },
         kit:{
             uniform:{
@@ -268,8 +291,76 @@ let multipliers = {
                 mSB_CleanLevelMultiplier:.05,
                 mSB_DBBWearLevel:.05,
                 mSB_DBBTempBelowMin:.05
-            }
-
+            },
+            kitWeightMultWhenWet:1.05,
+            kitWeightMultImpactByTerrain:[
+                1,
+                .95,
+                .7,
+                .95,
+                .75,
+                .2,
+                .35,
+                .15,
+                .275,
+                .2,
+                .25
+            ]
+        },
+        expenditures:{
+            caloriesPerHour:[//stats for a 5'10 175lb 21 y/o male 
+                    175.208,//basic metabolic rate
+                    90.25,//sedentary, little to no exercise
+                    103.416,//light activity
+                    110.166,//moderate activity
+                    116.583,//active,
+                    131,//very active
+                    142.916,//extremely active
+            ],
+            caloriesStressModifier:[
+                1,//low stress, in reserve
+                1.01,//low stress, near the front
+                1.05,//moderate stress, on the front but relatively safe
+                1.1,//stressed, under bombardment, feeling unsafe
+                1.15,//stressed, under attack stationary,
+                1.175,//heavy stress, intense defensive battle,
+                1.185,//heavy stress, on the offensive
+            ],
+            kitImpactPerActivity:[
+                .1,//low stress, in reserve
+                .12,//low stress, near the front
+                .15,//moderate stress, on the front but relatively safe
+                .2,//stressed, under bombardment, feeling unsafe
+                .3,//stressed, under attack stationary,
+                .5,//heavy stress, intense defensive battle,
+                1,//heavy stress, on the offensive
+            ],
+            caloriesAddedPerLbKit:8,
+            galWaterPerHour:[//stats for a 5'10 175lb 21 y/o male 
+            .028,//no activity
+            .029,//sedentary
+            .032,//light activity
+            .033,//general activity
+            .035,//moderate activity
+            .039,//heavy activity
+            .040,//extreme activity
+            ],
+            kitImpactByTerrain:[
+                1,
+                1.025,
+                1.05,
+                1.01,
+                1.075,
+                1.08,
+                1,
+                1.05,
+                1.1,
+                1.125,,
+                1.025
+            ],
+            gWPHTempAbove65:.0001,
+            gWPHKit:.001,
+            cPHTempOver70:.025,
         }
     },
 };

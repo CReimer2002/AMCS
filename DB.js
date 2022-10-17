@@ -200,6 +200,7 @@ const gComponents={
             name:"9x19mm",
             disc:"9mm",
             weight:.0264,
+            bWeight:.018,
             supplyIndex:0,
             pen:0
         },
@@ -208,12 +209,14 @@ const gComponents={
             disc:"imitation 9mm used in the IMI pistol",
             weight:.0264,
             supplyIndex:0,
+            bWeight:.016,
             pen:0
         },
         c9x18:{
             name:"9x18mm",
             disc:"soviet pistol round for PM",
             weight:.0242,
+            bWeight:.013,
             supplyIndex:0,
             pen:0
         },
@@ -222,6 +225,7 @@ const gComponents={
             disc:"soviet pistol round for TT33",
             weight:.0242,
             supplyIndex:0,
+            bWeight:.012,
             pen:0
         },
         //intermediate calibers
@@ -229,6 +233,7 @@ const gComponents={
             name:"5.45x39mm",
             disc:"prolific intermediate ammunition found most notably in the AK-74 family",
             weight:.0271,//how much weight there is per round
+            bWeight:.008,
             supplyIndex:1,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_545x39
         },
@@ -236,6 +241,7 @@ const gComponents={
             name:"7.62x39mm",
             disc:"prolific heavier cartridge famous for it's use in AK-47 pattern rifles",
             weight:.0392,//how much weight there is per round
+            bWeight:.017,
             supplyIndex:1,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x39
         },
@@ -243,6 +249,7 @@ const gComponents={
             name:"5.56x45mm",
             disc:"intermediate cartride found in M-16 pattern rifles",
             weight:.0271,
+            bWeight:.009,
             supplyIndex:1,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_556x45
         },
@@ -250,6 +257,7 @@ const gComponents={
             name:"9x39mm",
             disc:"upnecked 7.62x39mm bullet",
             weight:.0396,
+            bWeight:.0352,
             supplyIndex:1,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_556x45
         },
@@ -259,6 +267,7 @@ const gComponents={
             name:"7.62x54mmr",
             disc:"heavy cartridge notably found in the M1981",
             weight:.059,//how much weight there is per round
+            bWeight:.021,
             supplyIndex:2,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x54
         },
@@ -266,12 +275,14 @@ const gComponents={
             name:"7.62x51mm",
             disc:"battle rifle cartridge notably found in the M14",
             weight:.0559,
+            bWeight:.022,
             supplyIndex:2,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_762x51
         },
         c300:{
             name:".300 WSM",
             disc:"sniper rifle cartridge",
+            bWeight:.022,
             weight:.0648,
             supplyIndex:2,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_300WM
@@ -280,6 +291,7 @@ const gComponents={
             name:".338 lapua",
             disc:"sniper rifle cartridge",
             weight:.0648,//guess rip from 300 wsm
+            bWeight:.032,
             supplyIndex:2,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_338
         },
@@ -287,13 +299,14 @@ const gComponents={
             name:"12.7mm",
             disc:"sniper rifle cartridge",
             weight:.24,//a guess because EVERYONE KNOWS HOW TO MEASURE DIAMETER BUT NOBODY THOUGHT TO USE A SCALE
+            bWeight:.131,
             supplyIndex:2,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_12_7
         },
         c50bmg:{
             name:".50 BMG",
             disc:"sniper rifle cartridge",
-            weight:.243,
+            weight:.092,
             supplyIndex:2,
             pen:cfg.multipliers.personnel.weapons.general.caliberRHAPenValues.c_50
         },
@@ -461,6 +474,42 @@ const gComponents={
             quality:5,
             hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
         },
+        m_M240_50Sack:{
+            name:"M240 bag",//name of the mag
+            disc:"ammo sack",//disc of the mag
+            caliber:"7.62x51mm",//caliber of the weapon
+            capacity:50,//number of rounds it can hold
+            weight:1,//guess, it's a bag but I also have to account for the links, which will add weight
+            quality:4.5,
+            hasSidePort:1,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_SVD_10:{
+            name:"SVD magazine, metal",//name of the mag
+            disc:"unfortunately had to source the weight form tarkov.....",//disc of the mag
+            caliber:"7.62x54mmr",//caliber of the weapon
+            capacity:10,//number of rounds it can hold
+            weight:.247,
+            quality:4.5,
+            hasSidePort:0,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_M110A1_10:{
+            name:"M110A1 magazine, plastic",//name of the mag
+            disc:"the magazine comes in 10 and 20 round variants, this is the 10 round version",//disc of the mag
+            caliber:"7.62x51mm",//caliber of the weapon
+            capacity:10,//number of rounds it can hold
+            weight:.243,
+            quality:5,
+            hasSidePort:1,//the whole thing is translucent
+        },
+        m_M110A1_20:{
+            name:"M110A1 magazine, plastic",//name of the mag
+            disc:"the magazine comes in 10 and 20 round variants, this is the 20 round version",//disc of the mag
+            caliber:"7.62x51mm",//caliber of the weapon
+            capacity:20,//number of rounds it can hold
+            weight:.353,
+            quality:5,
+            hasSidePort:1,//the whole thing is translucent
+        },
 
 
     }
@@ -538,7 +587,52 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Jim",
                     "Patrick",
                     "Dennis",
-                    "Jeff"
+                    "Jeff",
+
+                    "Wesley",
+                    "Lucas",
+                    "Andrew",
+                    "Andrii",
+                    "Andre",
+
+                    "Daniel",
+                    "Darren",
+                    "Fred",
+                    "James",
+                    "Juan",
+
+                    "Derek",
+                    "Kennet",
+                    "Aaron",
+                    "Alrikr",
+                    "Koa",
+
+                    "George",
+                    "Dylan",
+                    "Ross",
+                    "Brian",
+                    "Roberto",
+
+                    "Dakota",
+                    "Tristian",
+                    "Alex",
+                    "Sean",
+                    "Clint",
+
+                    "Max",
+                    "Gage",
+                    "Nick",
+                    "Jackson",
+                    "Sergei",
+
+                    "Eytan",
+                    "Adam",
+                    "Luke",
+                    "Andrs",
+                    "Dan",
+
+                    
+
 
                 ],
                 [//female
@@ -551,7 +645,12 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                     "Eliana",
                     "Lauren",
                     "Kelly",
-                    "Emily"
+                    "Emily",
+                    "Naomi",
+                    "Kristen",
+                    "Sally",
+                    "Bo-Ann",
+                    "Lydia",
                 ]
             ],
             [//Russia
@@ -1041,7 +1140,128 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 "Ostrowski",
                 "Holsey",
                 "Snowden",
-                "Waterford"
+                "Waterford",
+
+                "Wesson",
+                "Smith",
+                "Mud",
+                "Sanzotera",
+                "Wallison",
+
+                "Creevy",
+                "Ferry",
+                "Hopanchuk",
+                "Stutz",
+                "Duran",
+
+                "Michel",
+                "Apostolidis",
+                "Wolk",
+                "Sebastiani",
+                "Bogach",
+
+                "Nad",
+                "Winston",
+                "Ryan",
+                "Mattox",
+                "Roberts",
+
+                "Cowles",
+                "Chandonnet",
+                "Gao",
+                "Montgomery",
+                "Willberg",
+
+                "Vermillion",
+                "Hope",
+                "Thuenderecok",
+                "Hauger",
+                "Chang",
+
+                "Simpson",
+                "White",
+                "Goodman",
+                "Chops",
+                "Knife",
+
+                "Boon",
+                "Briggs",
+                "Legros",
+                "Roy",
+                "Tipton",
+
+                "Hesse",
+                "Pinkman",
+                "Leupold",
+                "Colt",
+                "Fleming",
+
+                "Girasimov",
+                "Holmes",
+                "Voth",
+                "Mueller",
+                "Stewart",
+
+                "Bradley",
+                "Sherman",
+                "Panther",
+                "Vickers",
+                "Abrams",
+
+                "Miltiades",
+                "Agrippa",
+                "Khan",
+                "Drake",
+                "West",
+
+                "East",
+                "North",
+                "Cromwell",
+                "Washington",
+                "Lincoln",
+
+                "Ford",
+                "Truman",
+                "Nixon",
+                "Jackson",
+                "Ney",
+
+                "Botha",
+                "Farragut",
+                "Forrest",
+                "Burke",
+                "Ticonderoga",
+
+                "Grant",
+                "Lee",
+                "Allenby",
+                "Hindenburg",
+                "Ataturk",
+
+                "Ludendorff",
+                "Monash",
+                "Pershing",
+                "Dowding",
+                "Guderian",
+
+                "Halsey",
+                "LeMay",
+                "Mannerheim",
+                "Manstein",
+                "Patton Jr.",
+
+                "Slim",
+                "Spruance",
+                "Zhukov",
+                "Dayan",
+                "Moore",
+
+                "Puller",
+                "Ridgway",
+                "Schwarzkopf",
+                "Harris",
+                "Roosevelt"
+
             ],
             [//Russia
                 "Ivanov",
@@ -4688,6 +4908,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             mag:1,
             lType:1,//1 is monocle, 2 is binoc, etc. 
             gen:2,
+            weight:2,
             eDist:240//yards, gotten from alibaba..made in china..just guessing here.
         },
         o_1PN139:{
@@ -4696,6 +4917,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             type:4,
             lType:1,//1 is monocle, 2 is binoc, etc. 
             gen:3,
+            weight:2,
             eDist:240//yards, gotten from alibaba..made in china..just guessing here.
         },
         o_1PN140:{
@@ -4704,6 +4926,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             type:4,
             lType:1,//1 is monocle, 2 is binoc, etc. 
             gen:3,//really just guessing here
+            weight:2,
             eDist:260//I have no idea
         },
         o_1PN140:{
@@ -4712,6 +4935,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             type:2,
             lType:1,//1 is monocle, 2 is binoc, etc. 
             gen:3,//really just guessing here
+            weight:2,
             eDist:260//I have no idea
         },
         o_NVMT2X24:{
@@ -4720,6 +4944,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             type:1,
             lType:1,//1 is monocle, 2 is binoc, etc. 
             gen:1,//really just guessing here
+            weight:2,
             eDist:260//I have no idea
         },
         o_BPCVRClassic:{
@@ -4728,6 +4953,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             type:0,
             lType:2,//1 is monocle, 2 is binoc, etc. 
             gen:1,//really just guessing here
+            weight:2,
             eDist:260//I have no idea
         },
         o_BPCVROmega:{
@@ -4736,6 +4962,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             type:0,
             lType:2,//1 is monocle, 2 is binoc, etc. 
             gen:1,//really just guessing here
+            weight:2,
             eDist:260//I have no idea
         },
         o_ANPVS14:{
@@ -4743,7 +4970,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             mag:1,
             type:3,
             lType:1,//1 is monocle, 2 is binoc, etc. 
-            gen:3,//really just guessing here
+            gen:.774,//really just guessing here
             eDist:328//I have no idea
         },
         o_ANPVS7:{
@@ -4752,6 +4979,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             type:3,
             lType:2,//1 is monocle, 2 is binoc, etc. 
             gen:3,//really just guessing here
+            weight:1.5,
             eDist:246//I have no idea
         }
 
@@ -11407,13 +11635,73 @@ const SAMSystemComps={
 };
 const MOSCodes=[
     /*
-    11B: Infantryman
-    11C: Mines, Nav, Comms
-    11Z: Infantry squad leadership
 
-    12A: Combat engineer squad leader
+    INFANTRY
+    11A: Infantry Officer
+    11B: Infantryman
+    11BA: Rifleman (added for sim purposes)
+    11BB: Grenadier (added for sim purposes)
+    11BC: LMG (added for sim purposes)
+    11BD: Marksman (added for sim purposes)
+    11BE: Anti-tank specialist (added for sim purposes)
+    11C: Mines, Nav, Comms, supervisor or member of mortar squad, section or plt
+    11D: Recon specialist
+    11DA: Recon Rifleman (A)
+    11DB: Recon Grenadier (A)
+    11DC: Recon LMG (A)
+    11DD: Recon Marksman (A)
+    11M: Fighting vehicle infantryman
+    11Z: Infantry senior sergeant
+    12A: Combat engineer squad leader, armorr leadership
     12B: Sapper
-    12C: Bridge builder
+    18A: special forces officer
+    18B: SF heavy weapons/ CE
+    18C: SF CE
+    18D: SF Medic
+    18E: SFComms
+    18F: SF Intel and Ops
+    18Z: SF SL
+    31A: MP officer
+    31B: MP
+    1Z151: Pararescue
+    1Z2X1: Combat control
+    1Z351: TACP
+    1Z451: Special recon
+
+    ARMOR
+    11E: Armor crewman
+    19A: Armor general
+    19B: Armor
+    19C: Cavalry officer
+    19D: Cav scout, operates and maintains scout vehicles
+    19DA: Cav scout rifleman (added for sim)
+    19DB: Cav scout grenadier (added for sim)
+    19DC: Cav Scout LMG (added)
+    19DD: Cav Scout Marksman (added)
+    19G: Recon vehicle crewman
+    19H: Recon vehicle driver
+    19J: M48-M60 crewman
+    19F: Tank driver
+    19K: Armor crewman, M1
+    19Z: Armor SL
+    45K: Tank turret repairman
+    45P: Light tank turret repair
+    45T: IFV turret repair
+    91A: Tank repair
+    91H: Tracked vehicle repair
+    91M: IFV repair
+    91S: APC repair
+    91K: Armament repair
+    63A: M1 Abrams tank system maintainer
+    63C: Army track vehicle mechanic
+    63E: MBT recovery and maint
+    63N: Supe and maintainer of M60A1/A3 tanks
+    63M: BFV system maintainer
+    63T: General IFV repair
+
+
+    CONSTRUCTION/COMBAT ENGINEERING 
+    12C: Bridge builder, leader or staff of army recon unit
     12D: Diver
     12H: Construction engineering supervisor
     12M: Firefighter
@@ -11422,9 +11710,23 @@ const MOSCodes=[
     12Q: Power line distribution specialist
     12T: Surveyor and mapmaker
     12W: Carpentry and masonry
-    12Y:    Geospatial engineer (map analyst, intel)
+    12Y: Geospatial engineer (map analyst, intel)
     12Z: CE SL
+    51B: Carpenter
+    51D: Mason
+    51K: Plumber
+    51R: Electrician
+    91W: Metal worker
+    52C: Power pack specialist
+    57G: ditch digger, minor road repair, loading/unloading equipment, policing buildings and area
+    91C: Utility equipment repair
+    91D: Generator type equipment repair
+    91E: Trades specialist
+    91L: Construction equip repair
 
+
+    ARTILLERY
+    13A: Field Artillery General
     13B: Cannon crewmember
     13D: Field Artillery Automated Tactical Data System Specialist
     13F: Fire Support Specialist, analyzes and process target data
@@ -11432,8 +11734,23 @@ const MOSCodes=[
     13P: MRL FDC man
     13R: Arty counterbattery radar operator
     13T: Field artillery surveyor/meteorological crewmember
+    13Y: Field Artillery Senior Sergeant
     13Z: Field artillery SL
+    17C: FIeld artillery target aquisition specialist
+    45D: SPG repair
+    45G: FCG repair
+    91P: Arty repair
+    94P: MLRS repair
+    63D: Field recovery and repair of cannon artillery
 
+    AIR DEFENSE
+    14A: Air Defense Artillery Officer
+    14B: Shorad specialist, either commander or member
+    14D: Hawk Missile System Specialist
+    16D: Hawk missile crewmember
+    16E: Hawk fire control crewmember
+    16F: Light ADA crewmember
+    16S: MANPADS operator
     14E: Fire Control Operator for SAM
     14G: Plans and manages air defense ops
     14H: EWR operator
@@ -11441,56 +11758,121 @@ const MOSCodes=[
     14S: SAM crewmember
     14T: TEL operator
     14Z: SAM SL
+    22K: Hawk missile and launcher repairer
+    23R: Hawk missile system mechanic
+    23S: Hawk pulse radar repairer
+    23T: Hawk continuous wave radar repairer
+    24H: Hawk fire control repairer
+    27P: SPAAG radar repair
+    27T: Avenger system repairer
+    27X: Patrior system repairer
+    290A: EW tech
+    29A: EW officer
+    29E: EW specialist
+    29E: EW specialist
+    94S: Heavy SAM repair
+    94T: Light SAM repair
 
+    AVIATION
+    15a: Aviation General
     15B: Aircraft powerplant repair
     15D: A/C Powertrain repair
-    15E: UAV repair
     15F: A/C electrician
-    15G: A/C Structural repair
+    15G: A/C structural repair
+    15H: A/C pneudralics repairer
     15H: A/C pneumatics/hydraulics repair
     15P: Planner for non-combat airborne ops
+    15Q: ATC
+    15R: Apache or equivalent repair
+    15S: Kiowa repair
+    15T: UH-60 repair
+    15U: CH-47 repair
+    67Y: AH-1 repairer
     15W: UAV operator
     15Z: Av Maint SL
+    45J: Aircraft armament repair
+    45L: Artillery repair
+    45M: Aircraft armament subsystem repair
+    152B: Kiowa scout
+    152D: Kiowa pilot (general scout pilot)
+    152D: OH-6 pilot (general light heli pilot)
+    152F: Apache or comparable pilot
+    152G: Apache or comparable flight assistant/planner
+    153A: Rotary wing pilot, unspecific
+    153B: UH1 or comparable pilot
+    153D: UH60 or comparable pilot
+    153E: MH60 or comparable pilot
+    154C: CH-47D pilot
+    154E: MH-47 pilot
+    154F: CH-47F pilot
+    155E: C-12 pilot
+    11BX: Bomber pilot
+    11FX: Fighter pilot
+    11GX: Generalist pilot
+    11HX: Rescue pilot
+    11KX: Trainer pilot
+    11MX: Mobility pilot
+    12UX: RPA pilot
+    13BX: Air Battle Manager
+    13MX: Airfield ops
+    1C751: Airfield management
+    1C853: Radar, airfield and weather
+    1C051: Airfield management
+    1C052: Aviation resource management
+    1C151: ATC
+    94D: ATC repair
+    1A151: Flight engineer 
+    1A241: Loadmaster
 
-    18B: SF heavy weapons/ CE
-    18C: SF CE
-    18D: SF Medic
-    18E: SFComms
-    18F: SF Intel and Ops
-    18Z: SF SL
+    LOGISTICS
+    88H: Management and inventory of supply
+    88M: Truck driver and manager
+    88N: Logistics coordinator
+    88P: Railway equipment repair
+    88T: Road and trail repair
+    88U: Train guy
+    88Z: Transportation leader and coordinator
+    55Z: Supervise and carry out ammunition packaging and rigging loads
+    57H: Cargo unloader, both simple and with equipment
+    92A: Warehouse inventory management
+    92F: Fuel supply specialist
+    92W: Water specialist
+    92Y: Supply coordinator
+    92Z: Supply boss
+    64C: Motor transport operator
+    90A: Logistics officer
 
-    19D: Cav scout, operates and maintains scout vehicles
-    19K: Armor crewman
-    19Z: Armor SL
+    REPAIR
+    91B: Wheeled vehicle repair
+    63B: wheeled vehicle recovery and repair
+    63W: Onsite repair
+    91B: Supe and maint/recovery of wheeled vehicles, officer
 
-    25B: General IT specialist
-    25C: Radio operator/maintainer
-    25Q: Radio operator, maintainer, setterupper,etc.
-    25S: Satcom specialist
-    25U: comms specialist/commint
-    25X: Chief signal NCO
-    25Z: Visual Information Ops Chief
-
-    29E: EW specialist
-
-    35F: Intel analyst
-    35G: Imagry analyst
-    35L: Counterintelligence
-    35M: HUMINT
-    35N: SIGINT
-    35P: Crypto linguist
-    35Q: Cyberwarfare
-    35S: SIGINT collector
-    35T: intel system maintainer
-    35V: SIGINT PL
-    35X: Intel SL
-    35Y: Counterintelligence, HUMINT SL
-    35Z: SIGINT PL
-
-    42A: HR
-
+    SUPPORT
+    45B: Small arms repairer
+    51F: Pipeline specialist
+    51N: Water supply specialist
+    55A: Munitions handler apprentice
+    55B: Munitions handler for conventional, guided missile, large rockets and other munitions
+    55X: Munitions inspector
     56M: Chaplain
+    89A: Ammo stock control and accounting
+    89B: Ammo management, prep, storage
+    89D: EOD
+    91A: Munitions officer
+    91F: Small arms and artillery repair
+    42A: HR
+    57E: Laundry, shower and delousing equipment
+    92G: Cook
+    92M: Dead people handler
+    92R: Para rigger
+    92S: Sewer and clothes washer
 
+
+    MEDICAL
+    60A: Army operational medicine supervisor
+    62A: Army ER doc
+    62B: Battlefield doc
     68B: Orthopedic
     68C: Nursing
     68D OR specialist
@@ -11506,88 +11888,144 @@ const MOSCodes=[
     68V: Resperatory
     68W: MEDIC
 
-    88H: Management and inventory of supply
-    88M: Truck driver and manager
-    88N: Logistics coordinator
-    88P: Railway equipment repair
-    88T: Road and trail repair
-    88U: Train guy
-    88Z: Transportation leader and coordinator
 
-    89A: Ammo stock control and accounting
-    89B: Ammo management, prep, storage
-    89D: EOD
 
-    91A: Tank repair
-    91B: Wheeled vehicle repair
-    91C: Utility equipment repair
-    91D: Generator type equipment repair
-    91E: Trades specialist
-    91F: Small arms and artillery repair
+    C2/COMMS
+    140A: C2 systems operator
+    05B: Tactical level radio operator
+    05E: FM radio comms specialist
+    25B: General IT specialist
+    25C: Radio operator/maintainer
+    25Q: Radio operator, maintainer, setterupper,etc.
+    25S: Satcom specialist
+    25U: comms specialist/commint
+    25X: Chief signal NCO
+    25Z: Visual Information Ops Chief
+    59A: Army strategic policy and planning officer
+    14FX: Information ops
+    14NX: Intel
+    15AX: Op Research
+    15WX: Weather officer
+    1C351: C2 ops
+    1C551: C2 BM
+    1N851: Targeting analyst
+
+
+    INTEL
+    35F: Intel analyst
+    35G: Imagry analyst
+    35L: Counterintelligence
+    35M: HUMINT
+    35N: SIGINT
+    35F: Special electronics devices repairer
+    35P: Crypto linguist
+    35Q: Cyberwarfare
+    35S: SIGINT collector
+    35T: intel system maintainer
+    35V: SIGINT PL
+    35X: Intel SL
+    35Y: Counterintelligence, HUMINT SL
+    35Z: SIGINT PL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
     91G: Fire controlrepair
-    91H: Tracked vehicle repair
+
     91J: QM and Chem equip rpr
-    91K: Armament repair
-    91L: Construction equip repair
-    91M: IFV repair
-    91P: Arty repair
-    91S: APC repair
+
+
+
+
+
     91X: Maint supervisor
     91Z: Maint PL
 
-    92A: Warehouse inventory management
-    92F: Fuel supply specialist
-    92G: Cook
-    92M: Dead people handler
-    92R: Para rigger
-    92S: Sewer and clothes washer
-    92W: Water specialist
-    92Y: Supply coordinator
-    92Z: Supply boss
+
+
+
+
 
     94A: ATGM repair
-    94D: ATC repair
+
     94E: comms repair
     94L: Avionics comms repair
     94M: Radar repair
-    94P: MLRS repair
-    94S: Heavy SAM repair
-    94T: Light SAM repair
+
+
     94X: Senior SAM maintanier
     94Z: Electronic maint boss
 
 
     AFSCS
-    1A151: Flight engineer 
-    1A241: Loadmaster
 
-    1C051: Airfield management
-    1C052: Aviation resource management
-    1C151: ATC
-    1C351: C2 ops
-    1C551: C2 BM
-    1C751: Airfield management
-    1C853: Radar, airfield and weather
-    1N851: Targeting analyst
 
-    1Z151: Pararescue
-    1Z2X1: Combat control
-    1Z351: TACP
-    1Z451: Special recon
 
-    11BX: Bomber pilot
-    11FX: Fighter pilot
-    11GX: Generalist pilot
-    11HX: Rescue pilot
-    11KX: Trainer pilot
-    11MX: Mobility pilot
-    12UX: RPA pilot
-    13BX: Air Battle Manager
-    13MX: Airfield ops
-    14FX: Information ops
-    14NX: Intel
-    15AX: Op Research
-    15WX: Weather officer
+
+
+
+
+
+
+
+
+
+
+
+
 
     */
 ];
@@ -11688,11 +12126,32 @@ const testComponents={
                     opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
                     mounts:[1,1,1],//bottom, sides, top
                     railStyle:1,
+                    suppressorMountStyle:1,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 st
                     shotDB:158.9,
                     uBGLType:1,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
                     length:29.75,//length, shortest possible without disassembly. Used to calculate CQB usefulness
                     bLength:14.5,//barrel length
+                    MOA:4,
                     eRange:550//yards
+                },
+                ar_M240B:{
+                    name:"M240B Machine Gun",
+                    disc:"Main machine gun of the USMC, also used by the USN and USCG. Replaced by the M240L in US army service",
+                    weight:27.6,
+                    caliber:gComponents.calibers.c762x51,
+                    fireModes:[0,0,0,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                    rateOfFire:700,//used if it is full-auto capable
+                    reloadTime:10,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                    mounts:[1,1,1],//bottom, sides, top
+                    railStyle:1,
+                    suppressorMountStyle:4,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 st
+                    shotDB:160,
+                    uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                    length:49.7,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                    bLength:21.7,//barrel length
+                    MOA:1.5,
+                    eRange:1300//yards
                 },
                 ar_M27IAR:{
                     name:"Heckler & Koch M27 Infantry Automatic Rifle",
@@ -11704,10 +12163,12 @@ const testComponents={
                     reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
                     opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
                     mounts:[1,1,1],//bottom, sides, top
+                    suppressorMountStyle:1,
                     shotDB:158.9,
                     uBGLType:1,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
                     length:33,//length, shortest possible without disassembly. Used to calculate CQB usefulness
                     bLength:16.5,//barrel length
+                    MOA:2,
                     eRange:656//yards
                 },
                 ar_AK74M:{
@@ -11722,10 +12183,71 @@ const testComponents={
                     shotDB:158.9,
                     opticMountStyle:2,
                     mounts:[0,0,0],
+                    suppressorMountStyle:2,
                     uBGLType:2,
                     length:27.6,
                     bLength:16.3,
+                    MOA:3.5,
                     eRange:550
+                },
+                ar_RPK74M:{
+                    name:"RPK-74M",
+                    disc:"Standard SAW of the russian army",
+                    serial:"6P34",
+                    weight:11,
+                    caliber:gComponents.calibers.c545x39,
+                    fireModes:[0,0,1,0,0,1],
+                    rateOfFire:600,
+                    reloadTime:3.5,
+                    shotDB:158.9,
+                    opticMountStyle:2,
+                    mounts:[0,1,0],
+                    suppressorMountStyle:2,
+                    uBGLType:0,
+                    length:32.3,
+                    bLength:23.2,
+                    MOA:2.5,
+                    eRange:700//a little arbitrary here
+                },
+            },
+            dMR:{
+                dmr_SVDM:{
+                    name:"SVDM Designated Marksman Rifle",
+                    disc:"Modernized variant of the SVD and in use with the Russian military since 2018",
+                    weight:9.902,
+                    caliber:gComponents.calibers.c762x54r,
+                    fireModes:[0,0,1,0,0,0],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                    rateOfFire:60,//used if it is full-auto capable
+                    reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                    mounts:[1,1,0],//bottom, sides, top
+                    railStyle:1,
+                    suppressorMountStyle:5,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 style, 5 is warpact 7.62x54mmr
+                    shotDB:162,
+                    uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                    length:34.4,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                    bLength:21.7,//barrel length
+                    MOA:2,
+                    eRange:875//yards
+                },
+                dmr_M110A1:{
+                    name:"M110A1 SDMR",
+                    disc:"Standard US Army DMR",
+                    weight:9.15,
+                    caliber:gComponents.calibers.c762x51,
+                    fireModes:[0,0,1,0,0,0],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                    rateOfFire:60,//used if it is full-auto capable
+                    reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                    mounts:[1,1,1],//bottom, sides, top
+                    railStyle:1,
+                    suppressorMountStyle:4,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 style, 5 is warpact 7.62x54mmr
+                    shotDB:162,
+                    uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                    length:35.39,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                    bLength:16.3,//barrel length
+                    MOA:1.5,
+                    eRange:875//yards
                 },
             },
             uBGL:{
@@ -11809,6 +12331,24 @@ const testComponents={
                 NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
                 mountStyle:3
             },
+            o_PSO1M2:{
+                name:"PSO-1M2 ",//the text name of the scope
+                disc:"Zenit standard modernized rifle scope of the russian military, modernized and used for mounting on the SVD-M ",
+                mag:4,//magnification x
+                obj:24,//objective diameter, mm
+                weight:1.55,//weight, pounds.
+                mountStyle:1,
+                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR
+            },
+            o_TANGO6T:{
+                name:"S&W TANGO6T",//the text name of the scope
+                disc:"riflescope used by the USMC M40A5",
+                mag:6,
+                obj:24,
+                mountStyle:1,
+                weight:1.5,//guessing that the rings weigh .12 pounds
+                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+            },
         },
         foreGrips:{
             fg_GPS02:{
@@ -11817,6 +12357,91 @@ const testComponents={
                 type:5,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
                 weight:1.5,//guess, looked on 3 different websites and nobody was saying.    
                 mountStyle:1,
+            },
+            fg_HL:{
+                name:"Harris S-L Bipod",
+                disc:"high end bipod used on US military DMR and snipers",
+                type:4,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
+                weight:.938,//guess, looked on 3 different websites and nobody was saying.    
+                mountStyle:1,
+            },
+        },
+        suppressors:{
+            s_PBS1:{
+                name:"PBS-1",
+                disc:"Rifle suppressor for AK-47 pattern rifles",
+                length:7.9,
+                weight:1,
+                mountStyle:3,
+                reportReduction:15//db that the gunshot will be with the suppressor fitted
+            },
+            s_PBS4:{
+                name:"PBS-4",
+                disc:"Rifle suppressor for AK-74 pattern rifles",
+                length:7.9,//length and width copied from the PBS-1 due to lack of data
+                weight:1,
+                mountStyle:2,
+                reportReduction:15//db reduction
+            },
+            s_MSX240:{
+                name:"Maxim Defense MSX-240",
+                disc:"Suppressor for the M240",
+                length:10,
+                weight:1,
+                mountStyle:4,
+                reportReduction:24//db reduction
+            },
+            s_KACNT4:{
+                name:"KAC NT4",
+                disc:"Rifle Suppressor issued to USMC infantrymen for their M4 and M27 rifles",
+                length:6.5,//length and width copied from the PBS-1 due to lack of data
+                weight:1.375,
+                mountStyle:1,
+                reportReduction:30//db reduction
+            }
+        },
+        supplies:{
+            rations:{
+                r_2020_ChiliMac_MRE:{
+                    name:"2020 Chili and Macaroni MRE",
+                    disc:"Commonly considered one of the best MREs in existence, comes with chili mac, pound cake, jalapeno cheddar cheese crackers, beef snacks, candy, beverage powder, red pepper spice, condiments.",
+                    expirationYear:2026,
+                    kCal:1250,
+                    troopRating:5,
+                    quality:5,
+                    weight:1.35,
+                    includesHeater:1
+                },
+                r_2020_CheeseTortellini_MRE:{
+                    name:"2020 Cheese Tortellini MRE",
+                    disc:"Commonly considered one of the best MREs in existence, comes with cheese tortellini, dessert powder, peanut butter crackers, nuts and raisins, beverage powder, hot sauce",
+                    expirationYear:2026,
+                    kCal:1250,
+                    troopRating:5,
+                    quality:5,
+                    weight:1.35,
+                    includesHeater:1
+                },
+                r_2020_BeefStew_MRE:{
+                    name:"2020 Beef Stew MRE",
+                    disc:"Beef stew, fudge brownie, peanut butter, multigrain snack bread, jelly, pretzels, beverage powder, hot sauce",
+                    expirationYear:2026,
+                    kCal:1250,
+                    troopRating:4.5,
+                    quality:5,
+                    weight:2.82,
+                    includesHeater:1
+                },
+                r_2020_IRP:{
+                    name:"2020 full-day IRP",
+                    disc:"Russian military ration, 1 has enough food for 24 hours if you can actually ingest it",
+                    expirationYear:2026,
+                    kCal:4790,
+                    troopRating:4,
+                    quality:4,
+                    weight:4.6,
+                    includesHeater:0
+                },
             }
         }
     },
@@ -11857,46 +12482,43 @@ const testItems={
                 opRange:[162,270],//good as-is  
             },           
         },
-        weapons:{
-
-        },
         personnel:{
             T_Rifleman:{
                 AAF_Rifleman_Loaded:{
                     name:0,
-                    ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                    ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
                     primary:{//primary weapon, must be a firearm
                         name:testComponents.tComponents.weapons.assaultRifles.ar_AK74M,
-                        optic:testComponents.tComponents.optics.o_1P78,
+                        optic:0,
                         suppressor:0,
                         mag:gComponents.mags.m_AK74M_30,
                         ammunition:[gComponents.calibers.c545x39,210],
-                        uBGL:testComponents.tComponents.weapons.uBGL.W_GP25,
-                        uBGLAmmunition:[testGComponents.uBGLAmmunition.uA_40mmRU,5],
+                        uBGL:0,
+                        uBGLAmmunition:[0,0],
                         railAccessory:0,
                         gripMod:0,
                         weight:0,
                     },
                     secondary:{//secondary weapon, must be a firearm
-                        name:testComponents.tComponents.weapons.assaultRifles.ar_AK74M,
-                        optic:testComponents.tComponents.optics.o_1P78,
+                        name:testComponents.tComponents.weapons.assaultRifles.ar_M4A1,
+                        optic:0,
                         suppressor:0,
-                        mag:gComponents.mags.m_AK74M_30,
-                        ammunition:[gComponents.calibers.c545x39,210],
-                        uBGL:testComponents.tComponents.weapons.uBGL.W_GP25,
-                        uBGLAmmunition:[testGComponents.uBGLAmmunition.uA_40mmRU,5],
+                        mag:gComponents.mags.m_USGI30AR,
+                        ammunition:[gComponents.calibers.c556x45,210],
+                        uBGL:0,
+                        uBGLAmmunition:0,
                         railAccessory:0,
                         gripMod:0,
                         weight:0,
                     },
                     special:{//special weapon, a standalone rocket launcher
-                        name:testComponents.tComponents.weapons.RL.RL_RPG7V2,
-                        optic:testComponents.tComponents.optics.o_PGO7,
+                        name:0,
+                        optic:0,
                         gripMod:0,
                         weight:0,
-                        GPRound:[testGComponents.specialAmmunition.sA_RPG7_PG7VL_HEAT,2],
-                        APRound:[testGComponents.specialAmmunition.sA_RPG7_OG7V_FRAG,2],
-                        HeavyRound:[testGComponents.specialAmmunition.sA_RPG7_PG7VR_THEAT,2],
+                        GPRound:[testGComponents.specialAmmunition.sA_RPG7_PG7VL_HEAT,0],
+                        APRound:[testGComponents.specialAmmunition.sA_RPG7_OG7V_FRAG,0],
+                        HeavyRound:[testGComponents.specialAmmunition.sA_RPG7_PG7VR_THEAT,0],
                         SmokeRound:[0,0],
                     },
                     explosives:{
@@ -11917,43 +12539,64 @@ const testItems={
                     },
                     kit:{
                         bArmor:tComponents.vests.v_6B45M_W,
-                        nods:tComponents.helmetOptics.o_1PN138,
+                        nods:0,
                         earPro:tComponents.headSets.hs_GSSH01,
-                        comms:tComponents.pRadios.pr_R187P1E, //More advanced stuff will be handled at sq level
+                        squadComms:tComponents.pRadios.pr_R187P1E,
+                        radio:0,
                         uniform:tComponents.uniforms.u_6SH122_Ratnik,
                         IFAK:tComponents.iFAKs.iFAK_Generic_1,
                         canteen:tComponents.canteens.USSR_Canteen,           
                         helmet:tComponents.helmets.h_6B47_W,
                         backpack:tComponents.backpacks.ap_6SH117_W,
                         tent:0,       
-                        sleepingBag:tComponents.sleepingBags.sb_Ratnik_W    
+                        sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
+                        supplies:{
+                            ration1:[testComponents.tComponents.supplies.rations.r_2020_IRP,3],
+                            ration2:[0,0],
+                            ration3:[0,0],
+                            waterContainer1:[tComponents.canteens.USSR_Canteen,2],
+                            waterContainer2:[0,0],
+                        }    
                     },
                     buffs:{
-                        lDrinkBuff:1,
-                        lMealBuff:1,
-                        lHotMealBuff:1,
-                        lLaundryBuff:1,
-                        lHotShowerBuff:1,
-                        lReserveBuff:1,
-                        tSinceReserve:0,
+                        rMealBuff:1,
+                        rWaterBuff:1,
+                        rHotMealBuff:1,
+                        rHotShowerBuff:1,
+                        rReserveTimeBuff:1,
                     },
                     status:{
-                        totalKitWeight:0,
+                        currentActivity:1,//0 is in active combat, 1 is standing guard, 2 is patrol, 3 is relaxing (downtime in general;could be eating, sleeping, doing weapon maintenance, etc.), 4 is in reserve 
+                        activityLevel:2,    
+                        inVehicle:0,
+                        inCombatType:0,//various combat types, refer to cfg.multipliers.personnel.experience.hCEPHVariousCombatModes for the detailed list. These can determine experience gain, among other things
+                        stress:1,
+                        totalKitWeight:0,//weight of the soldier's gear including uniform, weapons, ammo, food, etc.
                         effectivness:1,
+                        calorieBalance:0,
+                        waterBalance:0,
                         morale:1,
                         confidenceInLeadership:1,
                         confidenceInCause:1,
                         resolve:1,
-                        exhaustion:0,
+                        hActiveSinceLRest:[
+                            0,//basic metabolic rate
+                            0,//sedentary, little to no exercise
+                            0,//light activity
+                            0,//moderate activity
+                            0,//active,
+                            0,//very active
+                            0,//extremely active 
+                        ],
                         hoursCombatExperience:0,
                         hoursJobExperience:0,
-                        lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                        cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
+                        points:{//different point values contributed to the total lethality of the squad
+                            AP:0,//anti-personnel
+                            AV:0,//anti-vehicle
+                            AA:0,//anti-air
+                        },
                         specialty:"11B",
                         organization:"Abkhaz Ground Forces",
-                        supplies:[0,210,0,0,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
-                        tSupplies:[0,210,0,0,3,10,1,.5],
-                        sPH:[0,0,0,0,0,0,0], 
                     },
                 },
             },
@@ -12039,74 +12682,27 @@ const testUnits={
             name:"1st Platoon",
             squad1:{
                 name:"1st squad",
-                sTemplate:uComps.squads.SQ_BTR82Infantry,
-                members:uComps.squads.SQ_BTR82Infantry.members,
-                vehicle:uComps.squads.SQ_BTR82Infantry.vehicle,
-                vehicleGas:uComps.squads.SQ_BTR82Infantry.vehicle.fuelcap,
-                vSupplies:uComps.squads.SQ_BTR82Infantry.vehicle.vSupplies,
-                vicTimeTillBack:0,
-                personnelProfiles:[
-                    [components.personnel.T_Crewman.AGF_1_19K_G,components.personnel.T_Crewman.AGF_1_19Z_G,0,0],
-                    [components.personnel.T_SL.TEST_US_GIGASOLDIERV2,0,0,0],
-                    [components.personnel.T_Grenadier.AGF_1_11B_GRN_G,0,0,0],
-                    [components.personnel.T_Asst_Grenadier.AGF_1_11B_AG_G,0,0,0],
-                    [components.personnel.T_MG.AGF_1_11B_MG_G,0,0,0],
-                    [components.personnel.T_SR_Rifleman.AGF_1_11B_FTL_G,0,0,0],
-                    [components.personnel.T_Rifleman.AGF_1_11B_G,components.personnel.T_Rifleman.AGF_1_11B_G,components.personnel.T_Rifleman.AGF_1_11B_G,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0]
+                members:[
+                    [0,0,0,0],//leadership
+                    [0,0,0,0],//senior rifleman/ftl/asl
+                    [0,0,0,0],//grenadier/engineer/heavy weapons
+                    [0,0,0,0],//machine gunner
+                    [0,0,0,0],//assistant machine gunner/assistant grenadier/ammunition carrier
+                    [0,0,0,0],//rifleman
+                    [0,0,0,0],//sniper
+                    [0,0,0,0],//MANPADS
+                    [0,0,0,0],//Staff person
+                    [0,0,0,0],//Officer
+                    [0,0,0,0],//crewman
                 ],
-                personnelSPHByIndex:[
-                    .1, //sph for the crewmen as an array in the standard supply format
-                    .1, //sph for the SL
-                    .1, //sph for the Gren
-                    .1, //sph for the ass. gren
-                    .1, //sph for mg
-                    .1, //sph for sr riflemen
-                    .1, //sph for riflemen
-                    .1, //sph for manpads
-                    .1, //sph for snipers
-                    .1, //sph for staffers
-                    .1  //sph for the officers
-                ],
-                personnelSPHTotal:[],
-                chanceInjDeaDesMutTurbyPersonnel:[
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
-                    [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],                                
-                ],
-                moraleByPerson:[
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0]                                  
-                ],
-                hasVehicle:1,
-                supplies:uComps.squads.SQ_BTR82Infantry.supplies,
-                vehicleCarriedSupplies:uComps.squads.SQ_BTR82Infantry.vehicleCarriedSupplies,
-                neededSupplies:[0,0,0,0,0,0,0],
-                neededVSupplies:[0,0,0,0,0,0,0,0],
-                morale:100,
-                effectiveness:100,
+                points:{
+                    AP:0,
+                    AV:0,
+                    AA:0
+                }
+                
             },
         },
     },
 };
-export default {components,uComps,largeUComps,BTGComps,SAMSystemComps,vComponents,tComponents,MOSCodes,testItems,testGComponents,testComponents,testUnits};
+export default {components,uComps,largeUComps,BTGComps,SAMSystemComps,vComponents,tComponents,MOSCodes,testItems,testGComponents,testComponents,testUnits,gComponents};

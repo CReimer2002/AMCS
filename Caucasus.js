@@ -837,7 +837,21 @@ let MapFeaturesTest = [
         .002,//size, decimal coords radius
         1,//priority for display
         0,//zone
-        4//ownership
+        4,//ownership
+        [
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+            0,0
+        ],
+        [
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+            0,0
+        ]
     ],  
     [
         "Rural Test Area",
