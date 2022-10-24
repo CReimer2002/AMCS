@@ -2,6 +2,7 @@ import DB from "./DB.js";
 let GroundForces = {
     commander:"Army General Irakli Jeladze",
     name:"Abkhazian Ground Forces",
+    /*
         centralDistrict:{
         name:"Central Military District",
         commander:"Colonel General Igor Kukavo",
@@ -22868,6 +22869,7 @@ let GroundForces = {
             damageState:0,//0 is undamaged, 1 is slightly damaged, 2 is heavily damaged, 3 is destroyed
         },
     }
+    */
 }
 let Navy = {
 
@@ -22876,6 +22878,7 @@ let AirForce = {
 
 }
 let AbkhazCompaniesTest = {
+    /*
     company1:{
         uCata:1,
         uType:3,//0 is truck, 1 is BTR-80, 2 is enhanced BTR-80, 3 is BTR-82, 4 is BMP-1, 5 is BMP-2, 6 is T-72, 7 is T-72B3
@@ -23021,6 +23024,7 @@ let AbkhazCompaniesTest = {
             },
         },
     },
+    */
 }
 export default {GroundForces,Navy,AirForce,AbkhazCompaniesTest}
 /*

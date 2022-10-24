@@ -173,6 +173,11 @@ let multipliers = {
                 disc:"crude fertilizer explosive",
                 tntMult:.32,
                },
+               expl_Octol:{
+                name:"Octol",
+                disc:"mix of HMX and TNT, used typically in shaped charges and other munitions, more expensive than comp b and cyclotol.",
+                tntMult:1.54,
+               },
             }
 
         },
@@ -361,8 +366,80 @@ let multipliers = {
             gWPHTempAbove65:.0001,
             gWPHKit:.001,
             cPHTempOver70:.025,
+        },
+        willToFight:{
+            capabilities:{
+                competence:{
+                    sustainability:5,
+                    sufficiency:10,
+                    skills:10,
+                    relevance:15,
+                },
+                quality:{
+                    adaptability:10,
+                    education:5,
+                    fitness:20,
+                    pyschTraits:5,
+                    resilience:10,
+                    socialSkills:5
+                }
+            },
+            motivations:{
+                desperation:20,
+                revenge:5,
+                ideology:15
+            },
+            identity:{
+                organization:5,
+                personal:5,
+                unit:5,
+                state:5,
+                social:10,
+                society:10,
+            }
         }
     },
+    units:{
+        squads:{
+            leadershipValueWeights:{
+                character:{
+                    morality:10,
+                    empathy:5,
+                    ethos:5,
+                    discipline:5
+                },
+                presence:{
+                    bearing:10,
+                    fitness:10,
+                    confidence:10,
+                    resilience:10,
+                },
+                intellect:{
+                    mentalAgility:10,
+                    judgment:10,
+                    innovation:10,
+                    interPersonalTact:10,
+                    expertise:10,
+                },
+                competencies:{
+                    leads:{
+                        leadsOthers:10,
+                        buildsTrust:10,
+                        influence:10,
+                        leadsByExample:10,
+                        communicates:10,
+                    },
+                    develops:{
+                        createsPositiveEnvironment:10,
+                        preparesSelf:10,
+                        devsOthers:10,
+                        stewardsProfession:10
+                    }
+                },
+                achieves:20
+            }
+        }
+    }
 };
 let nationalities = {
     percentageInfWomenByService:[
@@ -391,6 +468,55 @@ let nationalities = {
             .01
         ],
     ]
+};
+let countries = {//profiles of countries and how they influence soldier's will to fight. Developed from a RAND Corp module
+    USA:{
+        state:{
+            culture:{
+                civMilRelations:{
+                    appropriateness:4.5,
+                    functionality:4.5,
+                },
+                integrity:{
+                    trust:4,
+                    corruption:.5,
+                }
+            },
+            capabilities:{
+                strategy:{
+                    clarity:4,
+                    effectiveness:4.5
+                },
+                support:{
+                    sufficiency:4,
+                    timeliness:4,
+                },
+                leadership:{
+                    character:4.5,
+                    confidence:3
+                }
+            },          
+        },
+        society:{
+            culture:{
+                Identity:{
+                    ethnicity:1,
+                    history:4,
+                    ideology:5
+                },
+                Integrity:{
+                    corruption:.5,
+                    trust:4
+                }
+            },
+            capabilities:{
+                support:{
+                    consistency:5,
+                    efficiency:4.5
+                }
+            }
+        }
+    }
 }
 
-export default {general,environment,multipliers,nationalities};
+export default {general,environment,multipliers,nationalities,countries};

@@ -483,6 +483,24 @@ const gComponents={
             quality:4.5,
             hasSidePort:1,//whether it has a side viewing port. Very minor power bonus. 
         },
+        m_M249_100Sack:{
+            name:"M249 100 round bag",//name of the mag
+            disc:"balls",//disc of the mag
+            caliber:"5.56x45mm",//caliber of the weapon
+            capacity:100,//number of rounds it can hold
+            weight:1,//guess, it's a bag but I also have to account for the links, which will add weight
+            quality:4.5,
+            hasSidePort:1,//whether it has a side viewing port. Very minor power bonus. 
+        },
+        m_PKP_100Sack:{
+            name:"PKP 100 round bag",//name of the mag
+            disc:"balls",//disc of the mag
+            caliber:"7.62x54mmr",//caliber of the weapon
+            capacity:100,//number of rounds it can hold
+            weight:1.5,//guess, it's a bag but I also have to account for the links, which will add weight
+            quality:4.5,
+            hasSidePort:1,//whether it has a side viewing port. Very minor power bonus. 
+        },
         m_SVD_10:{
             name:"SVD magazine, metal",//name of the mag
             disc:"unfortunately had to source the weight form tarkov.....",//disc of the mag
@@ -512,10 +530,116 @@ const gComponents={
         },
 
 
+    },
+    specialAmmunition:{
+        sA_FGM148A_HEAT:{
+            name:"FGM-148 round",
+            disc:"Standard HEAT round for pre-javelin-F models, uses listed range for pre L-CLU models",
+            serial:"",
+            weight:35,
+            range:2734,
+            penRHA:760,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_IMX101.tntMult,
+            warheadWeight:19,//pounds TNT
+            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[0,0,0,1,0],//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
+            fireAndForget:1,
+            softLaunch:1
+        },
+        sA_RPG7_PG7VL_HEAT:{
+            name:"PG-7VL",
+            disc:"standard HEAT rocket found with the RPG-7 series",
+            serial:"",
+            weight:5.7,
+            range:750,
+            penRHA:550,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
+            warheadWeight:1.61,
+            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
+            fireAndForget:1,
+            softLaunch:1
+        },
+        sA_RPG7_PG7VR_THEAT:{
+            name:"PG-7VR",
+            disc:"tandem charge HEAT for the RPG-7 series",
+            serial:"",
+            weight:9.9,
+            range:350,
+            penRHA:750,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
+            warheadWeight:3.153,
+            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,5 is laser,
+            fireAndForget:1,
+            softLaunch:1
+        },
+        sA_RPG7_OG7V_FRAG:{
+            name:"OG-7V",
+            disc:"tandem charge HEAT for the RPG-7 series",
+            serial:"",
+            weight:4,
+            range:750,
+            penRHA:0,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
+            warheadWeight:.463,
+            warHeadType:3,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,0,1,0,0,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
+            fireAndForget:1,
+            softLaunch:1
+        },
+        sA_M136_HEAT:{
+            name:"M136 AT4",
+            disc:"standard HEAT AT4 rocket, note that the AT4 is single shot",
+            serial:"",
+            weight:14.8,
+            range:328,
+            penRHA:450,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_Octol.tntMult,
+            warheadWeight:.97,
+            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
+            fireAndForget:1,
+            softLaunch:0
+        },
+        sA_RPG26_HEAT:{
+            name:"RPG-26",
+            disc:"standard RPG-26 rocket",
+            serial:"",
+            weight:6.4,
+            range:270,
+            penRHA:440,
+            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
+            warheadWeight:1,
+            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
+            useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
+            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
+            fireAndForget:1,
+            softLaunch:0
+        },
+    },
+    uBGLAmmunition:{
+        uA_40mm:{
+            name:"M433",
+            disc:"High Explosive Dual Purpose round for western 40mm grenade launchers, namely the M203 and M320. Not used in the MK-19",
+            weight:.5,
+            lethalRadius:5.468,
+            range:273,
+        },
+        uA_40mmRU:{
+            name:"VOG-25",
+            disc:"High Explosive round for eastern 40mm grenade launchers, namely the GP-25 pattern",
+            weight:.55,
+            lethalRadius:6.562,
+            range:248.43,
+        },
+        
     }
-            /*    
-            ("7.62x25mm",0),//TT-33 
-        */
 };
 const tComponents={//30 round 7.62 mag weighs 1.99 lbs
     names:{
@@ -1260,7 +1384,25 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
                 "Ridgway",
                 "Schwarzkopf",
                 "Harris",
-                "Roosevelt"
+                "Roosevelt",
+
+                "Wasserfall",
+                "Charlet",
+                "O'Sullivan",
+                "Rader",
+                "Hosenfeld",
+
+                "Kugler",
+                "Fry",
+                "Sharp",
+                "Elmes",
+                "Friedman",
+
+                "Wiesenthal",
+                "Welles",
+                "Sayer",
+                "Greene",
+                "Shapsis"
 
             ],
             [//Russia
@@ -2602,641 +2744,199 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
 
     },
     weapons:{
+        firearms:{
+            //submachine guns/carbines
 
 
-        rifle:{
             //assault rifles
-            W_AK47:{
-                name:"AK-47 assault rifle",
-                weight:7.7,
-                length:35,
-                bLength:16.3,
-                caliber:gComponents.calibers.c762x39,
-                eRange:383,
-                report:140
+            ar_M4A1:{
+                name:"M4A1 Carbine",
+                disc:"Extremely prolific 5.56x45 carbine, the A1 variant has 3-round burst replaced with full-auto while also being slightly heavier. As of 2019 all M4s in the US Army are this variant",
+                weight:6.71,
+                caliber:gComponents.calibers.c556x45,
+                fireModes:[0,0,1,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                rateOfFire:825,//used if it is full-auto capable
+                reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                mounts:[1,1,1],//bottom, sides, top
+                railStyle:1,
+                suppressorMountStyle:1,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 st
+                shotDB:158.9,
+                uBGLType:1,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                length:29.75,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                bLength:14.5,//barrel length
+                MOA:4,
+                eRange:550//yards
             },
-            W_AKM:{
-                name:"AKM assault rifle",
-                weight:7.28,
-                length:34.6,
-                bLength:16.3,
-                caliber:gComponents.calibers.c762x39,
-                eRange:383,
-                report:140
-            },
-            W_AKMS:{
-                name:"AKMS assault rifle with folding stock",
-                weight:7.7,
-                length:25.8,
-                bLength:16.3,
-                caliber:gComponents.calibers.c762x39,
-                eRange:383,
-                report:140
-            },
-            W_AK103:{
-                name:"AK-103 modernized assault rifle",
+            ar_M27IAR:{
+                name:"Heckler & Koch M27 Infantry Automatic Rifle",
+                disc:"Based on the H&K 416. The new workhorse of the USMC.",
                 weight:7.9,
-                length:27.8,
-                bLength:16.3,
-                caliber:gComponents.calibers.c762x39,
-                eRange:550,
-                report:140
+                caliber:gComponents.calibers.c556x45,
+                fireModes:[0,0,1,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic.
+                rateOfFire:800,//used if it is full-auto capable
+                reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                mounts:[1,1,1],//bottom, sides, top
+                suppressorMountStyle:1,
+                shotDB:158.9,
+                uBGLType:1,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                length:33,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                bLength:16.5,//barrel length
+                MOA:2,
+                eRange:656//yards
             },
-            W_AK74:{
-                name:"AK-74 assault rifle",
-                weight:6.8,//pounds, with loaded mag
-                length:37.1,//inches, tip to butt (hehe)
-                bLength:16.3,//barrel length, inches
-                caliber:gComponents.calibers.c545x39,
-                eRange:550,//effective range, yards, point target.
-                report:140
-            },
-            W_AK74M:{
-                name:"AK-74M assault rifle",
+            ar_AK74M:{
+                name:"Izhmash AK-74M ",
+                disc:"Standard service rifle of the Russian military, being replaced by the AK-12",
+                serial:"6P34",
                 weight:7.5,
-                length:27.6,//though the length is technically the same as the vanilla AK-74 with the stock extended, when needed the folded stock means the gun can be much shorter, so the folded length is used here.
-                bLength:16.3,
                 caliber:gComponents.calibers.c545x39,
-                eRange:575,
-                report:140
-            },
-            W_AK74Z:{
-                name:"AK-74M assault rifle with Zenitco upfit for receiving foregrips and laser mods",
-                weight:7.6,
+                fireModes:[0,0,1,0,0,1],
+                rateOfFire:625,
+                reloadTime:3.5,
+                shotDB:158.9,
+                opticMountStyle:2,
+                mounts:[0,0,0],
+                suppressorMountStyle:2,
+                uBGLType:2,
                 length:27.6,
                 bLength:16.3,
-                caliber:gComponents.calibers.c545x39,
-                eRange:575,
-                report:140
+                MOA:3.5,
+                eRange:550
             },
-            W_AK12:{
-                name:"AK-12 assault rifle",
-                weight:7.72,
-                length:27.1,
-                bLength:16.3,
-                caliber:gComponents.calibers.c545x39,
-                eRange:481,
-                report:140
-            },
-            W_M4A1:{
-                name:"M4A1 assault rifle",
-                weight:6.43,
-                length:29.75,
-                bLength:14.5,
-                caliber:gComponents.calibers.c556x45,
-                eRange:550,
-                report:160                
-            },
-            W_HKG3A3:{
-                name:"H&K G3A3 assault rifle",
-                weight:9.66,
-                length:40.4,
-                bLength:17.7,
-                caliber:gComponents.calibers.c762x51,
-                eRange:437,
-                report:164                
-            },
-            W_HKG3A4:{
-                name:"H&K G3A4 assault rifle",
-                weight:10,
-                length:40.4,
-                bLength:17.7,
-                caliber:gComponents.calibers.c762x51,
-                eRange:437,
-                report:164                
-            },
-            W_HK33A3:{
-                name:"H&K 33A3 assault rifle",
-                weight:8.6,
-                length:37,
-                bLength:13.1,
-                caliber:gComponents.calibers.c556x45,
-                eRange:437,
-                report:160                
-            },
-            W_M16A1:{
-                name:"M16A1 Rifle",
-                weight:6.37,
-                length:38.81,
-                bLength:20,
-                caliber:gComponents.calibers.c556x45,
-                eRange:601,//presuming no optic
-                report:158                
-            },
-            W_M16A2:{
-                name:"M16A2 Rifle",
-                weight:8.31,
-                length:39.61,
-                bLength:20,
-                caliber:gComponents.calibers.c556x45,
-                eRange:601,//presuming no optic
-                report:158                
-            },
-            W_M16A4:{
-                name:"M16A4 Rifle",
-                weight:7.5,
-                length:39.37,
-                bLength:20,
-                caliber:gComponents.calibers.c556x45,
-                eRange:601,
-                report:158                
-            },
-            W_SCAR_H:{
-                name:"FN MK 17 Mod 0 SCAR-H battle rifle",
-                weight:7.9,
-                length:28,
-                bLength:16,
-                caliber:gComponents.calibers.c762x51,
-                eRange:660,
-                report:165                
-            },
-            W_HK416A5:{
-                name:"Heckler & Koch HK416 assault rifle",
-                weight:7.5,
-                length:30,
-                bLength:16,
-                caliber:gComponents.calibers.c556x45,
-                eRange:550,//presuming no optic
-                report:158                
-            },
-            W_M27:{
-                name:"M27 Infantry Automatic Rifle",
-                weight:7.9,
-                length:33,
-                bLength:16.5,
-                caliber:gComponents.calibers.c556x45,
-                eRange:656,//presuming no optic
-                report:159.5                
-            },
-            W_FB_Beryl:{
-                name:"FB Beryl",
-                weight:7.39,
-                length:29.2,
-                bLength:18,
-                caliber:gComponents.calibers.c556x45,
-                eRange:546,//presuming no optic
-                report:159.5                
-            },
-            W_FB_MSBS_GrotC:{
-                name:"FB MSBS Grot C",
-                weight:8.2,
-                length:39,
-                bLength:16,
-                caliber:gComponents.calibers.c556x45,
-                eRange:547,//presuming no optic
-                report:159.5                
-            },
-            W_L85A2:{
-                name:"L85A2",
-                weight:9,//guess
-                length:30.,
-                bLength:20.4,
-                caliber:gComponents.calibers.c556x45,
-                eRange:650,//presuming no optic
-                report:159.5                
-            },
-            W_C7A2:{
-                name:"Colt Canada C7A2",
-                disc:"Standard issue canadian service rifle",
-                weight:7.3,
-                length:36.61,
-                bLength:20,
-                caliber:gComponents.calibers.c556x45,
-                eRange:600,
-                report:159.5                
-            },
-            //carbines
-            W_AK74SU:{
-                name:"AK-74SU",
-                weight:6.5,
-                length:19.3,
-                bLength:8.1,
-                caliber:gComponents.calibers.c545x39,
-                eRange:380,
-                report:143
-            },
-            W_FB_Mini_Beryl:{
-                name:"FB Mini-Beryl",
-                disc:"Polish compact assault rifle used by the Polish military",
-                weight:6.61,
-                length:20.7,
-                bLength:9.3,
-                caliber:gComponents.calibers.c556x45,
-                eRange:380,
-                report:143
-            },
+            //battle rifles
 
-            //machine guns
-            W_MG3:{
-                name:"MG3",
-                disc:"brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrt",
-                weight:25.35,
-                length:48.2,
-                bLength:22.2,
-                caliber:gComponents.calibers.c762x51,
-                eRange:1312,
-                report:160
-            },
-            W_UKM_2000P:{
-                name:"UKM-2000P",
-                disc:"standard GPMG version for the Polish Army",
-                weight:18.52,
-                length:47.4,
-                bLength:21.5,
-                caliber:gComponents.calibers.c762x51,
-                eRange:1640,
-                report:160
-            },
-            W_PK:{
-                name:"PK medium machine gun",
-                weight:16.534,
-                length:47.4,
-                bLength:23.8,
-                caliber:gComponents.calibers.c762x54r,
-                eRange:1094,
-                report:150
-            },
-            W_M240B:{
-                name:"M240B GPMG",
-                weight:27.6,
-                length:49.7,
-                bLength:21.7,
-                caliber:gComponents.calibers.c762x51,
-                eRange:1200,
-                report:160
-            },
-            W_M240G:{
-                name:"M240G GPMG",
-                weight:25.6,
-                length:49.7,
-                bLength:21.7,
-                caliber:gComponents.calibers.c762x51,
-                eRange:1200,
-                report:160
-            },
-            W_M249:{
-                name:"M249 SAW",
-                weight:17,
-                length:40.75,
-                bLength:21,
-                caliber:gComponents.calibers.c762x51,
-                eRange:866,
-                report:160
-            },
-            W_FN_Minimi:{
-                name:"FN Minimi SAW",
-                weight:15.7,
-                length:40.9,
-                bLength:18.3,
-                caliber:gComponents.calibers.c556x45,
-                eRange:866,
-                report:160
-            },
-            W_IWI_Negev_NG5:{
-                name:"IWI Negev SAW",
-                weight:16.865,
-                length:31.889,
-                bLength:18,
-                caliber:gComponents.calibers.c556x45,
-                eRange:874,
-                report:158
-            },
-            W_PKP:{
-                name:"PKP medium machine gun",
-                weight:18,//no bipod
-                length:47,
-                bLength:25.9,
-                caliber:gComponents.calibers.c762x54r,
-                eRange:1640,
-                report:149
-            },
-            W_RPK:{
-                name:"RPK light machine gun",
-                weight:10.6,
-                length:40.9,
-                bLength:23.2,
-                caliber:gComponents.calibers.c762x39,
-                eRange:1093,
-                report:143//guess, slightly reducing it's report because it has a longer barrel than the AK-47            
-            },
-            W_RPKS:{
-                name:"RPKS light machine gun with folding stock",
+
+            //squad automatic weapons
+            saw_RPK74M:{
+                name:"RPK-74M",
+                disc:"Standard SAW of the russian army",
+                serial:"6P34",
                 weight:11,
+                caliber:gComponents.calibers.c545x39,
+                fireModes:[0,0,1,0,0,1],
+                rateOfFire:600,
+                reloadTime:3.5,
+                shotDB:158.9,
+                opticMountStyle:2,
+                mounts:[0,1,0],
+                suppressorMountStyle:2,
+                uBGLType:0,
                 length:32.3,
                 bLength:23.2,
-                caliber:gComponents.calibers.c762x39,
-                eRange:1093,
-                report:143//guess, slightly reducing it's report because it has a longer barrel than the AK-47            
+                MOA:2.5,
+                eRange:700//a little arbitrary here
             },
-            W_RPK74:{
-                name:"RPK-74 light machine gun",
-                weight:10,//pounds, with loaded 45 round mag, according to my guess.
-                length:41.7,//inches, tip to butt (hehe)
-                bLength:23.2,//barrel length, inches
-                caliber:gComponents.calibers.c545x39,
-                eRange:850,//effective range, yards, point target.,
-                report:138
-            },
-            W_RPKS74:{
-                name:"RPK-74 light machine gun with folding stock",
-                weight:10.7,//pounds, with loaded 45 round mag, according to my guess.
-                length:33.3,//inches, tip to butt (hehe)
-                bLength:23.2,//barrel length, inches
-                caliber:gComponents.calibers.c545x39,
-                eRange:850,//effective range, yards, point target.,
-                report:138
-            },
-            W_RPK74M:{
-                name:"RPK-74M modernized light machine gun with picatinny rails and a folding stock",
-                weight:11,//guess
-                length:33.3,//inches, tip to butt (hehe)
-                bLength:23.2,//barrel length, inches
-                caliber:gComponents.calibers.c545x39,
-                eRange:860,//effective range, yards, point target.,
-                report:138
-            },
-            W_RPK16:{
-                name:"RPK-16 modern light machine gun with scope mount and folding stock",
-                weight:10.5,//guess
-                length:33.3,
-                bLength:21.7,
-                caliber:gComponents.calibers.c545x39,
-                eRange:870,
-                report:137
-            },
-
-            //DMR
-            W_SKS:{
-                name:"SKS semi-automatic rifle",
-                weight:8.5,
-                length:40,
-                bLength:20,
-                caliber:gComponents.calibers.c762x39,
-                eRange:440,//this is presuming someone actually put an optic on it
-                report:145
-            },
-            W_M14:{
-                name:"M14 semi automatic rifle",
-                weight:9.2,
-                length:44.3,
-                bLength:22,
-                caliber:gComponents.calibers.c762x51,
-                eRange:500,//presuming no optic
-                report:164                
-            },
-            W_SVD:{
-                name:"SVD DMR",
-                weight:9,//guess
-                length:48.2,
-                bLength:24.4,
-                caliber:gComponents.calibers.c762x54r,
-                eRange:875,
-                report:150//guess, I know that it's a big, very loud round
-            },
-            W_SVDM:{
-                name:"SVD-M modernized DMR",
-                weight:10,
-                length:34.4,
-                bLength:21.7,
-                caliber:gComponents.calibers.c762x54r,
-                eRange:875,
-                report:151
-            },
-            W_M110SASS:{
-                name:"M110 Semi Automatic Sniper System",
-                weight:10.5,
-                length:40.51,
-                bLength:20,
-                caliber:gComponents.calibers.c762x51,
-                eRange:875,
-                report:162
-            },
-            W_M110A1:{
-                name:"M110 Compact Semi Automatic Sniper System",
-                weight:13.8,
-                length:35.39,
-                bLength:16.3,
-                caliber:gComponents.calibers.c762x51,
-                eRange:875,
-                report:165
-            },
-            W_M2010ESR:{
-                name:"M2010 Enhanced Sniper Rifle",
-                weight:12.1,
-                length:46.5,
-                bLength:24,
-                caliber:gComponents.calibers.c300,
-                eRange:1312,
-                report:160
-            },
-            W_RMSR:{
-                name:"Remington Modular Sniper Rifle",
-                weight:13,
-                length:36,
-                bLength:20,
-                caliber:gComponents.calibers.c338,
-                eRange:1312,
-                report:160
-            },
-            W_M39EMR:{
-                name:"M39 Enhanced Marksman Rifle",
-                disc:"USMC DMR, predecessor to the M110 SASS",
-                weight:16.5,
-                length:44.2,
-                bLength:22,
-                caliber:gComponents.calibers.c762x51,
-                eRange:850,
-                report:162
-            },
-            W_M38DMR:{
-                name:"M38 DMR",
-                disc:"USMC DMR, as of 2018 all USMC infantry squads have one per inf squad. Comes with the Leupold TS30A2 and a QDSS suppressor (not factored in weight calc",
-                weight:7.9,
-                length:36.9,
-                bLength:16.5,
+            lmg_M249PIP:{
+                name:"M249 light machine gun, Product Improvement Program upgrade",
+                disc:"Standard SAW of the US army. Offers reduced recoil, upper handguard, ergonomics and various utility modifications at the cost of added weight",
+                serial:"M249PIP",
+                weight:16.41,
                 caliber:gComponents.calibers.c556x45,
-                eRange:656,
-                report:158
-            }, 
-            W_MK13Mod7:{
-                name:"MK 13 Mod 7 sniper rifle",
-                disc:"USMC replacement of the M40 series. Typically uses the Nightforce Advanced Tactical Riflescope ",
-                weight:11.4,
-                length:47.5,
-                bLength:26.5,
-                caliber:gComponents.calibers.c300,
-                eRange:1421,
-                report:155
-            },     
-            
-            //snipers
-            W_Bor:{
-                name:"Bor rifle",
-                disc:"Polish bolt-action sniper rifle, in use with the Polish army",
-                weight:13.45,
-                length:40.9,
-                bLength:26.8,
-                caliber:gComponents.calibers.c762x51,
-                eRange:875,
-                report:150
+                fireModes:[0,0,1,0,0,1],
+                rateOfFire:700,
+                reloadTime:12,
+                shotDB:160,
+                opticMountStyle:1,
+                mounts:[1,1,0],
+                suppressorMountStyle:1,
+                uBGLType:0,
+                length:40.75,
+                bLength:18,
+                MOA:12,//bruh
+                eRange:765//a little arbitrary here
             },
-            W_WKW_Wilk:{
-                name:"WKW Wilk",
-                disc:"Polish bolt-action sniper rifle, in use with the Polish army",
-                weight:35.494,
-                length:53.149,
-                bLength:26.8,
-                caliber:gComponents.calibers.c50bmg,
-                eRange:3280,
-                report:170
-            },
-            W_M1891_30_S:{
-                name:"M-1891/30 soviet Optics Ready rifle",
-                weight:8.8,
-                length:48.8,
-                bLength:29,
+            //designated marksmen rifles
+            dmr_SVDM:{
+                name:"SVDM Designated Marksman Rifle",
+                disc:"Modernized variant of the SVD and in use with the Russian military since 2018",
+                weight:9.902,
                 caliber:gComponents.calibers.c762x54r,
-                eRange:900,//this is presuming someone actually put an optic on it
-                report:150
+                fireModes:[0,0,1,0,0,0],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                rateOfFire:60,//used if it is full-auto capable
+                reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                mounts:[1,1,0],//bottom, sides, top
+                railStyle:1,
+                suppressorMountStyle:5,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 style, 5 is warpact 7.62x54mmr
+                shotDB:162,
+                uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                length:34.4,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                bLength:21.7,//barrel length
+                MOA:2,
+                eRange:875//yards
             },
-            W_SV98:{
-                name:"SV-98 sniper rifle",
-                weight:12.8,
-                length:47.24,
-                bLength:25.59,
+            dmr_M110A1:{
+                name:"M110A1 SDMR",
+                disc:"Standard US Army DMR",
+                weight:9.15,
+                caliber:gComponents.calibers.c762x51,
+                fireModes:[0,0,1,0,0,0],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                rateOfFire:60,//used if it is full-auto capable
+                reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                mounts:[1,1,1],//bottom, sides, top
+                railStyle:1,
+                suppressorMountStyle:4,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 style, 5 is warpact 7.62x54mmr
+                shotDB:162,
+                uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                length:35.39,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                bLength:16.3,//barrel length
+                MOA:1.5,
+                eRange:875//yards
+            },
+            //light machine guns
+            lmg_M240B:{
+                name:"M240B Machine Gun",
+                disc:"Main machine gun of the USMC, also used by the USN and USCG. Replaced by the M240L in US army service",
+                weight:27.6,
+                caliber:gComponents.calibers.c762x51,
+                fireModes:[0,0,0,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                rateOfFire:700,//used if it is full-auto capable
+                reloadTime:10,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                mounts:[1,1,1],//bottom, sides, top
+                railStyle:1,
+                suppressorMountStyle:4,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 st
+                shotDB:160,
+                uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                length:49.7,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                bLength:21.7,//barrel length
+                MOA:1.5,
+                eRange:1300//yards
+            },
+            lmg_PKP:{
+                name:"PKP Pecheneg light machine gun",
+                disc:"Main LMG of eastern countries",
+                weight:27.6,
                 caliber:gComponents.calibers.c762x54r,
-                eRange:1094,//this is presuming someone actually put an optic on it
-                report:150
+                fireModes:[0,0,0,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
+                rateOfFire:700,//used if it is full-auto capable
+                reloadTime:15,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
+                opticMountStyle:2,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
+                mounts:[1,0,0],//bottom, sides, top
+                railStyle:2,
+                suppressorMountStyle:5,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 style, 5 is 7.62x54mmr
+                shotDB:160,
+                uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
+                length:47,//length, shortest possible without disassembly. Used to calculate CQB usefulness
+                bLength:25.9,//barrel length
+                MOA:2,
+                eRange:1400//yards
             },
-            W_R700:{
-                name:"Remington 700 sniper rifle",
-                weight:8.99,
-                length:41.5,
-                bLength:26,
-                caliber:gComponents.calibers.c762x51,
-                eRange:700,//this is presuming someone actually put an optic on it
-                report:160
-            },
-            W_AWM:{
-                name:"Accuracy International Arctic Warfare sniper rifle",
-                weight:15,
-                length:46.5,
-                bLength:26,
-                caliber:gComponents.calibers.c762x51,
-                eRange:870,//this is presuming someone actually put an optic on it
-                report:160
-            },
-            W_M82:{
-                name:"Barret M82",
-                weight:32.7,
-                length:57,
-                bLength:29,
-                caliber:gComponents.calibers.c50bmg,
-                eRange:1969,//0_0\\
-                report:165
-            },
-            W_S_TRG:{
-                name:"Sako TRG sniper rifle",
-                weight:10.4,
-                length:45.28,
-                bLength:25.98,
-                caliber:gComponents.calibers.c762x51,
-                eRange:875,
-                report:162.75
-            },
-            W_M24A1:{
-                name:"M24 sniper rifle",
-                weight:12,
-                length:43,
-                bLength:24,
-                caliber:gComponents.calibers.c762x51,
-                eRange:875,
-                report:163
-            },
-            W_BT_APR308:{
-                name:"B&T APR",
-                weight:15.45,
-                length:44.8,
-                bLength:24,
-                caliber:gComponents.calibers.c762x51,
-                eRange:1094,
-                report:163
-            },
-            W_VSSM:{
-                name:"VSSM light sniper rifle",
-                weight:5.73,
-                length:24.2,
-                bLength:7.9,
-                caliber:gComponents.calibers.c9x39,
-                eRange:464,
-                report:130
-            },
-            W_ASVAL:{
-                name:"VSSM light sniper rifle",
-                weight:5.51,
-                length:24.2,
-                bLength:7.9,
-                caliber:gComponents.calibers.c9x39,
-                eRange:464,
-                report:130
-            },
-            W_ZM93_BA:{
-                name:"Zastava M93 Black Arrow sniper rifle",
-                weight:35,
-                length:65.748,
-                bLength:39.37,
-                caliber:gComponents.calibers.c50bmg,
-                eRange:3280,//bruhhhhh
-                report:165
-            },
-            W_MMTAC50:{
-                name:"McMillan TAC-50 sniper rifle",
-                weight:26,
-                length:57,
-                bLength:29,
-                caliber:gComponents.calibers.c50bmg,
-                eRange:1970,
-                report:165
-            },
-            W_M40A5:{
-                name:"M40A5 USMC Sniper",
-                disc:"Predecessor to the MK13M7, used by the USMC, being replaced as of 2018. Uses the M8541 SSDS, can also be equipped with the Simrad KN200 NV WS",
-                weight:16.5,
-                length:44.25,
-                bLength:25,
-                caliber:gComponents.calibers.c762x51,
-                eRange:874.89,
-                report:162
-            },
-            
 
-            //sub machine guns
-            W_MPSD:{
-                name:"H&K MP5SD suppressed submachine gun",
-                weight:5.6,
-                length:27,
-                bLength:8.9,
-                caliber:gComponents.calibers.c9x19,
-                eRange:218,
-                report:130
-            },            
-        },
-        MG:{
-            W_DSHK:{
+            //bolt snipers
 
-            },
-            W_NSV:{
 
-            },
-            W_PK:{
+            //heavy snipers/anti-materiel rifles
 
-            },
-            W_PKP:{
 
-            },
-            W_KORD:{
-    
-            },
+
+
+
+
+
         },
         pistol:{
             W_M9:{
@@ -3407,6 +3107,24 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
         },
         uBGL:{
+                    /*
+            Naming Convention is as follows:
+            p = picatinny 
+            ak = ak-pattern
+        */
+            ak_UBGL_GP25:{
+                name:"GP-25 Kostyor",
+                disc:"'Bonfire' underbarrel grenade launcher for AK pattern rifles",
+                weight:3.31,
+                mountStyle:2
+            },
+            p_UBGL_M320:{
+                name:"M320 Grenade Launcher Module",
+                disc:"replacement for the M203 in US service",
+                weight:3.3,
+                mountStyle:1
+            },
+
             W_GP25:{
                 name:"GP-25 Kostyor",
                 disc:"'Bonfire' underbarrel grenade launcher for AK pattern rifles",
@@ -3439,309 +3157,34 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             },
         },
         RL:{
-            RL_M72A7:{
-                name:"M72A7 Light Antitank Weapon",
-                disc:"Light, general purpose single-shot rocket launcher for use against light vehicles and structures",
+        /*
+            Naming Convention is as follows:
+
+        */
+            RL_RPG7V2:{
+                name:"RPG-7V2",
+                disc:"extremely prolific russian rocket-propelled grenade launcher",
+                isSingleShot:0,
+                weight:13.9,
+                opticMountStyle:3
+            },
+            RL_M136:{
+                name:"M136",
+                disc:"common single-shot recoilless anti-tank weapon of western forces",
                 isSingleShot:1,
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,0,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                weight:7.9,//lbs
-                roundWeight:0,//0 because it's unreloadable and thus the weight of the whole system is used. 
-                warheadWeight:2,//lbs explosive (estimated for the LAW)
-                pen:150,//mm rha    
-                eRange:240//yards
-            },
-            RL_M3MAAWS:{
-                name:"Carl Gustaf M3 recoilless rifle",
-                disc:"multipurpose reloadable recoilless rifle with a vast variety of available rounds",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:0,
-                roundWeight:6.83,//stat taken from wiki, FFV441B HE round. 
-                weight:22,
-                warheadWeight:6.5,
-                pen:400,    
-                eRange:546//yards
-            },
-            FGM148:{
-                name:"FGM-148 Javelin heavy antitank guided missile launcher",
-                disc:"reloadable top-attack advanced ATGML",
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,1,1,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:2,//naked eye, heat seeking, other
-                roundWeight:35,
-                isSingleShot:0,
                 weight:0,
-                warheadWeight:35,
-                pen:760,    
-                eRange:4000//yards
+                opticMountStyle:1
             },
-            RPG26:{
-                name:"RPG-26 Aglen",
-                disc:"light single shot anti-tank rocket launcher",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
+            RL_RPG26:{
+                name:"RPG-26 'Aglen",
+                disc:"common single-shot rocket launcher of the former USSR",
                 isSingleShot:1,
-                roundWeight:0,
-                weight:6.4,
-                warheadWeight:4,
-                pen:440,    
-                eRange:273.4//yards
-            },
-            RPG7V2:{
-                name:"RPG-7V2 rocket launcher",
-                disc:"extremely common rocket launcher with a variety of warheads",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:0,
-                weight:15.4,
-                roundWeight:5.7,
-                warheadWeight:10,
-                pen:550,    
-                eRange:360//yards
-            },
-            RPG22:{
-                name:"RPG-22 Netto",
-                disc:"extremely common rocket launcher with a variety of warheads",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:1,
-                roundWeight:0,
-                weight:4.172,
-                warheadWeight:2,
-                pen:400,    
-                eRange:218.72//yards
-            },
-            RPG27:{
-                name:"RPG-27 Tavolga",
-                disc:"Soviet single-shot disposable rocket launcher",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:1,
-                roundWeight:0,
-                weight:16.755,
-                warheadWeight:2,
-                pen:750,    
-                eRange:218.72//yards
-            },
-            RPG28:{
-                name:"RPG-28 Klyukva",
-                disc:"Soviet single-shot disposable rocket launcher",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:1,
-                roundWeight:26.45,
-                weight:29.762,
-                warheadWeight:2,
-                pen:1000,    
-                eRange:328.083//yards
-            },
-            RPG29:{
-                name:"RPG-29 Vampir",
-                disc:"Fairly modern russian reloadable rocket launcher, dangerous against even the most modern tanks. Usually comes with the 1P38 sight.",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:0,
-                roundWeight:14,
-                weight:27,
-                warheadWeight:3,//arbitrary
-                pen:750,//this is arbitrary because it has a stated pen value of 650mm, yet that's AFTER active and dynamic protection.
-                eRange:500//yards
-            },
-            RPG30:{
-                name:"RPG-30 Kryuk",
-                disc:"Modern and very dangerous APS defeating tandem charge disposable rocket launcher, introduced by Russia in 2008",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:1,
-                roundWeight:0,
-                weight:22.707,
-                warheadWeight:2,
-                pen:1000,//this is arbitrary because it has a stated pen value of 650mm, yet that's AFTER active and dynamic protection.
-                eRange:218.72//yards
-            },
-            RPG32:{
-                name:"RPG-32 Barkas",
-                disc:"Modern Russian reusable rocket launcher",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:1,
-                roundWeight:8.81,//middle ground between the anti-tank and anti-personnel rounds
-                weight:6.613,
-                warheadWeight:2,
-                pen:750,//this is arbitrary because it has a stated pen value of 650mm, yet that's AFTER active and dynamic protection.
-                eRange:382.764//yards
-            },
-            AT4HEAT:{
-                name:"M136 AT4 HEAT",
-                disc:"NATO single shot rocket launcher",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:1,
-                weight:13,
-                roundWeight:0,
-                warheadWeight:.97,
-                pen:450,    
-                eRange:328//yards
-            },
-            M141BDM:{
-                name:"M141 Bunker Defeat Munition",
-                disc:"disposable, single-shot shoulder-fired rocket launcher designed to defeat hardened structures",
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:1,
-                weight:13.7,
-                roundWeight:0,
-                warheadWeight:2,
-                pen:500,    
-                eRange:1093//yards
-            },
-            NLAW:{
-                name:"Saab Bofors Dynamics NLAW",
-                disc:"disposable, single-shot shoulder-fired PLOS anti-tank rocket",
-                guidance:1,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,0,0,1,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                isSingleShot:1,
-                weight:28,
-                roundWeight:0,
-                warheadWeight:4,
-                pen:500,    
-                eRange:850//yards
-            },
-            RL_MK153_SMAW:{
-                name:"MK 154 Shoulder-Launched Multipurpose Assault Weapon",
-                disc:"USMC-unique SMAW replacement used by USMC, Ukraine and Pakistan, interestingly",
-                isSingleShot:0,
-                guidance:0,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:0,//naked eye, heat seeking, other
-                weight:16.6,//the round is in it's own tube, attached to the back of the launcher. It is thus pretty heavy.
-                roundWeight:12.9,
-                warheadWeight:2,//lbs explosive (estimated for the LAW)
-                pen:600,//mm rha    
-                eRange:546//yards
+                weight:0,
+                opticMountStyle:0
             },
 
 
             // MAN PORTABLE SURFACE TO AIR MISSILES
-            RL_FIM92E:{
-                name:"FIM-92E Stinger RMP Block I",
-                disc:"Standard US IR MANPAD with midlife upgrade",
-                isSingleShot:0,
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
-                weight:10,//lbs
-                warheadWeight:2.25,
-                roundWeight:24,
-                pen:150,//mm rha    
-                eRange:4000//yards
-            },
-            RL_FIM92J:{
-                name:"FIM-92J Stinger RMP Block I+",
-                disc:"Standard US IR MANPAD with EOL upgrade",
-                isSingleShot:0,
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
-                weight:10,//lbs
-                warheadWeight:2.25,
-                roundWeight:24,
-                pen:150,//mm rha    
-                eRange:4250//yards
-            },
-            RL_SA18:{
-                name:"SA-18 Igla",
-                disc:"1983 variant of the SA-16 Gimlet short range MANPAD",
-                isSingleShot:1,
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
-                weight:39.46,//lbs
-                warheadWeight:3.74,
-                roundWeight:0,
-                pen:150,//mm rha    
-                eRange:5650//yards
-            },
-            RL_SA24:{
-                name:"SA-24 Grinch",
-                disc:"2004 variant of the SA-16 Gimlet short range MANPAD",
-                isSingleShot:1,
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
-                weight:39.46,//lbs
-                warheadWeight:3.74,
-                roundWeight:0,
-                pen:150,//mm rha    
-                eRange:6560//yards
-            },
-            RL_SA25:{
-                name:"SA-25 Verba",
-                disc:"2004 variant of the SA-16 Gimlet short range MANPAD",
-                isSingleShot:0,
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
-                weight:8,//lbs
-                warheadWeight:3.3,
-                roundWeight:30,
-                pen:150,//mm rha    
-                eRange:6560//yards
-            },
-            RL_Grom:{
-                name:"Grom",
-                disc:"1995 Polish modernization of the SA-18 Igla",
-                isSingleShot:0,
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[0,0,0,0,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:1,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
-                weight:13,//lbs
-                warheadWeight:2.8,
-                roundWeight:23,
-                pen:150,//mm rha    
-                eRange:6000//yards
-            },
-            RL_SHVM:{
-                name:"Starstreak High Velocity Missile",
-                disc:"ultra fast, uniquely designed self guiding laser MANPAD",
-                isSingleShot:0,
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[0,0,1,1,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
-                weight:10,//lbs
-                warheadWeight:3,
-                roundWeight:20.86,
-                pen:150,//mm rha    
-                eRange:7650//yards
-            },
-            RL_SHVMII:{
-                name:"Starstreak II High Velocity Missile",
-                disc:"ultra fast, uniquely designed self guiding laser MANPAD",
-                isSingleShot:0,
-                guidance:3,//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is smart. 
-                useCase:[0,0,1,1,0,1,1,1],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-                aquisition:2,//naked eye, heat seeking, other (in this case it has UV and IR which makes it very effective against countermeasures)
-                weight:10,//lbs
-                warheadWeight:3,
-                roundWeight:20.86,
-                pen:150,//mm rha    
-                eRange:7800//yards
-            },
-
 
         },
         fGren:{
@@ -4288,6 +3731,83 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
         }
     },
     optics:{
+        /*
+            Naming Convention is as follows:
+            po = picatinny optic
+            ako = ak-pattern optic
+            rlo = rocket launcher optic (typically proprietary)
+            prd = picatinny non-magnifying
+            akrd = ak-pattern non-magnifying
+        */
+        //picatinny rail
+        po_TA11RCO_ACOG:{
+            name:"TA11 ACOG",//the text name of the scope
+            disc:"ubiquitous magnified day sight for 5.56 rifles",
+            mag:3.5,//magnification x
+            obj:35,
+            weight:.875,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+            mountStyle:1,
+        },
+        po_C79:{
+            name:"Elcan C79",//the text name of the scope
+            disc:"frequently found on light machine guns, especially the M249 and  M240",
+            mag:3.4,//magnification x
+            obj:28,
+            weight:1.521,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+            mountStyle:1,
+        },
+        po_TANGO6T:{
+            name:"S&W TANGO6T",//the text name of the scope
+            disc:"riflescope used by the USMC M40A5",
+            mag:6,
+            obj:24,
+            mountStyle:1,
+            weight:1.5,//guessing that the rings weigh .12 pounds
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+        prd_M68_CCO:{
+            name:"Aimpoint CompM4 M68 Close Combat Optic",//the text name of the scope
+            disc:"non-magnified red dot found frequently on the rifles of western troops",
+            mag:0,
+            obj:30,
+            mountStyle:1,
+            weight:.738,//guessing that the rings weigh .12 pounds
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+        },
+
+        //ak-pattern
+        ako_1P78:{
+            name:"1P78-1 Kashtan",//the text name of the scope
+            disc:"standard modernized rifle scope of the russian military, optimized for AK-74 pattern rifles",
+            mag:2.8,//magnification x
+            obj:25,//objective diameter, mm
+            weight:1.1,//weight, pounds, with mount if applicable and possible
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR
+            mountStyle:2
+        },
+        ako_PSO1M2:{
+            name:"PSO-1M2 ",//the text name of the scope
+            disc:"Zenit standard modernized rifle scope of the russian military, modernized and used for mounting on the SVD-M ",
+            mag:4,//magnification x
+            obj:24,//objective diameter, mm
+            weight:1.55,//weight, pounds.
+            mountStyle:1,
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR
+        },
+
+        //rocket launcher, typically proprietary
+        rlo_PGO7:{
+            name:"PGO-7",//the text name of the scope
+            disc:"Standard magnified optic for the RPG-7 series",
+            mag:2.7,//magnification x
+            obj:27,//this is a guess
+            weight:1.36,//weight, pounds.
+            NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
+            mountStyle:3
+        },
+        
         //magnifiying scopes
         o_1P78:{
             name:"1P78-1 Kashtan",//the text name of the scope
@@ -4531,6 +4051,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             disc:"Rifle suppressor for AK-47 pattern rifles",
             length:7.9,
             weight:1,
+            mountStyle:3,
             reportReduction:15//db that the gunshot will be with the suppressor fitted
         },
         s_PBS4:{
@@ -4538,6 +4059,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             disc:"Rifle suppressor for AK-74 pattern rifles",
             length:7.9,//length and width copied from the PBS-1 due to lack of data
             weight:1,
+            mountStyle:2,
             reportReduction:15//db reduction
         },
         s_MSX240:{
@@ -4545,6 +4067,7 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             disc:"Suppressor for the M240",
             length:10,
             weight:1,
+            mountStyle:4,
             reportReduction:24//db reduction
         },
         s_KACNT4:{
@@ -4552,10 +4075,53 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             disc:"Rifle Suppressor issued to USMC infantrymen for their M4 and M27 rifles",
             length:6.5,//length and width copied from the PBS-1 due to lack of data
             weight:1.375,
+            mountStyle:1,
             reportReduction:30//db reduction
         }
     },
     foreGrips:{
+        /*
+            Naming Conventions
+            p = picatinny
+            ak = ak
+            pr = proprietary 
+
+            mg = mini-grip
+            fg = foregrip, mid or full-size grip
+            fgbp = foregrip bipod
+            bp = bipod
+        */
+        p_fgbp_GPS02:{
+            name:"GPS-02 grip-bipod",
+            disc:"common attachment for western rifles",
+            type:5,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
+            weight:1.5,//guess, looked on 3 different websites and nobody was saying.    
+            mountStyle:1,
+        },
+        p_bp_HL:{
+            name:"Harris S-L Bipod",
+            disc:"high end bipod used on US military DMR and snipers",
+            type:4,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
+            weight:.938,//guess, looked on 3 different websites and nobody was saying.    
+            mountStyle:1,
+        },
+        pr_bp_HL:{
+            name:"PKP Pechneg Bipod",
+            disc:"standard issue PKP bipod",
+            type:4,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
+            weight:1,//guess, looked on 3 different websites and nobody was saying.    
+            mountStyle:2,
+        },
+        ak_bp_HL:{
+            name:"RPK-74",
+            disc:"standard issue RPK bipod",
+            type:4,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
+            weight:0,//guess, looked on 3 different websites and nobody was saying.    
+            mountStyle:2,
+        },
+
+
+
         fg_S1:{
             name:"S1 Bipod",
             disc:"Soviet bipod for SVD rifles, not to be confused with the one on the SVDM. Fairly rudimentary, likely proprietary to the SVD",
@@ -5509,6 +5075,50 @@ const tComponents={//30 round 7.62 mag weighs 1.99 lbs
             weight:6.5,//pounds
             camo:1,//0 winter, 1 woodland, 2 desert, 3 tropical
         },
+    },
+    supplies:{
+        rations:{
+            r_2020_ChiliMac_MRE:{
+                name:"2020 Chili and Macaroni MRE",
+                disc:"Commonly considered one of the best MREs in existence, comes with chili mac, pound cake, jalapeno cheddar cheese crackers, beef snacks, candy, beverage powder, red pepper spice, condiments.",
+                expirationYear:2026,
+                kCal:1250,
+                troopRating:5,
+                quality:5,
+                weight:1.35,
+                includesHeater:1
+            },
+            r_2020_CheeseTortellini_MRE:{
+                name:"2020 Cheese Tortellini MRE",
+                disc:"Commonly considered one of the best MREs in existence, comes with cheese tortellini, dessert powder, peanut butter crackers, nuts and raisins, beverage powder, hot sauce",
+                expirationYear:2026,
+                kCal:1250,
+                troopRating:5,
+                quality:5,
+                weight:1.35,
+                includesHeater:1
+            },
+            r_2020_BeefStew_MRE:{
+                name:"2020 Beef Stew MRE",
+                disc:"Beef stew, fudge brownie, peanut butter, multigrain snack bread, jelly, pretzels, beverage powder, hot sauce",
+                expirationYear:2026,
+                kCal:1250,
+                troopRating:4.5,
+                quality:5,
+                weight:2.82,
+                includesHeater:1
+            },
+            r_2020_IRP:{
+                name:"2020 full-day IRP",
+                disc:"Russian military ration, 1 has enough food for 24 hours if you can actually ingest it",
+                expirationYear:2026,
+                kCal:4790,
+                troopRating:4,
+                quality:4,
+                weight:4.6,
+                includesHeater:0
+            },
+        }
     }
 };
 const vComponents={
@@ -8115,2074 +7725,2185 @@ V : Vehicle driver
 
 */
     personnel:{
-        T_Rifleman:{
-            1:{
-                value:2.8,
-                primary:"W_AK74",
-                primaryOptic:"1P78",
-                supplies:[210,0,0,4,0,3,.4],
-                suppliesPerHourCombat:[120,0,0,3,0,.04166,.16],
-                suppliesPerHourOnFront:[12,0,0,.015,0,.04166,.1458],
-                suppliesPerHourInReserve:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[2.4,0,0,.03,0,.04166,.135],
-                moraleImpactOutOfAction:-5,
-                effectivenessImpactOutOfAction:-5,
-                cDI:[11.25,.1875,.0375,.0750],
-                cDIWV:[9.75,.162,.032,.065],
-                cD:[5.625,.0937,.0187,.0375],
-                cDWV:[4.975,.0812,.0162,.0325],
-            },
-            2:{
-                value:3.3,
-                primary:"W_AK74",
-                primaryOptic:"1P78",
-                supplies:[210,0,0,3,0,3,.4],
-                suppliesPerHourCombat:[102,0,0,2.55,0,.04166,.16],
-                suppliesPerHourOnFront:[10.2,0,0,.1275,0,.04166,.1458],
-                suppliesPerHourInReserve:[.255,0,0,0,0,0.04166,.116],
-                suppliesPerHourPolicing:[2.04,0,0,.03,0,.04166,.135],
-                moraleImpactOutOfAction:-5,
-                effectivenessImpactOutOfAction:-5,
-                cDI:[12.6,.21,.042,.084],
-                cDIWV:[11.1,.185,.037,.074],
-                cD:[6.3,.105,.021,.042],
-                cDWV:[5.55,.0925,.0185,.037],
-            },
-            3:{
-                value:3.2,
-                primary:"W_AK74",
-                primaryOptic:"1P78",
-                supplies:[270,0,0,2,10,1,.2],
-                suppliesPerHourCombat:[100,0,0,.5,4.5,.04166,.16],
-                suppliesPerHourOnFront:[10,0,0,.015,.45,.04166,.1458],
-                suppliesPerHourInReserve:[.25,0,0,0,.009,.04166,.116],
-                suppliesPerHourPolicing:[.3,0,0,.005,.09,.04166,.135],
-                secondary:"W_GP25",
-                moraleImpactOutOfAction:-5,
-                effectivenessImpactOutOfAction:-5,
-                cDI:[10.2,.169,.033,.067], 
-                cDIWV:[8.7,.145,.0289,.0579], 
-                cD:[5.1,.0849,.0169,.0339],
-                cDWV:[4.35,.0725,.0144,.0289],
-            },
-            AGF_1_11B_G:{//Abkhaz Ground Forces standard issue 11B (infantryman), Green
-                name:0,
-                ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
+        US:{
+            army:{
+                infantry:{
+                    inf_11B_LAT:{
+                        name:0,
+                        ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_M4A1,
+                            optic:tComponents.optics.prd_M68_CCO,
+                            suppressor:0,
+                            mag:gComponents.mags.m_USGI30AR,
+                            ammunition:[gComponents.calibers.c556x45,210],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:tComponents.railAccessories.ra_ANPEQ16,
+                            gripMod:tComponents.foreGrips.p_fgbp_GPS02,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:gComponents.mags.m_M249_100Sack,
+                            ammunition:[gComponents.calibers.c556x45,100],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:tComponents.weapons.RL.RL_M136,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[gComponents.specialAmmunition.sA_M136_HEAT,1],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_M67,1],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_MSV,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_ComTacIII,
+                            squadComms:tComponents.pRadios.pr_MR3000P,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_ACU_OCP,
+                            IFAK:tComponents.iFAKs.iFAK_II,
+                            canteen:tComponents.canteens.GI_MOLLE,           
+                            helmet:tComponents.helmets.h_ECH_W,
+                            backpack:tComponents.backpacks.ap_MOLLE2_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_MSS_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_ChiliMac_MRE,4],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                    inf_11B_FTL:{
+                        name:0,
+                        ID:[0,0,1],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_M4A1,
+                            optic:tComponents.optics.po_TA11RCO_ACOG,
+                            suppressor:0,
+                            mag:gComponents.mags.m_USGI30AR,
+                            ammunition:[gComponents.calibers.c556x45,210],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:tComponents.railAccessories.ra_ANPEQ16,
+                            gripMod:tComponents.foreGrips.p_fgbp_GPS02,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_M67,1],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_MSV,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_ComTacIII,
+                            squadComms:tComponents.pRadios.pr_MR3000P,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_ACU_OCP,
+                            IFAK:tComponents.iFAKs.iFAK_II,
+                            canteen:tComponents.canteens.GI_MOLLE,           
+                            helmet:tComponents.helmets.h_ECH_W,
+                            backpack:tComponents.backpacks.ap_MOLLE2_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_MSS_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_ChiliMac_MRE,4],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                    inf_11B_Gren:{
+                        name:0,
+                        ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_M4A1,
+                            optic:tComponents.optics.po_TA11RCO_ACOG,
+                            suppressor:0,
+                            mag:gComponents.mags.m_USGI30AR,
+                            ammunition:[gComponents.calibers.c556x45,210],
+                            uBGL:tComponents.weapons.uBGL.p_UBGL_M320,
+                            uBGLAmmunition:[gComponents.uBGLAmmunition.uA_40mm,5],
+                            railAccessory:tComponents.railAccessories.ra_ANPEQ16,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_M67,1],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_MSV,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_ComTacIII,
+                            squadComms:tComponents.pRadios.pr_MR3000P,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_ACU_OCP,
+                            IFAK:tComponents.iFAKs.iFAK_II,
+                            canteen:tComponents.canteens.GI_MOLLE,           
+                            helmet:tComponents.helmets.h_ECH_W,
+                            backpack:tComponents.backpacks.ap_MOLLE2_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_MSS_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_ChiliMac_MRE,4],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                    inf_11BC_M249:{
+                        name:0,
+                        ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.lmg_M249PIP,
+                            optic:tComponents.optics.po_C79,
+                            suppressor:0,
+                            mag:gComponents.mags.m_M249_100Sack,
+                            ammunition:[gComponents.calibers.c556x45,300],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:tComponents.railAccessories.ra_ANPEQ16,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_M67,1],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_MSV,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_ComTacIII,
+                            squadComms:tComponents.pRadios.pr_MR3000P,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_ACU_OCP,
+                            IFAK:tComponents.iFAKs.iFAK_II,
+                            canteen:tComponents.canteens.GI_MOLLE,           
+                            helmet:tComponents.helmets.h_ECH_W,
+                            backpack:tComponents.backpacks.ap_MOLLE2_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_MSS_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_ChiliMac_MRE,4],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11BC",
+                        },
+                    },
+                    inf_11Z_SL:{
+                        name:0,
+                        ID:[0,0,2],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_M4A1,
+                            optic:tComponents.optics.po_TA11RCO_ACOG,
+                            suppressor:0,
+                            mag:gComponents.mags.m_USGI30AR,
+                            ammunition:[gComponents.calibers.c556x45,210],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:tComponents.railAccessories.ra_ANPEQ16,
+                            gripMod:tComponents.foreGrips.p_fgbp_GPS02,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_M67,1],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_MSV,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_ComTacIII,
+                            squadComms:tComponents.pRadios.pr_MR3000P,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_ACU_OCP,
+                            IFAK:tComponents.iFAKs.iFAK_II,
+                            canteen:tComponents.canteens.GI_MOLLE,           
+                            helmet:tComponents.helmets.h_ECH_W,
+                            backpack:tComponents.backpacks.ap_MOLLE2_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_MSS_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_ChiliMac_MRE,4],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11Z",
+                        },
+                    },
                 },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
+                support:{
                 },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_0_11B_G:{//Abkhaz Ground Forces minimal issue 11B (infantryman), Green
-                name:0,
-                ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_barmitsa,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_2_11B_G:{//Abkhaz Ground Forces  11B (infantryman) equipped with GP-34, Green
-                name:0,
-                ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:tComponents.weapons.uBGL.W_GP34,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,10,1,.5],
-                    tSupplies:[210,0,0,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_2_11B_G:{//Abkhaz Ground Forces 11B with UBGL and suppressor, Green
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:tComponents.suppressors.s_PBS4,
-                    uBGL:tComponents.weapons.uBGL.W_GP34,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,10,1,.5],
-                    tSupplies:[210,0,0,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_2_11B_G:{//Abkhaz Ground Forces 11B with rocket launcher and suppressor, Green
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:tComponents.suppressors.s_PBS4,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:tComponents.weapons.RL.RPG26,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,1,3,0,1,.5],
-                    tSupplies:[210,0,1,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
+                crew:{
+
+                }
+            }
+
         },
-        T_SR_Rifleman:{
-            1:{
-                value:4.8,
-                primary:"W_AK74",
-                supplies:[210,0,0,4,10,4,.4],
-                suppliesPerHourCombat:[110,0,0,4,10,.04166,.16],
-                suppliesPerHourOnFront:[11,0,0,.2,1,.04166,.1458],
-                suppliesPerHourInReserve:[.275,0,0,0,.025,.04166,.116],
-                suppliesPerHourPolicing:[2.2,0,0,.04,.2,.04166,.135],
-                cDI:[14.25,.237,.047,.095],
-                cDIWV:[12.75,.2125,.0425,.085],
-                cD:[7.125,.118,.023,.047],
-                cDWV:[6.375,.106,.021,.042],
-                secondary:"W_GP25",
-                moraleImpactOutOfAction:-7,
-                effectivenessImpactOutOfAction:-7,
+        Abkhazia:{
+            army:{
+                infantry:{
+                    inf_11B_base:{
+                        name:0,
+                        ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_AK74M,
+                            optic:tComponents.optics.ako_1P78,
+                            suppressor:0,
+                            mag:gComponents.mags.m_AK74M_30,
+                            ammunition:[gComponents.calibers.c545x39,210],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_RGD5,2],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_6B45M_W,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_GSSH01,
+                            squadComms:tComponents.pRadios.pr_R187P1E,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_6SH122_Ratnik,
+                            IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                            canteen:tComponents.canteens.USSR_Canteen,           
+                            helmet:tComponents.helmets.h_6B47_W,
+                            backpack:tComponents.backpacks.ap_6SH117_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_IRP,3],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                    inf_11B_uBGL:{
+                        name:0,
+                        ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_AK74M,
+                            optic:tComponents.optics.ako_1P78,
+                            suppressor:0,
+                            mag:gComponents.mags.m_AK74M_30,
+                            ammunition:[gComponents.calibers.c545x39,210],
+                            uBGL:tComponents.weapons.uBGL.ak_UBGL_GP25,
+                            uBGLAmmunition:[gComponents.uBGLAmmunition.uA_40mmRU,5],
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_RGD5,2],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_6B45M_W,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_GSSH01,
+                            squadComms:tComponents.pRadios.pr_R187P1E,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_6SH122_Ratnik,
+                            IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                            canteen:tComponents.canteens.USSR_Canteen,           
+                            helmet:tComponents.helmets.h_6B47_W,
+                            backpack:tComponents.backpacks.ap_6SH117_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_IRP,3],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                    inf_11B_grenAsst:{
+                        name:0,
+                        ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_AK74M,
+                            optic:tComponents.optics.ako_1P78,
+                            suppressor:0,
+                            mag:gComponents.mags.m_AK74M_30,
+                            ammunition:[gComponents.calibers.c545x39,120],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[gComponents.specialAmmunition.sA_RPG7_PG7VL_HEAT,2],
+                            APRound:[0,0],
+                            HeavyRound:[gComponents.specialAmmunition.sA_RPG7_PG7VR_THEAT,1],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_RGD5,2],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_6B45M_W,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_GSSH01,
+                            squadComms:tComponents.pRadios.pr_R187P1E,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_6SH122_Ratnik,
+                            IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                            canteen:tComponents.canteens.USSR_Canteen,           
+                            helmet:tComponents.helmets.h_6B47_W,
+                            backpack:tComponents.backpacks.ap_6SH117_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_IRP,3],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                    inf_11B_gren_RPG7:{
+                        name:0,
+                        ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_AK74M,
+                            optic:tComponents.optics.ako_1P78,
+                            suppressor:0,
+                            mag:gComponents.mags.m_AK74M_30,
+                            ammunition:[gComponents.calibers.c545x39,90],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:tComponents.weapons.RL.RL_RPG7V2,
+                            optic:tComponents.optics.rlo_PGO7,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[gComponents.specialAmmunition.sA_RPG7_PG7VL_HEAT,1],
+                            APRound:[0,0],
+                            HeavyRound:[gComponents.specialAmmunition.sA_RPG7_PG7VR_THEAT,1],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[0,0],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_6B45L_W,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_GSSH01,
+                            squadComms:tComponents.pRadios.pr_R187P1E,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_6SH122_Ratnik,
+                            IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                            canteen:tComponents.canteens.USSR_Canteen,           
+                            helmet:tComponents.helmets.h_6B47_W,
+                            backpack:tComponents.backpacks.ap_6SH117_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_IRP,3],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                    inf_11BC_RPK74M:{
+                        name:0,
+                        ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.saw_RPK74M,
+                            optic:tComponents.optics.ako_1P78,
+                            suppressor:0,
+                            mag:gComponents.mags.m_RPK74M_45,
+                            ammunition:[gComponents.calibers.c545x39,180],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_RGD5,1],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_6B45M_W,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_GSSH01,
+                            squadComms:tComponents.pRadios.pr_R187P1E,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_6SH122_Ratnik,
+                            IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                            canteen:tComponents.canteens.USSR_Canteen,           
+                            helmet:tComponents.helmets.h_6B47_W,
+                            backpack:tComponents.backpacks.ap_6SH117_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_IRP,3],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11BC",
+                        },
+                    },
+                    inf_11B_FTL:{
+                        name:0,
+                        ID:[2,0,1],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_AK74M,
+                            optic:tComponents.optics.ako_1P78,
+                            suppressor:0,
+                            mag:gComponents.mags.m_AK74M_30,
+                            ammunition:[gComponents.calibers.c545x39,210],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_RGD5,2],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_6B45M_W,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_GSSH01,
+                            squadComms:tComponents.pRadios.pr_R187P1E,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_6SH122_Ratnik,
+                            IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                            canteen:tComponents.canteens.USSR_Canteen,           
+                            helmet:tComponents.helmets.h_6B47_W,
+                            backpack:tComponents.backpacks.ap_6SH117_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_IRP,3],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                    inf_11Z_Base:{
+                        name:0,
+                        ID:[2,0,2],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        primary:{//primary weapon, must be a firearm
+                            name:tComponents.weapons.firearms.ar_AK74M,
+                            optic:tComponents.optics.ako_1P78,
+                            suppressor:0,
+                            mag:gComponents.mags.m_AK74M_30,
+                            ammunition:[gComponents.calibers.c545x39,210],
+                            uBGL:0,
+                            uBGLAmmunition:[0,0],
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        secondary:{//secondary weapon, must be a firearm
+                            name:0,
+                            optic:0,
+                            suppressor:0,
+                            mag:0,
+                            ammunition:[0,0],
+                            uBGL:0,
+                            uBGLAmmunition:0,
+                            railAccessory:0,
+                            gripMod:0,
+                            weight:0,
+                        },
+                        special:{//special weapon, a standalone rocket launcher
+                            name:0,
+                            optic:0,
+                            gripMod:0,
+                            weight:0,
+                            GPRound:[0,0],
+                            APRound:[0,0],
+                            HeavyRound:[0,0],
+                            SmokeRound:[0,0],
+                        },
+                        explosives:{
+                            explosive1:[tComponents.weapons.fGren.G_RGD5,2],//name of explosive, quantity of explosive
+                            explosive2:[0,0],
+                            explosive3:[0,0],
+                        },
+                        mines:{
+                            mine1:0,
+                            mine2:0,
+                            mine3:0,
+                        },
+                        kit:{
+                            bArmor:tComponents.vests.v_6B45M_W,
+                            nods:0,
+                            earPro:tComponents.headSets.hs_GSSH01,
+                            squadComms:tComponents.pRadios.pr_R187P1E,
+                            radio:0,
+                            uniform:tComponents.uniforms.u_6SH122_Ratnik,
+                            IFAK:tComponents.iFAKs.iFAK_Generic_1,
+                            canteen:tComponents.canteens.USSR_Canteen,           
+                            helmet:tComponents.helmets.h_6B47_W,
+                            backpack:tComponents.backpacks.ap_6SH117_W,
+                            tent:0,       
+                            sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
+                            supplies:{
+                                ration1:[tComponents.supplies.rations.r_2020_IRP,3],
+                                ration2:[0,0],
+                                ration3:[0,0],
+                                waterContainer1:[0,0],
+                                waterContainer2:[0,0],
+                            }    
+                        },
+                        buffs:{
+                            rMealBuff:1,
+                            rWaterBuff:1,
+                            rHotMealBuff:1,
+                            rHotShowerBuff:1,
+                            rReserveTimeBuff:1,
+                        },
+                        status:{
+                            currentActivity:1,
+                            activityLevel:2,    
+                            inVehicle:0,
+                            inCombatType:0,
+                            stress:1,
+                            totalKitWeight:0,
+                            effectivness:1,
+                            calorieBalance:0,
+                            waterBalance:0,
+                            morale:1,
+                            willToFight:{
+                                totalWillToFight:0,
+                                capabilities:{
+                                    competence:[
+                                        4,//sustainability
+                                        5,//sufficiency
+                                        9,//skills
+                                        14//relevance
+                                    ],
+                                    quality:[
+                                        7,//adaptability
+                                        4,//education
+                                        15,//fitness
+                                        4.5,//psych traits
+                                        4.8,//resilience
+                                        4.5,//social skills
+                                    ],
+                                },
+                                motivations:{
+                                    desperation:10,
+                                    revenge:2.5,
+                                    ideology:7.5,
+                                    identity:[
+                                        3,//organization
+                                        2.5,//personal
+                                        3,//unit
+                                        4.5,//state
+                                        4.5,//social
+                                        4.5//society
+                                    ]
+                                }
+                            },
+                            hActiveSinceLRest:[
+                                0,//basic metabolic rate
+                                0,//sedentary, little to no exercise
+                                0,//light activity
+                                0,//moderate activity
+                                0,//active,
+                                0,//very active
+                                0,//extremely active 
+                            ],
+                            hoursCombatExperience:0,
+                            hoursJobExperience:0,
+                            leadership:{//factors considered if they are in a squad leadership position
+                                hasBeenInit:0,
+                                attributes:{
+                                    character:[
+                                        9,//morality
+                                        3,//empathy
+                                        3,//warrior ethos
+                                        4.5//discipline
+                                    ],
+                                    presence:[
+                                        7.5,//military and professional bearing
+                                        8,//fitness
+                                        7.5,//confidence
+                                        7.5//resilience
+                                    ],
+                                    intellect:[
+                                        7.5, //mental agility
+                                        7.5,//sound judgement
+                                        7,//innovation
+                                        7,//interpersonal tact
+                                        8//expertise
+                                    ]
+    
+                                },
+                                competencies:{
+                                    leads:[
+                                        7.5,
+                                        7.5,
+                                        6,
+                                        7.5,
+                                        7
+                                    ],
+                                    develops:[
+                                        7.5,
+                                        7,
+                                        7.5,
+                                        7.5
+                                    ],
+                                    achieves:15
+                                }
+    
+                            },
+                            points:{//different point values contributed to the total lethality of the squad
+                                AP:0,//anti-personnel
+                                AV:0,//anti-vehicle
+                                AA:0,//anti-air
+                            },
+                            specialty:"11B",
+                        },
+                    },
+                },
+                support:{
+
+                },
+                crew:{
+                }
             },
-            2:{
-                value:3.8,
-                primary:"W_AK74",
-                supplies:[270,0,0,4,0,2,.4],
-                suppliesPerHourCombat:[93.5,0,0,4,0,.04166,.16],
-                suppliesPerHourOnFront:[9.35,0,0,.2,0,.04166,.1458],
-                suppliesPerHourInReserve:[.233,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[1.87,0,0,.04,0,.04166,.135],
-                cDI:[12.149,.202,.040,.081],
-                cDIWV:[10.649,.177,.035,.071],
-                cD:[6.074,.101,.020,.040],
-                cDWV:[5.324,.088,.017,.035],
-                secondary:0,
-                moraleImpactOutOfAction:-7,
-                effectivenessImpactOutOfAction:-7,
-            },
-            3:{
-                value:3.5,
-                issuedPrimary:"W_AK74",
-                supplies:[270,0,0,2,10,1,.2],
-                suppliesPerHourCombat:[82.5,0,0,3,7.5,.04166,.16],
-                suppliesPerHourOnFront:[8.25,0,0,.15,.75,.04166,.1458],
-                suppliesPerHourInReserve:[.206,0,0,0,.01875,.04166,.116],
-                suppliesPerHourPolicing:[1.65,0,0,.03,.15,.04166,.135],
-                cDI:[10.2,.169,.033,.067],
-                cDIWV:[8.7,.145,.028,.057],
-                cD:[5.1,.084,.016,.033],
-                cDWV:[4.35,.072,.014,.028],
-                issuedSecondary:"W_GP25",
-                moraleImpactOutOfAction:-7,
-                effectivenessImpactOutOfAction:-7, 
-            },
-            AGF_0_11B_FTL_G:{
-                name:0,
-                ID:[2,0,1],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45L,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_barmitsa,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_1_11B_FTL_G:{
-                name:0,
-                ID:[2,0,1],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:tComponents.weapons.uBGL.W_GP34,
-                    railAccessory:tComponents.railAccessories.ra_Klesch1L,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,10,1,.5],
-                    tSupplies:[210,0,0,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_2_11B_FTL_G:{
-                name:0,
-                ID:[2,0,1],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:tComponents.suppressors.s_PBS4,
-                    uBGL:0,
-                    railAccessory:tComponents.railAccessories.ra_Klesch1L,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-        },
-        T_Asst_Grenadier:{
-            1:{
-                value:3.3,
-                primary:"W_AK74",
-                supplies:[120,0,0,4,0,3,.4],
-                suppliesPerHourCombat:[110,0,0,4,0,.04166,.16],
-                suppliesPerHourOnFront:[11,0,0,.4,0,.04166,.1458],
-                suppliesPerHourInReserve:[.275,0,0,.004,0,0.04166,.116],
-                suppliesPerHourPolicing:[2.2,0,0,.08,0,.04166,.135],
-                cDI:[14.399,.24,.048,.096],
-                cDIWV:[12.9,.215,.043,.086],
-                cD:[7.199,.12,.024,.048],
-                cDWV:[6.45,.107,.021,.043],
-                secondary:0,
-                moraleImpactOutOfAction:-5.5,
-                effectivenessImpactOutOfAction:-6,     
-            },
-            2:{
-                value:3.25,
-                primary:"W_AK74",
-                supplies:[120,0,0,3,0,2,.4],
-                suppliesPerHourCombat:[93.5,0,0,3.4,0,.04166,.16],
-                suppliesPerHourOnFront:[9.35,0,0,.34,0,.04166,.1458],
-                suppliesPerHourInReserve:[.23375,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[1.87,0,0,.068,0,.04166,.135],
-                cDI:[13.799,.229,.046,.092],
-                cDIWV:[12.299,.205,.041,.082],
-                cD:[6.899,.114,.023,.046],
-                cDWV:[6.149,.102,.020,.041],
-                secondary:0,
-                moraleImpactOutOfAction:-5.5,
-                effectivenessImpactOutOfAction:-6,
-            },
-            3:{
-                value:3.2,
-                primary:"W_AK74",
-                supplies:[90,0,0,4,10,1,.2],
-                suppliesPerHourCombat:[82.5,0,0,3,7,.04166,.16],
-                suppliesPerHourOnFront:[8.25,0,0,.3,.7,.04166,.1458],
-                suppliesPerHourInReserve:[.206,0,0,0,.00175,.04166,.116],
-                suppliesPerHourPolicing:[1.65,0,0,0.06,0.15,.04166,.135],
-                cDI:[11.7,.194,.039,.078],
-                cDIWV:[10.2,.169,.033,.067],
-                cD:[5.85,.097,.019,.039],
-                cDWV:[5.1,.084,.016,.033],
-                secondary:"W_GP25",
-                moraleImpactOutOfAction:-5.5,
-                effectivenessImpactOutOfAction:-6,
-            },
-            AGF_0_11B_AG_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_PKAS,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_barmitsa,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,4,3,0,1,.5],
-                    tSupplies:[210,0,4,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_1_11B_AG_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,4,3,0,1,.5],
-                    tSupplies:[210,0,4,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_2_11B_AG_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:tComponents.suppressors.s_PBS4,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,4,3,0,1,.5],
-                    tSupplies:[210,0,4,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-        },
-        T_Grenadier:{
-            1:{
-                value:5,
-                primary:"W_AK74",
-                supplies:[210,0,8,1,0,2,.4],
-                suppliesPerHourCombat:[80,0,5.5,.3,0,.04166,.16],
-                suppliesPerHourOnFront:[8,0,.55,.03,0,.04166,.1458],
-                suppliesPerHourInReserve:[.2,0,.01375,0,0,.04166,.116],
-                suppliesPerHourPolicing:[1.6,0,.11,.006,0,.04166,.135],
-                cDI:[14.25,.237,.047,.095],
-                cDIWV:[12.75,.212,.042,.085],
-                cD:[7.125,.118,.023,.047],
-                cDWV:[6.375,.106,.021,.042],
-                secondary:"W_RPG7",
-                moraleImpactOutOfAction:-7,
-                effectivenessImpactOutOfAction:-7,    
-            },
-            2:{
-                value:5,
-                primary:"W_AK74",
-                supplies:[210,0,8,1,0,2,.4],
-                suppliesPerHourCombat:[68,0,4.675,.3,0,.04166,.16],
-                suppliesPerHourOnFront:[6.8,0,.4675,.03,0,.04166,.1458],
-                suppliesPerHourInReserve:[.17,0,.01168,0,0,.04166,.116],
-                suppliesPerHourPolicing:[1.36,0,.0935,.006,0,.04166,.135],
-                cDI:[11.999,.199,.04,.08],
-                cDIWV:[10.5,.175,.034,.069],
-                cD:[5.999,.099,.02,.04],
-                cDWV:[5.25,.087,.017,.034],
-                secondary:"W_RPG7",
-                moraleImpactOutOfAction:-7,
-                effectivenessImpactOutOfAction:-7,
-            },
-            3:{
-                value:4,
-                primary:"W_AK74",
-                supplies:[210,0,8,1,0,1,.2],
-                suppliesPerHourCombat:[60,0,4.125,.2249,0,.04166,.16],
-                suppliesPerHourOnFront:[6,0,.4125,.02249,0,.04166,.1458],
-                suppliesPerHourInReserve:[.15,0,.0103,0,0,.04166,.116],
-                suppliesPerHourPolicing:[1.2,0,.0825,.004498,0,.04166,.135],
-                cDI:[10.5,.175,.034,.069],
-                cDIWV:[9,.15,.03,.06],
-                cD:[5.25,.087,.017,.034],
-                cDWV:[4.5,.075,.015,.03],
-                secondary:"W_RPG7",
-                moraleImpactOutOfAction:-7,
-                effectivenessImpactOutOfAction:-7,   
-            },
-            AGF_0_11B_GRN_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:tComponents.weapons.RL.RPG26,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45L,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,2,3,0,1,.5],
-                    tSupplies:[210,0,2,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_1_11B_GRN_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:tComponents.weapons.RL.RPG7V2,
-                    optic:tComponents.optics.o_PGO7,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,2,3,0,1,.5],
-                    tSupplies:[210,0,2,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_2_11B_GRN_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:tComponents.weapons.RL.RPG7V2,
-                    optic:tComponents.optics.o_PGO7,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,2,3,0,1,.5],
-                    tSupplies:[210,0,2,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-        },
-        T_MG:{
-            1:{
-                value:4.5,
-                primary:"W_PK",
-                supplies:[0,800,0,1,0,2,.4],
-                suppliesPerHourCombat:[0,800,0,2,0,.04166,.16],
-                suppliesPerHourOnFront:[0,80,0,.2,0,.04166,.1458],
-                suppliesPerHourInReserve:[0,2,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[0,16,0,.04,0,.04166,.135],
-                cDI:[7.899,.131,.026,.052],
-                cDIWV:[6.399,.106,.213,.042],
-                cD:[3.949,.065,.013,.026],
-                cDWV:[3.19,.053,.010,.021],
-                issuedSecondary:0,
-                moraleImpactOutOfAction:-6.8,
-                effectivenessImpactOutOfAction:-6.8,        
-            },
-            2:{
-                value:4.5,
-                issuedPrimary:"W_PK",
-                supplies:[0,600,0,1,0,2,.2],
-                suppliesPerHourCombat:[0,680,0,1.7,0,.04166,.16],
-                suppliesPerHourOnFront:[0,68,0,.17,0,.04166,.1458],
-                suppliesPerHourInReserve:[0,1.7,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[0,13.6,0,.034,0,.04166,.135],
-                cDI:[7.65,.127,.025,.051],
-                cDIWV:[6.149,.102,.020,.041],
-                cD:[3.825,.063,.012,.025],
-                cDWV:[3.07,.051,.010,.020],
-                secondary:0,
-                moraleImpactOutOfAction:-6.8,
-                effectivenessImpactOutOfAction:-6.8,
-            },
-            3:{
-                value:4.5,
-                primary:"W_PK",
-                supplies:[0,400,0,1,0,2,.4],
-                suppliesPerHourCombat:[0,600,0,1.5,0,.04166,.16],
-                suppliesPerHourOnFront:[0,60,0,.15,0,.04166,.1458],
-                suppliesPerHourInReserve:[0,1.5,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[0,12,0,.03,0,.04166,.135],
-                cDI:[8.15,.135,.027,.054],
-                cDIWV:[6.65,.110,.022,.044],
-                cD:[4.074,.067,.013,.027],
-                cDWV:[3.325,.055,.011,.022],
-                secondary:0,
-                moraleImpactOutOfAction:-6.8,
-                effectivenessImpactOutOfAction:-6.8,
-            },
-            AGF_0_11B_MG_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_RPK74,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:tComponents.foreGrips.fg_RPKBipod,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_1_11B_MG_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_RPK74M,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:tComponents.foreGrips.fg_RPKBipod,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_2_11B_MG_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_RPK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:tComponents.foreGrips.fg_RPKBipod,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11B",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-        },
-        T_SL:{
-            1:{
-                value:0,//before this was an arbitrary value that was probably going to stay constant through runtime. Now it will be calculated every time the sim refreshes. 
-                lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                pri:tComponents.weapons.rifle.W_AK74M,//keeping this, it is currently presumed that soldiers will keep what they are initially issued.
-                priEffectiveRange:0,
-                secEffectiveRange:0,
-                priCombinedWeight:0,
-                secCombinedWeight:0,
-                nightEffectiveRange:0,
-                priOptic:tComponents.optics.o_1P78,//new. Accounting for optics allows for more accurate simulation of battle and the capabilities of each soldier. It will also allow the sim to actually model the impact of better equipment amongst a force.  
-                suppressor:0,//increases lethality (harder to ID shot location), decreases casualty rates for the same reason, increases morale 
-                uBGL:tComponents.weapons.uBGL.W_GP30,
-                railAccessory:tComponents.railAccessories.ra_Klesch1L,//rail mounted lights such as flashlights, lasers both IR and regular, IR floodbeams
-                gripMod:0,//bipods, dongs, etc.
-                supplies:[270,0,0,2,10,1,.2],//keeping this but it will be modified in runtime.
-                tSupplies:[270,0,0,2,10,1,.2],//this will serve as a reference for what the soldier should have to retain their baseline capabilities. 
-                sPH:[0,0,0,0,0,0,0],//reducing 4 arrays of data down to one, this should save some space. sPH will be calculated in runtime. 
-                sec:tComponents.weapons.uBGL.W_GP34,//secondary already existed but now is linked directly
-                bArmor:tComponents.vests.v_6B45M,//body armor is now calculated for each soldier. Better body armor means lower rates of all casualties (even disertion, good kit improves morale!)
-                nods:tComponents.helmetOptics.o_1PN138,//new, nods will now provide various increases to lethality and reductions in casualty rates
-                earPro:tComponents.headSets.hs_GSSH01,//new, increases lethality in cqb, buffs morale, and reduces casualty rates
-                comms:tComponents.pRadios.pr_R187P1E,//new, buffs morale, reduces casualty rates depending on type along with the presence of enemy commint and ew assets. 
-                uniform:tComponents.uniforms.u_ratnik,//new, affects casualty rates and morale
-                IFAK:tComponents.iFAKs.iFAK_Generic_1,//new, affects all casualty rates to widely varying levels, along with a slight buff to morale. 
-                morale:100,//getting rid of morale cost as that will be calculated in runtime. With this as a stat it can be modified on an individual level and potentially impact casualty chances. 
-                hCExperience:0,//adding this, with veterancy soldiers can become battlehardened and this will increase lethality while decreasing casualty rates. 
-                hSLMeal:0,//adding this, this can impact other things in the dataset. May only become a factor if the soldier has no food.
-                hSLDrink:0,//adding this for the same reason as above.
-                hRIL48:18,//adding this for the same reason as above.
-                hMBuff:1,//this may not be used but if it is it will allow for the modeling of the positive impacts of a trip to the rear area mess to a soldier's morale. 1 indicates that their last meal was a hot one. It will decrease with time after
-                sBuff:1,//similar to the above, only it accounts for the recency of a hot shower. 
-                lBuff:1,//buff received for having recently gotten clothes washed or replaced.
-                iRBuff:1,//buff received for having spent time in reserve recently.
+            airForce:{
 
             },
-            2:{
-                value:8,
-                primary:"W_AK74",
-                supplies:[270,0,0,2,10,2,.4],
-                suppliesPerHourCombat:[68,0,0,.17,5.1,.04166,.16],
-                suppliesPerHourOnFront:[6.8,0,0,.017,.51,.04166,.1458],
-                suppliesPerHourInReserve:[.17,0,0,0,.01275,.04166,.116],
-                suppliesPerHourPolicing:[1.36,0,0,.003,.102,.04166,.135],
-                cDI:[11.7,.194,.039,.078],
-                cDIWV:[10.2,.169,.033,.067],
-                cD:[5.85,.097,.019,.039],
-                cDWV:[5.1,.084,.016,.033],
-                secondary:"W_GP25",
-                moraleImpactOutOfAction:-12,
-                effectivenessImpactOutOfAction:-12,
+            navy:{
+
             },
-            3:{
-                value:8,
-                primary:"W_AK74",
-                supplies:[270,0,0,2,10,1,.2],
-                suppliesPerHourCombat:[60,0,0,.125,4.5,.04166,.16],
-                suppliesPerHourOnFront:[6,0,0,.0125,.45,.04166,.1458],
-                suppliesPerHourInReserve:[.15,0,0,0,.01125,.04166,.116],
-                suppliesPerHourPolicing:[1.2,0,0,.0025,.09,.04166,.135],
-                cDI:[10.2,.169,.033,.067],
-                cDIWV:[8.7,.145,.028,.057],
-                cD:[5.1,.084,.016,.033],
-                cDWV:[4.35,.0725,.0144,.028],
-                secondary:"W_GP25",
-                moraleImpactOutOfAction:-12,
-                effectivenessImpactOutOfAction:-12,
-            },
-            AGF_0_11Z_G:{
-                name:0,
-                ID:[2,0,2],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45L,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_earplugs,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11Z",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_1_11Z_G:{
-                name:0,
-                ID:[2,0,2],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11Z",
-                    supplies:[210,0,0,3,0,1,.5],
-                    tSupplies:[210,0,0,3,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_2_11Z_G:{
-                name:0,
-                ID:[2,0,2],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74M,
-                    optic:tComponents.optics.o_1P78,
-                    suppressor:0,
-                    uBGL:tComponents.weapons.uBGL.W_GP34,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45M,
-                    nods:tComponents.helmetOptics.o_1PN138,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:tComponents.pRadios.pr_R187P1E, 
-                    uniform:tComponents.uniforms.u_ratnik,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11Z",
-                    supplies:[210,0,0,3,5,1,.5],
-                    tSupplies:[210,0,0,3,5,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            TEST_US_GIGASOLDIERV2:{//Frontline, basic but equipped and trained Abkhaz army infantryman
-                name:0,
-                ID:[0,0,2],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
-                primary:{//primary weapon, must be a firearm
-                    name:tComponents.weapons.rifle.W_M4A1,
-                    optic:tComponents.optics.o_TA31RCO_ACOG,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{//secondary weapon, must be a firearm
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{//special weapon, a standalone rocket launcher
-                    name:0,
-                    optic:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                explosives:{
-                    explosive1:[tComponents.weapons.fGren.G_M67,2],//name of explosive, quantity of explosive
-                    explosive2:[tComponents.weapons.smGren.smG_M18,2],
-                    explosive3:[tComponents.weapons.stGren.G_M84,1],
-                },
-                mines:{
-                    /*Mines need to be different than explosives. 
-                        Unlike grenades or charges, mines are useful after being removed from an individual's
-                        inventory and thus need special consideration. Mines will impact the zones they are placed
-                        in and will continue to do so until the mines are destroyed, either by themselves, the 
-                        enemie's mine clearing assets or by being actuated by their targets. 
-                    */
-                    mine1:0,
-                    mine2:0,
-                    mine3:0,
-                },
-                kit:{
-                    bArmor:0,
-                    nods:0,
-                    earPro:0,
-                    comms:0, //More advanced stuff will be handled at sq level
-                    uniform:0,
-                    IFAK:0,
-                    canteen:0,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"11Z",
-                    organization:"US Army",
-                    supplies:[210,210,5,5,3,10,1,.5],//pistol,rifle,high-cal,rocket launcher,grenade,GL grenade, rations, water
-                    tSupplies:[210,210,5,5,3,10,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-        },
-        T_Crewman:{
-            1:{
-                value:2.8,
-                primary:"W_AK74",
-                supplies:[180,0,0,2,0,3,1],
-                suppliesPerHourCombat:[30,0,0,.75,0,.04166,.16],
-                suppliesPerHourOnFront:[3,0,0,.075,0,.04166,.1458],
-                suppliesPerHourInReserve:[0.075,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.6,0,0,.015,0,.04166,.135],
-                cDI:[9.6,.16,.032,.064],
-                cDIWV:[8.10,.135,.027,.054],
-                cD:[4.8,.08,.016,.032],
-                cDWV:[4.05,.067,.0135,.027],
-                moraleImpactOutOfAction:-5,
-                effectivenessImpactOutOfAction:-5,
-            },
-            2:{
-                value:8,
-                primary:"W__AKS74U",
-                supplies:[90,0,0,0,0,1,1],
-                suppliesPerHourCombat:[1,0,0,.1,0,.04166,.16],
-                suppliesPerHourOnFront:[.1,0,0,.01,0,.04166,.1458],
-                suppliesPerHourInReserve:[.0025,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.02,0,0,.002,0,.04166,.135],
-                cDI:[10.5,.175,.034,.069],
-                cDIWV:[9,.15,.03,.06],
-                cD:[5.25,.087,.017,.034],
-                cDWV:[4.5,.075,.015,.03],
-                secondary:0,
-                moraleImpactOutOfAction:-20,
-                effectivenessImpactOutOfAction:-30,
-            },
-            3:{
-                value:8,
-                primary:"W__AKS74U",
-                supplies:[90,0,0,0,0,1,1],
-                suppliesPerHourCombat:[1,0,0,.1,0,.04166,.16],
-                suppliesPerHourOnFront:[.1,0,0,.01,0,.04166,.1458],
-                suppliesPerHourInReserve:[.0025,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.02,0,0,.002,0,.04166,.135],
-                cDI:[10.5,.175,.034,.069],
-                cDIWV:[9,.15,.03,.06],
-                cD:[5.25,.087,.017,.034],
-                cDWV:[4.5,.075,.015,.03],
-                secondary:0,
-                moraleImpactOutOfAction:-20,
-                effectivenessImpactOutOfAction:-25,
-            },
-            AGF_0_19K_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:tComponents.weapons.uBGL.W_GP34,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:tComponents.weapons.pistol.W_MP443,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45L,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_cowboy,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"19K",
-                    supplies:[30,0,0,0,0,1,.5],
-                    tSupplies:[30,0,0,0,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_1_19K_G:{
-                name:0,
-                ID:[2,0,0],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74SU,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45L,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_cowboy,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"19K",
-                    supplies:[60,0,0,0,0,1,.5],
-                    tSupplies:[60,0,0,0,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-            AGF_1_19Z_G:{
-                name:0,
-                ID:[2,0,2],
-                primary:{
-                    name:tComponents.weapons.rifle.W_AK74SU,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                secondary:{
-                    name:0,
-                    optic:0,
-                    suppressor:0,
-                    uBGL:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                special:{
-                    name:0,
-                    optic:0,
-                    railAccessory:0,
-                    gripMod:0,
-                    weight:0,
-                },
-                kit:{
-                    bArmor:tComponents.vests.v_6B45L,
-                    nods:0,
-                    earPro:tComponents.headSets.hs_GSSH01,
-                    comms:0, 
-                    uniform:tComponents.uniforms.u_cowboy,
-                    IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                    canteen:tComponents.canteens.USSR_Canteen,                        
-                },
-                buffs:{
-                    lDrinkBuff:1,
-                    lMealBuff:1,
-                    lHotMealBuff:1,
-                    lLaundryBuff:1,
-                    lHotShowerBuff:1,
-                    lReserveBuff:1,
-                    tSinceReserve:0,
-                },
-                status:{
-                    effectivness:1,
-                    morale:1,
-                    confidenceInLeadership:1,
-                    confidenceInCause:1,
-                    resolve:1,
-                    exhaustion:0,
-                    hoursCombatExperience:0,
-                    hoursJobExperience:0,
-                    lethality:[0,0,0],//lethality against personnel/light vehicles, armored vehicles, airborne vehicles
-                    cC:[0,0,0,0],//chance of injury, death, desertion or suicide. Also to be calculated in runtime.
-                    specialty:"19Z",
-                    supplies:[60,0,0,0,0,1,.5],
-                    tSupplies:[60,0,0,0,0,1,.5],
-                    sPH:[0,0,0,0,0,0,0], 
-                },
-            },
-        },
-        T_MANPADS:{
-            1:{
-                value:5,
-                primary:"W_AK74",
-                supplies:[90,0,0,3,0,3,.4],
-                suppliesPerHourCombat:[110,0,0,2,0,.04166,.16],
-                suppliesPerHourOnFront:[11,0,0,.2,0,.04166,.1458],
-                suppliesPerHourInReserve:[.275,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[2.2,0,0,.04,0,.04166,.135],
-                cDI:[11.1,.185,.037,.074],
-                cDIWV:[9.6,.16,.032,.064],
-                cD:[5.55,.092,.018,.037],
-                cDWV:[4.8,.08,.016,.032],
-                secondary:"W_SA18",
-                secondaryWeaponStats:[.05,.01,.0015,.001],
-                moraleImpactOutOfAction:-5.5,
-                effectivenessImpactOutOfAction:-5,     
-            },
-            2:{
-                value:5.5,
-                primary:"W_AK74",
-                supplies:[120,0,0,4,0,2,.4],
-                suppliesPerHourCombat:[93.5,0,0,1.7,0,.04166,.16],
-                suppliesPerHourOnFront:[9.35,0,0,.17,0,.04166,.1458],
-                suppliesPerHourInReserve:[.23375,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[1.87,0,0,.034,0,.04166,.135], 
-                cDI:[8.39,.139,.027,.055],
-                cDIWV:[6.899,.114,.023,.046],
-                cD:[4.199,.069,.013,.027],
-                cDWV:[3.449,.057,.011,.023],
-                secondary:"W_SA18",
-                moraleImpactOutOfAction:-5.5,
-                effectivenessImpactOutOfAction:-6,
-            },
-            3:{
-                value:5.8,
-                primary:"W_AK74",
-                supplies:[120,0,0,3,0,1,.4],
-                suppliesPerHourCombat:[82.5,0,0,1.5,0,.04166,.16],
-                suppliesPerHourOnFront:[8.25,0,0,.15,0,.04166,.1458],
-                suppliesPerHourInReserve:[.206,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[1.65,0,0,.03,0,.04166,.135],
-                cDI:[7.05,.0117,.023,.047],
-                cDIWV:[5.55,.092,.018,.037],
-                cD:[3.525,.058,.011,.023],
-                cDWV:[2.775,.046,.009,.018],
-                secondary:"W_SA18",
-                moraleImpactOutOfAction:-5.5,
-                effectivenessImpactOutOfAction:-6,
-            },
-        },
-        T_SVD:{
-            1:{
-                value:7,
-                primary:"W_SVD",
-                supplies:[0,120,0,2,0,4,.6],
-                suppliesPerHourCombat:[0,60,0,1,0,.04166,.16],
-                suppliesPerHourOnFront:[0,6,0,.1,0,.04166,.1458],
-                suppliesPerHourInReserve:[0,.15,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[0,1.2,0,.02,0,.04166,.135],
-                cDI:[12.45,.207,.041,.083],
-                cDIWV:[10.95,.182,.036,.073],
-                cD:[6.225,.103,.020,.041],
-                cDWV:[5.47,.091,.018,.036],
-                secondary:0,
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfAction:-6
-            },
-            2:{
-                value:7,
-                primary:"W_SVD",
-                supplies:[0,120,0,2,0,4,.6],
-                suppliesPerHourCombat:[0,60,0,1,0,.04166,.16],
-                suppliesPerHourOnFront:[0,6,0,.1,0,.04166,.1458],
-                suppliesPerHourInReserve:[0,.15,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[0,1.2,0,.02,0,.04166,.135],
-                cDI:[12.45,.207,.041,.083],
-                cDIWV:[10.95,.182,.036,.073],
-                cD:[6.225,.103,.020,.041],
-                cDWV:[5.47,.091,.018,.036],
-                secondary:0,
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfAction:-6
-            },
-            3:{
-                value:7,
-                primary:"W_SVD",
-                supplies:[0,120,0,2,0,4,.6],
-                suppliesPerHourCombat:[0,60,0,1,0,.04166,.16],
-                suppliesPerHourOnFront:[0,6,0,.1,0,.04166,.1458],
-                suppliesPerHourInReserve:[0,.15,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[0,1.2,0,.02,0,.04166,.135],
-                cDI:[12.45,.207,.041,.083],
-                cDIWV:[10.95,.182,.036,.073],
-                cD:[6.225,.103,.020,.041],
-                cDWV:[5.47,.091,.018,.036],
-                secondary:0,
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfAction:-6
+            marines:{
+                
             }
-        },
-        S_Staffer:{
-            1:{
-                value:60,
-                primary:"W_AKS74U",
-                supplies:[60,0,0,0,0,8,4],
-                suppliesPerHourCombat:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourOnFront:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourInReserve:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.3,0,0,0,0,.04166,.116],
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfImpact:-30        
-            },     
-            2:{
-                value:60,
-                primary:"W_AKS74U",
-                supplies:[60,0,0,0,0,8,4],
-                suppliesPerHourCombat:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourOnFront:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourInReserve:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.3,0,0,0,0,.04166,.116],
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfImpact:-30        
-            },   
-            3:{
-                value:60,
-                primary:"W_AKS74U",
-                supplies:[60,0,0,0,0,8,4],
-                suppliesPerHourCombat:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourOnFront:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourInReserve:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.3,0,0,0,0,.04166,.116],
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfImpact:-30        
-            },  
-        },
-        S_Officer:{
-            1:{
-                value:60,
-                primary:"W_AKS74U",
-                supplies:[60,0,0,0,0,8,4],
-                suppliesPerHourCombat:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourOnFront:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourInReserve:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.3,0,0,0,0,.04166,.116],
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfImpact:-30        
-            },     
-            2:{
-                value:60,
-                primary:"W_AKS74U",
-                supplies:[60,0,0,0,0,8,4],
-                suppliesPerHourCombat:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourOnFront:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourInReserve:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.3,0,0,0,0,.04166,.116],
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfImpact:-30        
-            },   
-            3:{
-                value:60,
-                primary:"W_AKS74U",
-                supplies:[60,0,0,0,0,8,4],
-                suppliesPerHourCombat:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourOnFront:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourInReserve:[.3,0,0,0,0,.04166,.116],
-                suppliesPerHourPolicing:[.3,0,0,0,0,.04166,.116],
-                moraleImpactOutOfAction:-4,
-                effectivenessImpactOutOfImpact:-30        
-            },       
         }
         
     },
@@ -12030,233 +11751,17 @@ const MOSCodes=[
     */
 ];
 const testGComponents={
-    specialAmmunition:{
-        sA_FGM148A_HEAT:{
-            name:"FGM-148 round",
-            disc:"Standard HEAT round for pre-javelin-F models, uses listed range for pre L-CLU models",
-            serial:"",
-            weight:35,
-            range:2734,
-            penRHA:760,
-            explType:cfg.multipliers.personnel.weapons.explosives.expl_IMX101.tntMult,
-            warheadWeight:19,//pounds TNT
-            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
-            useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, light vehicles, heavy vehicles, drones, helicopters, combat aircraft
-            guidance:[0,0,0,1,0],//method of target tracking. 0 is manual, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
-            fireAndForget:1,
-            softLaunch:1
-        },
-        sA_RPG7_PG7VL_HEAT:{
-            name:"PG-7VL",
-            disc:"standard HEAT rocket found with the RPG-7 series",
-            serial:"",
-            weight:5.7,
-            range:750,
-            penRHA:550,
-            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
-            warheadWeight:1.61,
-            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
-            useCase:[1,1,1,1,0,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
-            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
-            fireAndForget:1,
-            softLaunch:1
-        },
-        sA_RPG7_PG7VR_THEAT:{
-            name:"PG-7VR",
-            disc:"tandem charge HEAT for the RPG-7 series",
-            serial:"",
-            weight:9.9,
-            range:350,
-            penRHA:750,
-            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
-            warheadWeight:3.153,
-            warHeadType:1,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
-            useCase:[1,1,1,1,1,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
-            guidance:[1,0,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,5 is laser,
-            fireAndForget:1,
-            softLaunch:1
-        },
-        sA_RPG7_OG7V_FRAG:{
-            name:"OG-7V",
-            disc:"tandem charge HEAT for the RPG-7 series",
-            serial:"",
-            weight:4,
-            range:750,
-            penRHA:0,
-            explType:cfg.multipliers.personnel.weapons.explosives.expl_OFKOL.tntMult,
-            warheadWeight:.463,
-            warHeadType:3,//1 HEAT, 2 HE, 3 HE/Frag, 4 pure kenetic
-            useCase:[1,0,1,0,0,0,0,0],//static light positions, bunkers, unarmored vehicles, medium vehicles, heavy vehicles, drones, helicopters, combat aircraft
-            guidance:[1,0,0,0],//method of target tracking. 0 is no, 1 is predicted impact point, 2 is wire guided, 3 is active homing IR, 4 is active homing TV,
-            fireAndForget:1,
-            softLaunch:1
-        },
-    },
-    uBGLAmmunition:{
-        uA_40mm:{
-            name:"M433",
-            disc:"High Explosive Dual Purpose round for western 40mm grenade launchers, namely the M203 and M320. Not used in the MK-19",
-            weight:.5,
-            lethalRadius:5.468,
-            range:273,
-        },
-        uA_40mmRU:{
-            name:"VOG-25",
-            disc:"High Explosive round for eastern 40mm grenade launchers, namely the GP-25 pattern",
-            weight:.55,
-            lethalRadius:6.562,
-            range:248.43,
-        },
-        
-    }
 
 };
 const testComponents={
     tComponents:{
         weapons:{
             assaultRifles:{
-                ar_M4A1:{
-                    name:"M4A1 Carbine",
-                    disc:"Extremely prolific 5.56x45 carbine, the A1 variant has 3-round burst replaced with full-auto while also being slightly heavier. As of 2019 all M4s in the US Army are this variant",
-                    weight:6.71,
-                    caliber:gComponents.calibers.c556x45,
-                    fireModes:[0,0,1,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
-                    rateOfFire:825,//used if it is full-auto capable
-                    reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
-                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
-                    mounts:[1,1,1],//bottom, sides, top
-                    railStyle:1,
-                    suppressorMountStyle:1,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 st
-                    shotDB:158.9,
-                    uBGLType:1,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
-                    length:29.75,//length, shortest possible without disassembly. Used to calculate CQB usefulness
-                    bLength:14.5,//barrel length
-                    MOA:4,
-                    eRange:550//yards
-                },
-                ar_M240B:{
-                    name:"M240B Machine Gun",
-                    disc:"Main machine gun of the USMC, also used by the USN and USCG. Replaced by the M240L in US army service",
-                    weight:27.6,
-                    caliber:gComponents.calibers.c762x51,
-                    fireModes:[0,0,0,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
-                    rateOfFire:700,//used if it is full-auto capable
-                    reloadTime:10,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
-                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
-                    mounts:[1,1,1],//bottom, sides, top
-                    railStyle:1,
-                    suppressorMountStyle:4,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 st
-                    shotDB:160,
-                    uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
-                    length:49.7,//length, shortest possible without disassembly. Used to calculate CQB usefulness
-                    bLength:21.7,//barrel length
-                    MOA:1.5,
-                    eRange:1300//yards
-                },
-                ar_M27IAR:{
-                    name:"Heckler & Koch M27 Infantry Automatic Rifle",
-                    disc:"Based on the H&K 416. The new workhorse of the USMC.",
-                    weight:7.9,
-                    caliber:gComponents.calibers.c556x45,
-                    fireModes:[0,0,1,0,0,1],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic.
-                    rateOfFire:800,//used if it is full-auto capable
-                    reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
-                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
-                    mounts:[1,1,1],//bottom, sides, top
-                    suppressorMountStyle:1,
-                    shotDB:158.9,
-                    uBGLType:1,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
-                    length:33,//length, shortest possible without disassembly. Used to calculate CQB usefulness
-                    bLength:16.5,//barrel length
-                    MOA:2,
-                    eRange:656//yards
-                },
-                ar_AK74M:{
-                    name:"Izhmash AK-74M ",
-                    disc:"Standard service rifle of the Russian military, being replaced by the AK-12",
-                    serial:"6P34",
-                    weight:7.5,
-                    caliber:gComponents.calibers.c545x39,
-                    fireModes:[0,0,1,0,0,1],
-                    rateOfFire:625,
-                    reloadTime:3.5,
-                    shotDB:158.9,
-                    opticMountStyle:2,
-                    mounts:[0,0,0],
-                    suppressorMountStyle:2,
-                    uBGLType:2,
-                    length:27.6,
-                    bLength:16.3,
-                    MOA:3.5,
-                    eRange:550
-                },
-                ar_RPK74M:{
-                    name:"RPK-74M",
-                    disc:"Standard SAW of the russian army",
-                    serial:"6P34",
-                    weight:11,
-                    caliber:gComponents.calibers.c545x39,
-                    fireModes:[0,0,1,0,0,1],
-                    rateOfFire:600,
-                    reloadTime:3.5,
-                    shotDB:158.9,
-                    opticMountStyle:2,
-                    mounts:[0,1,0],
-                    suppressorMountStyle:2,
-                    uBGLType:0,
-                    length:32.3,
-                    bLength:23.2,
-                    MOA:2.5,
-                    eRange:700//a little arbitrary here
-                },
             },
             dMR:{
-                dmr_SVDM:{
-                    name:"SVDM Designated Marksman Rifle",
-                    disc:"Modernized variant of the SVD and in use with the Russian military since 2018",
-                    weight:9.902,
-                    caliber:gComponents.calibers.c762x54r,
-                    fireModes:[0,0,1,0,0,0],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
-                    rateOfFire:60,//used if it is full-auto capable
-                    reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
-                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
-                    mounts:[1,1,0],//bottom, sides, top
-                    railStyle:1,
-                    suppressorMountStyle:5,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 style, 5 is warpact 7.62x54mmr
-                    shotDB:162,
-                    uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
-                    length:34.4,//length, shortest possible without disassembly. Used to calculate CQB usefulness
-                    bLength:21.7,//barrel length
-                    MOA:2,
-                    eRange:875//yards
-                },
-                dmr_M110A1:{
-                    name:"M110A1 SDMR",
-                    disc:"Standard US Army DMR",
-                    weight:9.15,
-                    caliber:gComponents.calibers.c762x51,
-                    fireModes:[0,0,1,0,0,0],//muzzle or other manual loading, lever or bolt action, semi-auto, 2 round burst, 3 round burst, fully automatic. first option is to future proof it, the rest will help determine ammo consumption. 
-                    rateOfFire:60,//used if it is full-auto capable
-                    reloadTime:3.5,//how long it takes a decent soldier to reload the weapon. Experience may impact this. For single shot weapons this can account for differences in technology. 
-                    opticMountStyle:1,//0 means no optics, 1 means picatinny rail, 2 means ak-style, 3 means custom
-                    mounts:[1,1,1],//bottom, sides, top
-                    railStyle:1,
-                    suppressorMountStyle:4,//0 is non-suppressor compatible, 1 is AR-15 556 style, 2 is AK-74 545 style, 3 is AK-47 762 style, 4 is NATO 762 style, 5 is warpact 7.62x54mmr
-                    shotDB:162,
-                    uBGLType:0,//0 means no ubgl, 1 means AR-15 style, 2 means AK-style
-                    length:35.39,//length, shortest possible without disassembly. Used to calculate CQB usefulness
-                    bLength:16.3,//barrel length
-                    MOA:1.5,
-                    eRange:875//yards
-                },
             },
             uBGL:{
-                W_GP25:{
-                    name:"GP-25 Kostyor",
-                    disc:"'Bonfire' underbarrel grenade launcher for AK pattern rifles",
-                    weight:3.31,//removed eRange as that is now determined by ammo type
-                    mountStyle:2//added this for compatibility checking 
-                },
+
             },
             RL:{
                 FGM148:{
@@ -12304,145 +11809,12 @@ const testComponents={
             },
         },
         optics:{
-            o_TA11RCO_ACOG:{
-                name:"TA11 ACOG",//the text name of the scope
-                disc:"ubiquitous magnified day sight for 5.56 rifles",
-                mag:3.5,//magnification x
-                obj:35,
-                weight:.875,//weight, pounds.
-                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
-                mountStyle:1,
-            },
-            o_1P78:{
-                name:"1P78-1 Kashtan",//the text name of the scope
-                disc:"standard modernized rifle scope of the russian military, optimized for AK-74 pattern rifles",
-                mag:2.8,//magnification x
-                obj:25,//objective diameter, mm
-                weight:1.1,//weight, pounds, with mount if applicable and possible
-                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR
-                mountStyle:2
-            },
-            o_PGO7:{
-                name:"PGO-7",//the text name of the scope
-                disc:"Standard magnified optic for the RPG-7 series",
-                mag:2.7,//magnification x
-                obj:27,//this is a guess
-                weight:1.36,//weight, pounds.
-                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
-                mountStyle:3
-            },
-            o_PSO1M2:{
-                name:"PSO-1M2 ",//the text name of the scope
-                disc:"Zenit standard modernized rifle scope of the russian military, modernized and used for mounting on the SVD-M ",
-                mag:4,//magnification x
-                obj:24,//objective diameter, mm
-                weight:1.55,//weight, pounds.
-                mountStyle:1,
-                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR
-            },
-            o_TANGO6T:{
-                name:"S&W TANGO6T",//the text name of the scope
-                disc:"riflescope used by the USMC M40A5",
-                mag:6,
-                obj:24,
-                mountStyle:1,
-                weight:1.5,//guessing that the rings weigh .12 pounds
-                NVG:0,//0 is magnifier only, 1 is NVG Gen 1, 2 is NVG Gen 2, 3 is NVG Gen 3, 4 is IR 
-            },
         },
         foreGrips:{
-            fg_GPS02:{
-                name:"GPS-02 grip-bipod",
-                disc:"common attachment for western rifles",
-                type:5,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
-                weight:1.5,//guess, looked on 3 different websites and nobody was saying.    
-                mountStyle:1,
-            },
-            fg_HL:{
-                name:"Harris S-L Bipod",
-                disc:"high end bipod used on US military DMR and snipers",
-                type:4,//1 is dong style, 2 is mid grip, 3 is full grip, 4 is bipod, 5 is combined bipod full grip
-                weight:.938,//guess, looked on 3 different websites and nobody was saying.    
-                mountStyle:1,
-            },
         },
         suppressors:{
-            s_PBS1:{
-                name:"PBS-1",
-                disc:"Rifle suppressor for AK-47 pattern rifles",
-                length:7.9,
-                weight:1,
-                mountStyle:3,
-                reportReduction:15//db that the gunshot will be with the suppressor fitted
-            },
-            s_PBS4:{
-                name:"PBS-4",
-                disc:"Rifle suppressor for AK-74 pattern rifles",
-                length:7.9,//length and width copied from the PBS-1 due to lack of data
-                weight:1,
-                mountStyle:2,
-                reportReduction:15//db reduction
-            },
-            s_MSX240:{
-                name:"Maxim Defense MSX-240",
-                disc:"Suppressor for the M240",
-                length:10,
-                weight:1,
-                mountStyle:4,
-                reportReduction:24//db reduction
-            },
-            s_KACNT4:{
-                name:"KAC NT4",
-                disc:"Rifle Suppressor issued to USMC infantrymen for their M4 and M27 rifles",
-                length:6.5,//length and width copied from the PBS-1 due to lack of data
-                weight:1.375,
-                mountStyle:1,
-                reportReduction:30//db reduction
-            }
         },
         supplies:{
-            rations:{
-                r_2020_ChiliMac_MRE:{
-                    name:"2020 Chili and Macaroni MRE",
-                    disc:"Commonly considered one of the best MREs in existence, comes with chili mac, pound cake, jalapeno cheddar cheese crackers, beef snacks, candy, beverage powder, red pepper spice, condiments.",
-                    expirationYear:2026,
-                    kCal:1250,
-                    troopRating:5,
-                    quality:5,
-                    weight:1.35,
-                    includesHeater:1
-                },
-                r_2020_CheeseTortellini_MRE:{
-                    name:"2020 Cheese Tortellini MRE",
-                    disc:"Commonly considered one of the best MREs in existence, comes with cheese tortellini, dessert powder, peanut butter crackers, nuts and raisins, beverage powder, hot sauce",
-                    expirationYear:2026,
-                    kCal:1250,
-                    troopRating:5,
-                    quality:5,
-                    weight:1.35,
-                    includesHeater:1
-                },
-                r_2020_BeefStew_MRE:{
-                    name:"2020 Beef Stew MRE",
-                    disc:"Beef stew, fudge brownie, peanut butter, multigrain snack bread, jelly, pretzels, beverage powder, hot sauce",
-                    expirationYear:2026,
-                    kCal:1250,
-                    troopRating:4.5,
-                    quality:5,
-                    weight:2.82,
-                    includesHeater:1
-                },
-                r_2020_IRP:{
-                    name:"2020 full-day IRP",
-                    disc:"Russian military ration, 1 has enough food for 24 hours if you can actually ingest it",
-                    expirationYear:2026,
-                    kCal:4790,
-                    troopRating:4,
-                    quality:4,
-                    weight:4.6,
-                    includesHeater:0
-                },
-            }
         }
     },
 }
@@ -12488,10 +11860,10 @@ const testItems={
                     name:0,
                     ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
                     primary:{//primary weapon, must be a firearm
-                        name:testComponents.tComponents.weapons.assaultRifles.ar_AK74M,
+                        name:0,
                         optic:0,
                         suppressor:0,
-                        mag:gComponents.mags.m_AK74M_30,
+                        mag:0,
                         ammunition:[gComponents.calibers.c545x39,210],
                         uBGL:0,
                         uBGLAmmunition:[0,0],
@@ -12500,7 +11872,7 @@ const testItems={
                         weight:0,
                     },
                     secondary:{//secondary weapon, must be a firearm
-                        name:testComponents.tComponents.weapons.assaultRifles.ar_M4A1,
+                        name:0,
                         optic:0,
                         suppressor:0,
                         mag:gComponents.mags.m_USGI30AR,
@@ -12516,9 +11888,9 @@ const testItems={
                         optic:0,
                         gripMod:0,
                         weight:0,
-                        GPRound:[testGComponents.specialAmmunition.sA_RPG7_PG7VL_HEAT,0],
-                        APRound:[testGComponents.specialAmmunition.sA_RPG7_OG7V_FRAG,0],
-                        HeavyRound:[testGComponents.specialAmmunition.sA_RPG7_PG7VR_THEAT,0],
+                        GPRound:[0,0],
+                        APRound:[0,0],
+                        HeavyRound:[0,0],
                         SmokeRound:[0,0],
                     },
                     explosives:{
@@ -12551,7 +11923,7 @@ const testItems={
                         tent:0,       
                         sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
                         supplies:{
-                            ration1:[testComponents.tComponents.supplies.rations.r_2020_IRP,3],
+                            ration1:[0,3],
                             ration2:[0,0],
                             ration3:[0,0],
                             waterContainer1:[tComponents.canteens.USSR_Canteen,2],
@@ -12576,9 +11948,38 @@ const testItems={
                         calorieBalance:0,
                         waterBalance:0,
                         morale:1,
-                        confidenceInLeadership:1,
-                        confidenceInCause:1,
-                        resolve:1,
+                        willToFight:{
+                            totalWillToFight:0,
+                            capabilities:{
+                                competence:[
+                                    4,//sustainability
+                                    5,//sufficiency
+                                    9,//skills
+                                    14//relevance
+                                ],
+                                quality:[
+                                    7,//adaptability
+                                    4,//education
+                                    15,//fitness
+                                    4.5,//psych traits
+                                    4.8,//resilience
+                                    4.5,//social skills
+                                ],
+                            },
+                            motivations:{
+                                desperation:10,
+                                revenge:2.5,
+                                ideology:7.5,
+                                identity:[
+                                    3,//organization
+                                    2.5,//personal
+                                    3,//unit
+                                    4.5,//state
+                                    4.5,//social
+                                    4.5//society
+                                ]
+                            }
+                        },
                         hActiveSinceLRest:[
                             0,//basic metabolic rate
                             0,//sedentary, little to no exercise
@@ -12590,6 +11991,48 @@ const testItems={
                         ],
                         hoursCombatExperience:0,
                         hoursJobExperience:0,
+                        leadership:{//factors considered if they are in a squad leadership position
+                            hasBeenInit:0,
+                            attributes:{
+                                character:[
+                                    9,//morality
+                                    3,//empathy
+                                    3,//warrior ethos
+                                    4.5//discipline
+                                ],
+                                presence:[
+                                    7.5,//military and professional bearing
+                                    8,//fitness
+                                    7.5,//confidence
+                                    7.5//resilience
+                                ],
+                                intellect:[
+                                    7.5, //mental agility
+                                    7.5,//sound judgement
+                                    7,//innovation
+                                    7,//interpersonal tact
+                                    8//expertise
+                                ]
+
+                            },
+                            competencies:{
+                                leads:[
+                                    7.5,
+                                    7.5,
+                                    6,
+                                    7.5,
+                                    7
+                                ],
+                                develops:[
+                                    7.5,
+                                    7,
+                                    7.5,
+                                    7.5
+                                ],
+                                achieves:15
+                            }
+
+                        },
                         points:{//different point values contributed to the total lethality of the squad
                             AP:0,//anti-personnel
                             AV:0,//anti-vehicle
@@ -12605,104 +12048,92 @@ const testItems={
 
 };
 const testUnits={
-    company1:{
-        uCata:1,
-        uType:3,//0 is truck, 1 is BTR-80, 2 is enhanced BTR-80, 3 is BTR-82, 4 is BMP-1, 5 is BMP-2, 6 is T-72, 7 is T-72B3
-        y:42.588,
-        x:41.551,//used as the location of the company HQ/supply dump, which is replenished from the BTG supply dump.
-        locationModule:0,//actual module of the location
-        locString:"unknown",
-        status:2,//0 is in combat, 1 is on a front, 2 is in reserve,3 is policing 
-        type:1,//1 is truck, 2 is motorized, 3 is mechanized
-        AoD:1,//1 is defending, 2 is attacking
-        hasArtillerySupport:2,//0 is no artillery support, 1 is an MRL battery, 2 is an SPG battery, 3 is both
-        hoursSinceLastMove:0,
-        isInHomeTerritory:1,
-        locationType:7,//Location or area type: 0: grassland with very little cover, 1: rural with few buildings, 2: rural area with buildings, 3: vineyards/tall fields/farmland, 4: forest, dense, 5: industrial facility, 6: airfield, 7: military base, 8: urban area with many houses, 9: highly developed city
-        name:"12th Motorized Infantry Company",
-        commander:"Senior Lieutenant Giorgi Ratyan",
-        HQ:{
-            squad1:{
-                name:"Company Commander's squad",
-                members:uComps.squads.SQ_BTR82InfantryCompanyC2.members,
-                vehicle:uComps.squads.SQ_BTR82InfantryCompanyC2.vehicle,
-                vehicleGas:uComps.squads.SQ_BTR82InfantryCompanyC2.vehicle.fuelcap,
-                sTemplate:uComps.squads.SQ_BTR82InfantryCompanyC2,
-                personnelProfiles:[
-                    [components.personnel.T_Crewman[2].supplies,components.personnel.T_Crewman[2].supplies,components.personnel.T_Crewman[2].supplies,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [0,0,0,0],
-                    [components.personnel.T_MANPADS[2].supplies,0,0,0],
-                    [0,0,0,0],
-                    [components.personnel.S_Staffer[2].supplies,0,0,0],
-                    [components.personnel.S_Officer[2].supplies,0,0,0]
-                ],
-                personnelSPHByIndex:[
-                    .1, //sph for the crewmen as an array in the standard supply format
-                    .1, //sph for the SL
-                    .1, //sph for the Gren
-                    .1, //sph for the ass. gren
-                    .1, //sph for mg
-                    .1, //sph for sr riflemen
-                    .1, //sph for riflemen
-                    .1, //sph for manpads
-                    .1, //sph for snipers
-                    .1, //sph for staffers
-                    .1  //sph for the officers
-                ],
-                personnelSPHTotal:[],
-                chanceIorDbyPersonnel:[
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]],
-                    [[0,0],[0,0],[0,0],[0,0]]                                
-                ],
-                hasVehicle:1,
-                supplies:uComps.squads.SQ_BTR82InfantryCompanyC2.supplies,
-                vehicleCarriedSupplies:uComps.squads.SQ_BTR82InfantryCompanyC2.vehicleCarriedSupplies,
-                vicTimeTillBack:0,
-                neededSupplies:[0,0,0,0,0,0,0],
-                neededVSupplies:[0,0,0,0,0,0,0,0],
-                morale:100,
-                effectiveness:100,
-            }
-        },
+    blueCo:{
+        name:"1st company, 2nd battalion, 504th infantry regiment, 1st Infantry BCT, 82nd Airborne Divison, US Army",
         platoon1:{
             name:"1st Platoon",
             squad1:{
                 name:"1st squad",
                 members:[
-                    [0,0,0,0],//leadership
-                    [0,0,0,0],//senior rifleman/ftl/asl
-                    [0,0,0,0],//grenadier/engineer/heavy weapons
-                    [0,0,0,0],//machine gunner
+                    [structuredClone(components.personnel.US.army.infantry.inf_11Z_SL),0,0,0],//leadership
+                    [structuredClone(components.personnel.US.army.infantry.inf_11B_FTL),structuredClone(components.personnel.US.army.infantry.inf_11B_FTL),0,0],//senior rifleman/ftl/asl
+                    [structuredClone(components.personnel.US.army.infantry.inf_11B_Gren),structuredClone(components.personnel.US.army.infantry.inf_11B_Gren),0,0],//grenadier/engineer/heavy weapons
+                    [structuredClone(components.personnel.US.army.infantry.inf_11BC_M249),structuredClone(components.personnel.US.army.infantry.inf_11BC_M249),0,0],//machine gunner
                     [0,0,0,0],//assistant machine gunner/assistant grenadier/ammunition carrier
-                    [0,0,0,0],//rifleman
+                    [structuredClone(components.personnel.US.army.infantry.inf_11B_LAT),structuredClone(components.personnel.US.army.infantry.inf_11B_LAT),0,0],//rifleman
                     [0,0,0,0],//sniper
                     [0,0,0,0],//MANPADS
                     [0,0,0,0],//Staff person
                     [0,0,0,0],//Officer
-                    [0,0,0,0],//crewman
+                    //omitting crew, they will be their own thing
                 ],
                 points:{
                     AP:0,
                     AV:0,
                     AA:0
+                },
+                stats:{
+                    willToFight:{
+                        esperitDeCorps:8.5,
+                        expectation:5,
+                        control:[
+                            5,
+                            5,
+                            2.5,
+                        ],
+                        cohesion:[
+                            4.5,
+                            4.5,
+                            4.5
+                        ],
+                        
+                    }
                 }
-                
             },
         },
-    },
+    },  
+    redCo:{
+        name:"12th Motorized Infantry Company",
+        platoon1:{
+            name:"1st Platoon",
+            squad1:{
+                name:"1st squad",
+                members:[
+                    [structuredClone(components.personnel.Abkhazia.army.infantry.inf_11Z_Base),0,0,0],//leadership
+                    [structuredClone(components.personnel.Abkhazia.army.infantry.inf_11B_FTL),structuredClone(components.personnel.Abkhazia.army.infantry.inf_11B_FTL),0,0],//senior rifleman/ftl/asl
+                    [structuredClone(components.personnel.Abkhazia.army.infantry.inf_11B_gren_RPG7),0,0,0],//grenadier/engineer/heavy weapons
+                    [structuredClone(components.personnel.Abkhazia.army.infantry.inf_11BC_RPK74M),structuredClone(components.personnel.Abkhazia.army.infantry.inf_11BC_RPK74M),0,0],//machine gunner
+                    [structuredClone(components.personnel.Abkhazia.army.infantry.inf_11B_grenAsst),0,0,0],//assistant machine gunner/assistant grenadier/ammunition carrier
+                    [structuredClone(components.personnel.Abkhazia.army.infantry.inf_11B_base),structuredClone(components.personnel.Abkhazia.army.infantry.inf_11B_base),0,0],//rifleman
+                    [0,0,0,0],//sniper
+                    [0,0,0,0],//MANPADS
+                    [0,0,0,0],//Staff person
+                    [0,0,0,0],//Officer
+                ],
+                points:{
+                    AP:0,
+                    AV:0,
+                    AA:0
+                },
+                stats:{
+                    willToFight:{
+                        esperitDeCorps:8.5,
+                        expectation:5,
+                        control:[
+                            5,
+                            5,
+                            2.5,
+                        ],
+                        cohesion:[
+                            4.5,
+                            4.5,
+                            4.5
+                        ],
+                        
+                    }
+                }
+            },
+        },
+    },  
 };
 export default {components,uComps,largeUComps,BTGComps,SAMSystemComps,vComponents,tComponents,MOSCodes,testItems,testGComponents,testComponents,testUnits,gComponents};

@@ -1,4 +1,3 @@
-
 import AMil from "./AMil.js";
 import DB from "./DB.js";
 import Weather from "./Weather.js";
@@ -6,15 +5,8 @@ import Theatre from "./Caucasus.js";
 import cfg from "./simConfig.js";
 import simConfig from "./simConfig.js";
 /*TO DO
-    make functions for:
-        real time area occupation calculation
-            real time calculation of the impact a unit has on it's surrounding area
-                real time calculations of a unit's strength and how it will impact a battle
-                    calculation of the individual value of each soldier based on their equipment and capabilities
-                        you need to quantify the benefit each and every person brings to the fight in battle, dependent on their skills, history, leadership, equipment, experience, support, etc. Perhaps rest levels should also be accounted for. 
-                accounting for the presence of supporting elements such as artillery that are not in the immediate area but still provide support
-        real time modification of the occupation of a sector
-        real time battle simulation
+    look into array.map for long chains of functions dealing with squad contents, specifically update1squad
+    look into switch for functions related to or dependent on weaponType
 */
 const functionHelpers = {
     squadComp:[
@@ -59,7 +51,7 @@ function vc_railAccessory(person,terrain,wepIndx){//determine the value of a rai
     let subPower=0;
     let subCumeYards=0;
     if(wepIndx==0){//primary
-        if((person.primary.railAccessory!=0)&&((person.primary.mounts[1]==1)||(person.primary.mounts[2]==1))){//rail mounted accessory handler 
+        if((person.primary.railAccessory!=0)&&((person.primary.name.mounts[1]==1)||(person.primary.name.mounts[2]==1))){//rail mounted accessory handler 
             subWeight+=person.primary.railAccessory.weight;
             if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
                 if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
@@ -80,7 +72,7 @@ function vc_railAccessory(person,terrain,wepIndx){//determine the value of a rai
             }        
         };
     }else if(wepIndx==1){//secondary
-        if((person.secondary.railAccessory!=0)&&((person.secondary.mounts[1]==1)||(person.secondary.mounts[2]==1))){//rail mounted accessory handler 
+        if((person.secondary.railAccessory!=0)&&((person.secondary.name.mounts[1]==1)||(person.secondary.name.mounts[2]==1))){//rail mounted accessory handler 
             subWeight+=person.secondary.railAccessory.weight;
             if(mu_isNight()&&person.kit.nods!=0){//if it is night time and the person has NODS
                 if((person.kit.nods.type>0)&&(person.kit.nods.type<4)){//if the person has night vision and can use IR lights
@@ -370,11 +362,8 @@ function vc_lmgSuitability(person,terrain,wepIndex,subYardage){
         if(wepIndex==0){
             if(person.primary.ammunition[1]>90){//they need a lot of ammunition if they will be trying to suppress
                 APPointsBonus+=(person.primary.name.rateOfFire*cfg.multipliers.personnel.weapons.guns.APLMGBBFireRate);
-                console.log(APPointsBonus+" added for LMG with fire rate");
                 APPointsBonus+=(person.primary.name.caliber.bWeight*cfg.multipliers.personnel.weapons.guns.APBBRoundWeight);
-                console.log(APPointsBonus+" added for LMG with bullet weight");
                 APPointsBonus+=(person.primary.mag.capacity*cfg.multipliers.personnel.weapons.guns.APBBMagSize);
-                console.log(APPointsBonus+" added for LMG with mag cap");
             }
         }else if(wepIndex==1){
             if(person.secondary.ammunition[1]>90){//they need a lot of ammunition if they will be trying to suppress
@@ -445,6 +434,7 @@ function vc_primary(time,terrain,person){
     }
 
     return{
+        totalYardRange:Yardage,
         totalWeight:Weight,
         totalAAPoints:AAPoints,
         totalAVPoints:AVPoints,
@@ -505,6 +495,7 @@ function vc_secondary(time,terrain,person){
     }
 
     return{
+        totalYardRange:Yardage,
         totalWeight:Weight,
         totalAAPoints:AAPoints,
         totalAVPoints:AVPoints,
@@ -562,11 +553,11 @@ function vc_explosive(terrain,pExplosive,debugBool){//determine the added value 
         antiVehiclePoints:APPoints,
     }
 };
-function vc_antiPersonnelRound(person,terrain,round){//calculate value of a an antipersonnel round against personnel
+function vc_antiPersonnelRound(time,person,terrain,round){//calculate value of a an antipersonnel round against personnel
     let yardage = round.range;
     let subAPPower = 0;
     let explosive = (round.warheadWeight*round.explType);
-    yardage = vc_weaponOpticV2(person,2,yardage)[0];
+    yardage = vc_weaponOptic(time,person,2,yardage)[0];
     subAPPower=(yardage*cfg.multipliers.personnel.weapons.general.APPointsByYdRng);
     subAPPower+=(explosive*cfg.multipliers.personnel.weapons.general.APPointsByLbTnT);
     subAPPower+=(round.softLaunch*cfg.multipliers.personnel.weapons.general.softLaunchBuff);
@@ -581,11 +572,11 @@ function vc_antiPersonnelRound(person,terrain,round){//calculate value of a an a
     }
 
 };
-function vc_heavyRound(person,terrain,round){//calculate value of a round against heavies
+function vc_heavyRound(time,person,terrain,round){//calculate value of a round against heavies
     let yardage = round.range;
     let subAVPower = 0;
     let pen = (round.warheadWeight*round.explType);
-    yardage = vc_weaponOpticV2(person,2,yardage)[0];
+    yardage = vc_weaponOptic(time,person,2,yardage)[0];
     subAVPower=(yardage*cfg.multipliers.personnel.weapons.general.APPointsByYdRng);
     subAVPower=(pen*cfg.multipliers.personnel.weapons.general.AVPointsByMMPen);
     subAVPower+=(round.softLaunch*cfg.multipliers.personnel.weapons.general.softLaunchBuff);
@@ -600,56 +591,84 @@ function vc_heavyRound(person,terrain,round){//calculate value of a round agains
     }
 
 };
-function vc_specialWeapon(person,terrain){
+
+function vc_specialWeapon(time,person,terrain){//WIP THIS NEEDS TO BE FINISHED
     let Weight = 0;
-    let Power = 0;
-    let Pen = 0;
-    let HE=0;
-    let CumeYards = 0;
     let AAPoints = 0;
     let AVPoints = 0;
     let APPoints = 0;
     let hasAmmo=false;
-    let hasGPRound = 0;
-    let hasAPRound= 0;
-    let hasHeavyRound=0;
-    let hasSmokeRound=0;
     let bestPen=0;
-    let bestHE=0;
+    let bestHESize=0;
+    let bestHEMult=0;
+    let bestAPRange=0;
+    let bestAVRange=0;
+    let AARange=0;
+    let totalWeight=0;
+    let APRoundWeight=0;
+    let AVRoundWeight=0;
+    let AARoundWeight=0;
+    let bestAPRound=0;
+    let bestAVRound=0;
+    let bestAARound=0;
         if(person.special.GPRound[1]!=0){//add up all the ammunition for weight calcs, even if they don't have a RL
-            Weight+=(person.special.GPRound[0].weight*person.special.GPRound[1]);
-            hasGPRound=true;
-            bestPen=person.special.GPRound[0];
-            if(person.special.APRound[1]==0){
-                bestHE=person.special.APRound[0];
+            if((person.special.GPRound[0].range>bestAVRange)&&(person.special.HeavyRound[1]==0)&&(person.special.GPRound[0].useCase[7]==0)){//make sure they don't have a more appropriate alternative before using this and also that they aren't using a MANPAD
+                bestAVRange=person.special.GPRound[0].range;
+                bestPen=person.special.GPRound[0].penRHA; 
+                bestAVRound=person.special.GPRound[0];  
             };
+            if((person.special.APRound[1]==0)){//for the same reason as above, make sure that you aren't giving them buffed anti-personnel capabilities by using stats of a GP round when they have a dedicated AP round
+                bestAPRange=person.special.GPRound[0].range;
+                bestHESize=person.special.GPRound[0].warheadWeight;
+                bestHEMult=person.special.GPRound[0].explType;
+                bestAPRound=person.special.GPRound[0];  
+            };
+            if(person.special.GPRound[0].useCase[7]==1){
+                AARange=person.special.GPRound[0].range;
+                bestAARound=person.special.GPRound[0];  
+            };
+            totalWeight+=(person.special.GPRound[0].weight*person.special.GPRound[1]);
             hasAmmo=true;
-
         };
         if(person.special.APRound[1]!=0){
-            Weight+=(person.special.APRound[0].weight*person.special.APRound[1]);
-            hasAPRound=true;
-            if(person.special.APRound[0].penRHA>bestPen.penRHA){
-                bestPen=person.special.APRound[0];
-            }
-            bestHE=person.special.APRound[0];
+            if(person.special.APRound[0].range>bestAPRange){
+                bestAPRange=person.special.APRound[0].range;
+            };
+            bestHEMult=person.special.APRound[0].explType;
+            bestHESize=person.special.APRound[0].warheadWeight;
+            totalWeight+=(person.special.APRound[0].weight*person.special.APRound[1]);
+            bestAPround=person.special.APRound[0];
             hasAmmo=true;
         };
         if(person.special.HeavyRound[1]!=0){
-            Weight+=(person.special.HeavyRound[0].weight*person.special.HeavyRound[1]);
-            hasHeavyRound=true;
-            if(person.special.HeavyRound[0].penRHA>bestPen.penRHA){
-                bestPen=person.special.HeavyRound[0];
-            };
+            bestAVRange=person.special.HeavyRound[0].range;
+            bestPen=person.special.HeavyRound[0].penRHA;
+            totalWeight+=(person.special.HeavyRound[0].weight*person.special.HeavyRound[1]);
             hasAmmo=true;
+            bestAVRound=person.special.HeavyRound[0];
         };
         if(person.special.SmokeRound[1]!=0){
-            Weight+=(person.special.SmokeRound[0].weight*person.special.SmokeRound[1]);
-            hasSmokeRound=true;
-        }
+            totalWeight+=(person.special.SmokeRound[0].weight*person.special.SmokeRound[1]);
+            hasAmmo=true;
+        };
     if((person.special.name!=0)&&(hasAmmo)){//make sure they have a rocket and that it has ammo before assigning value
         Weight+=person.special.name.weight;
-        
+        if(bestAPRange>0){
+            if(bestAVRound.guidance[1]=1){
+                bestAPRange*=1.05;
+            };
+            if(bestAVRound.guidance[2]=1){
+                bestAPRange*=1.075;
+            };
+            if(bestAVRound.guidance[1]=1){
+                bestAPRange*=1.1;
+            }
+            if(bestAVRound.guidance[1]=1){
+                bestAPRange*=1.125;
+            }
+            bestAPRange=vc_weaponOptic(time,person,2,bestAPRange).finalYardRange;
+
+        }
     }
     return{
         totalWeight:Weight,
@@ -657,7 +676,10 @@ function vc_specialWeapon(person,terrain){
         totalAVPoints:AVPoints,
         totalAPPoints:APPoints
     }
-}
+};
+
+
+
 function vc_uniform(person){//handles value calculation of a soldier's uniform based on weather, climate, wear, etc.
     let BugProtect=0;
     let Weight=0;
@@ -968,12 +990,17 @@ function AAPoints1Person(time,terrain,person){
 
 }
 function updatePoints1Person(time,terrain,person){
-    person.status.points.AP=APPoints1Person(time,terrain,person);
-    person.status.points.AV=AVPoints1Person(time,terrain,person);
-    person.status.points.AA=AAPoints1Person(time,terrain,person);
+    if(person!=0){
+        person.status.points.AP=APPoints1Person(time,terrain,person);
+        person.status.points.AV=AVPoints1Person(time,terrain,person);
+        person.status.points.AA=AAPoints1Person(time,terrain,person);
+    }
+
 };
 function updateWeight1Person(time,terrain,person){
-    person.status.totalKitWeight=weight1Person(time,terrain,person);
+    if(person!=0){
+        person.status.totalKitWeight=weight1Person(time,terrain,person);
+    }
 }
 function weight1Person(time,terrain,person){
     let weight=0;
@@ -1001,48 +1028,126 @@ function weight1Person(time,terrain,person){
     weight+=(((weight*cfg.multipliers.personnel.kit.kitWeightMultWhenWet)*cfg.multipliers.personnel.kit.kitWeightMultImpactByTerrain[terrain[5]])*runtimeVariables.recentRain);
     return weight
 };
+
 function update1Person(weather,time,terrain,person){
-    nameGen(person);
-    updatePoints1Person(time,terrain,person);
-    updateWeight1Person(time,terrain,person);
-    moraleUpdate1Person(person);
-    ssph_updateCPH1Person(weather,time,terrain,person);
-    ssph_updateGWPH1Person(weather,time,terrain,person);
-    hf_combatExperienceUpdate(terrain,person);
-    if(person.status.currentActivity!=4){
-        person.status.hoursJobExperience+=(1/cfg.general.refreshRate);
-    };
+    if(person!=0){
+        /*
+        if(person.name==0){
+            person=structuredClone(person);            
+        }
+        */
+        console.log(person);
+        nameGen(person);
+        updatePoints1Person(time,terrain,person);
+        updateWeight1Person(time,terrain,person);
+        moraleUpdate1Person(person);
+        ssph_updateCPH1Person(weather,time,terrain,person);
+        ssph_updateGWPH1Person(weather,time,terrain,person);
+        hf_combatExperienceUpdate(terrain,person);
+        hf_individualWillToFight(person);
+        if(person.status.currentActivity!=4){
+            person.status.hoursJobExperience+=(1/cfg.general.refreshRate);
+        };
+    }
+}
+function update1Squad(weather,time,terrain,squad){
+    
+    update1Person(weather,time,terrain,squad.members[0][0]);
+    update1Person(weather,time,terrain,squad.members[0][1]);
+    update1Person(weather,time,terrain,squad.members[0][2]);
+    update1Person(weather,time,terrain,squad.members[0][3]);
+
+    update1Person(weather,time,terrain,squad.members[1][0]);
+    update1Person(weather,time,terrain,squad.members[1][1]);
+    update1Person(weather,time,terrain,squad.members[1][2]);
+    update1Person(weather,time,terrain,squad.members[1][3]);
+
+    update1Person(weather,time,terrain,squad.members[2][0]);
+    update1Person(weather,time,terrain,squad.members[2][1]);
+    update1Person(weather,time,terrain,squad.members[2][2]);
+    update1Person(weather,time,terrain,squad.members[2][3]);
+
+    update1Person(weather,time,terrain,squad.members[3][0]);
+    update1Person(weather,time,terrain,squad.members[3][1]);
+    update1Person(weather,time,terrain,squad.members[3][2]);
+    update1Person(weather,time,terrain,squad.members[3][3]);
+
+    update1Person(weather,time,terrain,squad.members[4][0]);
+    update1Person(weather,time,terrain,squad.members[4][1]);
+    update1Person(weather,time,terrain,squad.members[4][2]);
+    update1Person(weather,time,terrain,squad.members[4][3]);
+
+    update1Person(weather,time,terrain,squad.members[5][0]);
+    update1Person(weather,time,terrain,squad.members[5][1]);
+    update1Person(weather,time,terrain,squad.members[5][2]);
+    update1Person(weather,time,terrain,squad.members[5][3]);
+
+    update1Person(weather,time,terrain,squad.members[6][0]);
+    update1Person(weather,time,terrain,squad.members[6][1]);
+    update1Person(weather,time,terrain,squad.members[6][2]);
+    update1Person(weather,time,terrain,squad.members[6][3]);
+
+    update1Person(weather,time,terrain,squad.members[7][0]);
+    update1Person(weather,time,terrain,squad.members[7][1]);
+    update1Person(weather,time,terrain,squad.members[7][2]);
+    update1Person(weather,time,terrain,squad.members[7][3]);
+
+    update1Person(weather,time,terrain,squad.members[8][0]);
+    update1Person(weather,time,terrain,squad.members[8][1]);
+    update1Person(weather,time,terrain,squad.members[8][2]);
+    update1Person(weather,time,terrain,squad.members[8][3]);
+
+    update1Person(weather,time,terrain,squad.members[9][0]);
+    update1Person(weather,time,terrain,squad.members[9][1]);
+    update1Person(weather,time,terrain,squad.members[9][2]);
+    update1Person(weather,time,terrain,squad.members[9][3]);
+    
+}
+function update1SquadModded(weather,time,terrain,squad){
+    update1Person(weather,time,terrain,squad.members.SL);
+    update1Person(weather,time,terrain,squad.members.FTA.FTL);
+    update1Person(weather,time,terrain,squad.members.FTA.M1);
+    update1Person(weather,time,terrain,squad.members.FTA.M2);
+    update1Person(weather,time,terrain,squad.members.FTA.M3);
+    update1Person(weather,time,terrain,squad.members.FTA.M4);
+    update1Person(weather,time,terrain,squad.members.FTB.FTL);
+    update1Person(weather,time,terrain,squad.members.FTB.M1);
+    update1Person(weather,time,terrain,squad.members.FTB.M2);
+    update1Person(weather,time,terrain,squad.members.FTB.M3);
+    update1Person(weather,time,terrain,squad.members.FTB.M4);
 }
 
 function moraleUpdate1Person(person){
     let calculatedMorale=0;
-    if(person.buffs.rMealBuff>0){
-        calculatedMorale+=(person.buffs.rMealBuff*cfg.multipliers.personnel.health.recentMealBuff);
-        person.buffs.rMealBuff-=((1/cfg.multipliers.personnel.health.mealBuffDecay)*(1/cfg.general.refreshRate));
-    };
-    if(person.buffs.rWaterBuff>0){
-        calculatedMorale+=(person.buffs.rWaterBuff*cfg.multipliers.personnel.health.recentWaterBuff);
-        person.buffs.rWaterBuff-=((1/cfg.multipliers.personnel.health.waterBuffDecay)*(1/cfg.general.refreshRate));
-    };
-    if(person.buffs.rHotMealBuff>0){
-        calculatedMorale+=(person.buffs.rHotMealBuff*cfg.multipliers.personnel.health.recentHotMealBuff);
-        person.buffs.rHotMealBuff-=((1/cfg.multipliers.personnel.health.recentHotMealBuffDecay)*(1/cfg.general.refreshRate));
-    };
-    if(person.buffs.rHotShowerBuff>0){
-        calculatedMorale+=(person.buffs.rHotShowerBuff*cfg.multipliers.personnel.health.recentShowerBuff);
-        person.buffs.rHotShowerBuff-=((1/cfg.multipliers.personnel.health.recentShowerBuff)*(1/cfg.general.refreshRate));
-    };
-    if(person.buffs.rReserveTimeBuff>0){
-        calculatedMorale+=(person.buffs.rReserveTimeBuff*cfg.multipliers.personnel.health.recentReserveBuff);
-        person.buffs.rReserveTimeBuff-=((1/cfg.multipliers.personnel.health.reserveBuffDecay)*(1/cfg.general.refreshRate));
-    };
-    calculatedMorale+=vc_uniform(person).moraleImpact;
-    calculatedMorale+=vc_backpack(person).moraleImpact;
-    calculatedMorale+=vc_helmet(person).moraleImpact;
-    calculatedMorale+=vc_sleepingBag(person).moraleImpact;
-    calculatedMorale+=vc_tent(person).moraleImpact;
-    calculatedMorale+=vc_vest(person).moraleImpact;
-    person.status.morale=calculatedMorale;
+    if(person!=0){
+        if(person.buffs.rMealBuff>0){
+            calculatedMorale+=(person.buffs.rMealBuff*cfg.multipliers.personnel.health.recentMealBuff);
+            person.buffs.rMealBuff-=((1/cfg.multipliers.personnel.health.mealBuffDecay)*(1/cfg.general.refreshRate));
+        };
+        if(person.buffs.rWaterBuff>0){
+            calculatedMorale+=(person.buffs.rWaterBuff*cfg.multipliers.personnel.health.recentWaterBuff);
+            person.buffs.rWaterBuff-=((1/cfg.multipliers.personnel.health.waterBuffDecay)*(1/cfg.general.refreshRate));
+        };
+        if(person.buffs.rHotMealBuff>0){
+            calculatedMorale+=(person.buffs.rHotMealBuff*cfg.multipliers.personnel.health.recentHotMealBuff);
+            person.buffs.rHotMealBuff-=((1/cfg.multipliers.personnel.health.recentHotMealBuffDecay)*(1/cfg.general.refreshRate));
+        };
+        if(person.buffs.rHotShowerBuff>0){
+            calculatedMorale+=(person.buffs.rHotShowerBuff*cfg.multipliers.personnel.health.recentShowerBuff);
+            person.buffs.rHotShowerBuff-=((1/cfg.multipliers.personnel.health.recentShowerBuff)*(1/cfg.general.refreshRate));
+        };
+        if(person.buffs.rReserveTimeBuff>0){
+            calculatedMorale+=(person.buffs.rReserveTimeBuff*cfg.multipliers.personnel.health.recentReserveBuff);
+            person.buffs.rReserveTimeBuff-=((1/cfg.multipliers.personnel.health.reserveBuffDecay)*(1/cfg.general.refreshRate));
+        };
+        calculatedMorale+=vc_uniform(person).moraleImpact;
+        calculatedMorale+=vc_backpack(person).moraleImpact;
+        calculatedMorale+=vc_helmet(person).moraleImpact;
+        calculatedMorale+=vc_sleepingBag(person).moraleImpact;
+        calculatedMorale+=vc_tent(person).moraleImpact;
+        calculatedMorale+=vc_vest(person).moraleImpact;
+        person.status.morale=calculatedMorale;
+    }
 }
 
 
@@ -1086,11 +1191,53 @@ function hf_combatExperienceUpdate(terrain,person){
     if(person.status.currentActivity==0){
         person.status.hoursJobExperience+=((cfg.multipliers.personnel.experience.hCEPHVariousCombatModes[person.status.inCombatType])*(1/cfg.general.refreshRate));
     };
+};
+function ssHF_factorEvaluator(factor,factorWeight){
+    let impact = 0;
+    if(factor>(factorWeight/2)){
+        impact+=(factor-(factorWeight/2));
+    }else if(factor<(factorWeight/2)){
+        impact-=((factorWeight/2)-factor);
+    };
+    return impact;
+};
+function sHF_sIWTF_capabilities(person){
+    let wTF=0;
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.capabilities.competence[0],cfg.multipliers.personnel.willToFight.capabilities.competence.sustainability);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.capabilities.competence[1],cfg.multipliers.personnel.willToFight.capabilities.competence.sufficiency);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.capabilities.competence[2],cfg.multipliers.personnel.willToFight.capabilities.competence.skills);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.capabilities.competence[3],cfg.multipliers.personnel.willToFight.capabilities.competence.relevance);
+    return wTF;
+};
+function sHF_sIWTF_motivations(person){
+    let wTF=0;
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.desperation,cfg.multipliers.personnel.willToFight.motivations.desperation);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.revenge,cfg.multipliers.personnel.willToFight.motivations.ideology);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.ideology,cfg.multipliers.personnel.willToFight.motivations.ideology);
+
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[0],cfg.multipliers.personnel.willToFight.identity.organization);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[1],cfg.multipliers.personnel.willToFight.identity.personal);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[2],cfg.multipliers.personnel.willToFight.identity.unit);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[3],cfg.multipliers.personnel.willToFight.identity.state);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[4],cfg.multipliers.personnel.willToFight.identity.social);
+    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[5],cfg.multipliers.personnel.willToFight.identity.society);
+    return wTF;
+}
+function hf_individualWillToFight(person){
+    let wTF=0;
+    wTF+=sHF_sIWTF_capabilities(person);
+    wTF+=sHF_sIWTF_motivations(person);
+    person.status.willToFight.totalWillToFight=wTF
 }
 
 
+// COMBAT //
+function sc_personCombatRange(person){
 
+}
+function c_squadCombatRange(squad){
 
+}
 
 // RESUPPLY HANDLERS //
 
@@ -1101,261 +1248,19 @@ function hf_combatExperienceUpdate(terrain,person){
 
 // LOCATIONS AND PROXIMITY 
 
-function s_checkProximityCompany(company1,company2){
-    if(company1.long[0]<=company2.long[0]+2 && company.long[0]>=company2.long[0]-2){
-        if(company1.long[1]<=company2.long[0]+6 && company.long[1]>=company2.long[0]-6){
-            company1.status=2;
-            company2.status=2;
-            if(company1.long[1]<=company2.long[1]+3 && company.long[0]>=company2.long[0]-3){
-                company1.status=1;
-                company2.status=1;
-            }
-        }
-    }else{
-        company1.status=3;
-        company2.status=3;
-    }
-};
-function s_checkProximityLocation(company,location){
-    //long string of ifs that checks a company's proximity to a specified location. 
-    let isInProximity = 0;
-    let proximityPriority = 3;
-    if(company.long[0]<=location.long[0]+location.area[0] && company.long[0]>=location.long[0]-location.area[0]){
-        if(company.lat[0]<=location.lat[0]+location.area[0] && company.lat[0]>=location.lat[0]-location.area[0]){
-            if(location.area[1]!=0||location.area[2]!=0){
-                if(company.long[1]<=location.long[1]+location.area[1] && company.long[1]>=location.long[1]-location.area[1]){
-                    if(company.lat[1]<=location.lat[1]+location.area[1] && company.lat[1]>=location.lat[1]-location.area[1]){            
-                        if(location.area[2]!=0){
-                            if(company.long[2]<=location.long[2]+location.area[2] && company.long[2]>=location.long[2]-location.area[2]){
-                                if(company.lat[2]<=location.lat[2]+location.area[2] && company.lat[2]>=location.lat[2]-location.area[2]){
-                                    isInProximity=1;
-                                    proximityPriority=location.priority;
-                                }
-                            }
-                        }else{
-                            isInProximity = 1;
-                            proximityPriority=location.priority;
-                        }
-                    }
-                }  
-            }else{
-                isInProximity = 1;
-                proximityPriority=location.priority;
-            }
-        }
-    }
-    return [
-        isInProximity,
-        proximityPriority
-    ]
-};
 
 
-function ll_compareDecimalCoords(coords1,coords2,area){
-    if(coords1>=(coords2-area)&&coords1<=(coords2+area)){
-        return 1;
-    }else{
-        return 0;
-    };
-};
-function ll_checkIfAtLoc(fCo,loc){
-    if(ll_compareDecimalCoords(fCo.y,loc[1],loc[3])){
-        if(ll_compareDecimalCoords(fCo.x,loc[2],loc[3])){
-            return 1;
-        }
-    }else{
-        return 0;
-    }
 
-};  
-function ll_getLocCo(fCo){
-    let locPriority=5;
-    let locationName="no location found"
-    Theatre.MapFeatures.forEach(
-        function checkAllLocations(location){
-            if(ll_checkIfAtLoc(fCo,location)){
-                if(location[5]<locPriority){
-                    locPriority=location[5];
-                    locationName=location[0];
-                }    
-            }
-        }
-    );
-    fCo.locString=locationName;
-    if(fCo.locString=="The Baltics"){
-        console.log("the coords "+fCo.y+" "+fCo.x+" do not have a detailed enough location for them and thus their movements will be undetailed or break the sim")
-    }
-}
 
 // TRAVEL
-function ss_expendFuelOneVic(fSq,milesTraveled,CCorOR){ 
-    fSq.vehicleGas-=(fSq.vehicle.fuelBurn[CCorOR]*milesTraveled);
-};
-function cf_chkPntAffectsRoute(route){
-    //takes a route specified in the param and then looks through all chokepoints to find if
-    //any of them are along the route and are damaged or destroyed.
-    //if any are and a detour is available, the detour's distance is added.
-    //if any are and are destroyed but can be repaired, the chokepoint starts to modify the left for them to be repaired.
-    let affectsRoute=0;
-    let routePasseable=1;
-    while(affectsRoute==0){
-        Theatre.ChokePoints.forEach(
-            function checkAllArraysInChokepointIndex1(chokepoint){
-                chokepoint[1].forEach(
-                    function checkIfChokepointArray1PosHasBothNames(chokepointIndex){
-                        if((chokepointIndex[0]==route[0]||chokepointIndex[1]==route[0])&&(chokepointIndex[0]==route[1]||chokepointIndex[1]==route[1])){
-                            if(chokepoint[4]!=0){
-                                affectsRoute=1;
-                                console.log("a chokepoint affects the route between "+route[0]+" and "+route[1])
-                                if(chokepoint[4]!=0&&chokepoint[4]!=3){
-                                    if(chokepoint[6]>chokepoint[3]){
-                                        console.log(route[2]);
-                                        route[2]-=chokepoint[5];
-                                        console.log(route[2]);
-                                        routePasseable=1;
-                                        affectsRoute=0;
-                                        chokepoint[4]=0;
-                                        chokepoint[6]=0;
-                                    }
-                                }
-                                if(chokepoint[4]==1&&chokepoint[6]!=0){
-                                    chokepoint[6]+=(1/cfg.general.refreshRate);
-                                    console.log(chokepoint[0]+" is being repaired and has "+(chokepoint[3]-chokepoint[6])+" hours left to go before it is serviceable")
-                                }else if(chokepoint[4]==1&&chokepoint[6]==0){
-                                    console.log(route[2]);
-                                    route[2]+=chokepoint[5];
-                                    console.log(route[2]);
-                                    chokepoint[6]+=(1/cfg.general.refreshRate);
-                                }else if(chokepoint[4]==2){
-                                    routePasseable=0;
-                                    chokepoint[6]+=(1/cfg.general.refreshRate);
-                                }else if(chokepoint[4]==3){
-                                    routePasseable=0;
-                                }else if(chokepoint[4]==0){
-                                    routePasseable=1;
-                                }else{
-                                    console.log(chokepoint[0]+" has a damage state that cf_chkPntAffectsRoute is not programmed to handle")
-                                }
-                                
-                            }
-                        }
-                    }   
-                )
-            }
-        )        
-    
-    
-    
-    };
-    return[affectsRoute,routePasseable]
-};
-function cf_chokePointHavingLocName(point,chokepoint){
-    let hasPoint = 0;
-    for(let i = 0; i < ((chokepoint[1].length)-1); i++){
-        if(chokepoint[1][i][0]==point||chokepoint[1][i][1]==point){
-            hasPoint = 1;
-            console.log(hasPoint+" the location is mentioned");
-        }
-    }
-};
-function cf_relevantChokePoints(pointA,pointB,chokepoint){
-
-};
-function tt_checkForRelevantChokepoints(pointA,pointB){
-    let routeIsUsable = 1;
-    let milesAddedToRoute = 0;
-
-}
-function cf_destOrDamChokePoints(pointA,pointB){
-    /*
-        checks if the route between point A and point B has any chokepoints relevant to it, and if so, if they are damaged, and if so, whether they can be repaired and if so, (lol) when they will become available. 
-    */
-    let routeIsUsable = 1;
-    let milesAddedToRoute = 0;
-    for(let i = 0; i < ((Theatre.ChokePoints.length)-1); i++){
-        if((Theatre.ChokePoints[i][0]==pointA||Theatre.ChokePoints[i][0]==pointB)&&(Theatre.ChokePoints[i][1]==pointA||Theatre.ChokePoints[i][1]==pointB)){
-            if(Theatre.ChokePoints[i][2]!=0){//is the chokepoint damaged in a way that will impact travel?
-                //if(theatre.ChokePoints[i][])
-
-            }
-        }
-    }
-};
-function ss_travelOneVic(squad,pointA,pointB){
-
-}
 
 // MISCELLANIOUS UTILITY
-function c_squadVehicleType(squad){
-    let vicType=0
-        //simple but widely used function that obtains the vehicle type of a squad. Used several times in the calculation of squad database entries. 
-        if(squad.vehicle.type==6||squad.vehicle.type==5||squad.vehicle.type==8||squad.vehicle.type==7){
-            vicType=1;
-        }else if(squad.vehicle.type==3){
-            vicType=2;
-        }else if(squad.vehicle.type==2||squad.vehicle.type==10||squad.vehicle.type==11||squad.vehicle.type==12||squad.vehicle.type==13||squad.vehicle.type==1||squad.vehicle.type==14){
-            vicType=3;
-        }else{
-            console.log("c_squadVehicleType can't handle the input vehicle type")
-        };       
-    return vicType
+function randomIntInclusive(min,max){
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random()*(max-min+1)+min);
 };
-function c_randomChanceEvaluator(chance){
-    let randomChance = (Math.random()*100)
-    if(randomChance>10 &&  randomChance<=(chance+10)){
-        return 1
-    }else{
-        return 0
-    } 
-};
-function q_squadHasSL(squad){
-    if(squad.members[1]>=1){
-        return 1
-    }else{
-        return 0
-    }
-};
-function v_squadDBEntry(squad){
-    let failMsg = "squad database entry invalid due to ";
-    const checkTypes = {
-        members:11,
-        TroopCarriedSupplies:7,
-        vehicleCarriedSupplies:7,
-        supplies:7,
-        sPHC:7,
-        sPHOF:7,
-        sPHIR:7,
-        sPHP:7
-    };
-    Object.fromEntries(checkTypes).forEach( //turns checktypes into an array
-        function([type,length]){             // runs the below function on each item in the array with one param consisting of an array with 2 parts, the name of the key (ex. members) and the value, (ex. 11)
-            if(squad[type].length != length){ //checks for the length matching up with the specified value
-                console.log(failMsg+" "+type+" being "+squad[type].length+" instead of "+length); //returns a failure message if it doesn't
-            }
-        }
-    );
-    /*
-    if(squad.members.length != 11){
-        console.log(failMsg+"members being "+squad.members.length+" instead of 11")
-    }else if(squad.TroopCarriedSupplies.length != 7){
-        console.log(failMsg+" TroopCarriedSupplies being "+squad.TroopCarriedSupplies.length+" instead of 7")
-    }else if(squad.vehicleCarriedSupplies.length != 7){
-        console.log(failMsg+"vehicleCarriedSupplies being "+squad.vehicleCarriedSupplies.length+" instead of 7")
-    }else if(squad.supplies.length != 7){
-        console.log(failMsg+"supplies being "+squad.supplies.length+" instead of 7")       
-    }else if(squad.sPHC.length != 7){
-        console.log(failMsg+"sPHC being "+squad.sPHC.length+" instead of 7")               
-    }else if(squad.sPHOF.length != 7){
-        console.log(failMsg+"sPHOF being "+squad.sPHOF.length+" instead of 7")       
-    }else if(squad.sPHIR.length !=7){
-        console.log(failMsg+"sPHIR being "+squad.sPHIR.length+" instead of 7")
-    }else if(squad.sPHP.length !=7){
-        console.log(failMsg+"sPHP being "+squad.sPHP.length+" instead of 7")
-    */
-    if(squad.vehicleCarriedSupplies[6]!= squad.vehicle.supplies[6]*DB.components.supplies.S_DrinkingWaterContainer.roundsInCrate){
-        console.log(failMsg+"the water in gallons not being multiplied correctly by the value of the drinking container water contents");
-    };
-};
+  
 function nameGen(person){//generates complete ranks and names for individual soldiers depending on their country, branch and role. Handles gender with RNG based on percentage women stats in various branches
     let rankArray = 0;
     let firstNameArray = 0;
@@ -1366,11 +1271,14 @@ function nameGen(person){//generates complete ranks and names for individual sol
     let isWoman=0;
     let randomChance=Math.random();
     let finishedName = 0;
-    if(randomChance<cfg.nationalities.percentageInfWomenByService[person.ID[0]][person.ID[1]]){
-        isWoman=1;
-    }
+    let time = new Date();
     if(person!=0){
+        console.log("namegen executed at "+time);
+        if(randomChance<cfg.nationalities.percentageInfWomenByService[person.ID[0]][person.ID[1]]){
+            isWoman=1;
+        }
         if(person.name==0){//don't want to regen names for soldiers that already have them
+            console.log("new name generated");
             //handle the ranks first. Find their country, branch and role and give them a random rank from the pool
             rankArray=DB.tComponents.names.ranks[person.ID[0]][person.ID[1]][person.ID[2]];
             rank = rankArray[Math.floor(Math.random()*rankArray.length)];
@@ -1389,22 +1297,6 @@ function nameGen(person){//generates complete ranks and names for individual sol
         };        
     }
 }
-function g_sqPersonsByIndex(squad,squadIndex){
-    let numPersonnel=0;
-    if(squad.personnelProfiles[squadIndex][0]!=0){
-        numPersonnel++;
-    }
-    if(squad.personnelProfiles[squadIndex][1]!=0){
-        numPersonnel++;
-    }
-    if(squad.personnelProfiles[squadIndex][2]!=0){
-        numPersonnel++;
-    }
-    if(squad.personnelProfiles[squadIndex][3]!=0){
-        numPersonnel++;
-    }
-    return numPersonnel;
-};
 function mu_isNight(time){
     if((time<runtimeVariables.date.sunRise)||(time>runtimeVariables.date.sunSet)){//is it night time?
         return true;
@@ -1443,76 +1335,3 @@ function mu_ProcessingSpamTest(repeatNum){
 }
 
 // FUNCTIONS AFFECTING THE PLAYER //
-function c_SAMSysSkillLvl(SAMBat){
-    let SAMSkill=1.5;
-    if(SAMBat.uType==5){
-        if(SAMBat.HQ.squad1.hasVehicle!=0){
-            SAMSkill+=.75;
-        };
-        if(SAMBat.platoon5.squad4.hasVehicle!=0){
-            SAMSkill+=.35;
-        };
-        if(SAMBat.platoon5.squad4.hasVehicle!=0){
-            SAMSkill+=.25;
-        };
-        if(SAMBat.platoon5.squad5.hasVehicle!=0){
-            SAMSkill+=.25;
-        };
-        if(SAMBat.platoon5.squad6.hasVehicle!=0){
-            SAMSkill+=.25;
-        };
-        if(SAMBat.platoon5.squad7.hasVehicle!=0){
-            SAMSkill+=.25;
-        };
-        if(SAMBat.platoon5.squad8.hasVehicle!=0){
-            SAMSkill+=.25;
-        };
-        if(SAMBat.platoon5.squad9.hasVehicle!=0){
-            SAMSkill+=.3;
-        };
-    }else if(SAMBat.uType==4){
-        if(SAMBat.HQ.squad1.hasVehicle!=0){
-            SAMSkill+=1;
-        };
-        if(SAMBat.platoon3.squad2.hasVehicle!=0){
-            SAMSkill+=.5;
-        };
-        if(SAMBat.platoon3.squad3.hasVehicle!=0){
-            SAMSkill+=.25;
-        };
-        if(SAMBat.platoon3.squad4.hasVehicle!=0){
-            SAMSkill+=.5;
-        };
-        if(SAMBat.platoon3.squad5.hasVehicle!=0){
-            SAMSkill+=.25
-        }
-    }else{
-        console.log(SAMBat.uType+" is not currently a uType that c_SAMSysSkillLvl can handle")
-    }
-    if(SAMSkill < 2){
-        SAMBat.skill="average";
-    }
-    if(SAMSkill>=2){
-        SAMBat.skill="good";
-    };
-    if(SAMBat>=3){
-        SAMBat.skill="high";
-    };
-    if(SAMBat>=4){
-        SAMBat.skill="excellent";
-    }
-
-}
-//// FUNCTIONS TO BE EXECUTED IN RUNTIME
-//ak74 w bipod and suppressor is 9.21
-//ak74 w/o bipod and suppressor is 10.254
-//ak74 w/o bipod and suppressor is 54.529
-//SVD w bipod suppressor is 64
-//SVD w bipod, suppressor and thermal nods is 82
-//11.95, 9.709
-/*
-vc_primary(runtimeVariables.time,Theatre.MapFeaturesTest[0],DB.testItems.components.personnel.T_Rifleman.AAF_Rifleman_Loaded)
-vc_secondary(runtimeVariables.time,Theatre.MapFeaturesTest[0],DB.testItems.components.personnel.T_Rifleman.AAF_Rifleman_Loaded)
-vc_primary(runtimeVariables.time,Theatre.MapFeaturesTest[0],DB.testItems.components.personnel.T_Rifleman.USMC_LMG)
-vc_secondary(runtimeVariables.time,Theatre.MapFeaturesTest[0],DB.testItems.components.personnel.T_Rifleman.USMC_LMG)
-*/
