@@ -131,7 +131,7 @@ function vc_uBGL(person,terrain,wepIndex){
         totalAVPoints:subAVPoints,
         totalAPPoints:subAPPoints
     }
-}
+};
 function vc_gripMod(person,terrain,wepIndex){//determine the value of a grip mod
     let subWeight=0;
     let subCumeYards=0;
@@ -286,31 +286,26 @@ function vssc_HelmetEvaluator(person,subYardage){
     return{
         newYardage:subYardage
     }
-}
+};
 function vsc_NoSightHandler(time,person,subYardRange){
    let subSubYardage=subYardRange;
    if(mu_isNight(time)){
         if(person.kit.nods!=0){
             if(person.kit.nods.type<4){
                 subSubYardage=cfg.multipliers.personnel.weapons.guns.gRangeByOpticNODAtNight[person.kit.nods.type];
-                console.log("because the person has nods and they aren't thermal, the new yardage is "+subSubYardage);
             }else{
                 subSubYardage*=(cfg.multipliers.personnel.weapons.guns.thermalSightRangeBuff)
-                console.log("because the person has nods and they are thermal, the new yardage is "+subSubYardage);
             }
             subSubYardage*=cfg.multipliers.personnel.weapons.guns.eByEyepieceType[person.kit.nods.lType];
-            console.log("because of the nod lense type, the new yardage is "+subSubYardage);
             subSubYardage=vssc_HelmetEvaluator(person,subSubYardage).newYardage;
-            console.log("after helmet evaluator the yardage is "+subSubYardage);
         }else{
             subSubYardage=cfg.multipliers.personnel.weapons.general.visionNoNodsOrOpticAtNight;
-            console.log("because the person has no nods, the new yardage is "+subSubYardage);
         }
     }
     return{
         finalYardRange:subSubYardage
     }
-}
+};
 function vc_weaponOptic(time,person,weapType,yardRange){
     let opticWeight=0;
     let newYardRange=yardRange;
@@ -368,11 +363,8 @@ function vc_lmgSuitability(person,terrain,wepIndex,subYardage){
         }else if(wepIndex==1){
             if(person.secondary.ammunition[1]>90){//they need a lot of ammunition if they will be trying to suppress
                 APPointsBonus+=(person.secondary.name.rateOfFire*cfg.multipliers.personnel.weapons.guns.APLMGBBFireRate);
-                console.log(APPointsBonus+" added for LMG with fire rate");
                 APPointsBonus+=(person.secondary.name.caliber.bWeight*cfg.multipliers.personnel.weapons.guns.APBBRoundWeight);
-                console.log(APPointsBonus+" added for LMG with bullet weight");
                 APPointsBonus+=(person.secondary.mag.capacity*cfg.multipliers.personnel.weapons.guns.APBBMagSize);
-                console.log(APPointsBonus+" added for LMG with mag cap");
             }
         };
 
@@ -395,11 +387,16 @@ function vc_primary(time,terrain,person){
     if(person.primary.name!=0){
         Weight+=person.primary.name.weight;
         Length+=person.primary.name.length;
-        Weight+=(vc_uBGL(person,terrain,0).uBGLWeight);//add up attachment weights first, regardless of whether or not they have ammo
-        Weight+=(vc_railAccessory(person,terrain,0).totalWeight);
-        Weight+=(vc_gripMod(person,terrain,0).totalWeight);
-        Weight+=(vc_suppressor(person,terrain,0).totalWeight);
-        Weight+=(vc_weaponOptic(time,person,0,Yardage).addedWeight);
+        let railAccessoryStats = vc_railAccessory(person,terrain,0);
+        let uBGLStats=vc_uBGL(person,terrain,0);
+        let gripModStats = vc_gripMod(person,terrain,0);
+        let suppressorStats = vc_suppressor(person,terrain,0,ShotVolume);
+        let opticStats=vc_weaponOptic(time,person,0,Yardage)
+        Weight+=(uBGLStats.uBGLWeight);//add up attachment weights first, regardless of whether or not they have ammo
+        Weight+=(railAccessoryStats.totalWeight);
+        Weight+=(gripModStats.totalWeight);
+        Weight+=(suppressorStats.totalWeight);
+        Weight+=(opticStats.addedWeight);
         if(person.primary.ammunition[0]==person.primary.name.caliber){//check for ammunition compatibility
             Weight+=(person.primary.mag.weight);//add ammunition weight if it matches
             Weight+=(person.primary.name.caliber.weight*person.primary.mag.capacity);
@@ -407,17 +404,17 @@ function vc_primary(time,terrain,person){
                     Pen+=person.primary.name.caliber.pen;
                     Yardage+=person.primary.name.eRange;
                     ShotVolume=person.primary.name.shotDB;
-                    AAPoints+=(vc_railAccessory(person,terrain,0).totalPower);
-                    Yardage+=(vc_railAccessory(person,terrain,0).totalYards);
-                    APPoints+=(vc_uBGL(person,terrain,0).totalAPPoints);
-                    AVPoints+=(vc_uBGL(person,terrain,0).totalAVPoints);
-                    APPoints+=(vc_gripMod(person,terrain,0).totalPower);
-                    Yardage+=(vc_gripMod(person,terrain,0).totalYards);
-                    APPoints+=(vc_suppressor(person,terrain,0,ShotVolume).totalPower);
-                    Yardage+=(vc_suppressor(person,terrain,0,ShotVolume).totalYards);
-                    Length+=(vc_suppressor(person,terrain,0,ShotVolume).totalLength);
-                    ShotVolume=(vc_suppressor(person,terrain,0,ShotVolume).totalShotVolume);
-                    Yardage=(vc_weaponOptic(time,person,0,Yardage).finalYardRange);
+                    AAPoints+=(railAccessoryStats.totalPower);
+                    Yardage+=(railAccessoryStats.totalYards);
+                    APPoints+=(uBGLStats.totalAPPoints);
+                    AVPoints+=(uBGLStats.totalAVPoints);
+                    APPoints+=(gripModStats.totalPower);
+                    Yardage+=(gripModStats.totalYards);
+                    APPoints+=(suppressorStats.totalPower);
+                    Yardage+=(suppressorStats.totalYards);
+                    Length+=(suppressorStats.totalLength);
+                    ShotVolume=(suppressorStats.totalShotVolume);
+                    Yardage=(opticStats.finalYardRange);
                     APPoints+=(Yardage*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[5]]);
                     if(person.primary.name.MOA<5){
                         APPoints+=((5-person.primary.name.MOA)*cfg.multipliers.personnel.weapons.guns.APBBMOALowerThan5);
@@ -465,16 +462,19 @@ function vc_secondary(time,terrain,person){
                     Pen+=person.secondary.name.caliber.pen;
                     Yardage+=person.secondary.name.eRange;
                     ShotVolume=person.secondary.name.shotDB;
-                    AAPoints+=(vc_railAccessory(person,terrain,1).totalPower);
-                    Yardage+=(vc_railAccessory(person,terrain,1).totalYards);
-                    APPoints+=(vc_uBGL(person,terrain,1).totalAPPoints);
-                    AVPoints+=(vc_uBGL(person,terrain,1).totalAVPoints);
+                    let railAccessoryStats = vc_railAccessory(person,terrain,1);
+                    AAPoints+=(railAccessoryStats.totalPower);
+                    Yardage+=(railAccessoryStats.totalYards);
+                    let uBGLStats=vc_uBGL(person,terrain,1)
+                    APPoints+=(uBGLStats.totalAPPoints);
+                    AVPoints+=(uBGLStats.totalAVPoints);
                     APPoints+=(vc_gripMod(person,terrain,1).totalPower);
                     Yardage+=(vc_gripMod(person,terrain,1).totalYards);
-                    APPoints+=(vc_suppressor(person,terrain,1,ShotVolume).totalPower);
-                    Yardage+=(vc_suppressor(person,terrain,1,ShotVolume).totalYards);
-                    Length+=(vc_suppressor(person,terrain,1,ShotVolume).totalLength);
-                    ShotVolume=(vc_suppressor(person,terrain,1,ShotVolume).totalShotVolume);
+                    let suppressorStats=vc_suppressor(person,terrain,1,ShotVolume);
+                    APPoints+=(suppressorStats.totalPower);
+                    Yardage+=(suppressorStats.totalYards);
+                    Length+=(suppressorStats.totalLength);
+                    ShotVolume=(suppressorStats.totalShotVolume);
                     Yardage=(vc_weaponOptic(time,person,1,Yardage).finalYardRange);
                     APPoints+=(Yardage*cfg.multipliers.personnel.weapons.guns.gBuffByYByTType[terrain[5]]);
                     if(person.secondary.name.MOA<5){
@@ -591,7 +591,51 @@ function vc_heavyRound(time,person,terrain,round){//calculate value of a round a
     }
 
 };
-
+function svc_APRound(time,person,terrain,round,range){//calculates the value of a rocket round when used against personnel
+    let APPoints=0;
+    let lbsTNT=round.explType*round.warheadWeight;
+    APPoints+=(range*cfg.multipliers.personnel.weapons.grenades.gr_APPBYardThrowable);
+    APPoints+=(lbsTNT*cfg.multipliers.personnel.weapons.general.APPointsByLbTnT);
+    if(round.softLaunch===1){
+        APPoints+=(APPoints*cfg.multipliers.personnel.weapons.rLSpecific.softLaunchBBTerrain[terrain[5]]);
+    };
+    if(round.guidance[1]===1){
+        APPoints*=1.2;
+    };
+    APPoints*=(cfg.multipliers.personnel.weapons.rLSpecific.warHeadTypePowerByTerrain[terrain[5]][round.warHeadType-1]);
+    return{
+        totalAPPoints:APPoints,
+    };
+};
+function svc_AVRound(time,person,terrain,round,range){
+    let AVPoints=0;
+    let Pen=round.penRHA;
+    AVPoints+=(range*cfg.multipliers.personnel.weapons.grenades.gr_AVPBYardThrowable);
+    AVPoints+=(Pen*cfg.multipliers.personnel.weapons.grenades.gr_AVPBMMRHAPen[terrain[5]]);
+    //AVPoints+=(Pen*cfg.multipliers.personnel.weapons.grenades.gr_AVPBMMRHAPen);
+    if(round.softLaunch===1){
+        AVPoints+=(AVPoints*cfg.multipliers.personnel.weapons.rLSpecific.softLaunchBBTerrain[terrain[5]]);
+    };
+    if(round.guidance[1]===1){
+        AVPoints*=1.2;
+    };
+    if(round.guidance[3]===1){
+        AVPoints*=1.25;
+    };
+    return {
+        totalAVPoints:AVPoints
+    };
+};
+function svc_AARound(time,person,terrain,round,range){
+    let AAPoints=0;
+    AAPoints+=(range*cfg.multipliers.personnel.weapons.rLSpecific.rLAAPBBYard);
+    if(round.guidance[4]===1){
+        AAPoints*=1.15;
+    };
+    return{
+        totalAAPoints:AAPoints
+    };
+};
 function vc_specialWeapon(time,person,terrain){//WIP THIS NEEDS TO BE FINISHED
     let Weight = 0;
     let AAPoints = 0;
@@ -610,77 +654,80 @@ function vc_specialWeapon(time,person,terrain){//WIP THIS NEEDS TO BE FINISHED
     let AARoundWeight=0;
     let bestAPRound=0;
     let bestAVRound=0;
-    let bestAARound=0;
-        if(person.special.GPRound[1]!=0){//add up all the ammunition for weight calcs, even if they don't have a RL
-            if((person.special.GPRound[0].range>bestAVRange)&&(person.special.HeavyRound[1]==0)&&(person.special.GPRound[0].useCase[7]==0)){//make sure they don't have a more appropriate alternative before using this and also that they aren't using a MANPAD
-                bestAVRange=person.special.GPRound[0].range;
-                bestPen=person.special.GPRound[0].penRHA; 
-                bestAVRound=person.special.GPRound[0];  
-            };
-            if((person.special.APRound[1]==0)){//for the same reason as above, make sure that you aren't giving them buffed anti-personnel capabilities by using stats of a GP round when they have a dedicated AP round
-                bestAPRange=person.special.GPRound[0].range;
-                bestHESize=person.special.GPRound[0].warheadWeight;
-                bestHEMult=person.special.GPRound[0].explType;
-                bestAPRound=person.special.GPRound[0];  
-            };
-            if(person.special.GPRound[0].useCase[7]==1){
-                AARange=person.special.GPRound[0].range;
-                bestAARound=person.special.GPRound[0];  
-            };
-            totalWeight+=(person.special.GPRound[0].weight*person.special.GPRound[1]);
-            hasAmmo=true;
+    let bestAARound=0;    
+    if(person.special.GPRound[1]!=0){//add up all the ammunition for weight calcs, even if they don't have a RL
+        if((person.special.GPRound[0].range>bestAVRange)&&(person.special.HeavyRound[1]==0)&&(person.special.GPRound[0].useCase[7]==0)){//make sure they don't have a more appropriate alternative before using this and also that they aren't using a MANPAD
+            bestAVRange=person.special.GPRound[0].range;
+            bestPen=person.special.GPRound[0].penRHA; 
+            bestAVRound=person.special.GPRound[0];  
         };
-        if(person.special.APRound[1]!=0){
-            if(person.special.APRound[0].range>bestAPRange){
-                bestAPRange=person.special.APRound[0].range;
-            };
-            bestHEMult=person.special.APRound[0].explType;
-            bestHESize=person.special.APRound[0].warheadWeight;
-            totalWeight+=(person.special.APRound[0].weight*person.special.APRound[1]);
-            bestAPround=person.special.APRound[0];
-            hasAmmo=true;
+        if((person.special.APRound[1]==0)){//for the same reason as above, make sure that you aren't giving them buffed anti-personnel capabilities by using stats of a GP round when they have a dedicated AP round
+            bestAPRange=person.special.GPRound[0].range;
+            bestHESize=person.special.GPRound[0].warheadWeight;
+            bestHEMult=person.special.GPRound[0].explType;
+            bestAPRound=person.special.GPRound[0];  
         };
-        if(person.special.HeavyRound[1]!=0){
-            bestAVRange=person.special.HeavyRound[0].range;
-            bestPen=person.special.HeavyRound[0].penRHA;
-            totalWeight+=(person.special.HeavyRound[0].weight*person.special.HeavyRound[1]);
-            hasAmmo=true;
-            bestAVRound=person.special.HeavyRound[0];
+        if(person.special.GPRound[0].useCase[7]==1){
+            AARange=person.special.GPRound[0].range;
+            bestAARound=person.special.GPRound[0];  
         };
-        if(person.special.SmokeRound[1]!=0){
-            totalWeight+=(person.special.SmokeRound[0].weight*person.special.SmokeRound[1]);
-            hasAmmo=true;
+        totalWeight+=(person.special.GPRound[0].weight*person.special.GPRound[1]);
+        hasAmmo=true;
+    };
+    
+    if(person.special.APRound[1]!=0){
+        if(person.special.APRound[0].range>bestAPRange){
+            bestAPRange=person.special.APRound[0].range;
         };
+        bestHEMult=person.special.APRound[0].explType;
+        bestHESize=person.special.APRound[0].warheadWeight;
+        totalWeight+=(person.special.APRound[0].weight*person.special.APRound[1]);
+        bestAPRound=person.special.APRound[0];
+        hasAmmo=true;
+    };
+    if(person.special.HeavyRound[1]!=0){
+        bestAVRange=person.special.HeavyRound[0].range;
+        bestPen=person.special.HeavyRound[0].penRHA;
+        totalWeight+=(person.special.HeavyRound[0].weight*person.special.HeavyRound[1]);
+        hasAmmo=true;
+        bestAVRound=person.special.HeavyRound[0];
+    };
+    if(person.special.SmokeRound[1]!=0){
+        totalWeight+=(person.special.SmokeRound[0].weight*person.special.SmokeRound[1]);
+        hasAmmo=true;
+    };
     if((person.special.name!=0)&&(hasAmmo)){//make sure they have a rocket and that it has ammo before assigning value
         Weight+=person.special.name.weight;
         if(bestAPRange>0){
-            if(bestAVRound.guidance[1]=1){
-                bestAPRange*=1.05;
-            };
-            if(bestAVRound.guidance[2]=1){
-                bestAPRange*=1.075;
-            };
-            if(bestAVRound.guidance[1]=1){
-                bestAPRange*=1.1;
-            }
-            if(bestAVRound.guidance[1]=1){
-                bestAPRange*=1.125;
-            }
             bestAPRange=vc_weaponOptic(time,person,2,bestAPRange).finalYardRange;
+            APPoints=svc_APRound(time,person,terrain,bestAPRound,bestAPRange).totalAPPoints;
 
         }
+        if(bestAVRange>0){
+            bestAVRange=vc_weaponOptic(time,person,2,bestAVRange).finalYardRange;
+            AVPoints=svc_AVRound(time,person,terrain,bestAVRound,bestAVRange).totalAVPoints;
+        }
+        if(AARange>0){
+            AARange=vc_weaponOptic(time,person,2,AARange).finalYardRange;
+            AAPoints=svc_AARound(time,person,terrain,bestAARound,AARange).totalAAPoints;
+        }
     }
+    
     return{
         totalWeight:Weight,
         totalAAPoints:AAPoints,
         totalAVPoints:AVPoints,
-        totalAPPoints:APPoints
-    }
+        totalAPPoints:APPoints,
+        eAPRange:bestAPRange,
+        eAARange:AARange,
+        eAVRange:bestAVRange
+    };
+    
 };
 
 
-
-function vc_uniform(person){//handles value calculation of a soldier's uniform based on weather, climate, wear, etc.
+//KIT//
+function kvc_uniform(person){//handles value calculation of a soldier's uniform based on weather, climate, wear, etc.
     let BugProtect=0;
     let Weight=0;
     let ImpactOnMorale=0;
@@ -742,8 +789,7 @@ function vc_uniform(person){//handles value calculation of a soldier's uniform b
         moraleImpact:ImpactOnMorale
     }
 };
-
-function vc_vest(person){//handles value calculation of a soldier's body armor
+function kvc_vest(person){//handles value calculation of a soldier's body armor
     let Weight=0;
     let ImpactOnMorale=0;
     let Power = 0;
@@ -785,8 +831,7 @@ function vc_vest(person){//handles value calculation of a soldier's body armor
         moraleImpact:ImpactOnMorale,
     }
 };
-
-function vc_helmet(person){//handles value calculation of a soldier's helmet
+function kvc_helmet(person){//handles value calculation of a soldier's helmet
     let Weight=0;
     let ImpactOnMorale=0;
     let Power=0;
@@ -811,7 +856,7 @@ function vc_helmet(person){//handles value calculation of a soldier's helmet
             ImpactOnMorale+=(cfg.multipliers.personnel.kit.helmet.mH_MoralePowerMultiplier*cfg.multipliers.personnel.kit.helmet.pH_LevelIV);
             Power+=cfg.multipliers.personnel.kit.helmet.pH_LevelIV;
         }else{
-            console.log(person.name+" has a helmet with an NIJ rating of "+person.kit.helmet.NIJ+" that vc_helmet cannot work with");
+            console.log(person.name+" has a helmet with an NIJ rating of "+person.kit.helmet.NIJ+" that kvc_helmet cannot work with");
         };
         if(Theatre.TheatreData.climate==person.kit.helmet.camo){
             ImpactOnMorale+=cfg.multipliers.personnel.kit.helmet.mV_BBHavingRightCamo;
@@ -829,8 +874,7 @@ function vc_helmet(person){//handles value calculation of a soldier's helmet
     };
 
 };
-
-function vc_IFAK(person){//handles value calculation of a soldier's IFAK
+function kvc_IFAK(person){//handles value calculation of a soldier's IFAK
     let Weight=0;
     let ImpactOnMorale=0;
     let Power=0;
@@ -857,8 +901,7 @@ function vc_IFAK(person){//handles value calculation of a soldier's IFAK
         moraleImpact:ImpactOnMorale
     }
 };
-
-function vc_backpack(person){//handles value calculation of a soldier's backpack
+function kvc_backpack(person){//handles value calculation of a soldier's backpack
     let Weight=0;
     let ImpactOnMorale=0;
     let Power=0;
@@ -879,8 +922,7 @@ function vc_backpack(person){//handles value calculation of a soldier's backpack
         moraleImpact:ImpactOnMorale,
     }
 };
-
-function vc_radio(person){
+function kvc_radio(person){
     let weight = 0;
     if(person.kit.radio!=0){
         weight+=person.kit.radio.weight;
@@ -889,8 +931,7 @@ function vc_radio(person){
         totalWeight:weight
     }
 };
-
-function vc_comms(person){
+function kvc_comms(person){
     let weight =0;
     if(person.kit.squadComms!=0){
         weight+=person.kit.squadComms.weight;
@@ -899,7 +940,7 @@ function vc_comms(person){
         totalWeight:weight
     }
 }
-function vc_nods(person){
+function kvc_nods(person){
     let weight=0;
     if(person.kit.nods!=0){
         weight+=person.kit.nods.weight;
@@ -908,7 +949,7 @@ function vc_nods(person){
         totalWeight:weight
     }
 }
-function vc_tent(person){
+function kvc_tent(person){
     let Weight=0;
     let ImpactOnMorale=0;
     let Power=0;    
@@ -926,8 +967,7 @@ function vc_tent(person){
         moraleImpact:ImpactOnMorale,
     }
 };
-
-function vc_sleepingBag(person){
+function kvc_sleepingbag(person){
     let Weight=0;
     let ImpactOnMorale=0;
     let Power=0;    
@@ -950,13 +990,15 @@ function vc_sleepingBag(person){
         totalPower:Power,
         moraleImpact:ImpactOnMorale,
     }
-}
+};
+
+
 
 function APPoints1Person(time,terrain,person){
     let APPoints=0;
     APPoints+=vc_primary(time,terrain,person).totalAPPoints;
     APPoints+=vc_secondary(time,terrain,person).totalAPPoints;
-    APPoints+=vc_specialWeapon(person,terrain).totalAPPoints;
+    APPoints+=vc_specialWeapon(time,person,terrain).totalAPPoints;
     APPoints+=vc_explosive(terrain,person.explosives.explosive1,0).totalPower;
     APPoints+=vc_explosive(terrain,person.explosives.explosive2,0).totalPower;
     APPoints+=vc_explosive(terrain,person.explosives.explosive3,0).totalPower;
@@ -969,7 +1011,7 @@ function AVPoints1Person(time,terrain,person){
     let AVPoints=0;
     AVPoints+=vc_primary(time,terrain,person).totalAVPoints;
     AVPoints+=vc_secondary(time,terrain,person).totalAVPoints;
-    AVPoints+=vc_specialWeapon(person,terrain).totalAVPoints;
+    AVPoints+=vc_specialWeapon(time,person,terrain).totalAVPoints;
     AVPoints+=vc_explosive(terrain,person.explosives.explosive1,0).antiVehiclePoints;
     AVPoints+=vc_explosive(terrain,person.explosives.explosive2,0).antiVehiclePoints;
     AVPoints+=vc_explosive(terrain,person.explosives.explosive3,0).antiVehiclePoints;
@@ -977,23 +1019,53 @@ function AVPoints1Person(time,terrain,person){
         AVPoints+=(AVPoints*(person.status.hoursCombatExperience*cfg.multipliers.personnel.experience.AVPMBHourCombatExperience));
     };
     return AVPoints;
-}
+};
 function AAPoints1Person(time,terrain,person){
     let AAPoints=0;
     AAPoints+=vc_primary(time,terrain,person).totalAAPoints;
     AAPoints+=vc_secondary(time,terrain,person).totalAAPoints;
-    AAPoints+=vc_specialWeapon(person,terrain).totalAAPoints;
+    AAPoints+=vc_specialWeapon(time,person,terrain).totalAAPoints;
     if(person.status.hoursCombatExperience>0){
         AAPoints+=(AAPoints*(person.status.hoursCombatExperience*cfg.multipliers.personnel.experience.AAPMBHourCombatExperience));
     };
     return AAPoints;
 
-}
+};
 function updatePoints1Person(time,terrain,person){
+    //recalculates the offensive capabilities of a person and updates that person's profile with the new values. Subordinate to update1person
     if(person!=0){
-        person.status.points.AP=APPoints1Person(time,terrain,person);
-        person.status.points.AV=AVPoints1Person(time,terrain,person);
-        person.status.points.AA=AAPoints1Person(time,terrain,person);
+        let APPoints = APPoints1Person(time,terrain,person);
+        let AVPoints = AVPoints1Person(time,terrain,person);
+        let AAPoints = AAPoints1Person(time,terrain,person);
+        let modifier = 0;
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.competence[2],5,cfg.multipliers.personnel.willToFight.capabilities.competence.skills);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.competence[3],5,cfg.multipliers.personnel.willToFight.capabilities.competence.relevance);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[0],5,cfg.multipliers.personnel.willToFight.capabilities.quality.adaptability);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[1],5,cfg.multipliers.personnel.willToFight.capabilities.quality.education);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[2],5,cfg.multipliers.personnel.willToFight.capabilities.quality.fitness);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[3],5,cfg.multipliers.personnel.willToFight.capabilities.quality.pyschTraits);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[4],5,cfg.multipliers.personnel.willToFight.capabilities.quality.resilience);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[5],5,cfg.multipliers.personnel.willToFight.capabilities.quality.socialSkills);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.desperation,5,cfg.multipliers.personnel.willToFight.motivations.desperation);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.revenge,5,cfg.multipliers.personnel.willToFight.motivations.revenge);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.ideology,5,cfg.multipliers.personnel.willToFight.motivations.ideology);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[0],5,cfg.multipliers.personnel.willToFight.motivations.identity.organizational);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[1],5,cfg.multipliers.personnel.willToFight.motivations.identity.personal);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[2],5,cfg.multipliers.personnel.willToFight.motivations.identity.unit);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[3],5,cfg.multipliers.personnel.willToFight.motivations.identity.state);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[4],5,cfg.multipliers.personnel.willToFight.motivations.identity.social);
+        modifier+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[5],5,cfg.multipliers.personnel.willToFight.motivations.identity.societal);
+        APPoints*=(modifier+1);
+        APPoints-=(APPoints*(person.status.fatigue*cfg.multipliers.personnel.health.weaponPointsDebuffByFatigue));
+        AVPoints*=(modifier+1);
+        AVPoints-=(AVPoints*(person.status.fatigue*cfg.multipliers.personnel.health.weaponPointsDebuffByFatigue));
+        AAPoints*=(modifier+1);
+        AAPoints-=(AAPoints*(person.status.fatigue*cfg.multipliers.personnel.health.weaponPointsDebuffByFatigue));
+        person.status.points={
+            AP:APPoints,
+            AV:AVPoints,
+            AA:AAPoints
+        }
     }
 
 };
@@ -1007,22 +1079,22 @@ function weight1Person(time,terrain,person){
     //weapons
     weight+=vc_primary(time,terrain,person).totalWeight;
     weight+=vc_secondary(time,terrain,person).totalWeight;
-    weight+=vc_specialWeapon(person,terrain).totalWeight;
+    weight+=vc_specialWeapon(time,person,terrain).totalWeight;
     weight+=vc_explosive(terrain,person.explosives.explosive1,0).totalWeight;
     weight+=vc_explosive(terrain,person.explosives.explosive2,0).totalWeight;  
     weight+=vc_explosive(terrain,person.explosives.explosive3,0).totalWeight;
 
     //kit
-    weight+=vc_IFAK(person).totalWeight;
-    weight+=vc_backpack(person).totalWeight;
-    weight+=vc_vest(person).totalWeight;
-    weight+=vc_helmet(person).totalWeight;
-    weight+=vc_uniform(person).totalWeight;
-    weight+=vc_tent(person).totalWeight;
-    weight+=vc_sleepingBag(person).totalWeight;
-    weight+=vc_comms(person).totalWeight;
-    weight+=vc_nods(person).totalWeight;
-    weight+=vc_radio(person).totalWeight;
+    weight+=kvc_IFAK(person).totalWeight;
+    weight+=kvc_backpack(person).totalWeight;
+    weight+=kvc_vest(person).totalWeight;
+    weight+=kvc_helmet(person).totalWeight;
+    weight+=kvc_uniform(person).totalWeight;
+    weight+=kvc_tent(person).totalWeight;
+    weight+=kvc_sleepingbag(person).totalWeight;
+    weight+=kvc_comms(person).totalWeight;
+    weight+=kvc_nods(person).totalWeight;
+    weight+=kvc_radio(person).totalWeight;
     
     weight+=5;//at least 5 pounds of kit not covered, that's being generous
     weight+=(((weight*cfg.multipliers.personnel.kit.kitWeightMultWhenWet)*cfg.multipliers.personnel.kit.kitWeightMultImpactByTerrain[terrain[5]])*runtimeVariables.recentRain);
@@ -1031,13 +1103,8 @@ function weight1Person(time,terrain,person){
 
 function update1Person(weather,time,terrain,person){
     if(person!=0){
-        /*
-        if(person.name==0){
-            person=structuredClone(person);            
-        }
-        */
-        console.log(person);
         nameGen(person);
+        hf_fatigue1Person(person);
         updatePoints1Person(time,terrain,person);
         updateWeight1Person(time,terrain,person);
         moraleUpdate1Person(person);
@@ -1049,7 +1116,7 @@ function update1Person(weather,time,terrain,person){
             person.status.hoursJobExperience+=(1/cfg.general.refreshRate);
         };
     }
-}
+};
 function update1Squad(weather,time,terrain,squad){
     
     update1Person(weather,time,terrain,squad.members[0][0]);
@@ -1102,7 +1169,9 @@ function update1Squad(weather,time,terrain,squad){
     update1Person(weather,time,terrain,squad.members[9][2]);
     update1Person(weather,time,terrain,squad.members[9][3]);
     
-}
+    oPS_UpdatePoints1Squad(weather,time,terrain,squad);
+
+};
 function update1SquadModded(weather,time,terrain,squad){
     update1Person(weather,time,terrain,squad.members.SL);
     update1Person(weather,time,terrain,squad.members.FTA.FTL);
@@ -1115,8 +1184,7 @@ function update1SquadModded(weather,time,terrain,squad){
     update1Person(weather,time,terrain,squad.members.FTB.M2);
     update1Person(weather,time,terrain,squad.members.FTB.M3);
     update1Person(weather,time,terrain,squad.members.FTB.M4);
-}
-
+};
 function moraleUpdate1Person(person){
     let calculatedMorale=0;
     if(person!=0){
@@ -1140,18 +1208,103 @@ function moraleUpdate1Person(person){
             calculatedMorale+=(person.buffs.rReserveTimeBuff*cfg.multipliers.personnel.health.recentReserveBuff);
             person.buffs.rReserveTimeBuff-=((1/cfg.multipliers.personnel.health.reserveBuffDecay)*(1/cfg.general.refreshRate));
         };
-        calculatedMorale+=vc_uniform(person).moraleImpact;
-        calculatedMorale+=vc_backpack(person).moraleImpact;
-        calculatedMorale+=vc_helmet(person).moraleImpact;
-        calculatedMorale+=vc_sleepingBag(person).moraleImpact;
-        calculatedMorale+=vc_tent(person).moraleImpact;
-        calculatedMorale+=vc_vest(person).moraleImpact;
+        calculatedMorale+=kvc_uniform(person).moraleImpact;
+        calculatedMorale+=kvc_backpack(person).moraleImpact;
+        calculatedMorale+=kvc_helmet(person).moraleImpact;
+        calculatedMorale+=kvc_sleepingbag(person).moraleImpact;
+        calculatedMorale+=kvc_tent(person).moraleImpact;
+        calculatedMorale+=kvc_vest(person).moraleImpact;
         person.status.morale=calculatedMorale;
     }
-}
+};
+function ssoPS_reducer(result,row){
+    const rowResult = row.reduce(
+        function (personResult,person){
+            if(person===0){
+                return personResult;
+            }
+            return{
+                totalAPPoints:personResult.totalAPPoints+person.status.points.AP,
+                totalAVPoints:personResult.totalAVPoints+person.status.points.AV,
+                totalAAPoints:personResult.totalAAPoints+person.status.points.AA
+            };
+        },
+        {
+            totalAPPoints:0,
+            totalAVPoints:0,
+            totalAAPoints:0
+        }
+    )
+    return{
+        totalAPPoints:result.totalAPPoints+rowResult.totalAPPoints,
+        totalAVPoints:result.totalAVPoints+rowResult.totalAVPoints,
+        totalAAPoints:result.totalAAPoints+rowResult.totalAAPoints
+    };
+};
+function soPS_1Squad(squad){
+    let allAPPoints=0;
+    let allAVPoints=0;
+    let allAAPoints=0;
+    let personnelClass = 0;
+    let person = 0;
+    return squad.members.reduce(ssoPS_reducer,{
+        totalAPPoints:0,
+        totalAVPoints:0,
+        totalAAPoints:0
+    });
+    
+};
+function sssoPS_evalSL1Stat(stat,threshold,multiplier){
+    return((stat-threshold)*multiplier);
+};
+function ssoPS_evalSLPerf(SL){
+    if(SL!=0){
+        let SLStats=SL.status.leadership;
+        let modifier = 0;
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.intellect[0],5,cfg.multipliers.personnel.sLeadership.intellect.mentalAgility);
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.intellect[1],5,cfg.multipliers.personnel.sLeadership.intellect.judgement);
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.intellect[2],5,cfg.multipliers.personnel.sLeadership.intellect.innovation);
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.intellect[3],5,cfg.multipliers.personnel.sLeadership.intellect.tact);
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.intellect[4],5,cfg.multipliers.personnel.sLeadership.intellect.expertise);
+    
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.presence[0],5,cfg.multipliers.personnel.sLeadership.presence.milAndProfBearing);
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.presence[1],5,cfg.multipliers.personnel.sLeadership.presence.fitness);
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.presence[2],5,cfg.multipliers.personnel.sLeadership.presence.confidence);
+        modifier+=sssoPS_evalSL1Stat(SLStats.attributes.presence[3],5,cfg.multipliers.personnel.sLeadership.presence.resilience);
 
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.leads[0],5,cfg.multipliers.personnel.sLeadership.leads.leadsOthers);
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.leads[1],5,cfg.multipliers.personnel.sLeadership.leads.buildsTrust);
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.leads[2],5,cfg.multipliers.personnel.sLeadership.leads.influence);
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.leads[3],5,cfg.multipliers.personnel.sLeadership.leads.leadsByExample);
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.leads[4],5,cfg.multipliers.personnel.sLeadership.leads.communicationSkills);
 
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.develops[0],5,cfg.multipliers.personnel.sLeadership.develops.createsPositiveEnvironment);
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.develops[1],5,cfg.multipliers.personnel.sLeadership.develops.preparesSelf);
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.develops[2],5,cfg.multipliers.personnel.sLeadership.develops.devsOthers);
+        modifier+=sssoPS_evalSL1Stat(SLStats.competencies.develops[3],5,cfg.multipliers.personnel.sLeadership.develops.stewardsProfession);
 
+        modifier+=(SL.status.hoursCombatExperience*cfg.multipliers.personnel.sLeadership.pointsBuffByHourInCombat);
+        return modifier;
+    }else{
+        return cfg.multipliers.personnel.sLeadership.staticPointDebuffNoLeadership;
+    }
+
+};
+function oPS_UpdatePoints1Squad(weather,time,terrain,squad){
+    let rawData = soPS_1Squad(squad);
+    let APPoints=rawData.totalAPPoints;
+    let AVPoints=rawData.totalAVPoints;
+    let AAPoints=rawData.totalAAPoints;
+    let SLMultiplier=ssoPS_evalSLPerf(squad.members[0][0]);
+    APPoints*=(SLMultiplier+1);
+    AVPoints*=(SLMultiplier+1);
+    AAPoints*=(SLMultiplier+1);
+    squad.points={
+        AP:APPoints,
+        AV:AVPoints,
+        AA:AAPoints
+    }
+};
 // SUPPLIES PER HOUR CALCULATIONS //
 function ssph_updateCPH1Person(weather,time,terrain,person){
     let calBurn=0;
@@ -1183,61 +1336,73 @@ function ssph_updateGWPH1Person(weather,time,terrain,person){
         currentWaterExpenditure:waterDrinkRate
     }
 
-}
+};
 
 
 // HUMAN FACTORS
 function hf_combatExperienceUpdate(terrain,person){
     if(person.status.currentActivity==0){
         person.status.hoursJobExperience+=((cfg.multipliers.personnel.experience.hCEPHVariousCombatModes[person.status.inCombatType])*(1/cfg.general.refreshRate));
+        if(person.ID[2]<=1){
+            person.status.leadership.intellect[4]+=(cfg.multipliers.personnel.sLeadership.expertisePerHourInCombat/cfg.general.refreshRate);
+        }
     };
-};
-function ssHF_factorEvaluator(factor,factorWeight){
-    let impact = 0;
-    if(factor>(factorWeight/2)){
-        impact+=(factor-(factorWeight/2));
-    }else if(factor<(factorWeight/2)){
-        impact-=((factorWeight/2)-factor);
-    };
-    return impact;
 };
 function sHF_sIWTF_capabilities(person){
     let wTF=0;
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.capabilities.competence[0],cfg.multipliers.personnel.willToFight.capabilities.competence.sustainability);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.capabilities.competence[1],cfg.multipliers.personnel.willToFight.capabilities.competence.sufficiency);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.capabilities.competence[2],cfg.multipliers.personnel.willToFight.capabilities.competence.skills);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.capabilities.competence[3],cfg.multipliers.personnel.willToFight.capabilities.competence.relevance);
     return wTF;
 };
 function sHF_sIWTF_motivations(person){
     let wTF=0;
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.desperation,cfg.multipliers.personnel.willToFight.motivations.desperation);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.revenge,cfg.multipliers.personnel.willToFight.motivations.ideology);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.ideology,cfg.multipliers.personnel.willToFight.motivations.ideology);
-
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[0],cfg.multipliers.personnel.willToFight.identity.organization);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[1],cfg.multipliers.personnel.willToFight.identity.personal);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[2],cfg.multipliers.personnel.willToFight.identity.unit);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[3],cfg.multipliers.personnel.willToFight.identity.state);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[4],cfg.multipliers.personnel.willToFight.identity.social);
-    wTF+=ssHF_factorEvaluator(person.status.willToFight.motivations.identity[5],cfg.multipliers.personnel.willToFight.identity.society);
     return wTF;
-}
+};
 function hf_individualWillToFight(person){
     let wTF=0;
     wTF+=sHF_sIWTF_capabilities(person);
     wTF+=sHF_sIWTF_motivations(person);
     person.status.willToFight.totalWillToFight=wTF
+};
+function hf_fatigue1Person(person){
+    let activeHours=person.status.hActiveSinceLRest;
+    let newFatigue=0;
+    newFatigue+=(activeHours[0]*cfg.multipliers.personnel.expenditures.fatigueByActivity[0]);
+    newFatigue+=(activeHours[1]*cfg.multipliers.personnel.expenditures.fatigueByActivity[1]);
+    newFatigue+=(activeHours[2]*cfg.multipliers.personnel.expenditures.fatigueByActivity[2]);
+    newFatigue+=(activeHours[3]*cfg.multipliers.personnel.expenditures.fatigueByActivity[3]);
+    newFatigue+=(activeHours[4]*cfg.multipliers.personnel.expenditures.fatigueByActivity[4]);
+    newFatigue+=(activeHours[5]*cfg.multipliers.personnel.expenditures.fatigueByActivity[5]);
+    newFatigue+=(activeHours[6]*cfg.multipliers.personnel.expenditures.fatigueByActivity[6]);
+    if((person.status.currentActivity===3)||(person.status.currentActivity===4)){
+        if(person.status.currentActivity===3){
+            activeHours[0]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+            activeHours[1]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+            activeHours[2]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+            activeHours[3]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+            activeHours[4]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+            activeHours[5]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+            activeHours[6]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+        }else{
+            activeHours[0]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+            activeHours[1]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+            activeHours[2]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+            activeHours[3]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+            activeHours[4]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+            activeHours[5]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+            activeHours[6]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+        }
+        person.status.hActiveSinceLRest=activeHours;
+    }
+    person.status.fatigue=newFatigue;
 }
 
 
 // COMBAT //
 function sc_personCombatRange(person){
 
-}
+};
 function c_squadCombatRange(squad){
 
-}
+};
 
 // RESUPPLY HANDLERS //
 
@@ -1273,12 +1438,10 @@ function nameGen(person){//generates complete ranks and names for individual sol
     let finishedName = 0;
     let time = new Date();
     if(person!=0){
-        console.log("namegen executed at "+time);
         if(randomChance<cfg.nationalities.percentageInfWomenByService[person.ID[0]][person.ID[1]]){
             isWoman=1;
         }
         if(person.name==0){//don't want to regen names for soldiers that already have them
-            console.log("new name generated");
             //handle the ranks first. Find their country, branch and role and give them a random rank from the pool
             rankArray=DB.tComponents.names.ranks[person.ID[0]][person.ID[1]][person.ID[2]];
             rank = rankArray[Math.floor(Math.random()*rankArray.length)];
@@ -1296,14 +1459,14 @@ function nameGen(person){//generates complete ranks and names for individual sol
             person.name=finishedName;
         };        
     }
-}
+};
 function mu_isNight(time){
     if((time<runtimeVariables.date.sunRise)||(time>runtimeVariables.date.sunSet)){//is it night time?
         return true;
     }else{
         return false;
     }
-}
+};
 function mu_ProfileProcessingSpamTest(weather,time,terrain,person,repeatNum){
     let runNo=0;
     let simplifiedRunNo = 0
@@ -1318,7 +1481,7 @@ function mu_ProfileProcessingSpamTest(weather,time,terrain,person,repeatNum){
     };
     let timeElapsed = (new Date()-startTime)/1000;
     console.log(repeatNum+" profile cycles run in "+timeElapsed+" seconds")
-}
+};
 function mu_ProcessingSpamTest(repeatNum){
     let runNo=0;
     let simplifiedRunNo = 0
@@ -1332,6 +1495,6 @@ function mu_ProcessingSpamTest(repeatNum){
     };
     let timeElapsed = (new Date()-startTime)/1000;
     console.log(repeatNum+" profile cycles run in "+timeElapsed+" seconds")
-}
+};
 
 // FUNCTIONS AFFECTING THE PLAYER //

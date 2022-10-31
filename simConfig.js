@@ -178,8 +178,37 @@ let multipliers = {
                 disc:"mix of HMX and TNT, used typically in shaped charges and other munitions, more expensive than comp b and cyclotol.",
                 tntMult:1.54,
                },
+            },
+            rLSpecific:{
+                softLaunchBBTerrain:[
+                    0,//grassland or otherwise no cover
+                    .03,//rural with few buildings
+                    .05,//rural with buildings
+                    .02,//vineyards/tall fields/farmland
+                    .01,//forest,dense,
+                    .055,//industrial facility
+                    .05,//airfield
+                    .06,//military base
+                    .09,//urban area with many houses
+                    .15,//highly developed city
+                    .04//rural area with buildings and lots of forest
+                ],
+                warHeadTypePowerByTerrain:[
+                    //[HEAT, HE, HE/Frag, pure kenetic]
+                    [.9,1,1.1,.85],//grassland or otherwise no cover
+                    [.95,1,1.05,.9],//rural with few buildings
+                    [1.05,1.025,1.05,.95],//rural with buildings
+                    [.95,1.025,1.05,.98],//vineyards//tall fields//farmland
+                    [1,1.05,1.1,1],//forest, dense
+                    [1.12,1.025,1.1,1],//industrial facility
+                    [1,1.1,1.1,1],//airfield
+                    [1.2,1.1,.95,1],//military base
+                    [1.15,1.1,1.05,1],//urban area with many houses
+                    [1.25,1.1,1.15,1],//highly developed city
+                    [.98,1.005,1.1,.95],//rural area with buildings and lots of forest
+                ],
+                rLAAPBBYard:.25,
             }
-
         },
         experience:{
             hCEPHVariousCombatModes:[
@@ -213,7 +242,11 @@ let multipliers = {
             recentHotMealBuff:5,
             recentHotMealBuffDecay:12,
             recentWaterBuff:5,
-            waterBuffDecay:1
+            waterBuffDecay:1,
+            sleepHoursCancelPercentRelaxing:.1,
+            sleepHoursCancelPercentReserve:.125,
+            weaponPointsDebuffByFatigue:.6
+
         },
         kit:{
             uniform:{
@@ -363,6 +396,15 @@ let multipliers = {
                 1.125,,
                 1.025
             ],
+            fatigueByActivity:[
+                .045,//BMR
+                .05,//sedentary, little to no exercise
+                .075,//light activity
+                .1,//moderate activity
+                .15,//active
+                .2,//very active
+                .3,//extremely active
+            ],
             gWPHTempAbove65:.0001,
             gWPHKit:.001,
             cPHTempOver70:.025,
@@ -370,33 +412,66 @@ let multipliers = {
         willToFight:{
             capabilities:{
                 competence:{
-                    sustainability:5,
-                    sufficiency:10,
-                    skills:10,
-                    relevance:15,
+                    sustainability:.001,
+                    sufficiency:.001,
+                    skills:.002,
+                    relevance:.004
                 },
                 quality:{
-                    adaptability:10,
-                    education:5,
-                    fitness:20,
-                    pyschTraits:5,
-                    resilience:10,
-                    socialSkills:5
-                }
+                    adaptability:.003,
+                    education:.0025,
+                    fitness:.03,
+                    pyschTraits:.025,
+                    resilience:.01,
+                    socialSkills:.005,
+                },
             },
             motivations:{
-                desperation:20,
-                revenge:5,
-                ideology:15
+                desperation:.05,
+                revenge:.01,
+                ideology:.015,
+                identity:{
+                    organizational:.01,
+                    personal:.015,
+                    unit:.02,
+                    state:.01,
+                    social:.005,
+                    societal:.011
+                }
             },
-            identity:{
-                organization:5,
-                personal:5,
-                unit:5,
-                state:5,
-                social:10,
-                society:10,
-            }
+        },
+        sLeadership:{
+            //these multipliers will be used to influence the output of offensive values in a squad based on the traits of their leader. Deviations from the set mean of each stat will add or subtract a multiplier of each category, summed up to create a 
+            //total multiplier that impacts the entire squad's offensive firepower. Not all values are yet being accounted for and individual and leadership morale will probably be handled differently.
+            presence:{
+                milAndProfBearing:.001,
+                fitness:.00025,
+                confidence:.002,
+                resilience:.001,
+            },
+            intellect:{
+                mentalAgility:.002,
+                judgement:.003,
+                innovation:.004,
+                tact:.002,
+                expertise:.05
+            },
+            leads:{
+                leadsOthers:.02,
+                buildsTrust:.009,
+                influence:.004,
+                leadsByExample:.01,
+                communicationSkills:.009
+            },
+            develops:{
+                createsPositiveEnvironment:.007,
+                preparesSelf:.006,
+                devsOthers:.0098,
+                stewardsProfession:.006,
+            },
+            expertisePerHourInCombat:.06,
+            pointsBuffByHourInCombat:.00025,
+            staticPointDebuffNoLeadership:-.3
         }
     },
     units:{

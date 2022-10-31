@@ -7804,7 +7804,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -7814,35 +7814,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -7861,39 +7862,39 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     achieves:15
                                 }
@@ -7983,7 +7984,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -7993,35 +7994,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -8040,41 +8042,40 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
-                                    achieves:15
                                 }
     
                             },
@@ -8162,7 +8163,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -8172,35 +8173,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -8219,41 +8221,40 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
-                                    achieves:15
                                 }
     
                             },
@@ -8341,7 +8342,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -8351,35 +8352,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -8398,39 +8400,39 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     achieves:15
                                 }
@@ -8497,7 +8499,7 @@ V : Vehicle driver
                             earPro:tComponents.headSets.hs_ComTacIII,
                             squadComms:tComponents.pRadios.pr_MR3000P,
                             radio:0,
-                            uniform:tComponents.uniforms.u_ACU_OCP,
+                            uniform:tComponents.uniforms.u_ACU_OCP, 
                             IFAK:tComponents.iFAKs.iFAK_II,
                             canteen:tComponents.canteens.GI_MOLLE,           
                             helmet:tComponents.helmets.h_ECH_W,
@@ -8520,7 +8522,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -8530,35 +8532,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -8577,39 +8580,39 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5.5,  //military and professional bearing
+                                        8,    //fitness
+                                        6,    //confidence
+                                        6     //resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5.25,//mental agility
+                                        5,   //sound judgement
+                                        5,   //innovation
+                                        5,   //interpersonal tact
+                                        2.5  //expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,  //leads others
+                                        5,  //builds trust
+                                        5,  //extends influence beyond chain of command
+                                        5,  //leads by example
+                                        5   //communications skills
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5, //creates positive environment
+                                        5, //prepares self
+                                        5, //develops others
+                                        5  //stewards profession
                                     ],
                                     achieves:15
                                 }
@@ -8711,7 +8714,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -8721,35 +8724,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -8768,39 +8772,39 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     achieves:15
                                 }
@@ -8890,7 +8894,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -8900,35 +8904,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -8947,41 +8952,40 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
-                                    achieves:15
                                 }
     
                             },
@@ -9069,7 +9073,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -9079,35 +9083,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -9126,41 +9131,40 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
-                                    achieves:15
                                 }
     
                             },
@@ -9248,7 +9252,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -9258,35 +9262,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -9305,39 +9310,39 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     achieves:15
                                 }
@@ -9427,7 +9432,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -9437,35 +9442,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -9484,41 +9490,40 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
-                                    achieves:15
                                 }
     
                             },
@@ -9606,7 +9611,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -9616,35 +9621,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -9663,41 +9669,40 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
-                                    achieves:15
                                 }
     
                             },
@@ -9785,7 +9790,7 @@ V : Vehicle driver
                             rReserveTimeBuff:1,
                         },
                         status:{
-                            currentActivity:1,
+                            currentActivity:4,
                             activityLevel:2,    
                             inVehicle:0,
                             inCombatType:0,
@@ -9795,35 +9800,36 @@ V : Vehicle driver
                             calorieBalance:0,
                             waterBalance:0,
                             morale:1,
+                            fatigue:0,
                             willToFight:{
                                 totalWillToFight:0,
                                 capabilities:{
                                     competence:[
-                                        4,//sustainability
+                                        5,//sustainability
                                         5,//sufficiency
-                                        9,//skills
-                                        14//relevance
+                                        5,//skills
+                                        5//relevance
                                     ],
                                     quality:[
-                                        7,//adaptability
-                                        4,//education
-                                        15,//fitness
-                                        4.5,//psych traits
-                                        4.8,//resilience
-                                        4.5,//social skills
+                                        5,//adaptability
+                                        5,//education
+                                        5,//fitness
+                                        5,//psych traits
+                                        5,//resilience
+                                        5,//social skills
                                     ],
                                 },
                                 motivations:{
-                                    desperation:10,
-                                    revenge:2.5,
-                                    ideology:7.5,
+                                    desperation:5,
+                                    revenge:5,
+                                    ideology:5,
                                     identity:[
-                                        3,//organization
-                                        2.5,//personal
-                                        3,//unit
-                                        4.5,//state
-                                        4.5,//social
-                                        4.5//society
+                                        5,//organization
+                                        5,//personal
+                                        5,//unit
+                                        5,//state
+                                        5,//social
+                                        5//society
                                     ]
                                 }
                             },
@@ -9842,39 +9848,39 @@ V : Vehicle driver
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
-                                        9,//morality
-                                        3,//empathy
-                                        3,//warrior ethos
-                                        4.5//discipline
+                                        5,//morality
+                                        5,//empathy
+                                        5,//warrior ethos
+                                        5//discipline
                                     ],
                                     presence:[
-                                        7.5,//military and professional bearing
-                                        8,//fitness
-                                        7.5,//confidence
-                                        7.5//resilience
+                                        5,//military and professional bearing
+                                        5,//fitness
+                                        5,//confidence
+                                        5//resilience
                                     ],
                                     intellect:[
-                                        7.5, //mental agility
-                                        7.5,//sound judgement
-                                        7,//innovation
-                                        7,//interpersonal tact
-                                        8//expertise
+                                        5, //mental agility
+                                        5,//sound judgement
+                                        5,//innovation
+                                        5,//interpersonal tact
+                                        5//expertise
                                     ]
     
                                 },
                                 competencies:{
                                     leads:[
-                                        7.5,
-                                        7.5,
-                                        6,
-                                        7.5,
-                                        7
+                                        5,
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     develops:[
-                                        7.5,
-                                        7,
-                                        7.5,
-                                        7.5
+                                        5,
+                                        5,
+                                        5,
+                                        5
                                     ],
                                     achieves:15
                                 }
@@ -11938,7 +11944,7 @@ const testItems={
                         rReserveTimeBuff:1,
                     },
                     status:{
-                        currentActivity:1,//0 is in active combat, 1 is standing guard, 2 is patrol, 3 is relaxing (downtime in general;could be eating, sleeping, doing weapon maintenance, etc.), 4 is in reserve 
+                        currentActivity:4,//0 is in active combat, 1 is standing guard, 2 is patrol, 3 is relaxing (downtime in general;could be eating, sleeping, doing weapon maintenance, etc.), 4 is in reserve 
                         activityLevel:2,    
                         inVehicle:0,
                         inCombatType:0,//various combat types, refer to cfg.multipliers.personnel.experience.hCEPHVariousCombatModes for the detailed list. These can determine experience gain, among other things
@@ -11948,6 +11954,7 @@ const testItems={
                         calorieBalance:0,
                         waterBalance:0,
                         morale:1,
+                        fatigue:0,
                         willToFight:{
                             totalWillToFight:0,
                             capabilities:{
