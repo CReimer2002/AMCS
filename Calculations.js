@@ -44,7 +44,8 @@ let runtimeVariables ={
     recentRain:1,
     //time:cfg.environment.startTime,
     refreshNumber:cfg.general.refreshNumber,
-    currentWeather:cfg.environment.startTime,    
+    currentWeather:cfg.environment.startTime,  
+    acceptableUnitID:1,//each unit can be given a new ID upon initialization, this ID must be unique. The simplest way to do this is to simply have an increasing number.  
 };
 function vc_railAccessory(person,terrain,wepIndx){//determine the value of a rail accessory
     let subWeight=0;
@@ -1101,9 +1102,10 @@ function weight1Person(time,terrain,person){
     return weight
 };
 
-function update1Person(weather,time,terrain,person){
+function update1Person(weather,time,terrain,person,squad,tier){
     if(person!=0){
         nameGen(person);
+        sHF_sIWTF_statBuff(person,squad);
         hf_fatigue1Person(person);
         updatePoints1Person(time,terrain,person);
         updateWeight1Person(time,terrain,person);
@@ -1111,6 +1113,7 @@ function update1Person(weather,time,terrain,person){
         ssph_updateCPH1Person(weather,time,terrain,person);
         ssph_updateGWPH1Person(weather,time,terrain,person);
         hf_combatExperienceUpdate(terrain,person);
+        hf_sqLvlLeadershipBuff(person,squad,tier);
         hf_individualWillToFight(person);
         if(person.status.currentActivity!=4){
             person.status.hoursJobExperience+=(1/cfg.general.refreshRate);
@@ -1118,56 +1121,57 @@ function update1Person(weather,time,terrain,person){
     }
 };
 function update1Squad(weather,time,terrain,squad){
+    sqIDGen(squad);
     
-    update1Person(weather,time,terrain,squad.members[0][0]);
-    update1Person(weather,time,terrain,squad.members[0][1]);
-    update1Person(weather,time,terrain,squad.members[0][2]);
-    update1Person(weather,time,terrain,squad.members[0][3]);
+    update1Person(weather,time,terrain,squad.members[0][0],squad,2);
+    update1Person(weather,time,terrain,squad.members[0][1],squad,2);
+    update1Person(weather,time,terrain,squad.members[0][2],squad,2);
+    update1Person(weather,time,terrain,squad.members[0][3],squad,2);
 
-    update1Person(weather,time,terrain,squad.members[1][0]);
-    update1Person(weather,time,terrain,squad.members[1][1]);
-    update1Person(weather,time,terrain,squad.members[1][2]);
-    update1Person(weather,time,terrain,squad.members[1][3]);
+    update1Person(weather,time,terrain,squad.members[1][0],squad,1);
+    update1Person(weather,time,terrain,squad.members[1][1],squad,1);
+    update1Person(weather,time,terrain,squad.members[1][2],squad,1);
+    update1Person(weather,time,terrain,squad.members[1][3],squad,1);
 
-    update1Person(weather,time,terrain,squad.members[2][0]);
-    update1Person(weather,time,terrain,squad.members[2][1]);
-    update1Person(weather,time,terrain,squad.members[2][2]);
-    update1Person(weather,time,terrain,squad.members[2][3]);
+    update1Person(weather,time,terrain,squad.members[2][0],squad,0);
+    update1Person(weather,time,terrain,squad.members[2][1],squad,0);
+    update1Person(weather,time,terrain,squad.members[2][2],squad,0);
+    update1Person(weather,time,terrain,squad.members[2][3],squad,0);
 
-    update1Person(weather,time,terrain,squad.members[3][0]);
-    update1Person(weather,time,terrain,squad.members[3][1]);
-    update1Person(weather,time,terrain,squad.members[3][2]);
-    update1Person(weather,time,terrain,squad.members[3][3]);
+    update1Person(weather,time,terrain,squad.members[3][0],squad,0);
+    update1Person(weather,time,terrain,squad.members[3][1],squad,0);
+    update1Person(weather,time,terrain,squad.members[3][2],squad,0);
+    update1Person(weather,time,terrain,squad.members[3][3],squad,0);
 
-    update1Person(weather,time,terrain,squad.members[4][0]);
-    update1Person(weather,time,terrain,squad.members[4][1]);
-    update1Person(weather,time,terrain,squad.members[4][2]);
-    update1Person(weather,time,terrain,squad.members[4][3]);
+    update1Person(weather,time,terrain,squad.members[4][0],squad,0);
+    update1Person(weather,time,terrain,squad.members[4][1],squad,0);
+    update1Person(weather,time,terrain,squad.members[4][2],squad,0);
+    update1Person(weather,time,terrain,squad.members[4][3],squad,0);
 
-    update1Person(weather,time,terrain,squad.members[5][0]);
-    update1Person(weather,time,terrain,squad.members[5][1]);
-    update1Person(weather,time,terrain,squad.members[5][2]);
-    update1Person(weather,time,terrain,squad.members[5][3]);
+    update1Person(weather,time,terrain,squad.members[5][0],squad,0);
+    update1Person(weather,time,terrain,squad.members[5][1],squad,0);
+    update1Person(weather,time,terrain,squad.members[5][2],squad,0);
+    update1Person(weather,time,terrain,squad.members[5][3],squad,0);
 
-    update1Person(weather,time,terrain,squad.members[6][0]);
-    update1Person(weather,time,terrain,squad.members[6][1]);
-    update1Person(weather,time,terrain,squad.members[6][2]);
-    update1Person(weather,time,terrain,squad.members[6][3]);
+    update1Person(weather,time,terrain,squad.members[6][0],squad,0);
+    update1Person(weather,time,terrain,squad.members[6][1],squad,0);
+    update1Person(weather,time,terrain,squad.members[6][2],squad,0);
+    update1Person(weather,time,terrain,squad.members[6][3],squad,0);
 
-    update1Person(weather,time,terrain,squad.members[7][0]);
-    update1Person(weather,time,terrain,squad.members[7][1]);
-    update1Person(weather,time,terrain,squad.members[7][2]);
-    update1Person(weather,time,terrain,squad.members[7][3]);
+    update1Person(weather,time,terrain,squad.members[7][0],squad,0);
+    update1Person(weather,time,terrain,squad.members[7][1],squad,0);
+    update1Person(weather,time,terrain,squad.members[7][2],squad,0);
+    update1Person(weather,time,terrain,squad.members[7][3],squad,0);
 
-    update1Person(weather,time,terrain,squad.members[8][0]);
-    update1Person(weather,time,terrain,squad.members[8][1]);
-    update1Person(weather,time,terrain,squad.members[8][2]);
-    update1Person(weather,time,terrain,squad.members[8][3]);
+    update1Person(weather,time,terrain,squad.members[8][0],squad,0);
+    update1Person(weather,time,terrain,squad.members[8][1],squad,0);
+    update1Person(weather,time,terrain,squad.members[8][2],squad,0);
+    update1Person(weather,time,terrain,squad.members[8][3],squad,0);
 
-    update1Person(weather,time,terrain,squad.members[9][0]);
-    update1Person(weather,time,terrain,squad.members[9][1]);
-    update1Person(weather,time,terrain,squad.members[9][2]);
-    update1Person(weather,time,terrain,squad.members[9][3]);
+    update1Person(weather,time,terrain,squad.members[9][0],squad,0);
+    update1Person(weather,time,terrain,squad.members[9][1],squad,0);
+    update1Person(weather,time,terrain,squad.members[9][2],squad,0);
+    update1Person(weather,time,terrain,squad.members[9][3],squad,0);
     
     oPS_UpdatePoints1Squad(weather,time,terrain,squad);
 
@@ -1343,57 +1347,94 @@ function ssph_updateGWPH1Person(weather,time,terrain,person){
 function hf_combatExperienceUpdate(terrain,person){
     if(person.status.currentActivity==0){
         person.status.hoursJobExperience+=((cfg.multipliers.personnel.experience.hCEPHVariousCombatModes[person.status.inCombatType])*(1/cfg.general.refreshRate));
-        if(person.ID[2]<=1){
-            person.status.leadership.intellect[4]+=(cfg.multipliers.personnel.sLeadership.expertisePerHourInCombat/cfg.general.refreshRate);
-        }
     };
 };
-function sHF_sIWTF_capabilities(person){
+function sHF_sIWTF_capabilities(person){//Potential WIP or deprecated
     let wTF=0;
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.competence[0],5,cfg.multipliers.personnel.willToFight.capabilities.competence.sustainability);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.competence[1],5,cfg.multipliers.personnel.willToFight.capabilities.competence.sufficiency);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.competence[2],5,cfg.multipliers.personnel.willToFight.capabilities.competence.skills);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.competence[3],5,cfg.multipliers.personnel.willToFight.capabilities.competence.relevance);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[0],5,cfg.multipliers.personnel.willToFight.capabilities.quality.adaptability);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[1],5,cfg.multipliers.personnel.willToFight.capabilities.quality.education);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[2],5,cfg.multipliers.personnel.willToFight.capabilities.quality.fitness);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[3],5,cfg.multipliers.personnel.willToFight.capabilities.quality.pyschTraits);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[4],5,cfg.multipliers.personnel.willToFight.capabilities.quality.resilience);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.capabilities.quality[5],5,cfg.multipliers.personnel.willToFight.capabilities.quality.socialSkills);
     return wTF;
 };
 function sHF_sIWTF_motivations(person){
     let wTF=0;
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.desperation,5,cfg.multipliers.personnel.willToFight.motivations.desperation);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.revenge,5,cfg.multipliers.personnel.willToFight.motivations.revenge);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.ideology,5,cfg.multipliers.personnel.willToFight.motivations.ideology);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[0],5,cfg.multipliers.personnel.willToFight.motivations.identity.organizational);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[1],5,cfg.multipliers.personnel.willToFight.motivations.identity.personal);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[2],5,cfg.multipliers.personnel.willToFight.motivations.identity.unit);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[3],5,cfg.multipliers.personnel.willToFight.motivations.identity.state);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[4],5,cfg.multipliers.personnel.willToFight.motivations.identity.social);
+    wTF+=sssoPS_evalSL1Stat(person.status.willToFight.motivations.identity[5],5,cfg.multipliers.personnel.willToFight.motivations.identity.societal);
     return wTF;
+};
+function sHF_sIWTF_statBuff(person,squad){
+    person.status.hostSqID[1]=squad.ID;
+    if(person.status.hostSqID[0]===person.status.hostSqID[1]){
+        person.status.willToFight.motivations.identity[2]+=(cfg.multipliers.personnel.willToFight.willToFightBuffs.motivations.identity.squad/cfg.general.refreshRate);
+    }else{
+        person.status.willToFight.motivations.identity[2]=3;
+        person.status.hostSqID[0]=squad.ID;
+    }
 };
 function hf_individualWillToFight(person){
     let wTF=0;
     wTF+=sHF_sIWTF_capabilities(person);
     wTF+=sHF_sIWTF_motivations(person);
-    person.status.willToFight.totalWillToFight=wTF
+    person.status.willToFight.totalWillToFight=(wTF+cfg.multipliers.personnel.willToFight.defaultWillToFight);
 };
 function hf_fatigue1Person(person){
     let activeHours=person.status.hActiveSinceLRest;
     let newFatigue=0;
-    newFatigue+=(activeHours[0]*cfg.multipliers.personnel.expenditures.fatigueByActivity[0]);
-    newFatigue+=(activeHours[1]*cfg.multipliers.personnel.expenditures.fatigueByActivity[1]);
-    newFatigue+=(activeHours[2]*cfg.multipliers.personnel.expenditures.fatigueByActivity[2]);
-    newFatigue+=(activeHours[3]*cfg.multipliers.personnel.expenditures.fatigueByActivity[3]);
-    newFatigue+=(activeHours[4]*cfg.multipliers.personnel.expenditures.fatigueByActivity[4]);
-    newFatigue+=(activeHours[5]*cfg.multipliers.personnel.expenditures.fatigueByActivity[5]);
-    newFatigue+=(activeHours[6]*cfg.multipliers.personnel.expenditures.fatigueByActivity[6]);
-    if((person.status.currentActivity===3)||(person.status.currentActivity===4)){
-        if(person.status.currentActivity===3){
-            activeHours[0]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
-            activeHours[1]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
-            activeHours[2]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
-            activeHours[3]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
-            activeHours[4]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
-            activeHours[5]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
-            activeHours[6]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
-        }else{
-            activeHours[0]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
-            activeHours[1]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
-            activeHours[2]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
-            activeHours[3]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
-            activeHours[4]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
-            activeHours[5]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
-            activeHours[6]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
-        }
-        person.status.hActiveSinceLRest=activeHours;
+    if(person.status.currentActivity===3){
+        activeHours[0]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+        activeHours[1]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+        activeHours[2]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+        activeHours[3]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+        activeHours[4]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+        activeHours[5]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+        activeHours[6]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentRelaxing)/cfg.general.refreshRate);
+    }else if(person.status.currentActivity===4){
+        activeHours[0]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+        activeHours[1]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+        activeHours[2]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+        activeHours[3]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+        activeHours[4]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+        activeHours[5]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+        activeHours[6]*=((1-cfg.multipliers.personnel.health.sleepHoursCancelPercentReserve)/cfg.general.refreshRate);
+    }else{
+        newFatigue+=((activeHours[0]*cfg.multipliers.personnel.expenditures.fatigueByActivity[0])/cfg.general.refreshRate);
+        newFatigue+=((activeHours[1]*cfg.multipliers.personnel.expenditures.fatigueByActivity[1])/cfg.general.refreshRate);
+        newFatigue+=((activeHours[2]*cfg.multipliers.personnel.expenditures.fatigueByActivity[2])/cfg.general.refreshRate);
+        newFatigue+=((activeHours[3]*cfg.multipliers.personnel.expenditures.fatigueByActivity[3])/cfg.general.refreshRate);
+        newFatigue+=((activeHours[4]*cfg.multipliers.personnel.expenditures.fatigueByActivity[4])/cfg.general.refreshRate);
+        newFatigue+=((activeHours[5]*cfg.multipliers.personnel.expenditures.fatigueByActivity[5])/cfg.general.refreshRate);
+        newFatigue+=((activeHours[6]*cfg.multipliers.personnel.expenditures.fatigueByActivity[6])/cfg.general.refreshRate);
     }
+    person.status.hActiveSinceLRest=activeHours;
     person.status.fatigue=newFatigue;
-}
+};
+function hf_sqLvlLeadershipBuff(person,squad,tierLevel){
+    if(person.status.leadership.leadershipLevel>0){
+        person.status.leadership.attributes.intellect[4]+=(cfg.multipliers.personnel.sLeadership.expertiseAddByActivityType[person.status.currentActivity]/cfg.general.refreshRate);
+        if(person.status.currentActivity===0){
+            person.status.leadership.attributes.intellect[4]+=(cfg.multipliers.personnel.sLeadership.expertiseAddByCombatType[person.status.inCombatType]/cfg.general.refreshRate);
+        }
+    };
+    if((tierLevel>0)&&(person.ID[2]<tierLevel)){//this is what will let the sim know that this person is now in a leadership position, tier dependent on the number given. If they are given a higher position than their rank entitles them to, this is where they will be promoted.
+        person.status.leadership.leadershipLevel=tierLevel;
+        person.ID[2]=tierLevel;
+        person.name[0]=DB.tComponents.names.ranks[person.ID[0]][person.ID[1]][person.ID[2]][0];
+    };
+};
 
 
 // COMBAT //
@@ -1405,11 +1446,320 @@ function c_squadCombatRange(squad){
 };
 
 // RESUPPLY HANDLERS //
+function rH_1Person(squad,person,referencePerson){
+    sRH_Primary(squad,person,referencePerson);
+    sRH_Secondary(squad,person,referencePerson);
+};
 
+function sRH_Primary(squad,person,referencePerson){
+    if(person.primary.ammunition[1]<referencePerson.primary.ammunition[1]){
+        let neededPriAmmo=[0,0];
+        neededPriAmmo[1]=(referencePerson.primary.ammunition[1]-person.primary.ammunition[1]);
+        neededPriAmmo[0]=person.primary.ammunition[0];
+        let possibleResupply=ssRH_attemptResupplyFromPool1Type(neededPriAmmo,squad.supply.supplyPool);
+        if(possibleResupply===neededPriAmmo[1]){
+            person.primary.ammunition[1]=referencePerson.primary.ammunition[1];
+            ssRH_subtractItemFromNeededSupplies([neededPriAmmo[0],possibleResupply],squad.supply.neededSupplies);
+        }else{
+            person.primary.ammunition[1]+=possibleResupply;
+            ssRH_subtractItemFromNeededSupplies([neededPriAmmo[0],possibleResupply],squad.supply.neededSupplies);
+            let personAmmo = person.primary.ammunition[1]
+            let totalToBeAdded=(referencePerson.primary.ammunition[1]-personAmmo);
+            ssRH_addItemToNeededSupplies([person.primary.ammunition[0],totalToBeAdded],squad.supply.neededSupplies);
+        };
+    }else{
+        console.log(person.name[0]+" "+person.name[1]+" has enough ammunition currently");
+    };
+    if(person.primary.uBGLAmmunition[1]<referencePerson.primary.uBGLAmmunition[1]){
+        let neededPriAmmo=[0,0];
+        neededPriAmmo[1]=(referencePerson.primary.uBGLAmmunition[1]-person.primary.uBGLAmmunition[1]);
+        neededPriAmmo[0]=person.primary.uBGLAmmunition[0];
+        let possibleResupply=ssRH_attemptResupplyFromPool1Type(neededPriAmmo,squad.supply.supplyPool);
+        if(possibleResupply===neededPriAmmo[1]){
+            person.primary.uBGLAmmunition[1]=referencePerson.primary.uBGLAmmunition[1];
+            ssRH_subtractItemFromNeededSupplies([neededPriAmmo[0],possibleResupply],squad.supply.neededSupplies);
+        }else{
+            person.primary.uBGLAmmunition[1]+=possibleResupply;
+            ssRH_subtractItemFromNeededSupplies([neededPriAmmo[0],possibleResupply],squad.supply.neededSupplies);
+            let personAmmo = person.primary.uBGLAmmunition[1]
+            let totalToBeAdded=(referencePerson.primary.uBGLAmmunition[1]-personAmmo);
+            ssRH_addItemToNeededSupplies([person.primary.uBGLAmmunition[0],totalToBeAdded],squad.supply.neededSupplies);
+        };
+    }else{
+        console.log(person.name[0]+" "+person.name[1]+" has enough underbarrel grenade launcher ammunition currently");
+    };
+};
+function sRH_Secondary(squad,person,referencePerson){
+    if(person.secondary.ammunition[1]<referencePerson.secondary.ammunition[1]){
+        let neededPriAmmo=[0,0];
+        neededPriAmmo[1]=(referencePerson.secondary.ammunition[1]-person.secondary.ammunition[1]);
+        neededPriAmmo[0]=person.secondary.ammunition[0];
+        let possibleResupply=ssRH_attemptResupplyFromPool1Type(neededPriAmmo,squad.supply.supplyPool);
+        if(possibleResupply===neededPriAmmo[1]){
+            person.secondary.ammunition[1]=referencePerson.secondary.ammunition[1];
+            ssRH_subtractItemFromNeededSupplies([neededPriAmmo[0],possibleResupply],squad.supply.neededSupplies);
+        }else{
+            person.secondary.ammunition[1]+=possibleResupply;
+            ssRH_subtractItemFromNeededSupplies([neededPriAmmo[0],possibleResupply],squad.supply.neededSupplies);
+            let personAmmo = person.secondary.ammunition[1]
+            let totalToBeAdded=(referencePerson.secondary.ammunition[1]-personAmmo);
+            ssRH_addItemToNeededSupplies([person.secondary.ammunition[0],totalToBeAdded],squad.supply.neededSupplies);
+        };
+    }else{
+        console.log(person.name[0]+" "+person.name[1]+" has enough ammunition currently");
+    };
+    if(person.secondary.uBGLAmmunition[1]<referencePerson.secondary.uBGLAmmunition[1]){
+        let neededPriAmmo=[0,0];
+        neededPriAmmo[1]=(referencePerson.secondary.uBGLAmmunition[1]-person.secondary.uBGLAmmunition[1]);
+        neededPriAmmo[0]=person.secondary.uBGLAmmunition[0];
+        let possibleResupply=ssRH_attemptResupplyFromPool1Type(neededPriAmmo,squad.supply.supplyPool);
+        if(possibleResupply===neededPriAmmo[1]){
+            person.secondary.uBGLAmmunition[1]=referencePerson.secondary.uBGLAmmunition[1];
+            ssRH_subtractItemFromNeededSupplies([neededPriAmmo[0],possibleResupply],squad.supply.neededSupplies);
+        }else{
+            person.secondary.uBGLAmmunition[1]+=possibleResupply;
+            ssRH_subtractItemFromNeededSupplies([neededPriAmmo[0],possibleResupply],squad.supply.neededSupplies);
+            let personAmmo = person.secondary.uBGLAmmunition[1]
+            let totalToBeAdded=(referencePerson.secondary.uBGLAmmunition[1]-personAmmo);
+            ssRH_addItemToNeededSupplies([person.secondary.uBGLAmmunition[0],totalToBeAdded],squad.supply.neededSupplies);
+        };
+    }else{
+        console.log(person.name[0]+" "+person.name[1]+" has enough underbarrel grenade launcher ammunition currently");
+    };
+};
+function ssRH_addItemToNeededSupplies(neededItem,pool){
+    let index=0;
+    let foundOpenIndex=0;
+    let index2=0;
+    while((index<=pool.length-1)&&(foundOpenIndex==0)){
+        if(pool[index]!=0){
+            if(pool[index][0]===neededItem[0].name){
+                foundOpenIndex=1;
+                if(pool[index][1]<(neededItem[1]*4)){//this is how I get around the problem of ammunition being added to the quantity needed every loop for infinity. At some point the quantity will cap out and it will take multiple cycles of resupply to fill. This may actually be a hidden increase to realism.
+                    pool[index][1]+=neededItem[1];
+                    console.log("attempting to add needed supply to the already existing total in the  pool at index "+index); 
+                }else{
+                    console.log("there is already a large quantity of this ammunition on order so it won't be added to the list")
+                }
+            };
+        };
+        index++;
+    };
+    if(foundOpenIndex===0){
+        console.log("no existing item found");
+        while((index2<=pool.length-1)&&(foundOpenIndex==0)){
+            if(pool[index2]==0){
+                pool[index2]=[neededItem[0].name,neededItem[1]];
+                foundOpenIndex=1;            
+                console.log("attempting to add needed supply to the pool at index "+index2);
+            }
+            index2+=1;
+        };
+    };
+    if(foundOpenIndex===0){
+        console.log("no open index found,adding index");
+        pool.push(0);
+    }
+};
+function ssRH_attemptResupplyFromPool1Type(neededItem,pool){
+    let index = 0;
+    let quantReturned=0;
+    while(index<=pool.length-1){
+        if(pool[index]!=0){
+            if(pool[index][0]===neededItem[0].name){//inputs will be an array of the needed object and the quantity needed
+                if(pool[index][1]>neededItem[1]){
+                    pool[index][1]-=neededItem[1];
+                    quantReturned=neededItem[1]
+                }else if(pool[index][1]==neededItem[1]){
+                    pool[index]=0;
+                    quantReturned=neededItem[1]
+                }else if(pool[index][1]<neededItem[1]){
+                    let deficit = (neededItem[1]-pool[index][1])
+                    quantReturned = neededItem[1]-deficit;
+                    pool[index]=0;
+                }
+                
+            }
+        }
+        index++
+    }
+    return quantReturned;
+};
+function ssRH_subtractItemFromNeededSupplies(item,pool){
+    //remove a quantity of an item from a unit's needed supply array, and if the quantity left is zero or smaller, clear the index for future use
+    let index=0;
+    let foundItemInIndex=0;
+    console.log("the pool the supplies will be subtracted from is "+pool);
+    while((index<=(pool.length-1))&&(foundItemInIndex==0)){
+        if(pool[index]!=0){
+            if(pool[index][0]===item[0].name){
+                foundItemInIndex=1;
+                pool[index][1]-=item[1];
+                if(pool[index][1]<=0){
+                    pool[index]=0;
+                }
+                console.log("the pool is now "+pool);
+            }
+        }
+        index++
+    }
+};
+function ssRH_givePersonOptic(person,newOptic,weapType){
+    if(person!=0){
+        let opticChangeSuccessful=0;
+        let returnedOptic=[0,0];
+        if(weapType===1){
+            if(person.primary.name!=0){
+                if(newOptic===0){
+                    returnedOptic[0]=person.primary.optic;
+                    returnedOptic[1]=1;
+                    person.primary.optic=0;
+                    opticChangeSuccessful=1;
+                }else if(person.primary.name.opticMountStyle===newOptic.mountStyle){
+                    let oldOptic="nonexistent optic";
+                    if(person.primary.optic!=0){
+                        returnedOptic[0]=person.primary.optic;
+                        oldOptic=returnedOptic[0].name;
+                        returnedOptic[1]=1;
+                    };
+                    person.primary.optic=newOptic;
+                    opticChangeSuccessful=1; 
+                    console.log("optic changed successfully from a "+oldOptic+" to a "+person.primary.optic.name);
+                }else{
+                    console.log("optic change unsuccessful");
+                }
+            }
+            
+        }else if(weapType===2){
+            if(person.secondary.name!=0){
+                if(newOptic===0){
+                    returnedOptic[0]=person.secondary.optic;
+                    returnedOptic[1]=1;
+                    person.secondary.optic=0;
+                    opticChangeSuccessful=1;
+                }else if(person.secondary.name.opticMountStyle===newOptic.mountStyle){
+                    if(person.secondary.optic!=0){
+                        returnedOptic[0]=person.secondary.optic;
+                        returnedOptic[1]=1;
+                    };
+                    person.secondary.optic=newOptic;
+                    opticChangeSuccessful=1;
+                }else{
+                    console.log("optic change unsuccessful");
+                }
+            }
+            
+        }else if(weapType===3){
+            if(person.special.name!=0){
+                if(newOptic===0){
+                    returnedOptic[0]=person.special.optic;
+                    returnedOptic[1]=1;
+                    person.special.optic=0;
+                    opticChangeSuccessful=1;
+                }else if(person.special.name.opticMountStyle===newOptic.mountStyle){
+                    if(person.special.optic!=0){
+                        returnedOptic[0]=person.special.optic;
+                        returnedOptic[1]=1;
+                    };
+                    person.special.optic=newOptic;
+                    opticChangeSuccessful=1;
+                }else{
+                    console.log("optic change unsuccessful");
+                }
+            }
+            
+        }else{
+            console.log("ssRH_givePersonOptic is failing because in the case of "+person.name[0]+" "+person.name[1]+", it is being fed a weapon type of "+weapType+" when it only supports 1, 2 and 3");
+        };
+        return[opticChangeSuccessful,returnedOptic];
+    };
+};
+function ssRH_givePersonSuppressor(person,newSuppressor,weapType){
+    if(person!=0){
+        let suppressorChangeSuccessful=0;
+        let returnedSuppressor=[0,0];
+        if(weapType===1){
+            if(person.primary.name!=0){
+                if(newSuppressor===0){
+                    returnedSuppressor[0]=person.primary.suppressor;
+                    returnedSuppressor[1]=1;
+                    person.primary.suppressor=0;
+                    suppressorChangeSuccessful=1;
+                }else if(person.primary.name.suppressorMountStyle===newSuppressor.mountStyle){
+                    let oldSuppressor="nonexistent suppressor";
+                    if(person.primary.suppressor!=0){
+                        returnedSuppressor[0]=person.primary.suppressor;
+                        oldSuppressor=returnedSuppressor[0].name;
+                        returnedSuppressor[1]=1;
+                    };
+                    person.primary.suppressor=newSuppressor;
+                    suppressorChangeSuccessful=1; 
+                    console.log("suppressor changed successfully from a "+oldSuppressor+" to a "+person.primary.suppressor.name);
+                }else{
+                    console.log("suppressor change unsuccessful");
+                }
+            }
+        }else if(weapType===2){
+            if(person.secondary.name!=0){
+                if(newSuppressor===0){
+                    returnedSuppressor[0]=person.secondary.suppressor;
+                    returnedSuppressor[1]=1;
+                    person.secondary.suppressor=0;
+                    suppressorChangeSuccessful=1;
+                }else if(person.secondary.name.suppressorMountStyle===newSuppressor.mountStyle){
+                    let oldSuppressor="nonexistent suppressor";
+                    if(person.secondary.suppressor!=0){
+                        returnedSuppressor[0]=person.secondary.suppressor;
+                        oldSuppressor=returnedSuppressor[0].name;
+                        returnedSuppressor[1]=1;
+                    };
+                    person.secondary.suppressor=newSuppressor;
+                    suppressorChangeSuccessful=1; 
+                    console.log("suppressor changed successfully from a "+oldSuppressor+" to a "+person.primary.suppressor.name);
+                }else{
+                    console.log("suppressor change unsuccessful");
+                }
+            }
+            
+        }else {
+            console.log("ssRH_givePersonSuppressor is failing because in the case of "+person.name[0]+" "+person.name[1]+", it is being fed a weapon type of "+weapType+" when it only supports 1, 2 and 3");
+        }
+        return[suppressorChangeSuccessful,returnedSuppressor];
+    };
+};
+/* WIP
+function sssRH_intraSquadResupplyGunAmmo(squad,person){
+    if(person.secondary.ammunition!=0){//do they have ammunition for their secondary?
+        if(person.secondary.name===0){//do they not have a secondary, thus indicating this ammunition is not for their consumption?
+            let ammoToGive=ssssRH_checkForItemInPool(person.secondary.ammunition[0],squad.supply.neededSupplies);
+            if(ammoToGive[0]===1){
+                let ammoAvailableCheck=ssssRH_checkForItemInPool(person.secondary.ammunition[0],squad.supply.supplyPool);
+                if(person.secondary.ammunition[1]>=ammoToGive[2]){
+
+                }
+            }
+        }
+    }
+};
+*/
+function ssssRH_checkForItemInPool(item,pool){
+    let index=0;
+    let foundItem=0;
+    let amountNeeded=0;
+    while((index<=pool.length-1)&&(foundItem===0)){
+        if(pool[index]!=0){
+            if(pool[index][0]===item.name){
+                foundItem=1;
+                amountNeeded=pool[index][1];
+            };
+        };
+        index++
+    };
+    return[foundItem,index,amountNeeded];
+}
 
 
 // INJURY OR DEATH CHANCE CALCULATIONS
-
 
 // LOCATIONS AND PROXIMITY 
 
@@ -1436,7 +1786,6 @@ function nameGen(person){//generates complete ranks and names for individual sol
     let isWoman=0;
     let randomChance=Math.random();
     let finishedName = 0;
-    let time = new Date();
     if(person!=0){
         if(randomChance<cfg.nationalities.percentageInfWomenByService[person.ID[0]][person.ID[1]]){
             isWoman=1;
@@ -1455,9 +1804,15 @@ function nameGen(person){//generates complete ranks and names for individual sol
             lastName = lastNameArray[Math.floor(Math.random()*lastNameArray.length)];
     
             //add them together and assign it to the person's name
-            finishedName=(rank+" "+firstName+" "+lastName)
+            finishedName=[rank,(firstName+" "+lastName)];
             person.name=finishedName;
         };        
+    }
+};
+function sqIDGen(squad){
+    if(squad.ID===0){
+        squad.ID=runtimeVariables.acceptableUnitID;
+        runtimeVariables.acceptableUnitID++;
     }
 };
 function mu_isNight(time){
@@ -1497,4 +1852,13 @@ function mu_ProcessingSpamTest(repeatNum){
     console.log(repeatNum+" profile cycles run in "+timeElapsed+" seconds")
 };
 
+
+function testBattery(){
+    update1Squad(runtimeVariables.currentWeather,runtimeVariables.time,Theatre.MapFeaturesTest[0],AMil.forces.blueCo.platoon1.squad1);
+    AMil.forces.blueCo.platoon1.squad1.members[0][0].primary.ammunition[1]=1;
+    sRH_Primary(AMil.forces.blueCo.platoon1.squad1,AMil.forces.blueCo.platoon1.squad1.members[0][0],AMil.forcesReference.blueCo.platoon1.squad1.members[0][0]);
+    AMil.forces.blueCo.platoon1.squad1.supply.supplyPool[0]=AMil.forces.blueCo.platoon1.squad1.supply.neededSupplies[0];
+    sRH_Primary(AMil.forces.blueCo.platoon1.squad1,AMil.forces.blueCo.platoon1.squad1.members[0][0],AMil.forcesReference.blueCo.platoon1.squad1.members[0][0]);
+
+};
 // FUNCTIONS AFFECTING THE PLAYER //

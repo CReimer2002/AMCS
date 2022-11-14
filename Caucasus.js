@@ -944,6 +944,77 @@ let MapFeaturesTest = [
         4
     ],     
 ];
+let MapFeaturesTestBattle=[
+    [
+        "South Subukio Villiage",//name
+        42.329,//coords
+        41.788,//coords
+        .004,//size, decimal coords radius
+        1,//priority for display
+        2,//zone
+        3,//ownership
+        [
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+            0,0
+        ],
+        [
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+            0,0
+        ]
+    ], 
+    [
+        "Northern forest",//name
+        42.335,//coords
+        41.787,//coords
+        .003,//size, decimal coords radius
+        1,//priority for display
+        4,//zone
+        3,//ownership
+        [
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+            0,0
+        ],
+        [
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+            0,0
+        ]
+    ], 
+    [
+        "Southern forest",//name
+        42.323,//coords
+        41.789,//coords
+        .002,//size, decimal coords radius
+        1,//priority for display
+        4,//zone
+        3,//ownership
+        [
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+            0,0
+        ],
+        [
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+            0,0
+        ]
+    ], 
+];
 let MapFeaturesDeprecatedV2 = [
     /*
         Map features in this sim are a way of identifying and simulating a specific location's attributes and how those will affect attacks, defenses or logistical movement through those regions. Location types are used to approximate the topography of the area for calculating defensibility and ease of movement. Area priorities are a backend means of determining what zone should be used when one zone falls inside another one. Ownership is used to approximate how the population of an area is supposed to react to a unit being based there. Unlike types or priorities, ownership is malleable and if an area falls under new ownership, the ownership number will fluctuate. 

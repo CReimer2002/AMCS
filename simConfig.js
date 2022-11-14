@@ -243,8 +243,8 @@ let multipliers = {
             recentHotMealBuffDecay:12,
             recentWaterBuff:5,
             waterBuffDecay:1,
-            sleepHoursCancelPercentRelaxing:.1,
-            sleepHoursCancelPercentReserve:.125,
+            sleepHoursCancelPercentRelaxing:.2,
+            sleepHoursCancelPercentReserve:.3,
             weaponPointsDebuffByFatigue:.6
 
         },
@@ -410,6 +410,7 @@ let multipliers = {
             cPHTempOver70:.025,
         },
         willToFight:{
+            defaultWillToFight:.25,//the base value will to fight, what the person will have if they are all 5s.
             capabilities:{
                 competence:{
                     sustainability:.001,
@@ -439,6 +440,36 @@ let multipliers = {
                     societal:.011
                 }
             },
+            willToFightBuffs:{//how much each stat will be buffed per hour
+                capabilities:{
+                    competence:{
+                        sustainability:0,
+                        sufficiency:0,
+                        skills:0,
+                        relevance:0
+                    },
+                    quality:{
+                        adaptability:.0,
+                        education:0,
+                        fitness:0,
+                        pyschTraits:0,
+                        resilience:0,
+                        socialSkills:0,
+                    },
+                },
+                motivations:{
+                    desperation:0,
+                    revenge:0,
+                    ideology:0,
+                    identity:{
+                        squad:.0001,
+                        platoon:.000025,
+                        company:.0000025,
+                        battalion:.0000025,
+                        regiment:.000000025
+                    }
+                },     
+            }
         },
         sLeadership:{
             //these multipliers will be used to influence the output of offensive values in a squad based on the traits of their leader. Deviations from the set mean of each stat will add or subtract a multiplier of each category, summed up to create a 
@@ -469,9 +500,33 @@ let multipliers = {
                 devsOthers:.0098,
                 stewardsProfession:.006,
             },
-            expertisePerHourInCombat:.06,
+            expertiseAddByActivityType:[
+                0,//if they are in combat the array below will be used instead as it offers more detail.
+                .00025,
+                .0004,
+                .00002,
+                .00001
+            ],
+            expertiseAddByCombatType:[
+                .001,//on the front in a dug in position, light contact against infantry
+                .0012,//on the front in a dug in position, light contact against infantry/artillery
+                .0014,//on the front in a dug in position, contact against infantry
+                .0016,//on the front in a dug in position, contact against infantry with vehicle or artillery support
+                .002,//on the front in a dug in position, under heavy attack
+                .004,//defending against ambush or suprise attack
+                .00025,//on recon patrol, low risk
+                .0005,//on patrol, medium risk
+                .00075,//on patrol, high risk
+                .025,//attacking a position on foot,
+                .03,//attacking a position in a vehicle
+            ],
             pointsBuffByHourInCombat:.00025,
             staticPointDebuffNoLeadership:-.3
+        },
+        casualties:{
+            supply:{
+                
+            }
         }
     },
     units:{

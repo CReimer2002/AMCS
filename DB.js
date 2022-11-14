@@ -7730,7 +7730,7 @@ V : Vehicle driver
                 infantry:{
                     inf_11B_LAT:{
                         name:0,
-                        ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                        ID:[0,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things. The 4th digit is the squad ID. 
                         primary:{//primary weapon, must be a firearm
                             name:tComponents.weapons.firearms.ar_M4A1,
                             optic:tComponents.optics.prd_M68_CCO,
@@ -7859,6 +7859,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -7906,6 +7907,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11B_FTL:{
@@ -8039,6 +8041,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -8085,6 +8088,8 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
+
                         },
                     },
                     inf_11B_Gren:{
@@ -8218,6 +8223,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -8264,6 +8270,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11BC_M249:{
@@ -8397,6 +8404,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -8444,6 +8452,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11BC",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11Z_SL:{
@@ -8577,6 +8586,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -8624,6 +8634,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11Z",
+                            hostSqID:[0,0],
                         },
                     },
                 },
@@ -8769,6 +8780,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -8816,6 +8828,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11B_uBGL:{
@@ -8949,6 +8962,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -8995,6 +9009,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11B_grenAsst:{
@@ -9128,6 +9143,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -9174,6 +9190,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11B_gren_RPG7:{
@@ -9307,6 +9324,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -9354,6 +9372,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11BC_RPK74M:{
@@ -9487,6 +9506,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -9533,6 +9553,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11BC",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11B_FTL:{
@@ -9667,6 +9688,7 @@ V : Vehicle driver
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
                                 hasBeenInit:0,
+                                leadershipLevel:0,
                                 attributes:{
                                     character:[
                                         5,//morality
@@ -9712,6 +9734,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
                         },
                     },
                     inf_11Z_Base:{
@@ -9845,6 +9868,7 @@ V : Vehicle driver
                             hoursCombatExperience:0,
                             hoursJobExperience:0,
                             leadership:{//factors considered if they are in a squad leadership position
+                                leadershipLevel:0,
                                 hasBeenInit:0,
                                 attributes:{
                                     character:[
@@ -9892,6 +9916,7 @@ V : Vehicle driver
                                 AA:0,//anti-air
                             },
                             specialty:"11B",
+                            hostSqID:[0,0],
                         },
                     },
                 },
@@ -11861,193 +11886,185 @@ const testItems={
             },           
         },
         personnel:{
-            T_Rifleman:{
-                AAF_Rifleman_Loaded:{
+            inf_11Z_SL:{
+                name:0,
+                ID:[0,0,2],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
+                primary:{//primary weapon, must be a firearm
+                    name:tComponents.weapons.firearms.ar_M4A1,//the weapon object
+                    optic:tComponents.optics.po_TA11RCO_ACOG,//optic, suppressor,rail accessory, gripMod and uBGL are all attachments that will impact the capability of the firearm.
+                    suppressor:0,
+                    mag:gComponents.mags.m_USGI30AR,//mag and ammunition are primarily there to calculate weight addition
+                    ammunition:[gComponents.calibers.c556x45,210],
+                    uBGL:0,
+                    uBGLAmmunition:[0,0],
+                    railAccessory:tComponents.railAccessories.ra_ANPEQ16,
+                    gripMod:tComponents.foreGrips.p_fgbp_GPS02,
+                    weight:0,//weight of the firearm with a loaded mag, all of it's attachments, a loaded uBGL if applicable, and correct for it's ammunition. Gets added into the total kit weight of the soldier
+                },
+                secondary:{//secondary weapon, must be a firearm
                     name:0,
-                    ID:[2,0,0],//country, branch, rank index. This reads as Abkhazia, Ground Forces, rifleman/crewman/basic soldier. Used in random name generation amongst possibly other things.
-                    primary:{//primary weapon, must be a firearm
-                        name:0,
-                        optic:0,
-                        suppressor:0,
-                        mag:0,
-                        ammunition:[gComponents.calibers.c545x39,210],
-                        uBGL:0,
-                        uBGLAmmunition:[0,0],
-                        railAccessory:0,
-                        gripMod:0,
-                        weight:0,
-                    },
-                    secondary:{//secondary weapon, must be a firearm
-                        name:0,
-                        optic:0,
-                        suppressor:0,
-                        mag:gComponents.mags.m_USGI30AR,
-                        ammunition:[gComponents.calibers.c556x45,210],
-                        uBGL:0,
-                        uBGLAmmunition:0,
-                        railAccessory:0,
-                        gripMod:0,
-                        weight:0,
-                    },
-                    special:{//special weapon, a standalone rocket launcher
-                        name:0,
-                        optic:0,
-                        gripMod:0,
-                        weight:0,
-                        GPRound:[0,0],
-                        APRound:[0,0],
-                        HeavyRound:[0,0],
-                        SmokeRound:[0,0],
-                    },
-                    explosives:{
-                        explosive1:[tComponents.weapons.fGren.G_RGD5,2],//name of explosive, quantity of explosive
-                        explosive2:[0,0],
-                        explosive3:[0,0],
-                    },
-                    mines:{
-                        /*Mines need to be different than explosives. 
-                            Unlike grenades or charges, mines are useful after being removed from an individual's
-                            inventory and thus need special consideration. Mines will impact the zones they are placed
-                            in and will continue to do so until the mines are destroyed, either by themselves, the 
-                            enemie's mine clearing assets or by being actuated by their targets. 
-                        */
-                        mine1:0,
-                        mine2:0,
-                        mine3:0,
-                    },
-                    kit:{
-                        bArmor:tComponents.vests.v_6B45M_W,
-                        nods:0,
-                        earPro:tComponents.headSets.hs_GSSH01,
-                        squadComms:tComponents.pRadios.pr_R187P1E,
-                        radio:0,
-                        uniform:tComponents.uniforms.u_6SH122_Ratnik,
-                        IFAK:tComponents.iFAKs.iFAK_Generic_1,
-                        canteen:tComponents.canteens.USSR_Canteen,           
-                        helmet:tComponents.helmets.h_6B47_W,
-                        backpack:tComponents.backpacks.ap_6SH117_W,
-                        tent:0,       
-                        sleepingBag:tComponents.sleepingBags.sb_Ratnik_W,
-                        supplies:{
-                            ration1:[0,3],
-                            ration2:[0,0],
-                            ration3:[0,0],
-                            waterContainer1:[tComponents.canteens.USSR_Canteen,2],
-                            waterContainer2:[0,0],
-                        }    
-                    },
-                    buffs:{
-                        rMealBuff:1,
-                        rWaterBuff:1,
-                        rHotMealBuff:1,
-                        rHotShowerBuff:1,
-                        rReserveTimeBuff:1,
-                    },
-                    status:{
-                        currentActivity:4,//0 is in active combat, 1 is standing guard, 2 is patrol, 3 is relaxing (downtime in general;could be eating, sleeping, doing weapon maintenance, etc.), 4 is in reserve 
-                        activityLevel:2,    
-                        inVehicle:0,
-                        inCombatType:0,//various combat types, refer to cfg.multipliers.personnel.experience.hCEPHVariousCombatModes for the detailed list. These can determine experience gain, among other things
-                        stress:1,
-                        totalKitWeight:0,//weight of the soldier's gear including uniform, weapons, ammo, food, etc.
-                        effectivness:1,
-                        calorieBalance:0,
-                        waterBalance:0,
-                        morale:1,
-                        fatigue:0,
-                        willToFight:{
-                            totalWillToFight:0,
-                            capabilities:{
-                                competence:[
-                                    4,//sustainability
-                                    5,//sufficiency
-                                    9,//skills
-                                    14//relevance
-                                ],
-                                quality:[
-                                    7,//adaptability
-                                    4,//education
-                                    15,//fitness
-                                    4.5,//psych traits
-                                    4.8,//resilience
-                                    4.5,//social skills
-                                ],
-                            },
-                            motivations:{
-                                desperation:10,
-                                revenge:2.5,
-                                ideology:7.5,
-                                identity:[
-                                    3,//organization
-                                    2.5,//personal
-                                    3,//unit
-                                    4.5,//state
-                                    4.5,//social
-                                    4.5//society
-                                ]
-                            }
+                    optic:0,
+                    suppressor:0,
+                    mag:0,
+                    ammunition:[0,0],
+                    uBGL:0,
+                    uBGLAmmunition:0,
+                    railAccessory:0,
+                    gripMod:0,
+                    weight:0,
+                },
+                special:{//special weapon, a standalone rocket launcher
+                    name:0,
+                    optic:0,
+                    gripMod:0,
+                    weight:0,
+                    GPRound:[0,0],//the different rounds used for various purposes. 
+                    APRound:[0,0],
+                    HeavyRound:[0,0],
+                    SmokeRound:[0,0],
+                },
+                explosives:{
+                    explosive1:[tComponents.weapons.fGren.G_M67,1],//name of explosive, quantity of explosive
+                    explosive2:[0,0],
+                    explosive3:[0,0],
+                },
+                mines:{
+                    mine1:0,
+                    mine2:0,
+                    mine3:0,
+                },
+                kit:{
+                    bArmor:tComponents.vests.v_MSV,
+                    nods:0,
+                    earPro:tComponents.headSets.hs_ComTacIII,
+                    squadComms:tComponents.pRadios.pr_MR3000P,
+                    radio:0,
+                    uniform:tComponents.uniforms.u_ACU_OCP, 
+                    IFAK:tComponents.iFAKs.iFAK_II,
+                    canteen:tComponents.canteens.GI_MOLLE,           
+                    helmet:tComponents.helmets.h_ECH_W,
+                    backpack:tComponents.backpacks.ap_MOLLE2_W,
+                    tent:0,       
+                    sleepingBag:tComponents.sleepingBags.sb_MSS_W,
+                    supplies:{
+                        ration1:[tComponents.supplies.rations.r_2020_ChiliMac_MRE,4],
+                        ration2:[0,0],
+                        ration3:[0,0],
+                        waterContainer1:[0,0],
+                        waterContainer2:[0,0],
+                    }    
+                },
+                buffs:{
+                    rMealBuff:1,//various factors that can improve or hurt morale depending on their presence or lack therof.
+                    rWaterBuff:1,
+                    rHotMealBuff:1,
+                    rHotShowerBuff:1,
+                    rReserveTimeBuff:1,
+                },
+                status:{
+                    currentActivity:4,//0 is in active combat, 1 is standing guard, 2 is patrol, 3 is relaxing (downtime in general;could be eating, sleeping, doing weapon maintenance, etc.), 4 is in reserve 
+                    activityLevel:2,//various intensities of activity. These include, in order, BMR, sedentary, light, moderate, active, very active, extremely active.     
+                    inVehicle:0,//in vehicle yes/no.
+                    inCombatType:0,//various combat types, refer to cfg.multipliers.personnel.experience.hCEPHVariousCombatModes for the detailed list. These can determine experience gain, among other things
+                    stress:1,
+                    totalKitWeight:0,//every item they have logged on them.
+                    effectivness:1,
+                    calorieBalance:0,//like a bank balance the calorie balance determines whether the soldier has a surplus or a deficit of calories.
+                    waterBalance:0,//same as above.
+                    morale:1,
+                    fatigue:0,//fatigue of the soldier
+                    willToFight:{
+                        totalWillToFight:0,
+                        capabilities:{
+                            competence:[
+                                5,//sustainability
+                                5,//sufficiency
+                                5,//skills
+                                5//relevance
+                            ],
+                            quality:[
+                                5,//adaptability
+                                5,//education
+                                5,//fitness
+                                5,//psych traits
+                                5,//resilience
+                                5,//social skills
+                            ],
                         },
-                        hActiveSinceLRest:[
-                            0,//basic metabolic rate
-                            0,//sedentary, little to no exercise
-                            0,//light activity
-                            0,//moderate activity
-                            0,//active,
-                            0,//very active
-                            0,//extremely active 
-                        ],
-                        hoursCombatExperience:0,
-                        hoursJobExperience:0,
-                        leadership:{//factors considered if they are in a squad leadership position
-                            hasBeenInit:0,
-                            attributes:{
-                                character:[
-                                    9,//morality
-                                    3,//empathy
-                                    3,//warrior ethos
-                                    4.5//discipline
-                                ],
-                                presence:[
-                                    7.5,//military and professional bearing
-                                    8,//fitness
-                                    7.5,//confidence
-                                    7.5//resilience
-                                ],
-                                intellect:[
-                                    7.5, //mental agility
-                                    7.5,//sound judgement
-                                    7,//innovation
-                                    7,//interpersonal tact
-                                    8//expertise
-                                ]
-
-                            },
-                            competencies:{
-                                leads:[
-                                    7.5,
-                                    7.5,
-                                    6,
-                                    7.5,
-                                    7
-                                ],
-                                develops:[
-                                    7.5,
-                                    7,
-                                    7.5,
-                                    7.5
-                                ],
-                                achieves:15
-                            }
+                        motivations:{
+                            desperation:5,
+                            revenge:5,
+                            ideology:5,
+                            identity:[
+                                5,//organization
+                                5,//personal
+                                5,//unit
+                                5,//state
+                                5,//social
+                                5//society
+                            ]
+                        }
+                    },
+                    hActiveSinceLRest:[
+                        0,//basic metabolic rate
+                        0,//sedentary, little to no exercise
+                        0,//light activity
+                        0,//moderate activity
+                        0,//active,
+                        0,//very active
+                        0,//extremely active 
+                    ],
+                    hoursCombatExperience:0,
+                    hoursJobExperience:0,
+                    leadership:{//factors considered if they are in a squad leadership position
+                        hasBeenInit:0,
+                        attributes:{
+                            character:[
+                                5,//morality
+                                5,//empathy
+                                5,//warrior ethos
+                                5//discipline
+                            ],
+                            presence:[
+                                5.5,  //military and professional bearing
+                                8,    //fitness
+                                6,    //confidence
+                                6     //resilience
+                            ],
+                            intellect:[
+                                5.25,//mental agility
+                                5,   //sound judgement
+                                5,   //innovation
+                                5,   //interpersonal tact
+                                2.5  //expertise
+                            ]
 
                         },
-                        points:{//different point values contributed to the total lethality of the squad
-                            AP:0,//anti-personnel
-                            AV:0,//anti-vehicle
-                            AA:0,//anti-air
-                        },
-                        specialty:"11B",
-                        organization:"Abkhaz Ground Forces",
+                        competencies:{
+                            leads:[
+                                5,  //leads others
+                                5,  //builds trust
+                                5,  //extends influence beyond chain of command
+                                5,  //leads by example
+                                5   //communications skills
+                            ],
+                            develops:[
+                                5, //creates positive environment
+                                5, //prepares self
+                                5, //develops others
+                                5  //stewards profession
+                            ],
+                            achieves:15
+                        }
+
                     },
+                    points:{//different point values contributed to the total lethality of the squad
+                        AP:0,//anti-personnel
+                        AV:0,//anti-vehicle
+                        AA:0,//anti-air
+                    },
+                    specialty:"11Z",
+                    hostSqID:[0,0],//old ID, new ID. Used to keep track of how long they have been with their unit.
                 },
             },
         },
@@ -12061,6 +12078,7 @@ const testUnits={
             name:"1st Platoon",
             squad1:{
                 name:"1st squad",
+                ID:0,
                 members:[
                     [structuredClone(components.personnel.US.army.infantry.inf_11Z_SL),0,0,0],//leadership
                     [structuredClone(components.personnel.US.army.infantry.inf_11B_FTL),structuredClone(components.personnel.US.army.infantry.inf_11B_FTL),0,0],//senior rifleman/ftl/asl
@@ -12079,22 +12097,20 @@ const testUnits={
                     AV:0,
                     AA:0
                 },
-                stats:{
-                    willToFight:{
-                        esperitDeCorps:8.5,
-                        expectation:5,
-                        control:[
-                            5,
-                            5,
-                            2.5,
-                        ],
-                        cohesion:[
-                            4.5,
-                            4.5,
-                            4.5
-                        ],
-                        
-                    }
+                supply:{
+                    neededSupplies:[
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                    ],
+                    
                 }
             },
         },
@@ -12122,25 +12138,8 @@ const testUnits={
                     AV:0,
                     AA:0
                 },
-                stats:{
-                    willToFight:{
-                        esperitDeCorps:8.5,
-                        expectation:5,
-                        control:[
-                            5,
-                            5,
-                            2.5,
-                        ],
-                        cohesion:[
-                            4.5,
-                            4.5,
-                            4.5
-                        ],
-                        
-                    }
-                }
             },
         },
-    },  
+    }, 
 };
 export default {components,uComps,largeUComps,BTGComps,SAMSystemComps,vComponents,tComponents,MOSCodes,testItems,testGComponents,testComponents,testUnits,gComponents};
